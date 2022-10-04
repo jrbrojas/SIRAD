@@ -87,24 +87,22 @@ export class NavService implements OnDestroy {
       headTitle1: 'General', headTitle2: 'Dashboards & widgets.',
     },*/
     {
-      title: 'SIMULACIONES', icon: 'home', tooltip: 'Simulaciones', type: 'sub', badgeType: 'success', active: true, children: [
-        { path: '/simulaciones', title: 'Simulaciones', type: 'link', },
+      title: 'REGISTRO', icon: 'home', tooltip: 'Simulaciones', type: 'sub', badgeType: 'success', active: true, children: [
+        /* { path: '/simulaciones', title: 'Simulaciones', type: 'link', },
         { path: '/simulaciones/solicitud-credenciales', title: 'Aprobar Solicitudes Credenciales', type: 'link', },
         { path: '/simulaciones/seguimiento-reportes', title: 'Seguimiento', type: 'link', },
-        { path: '/simulaciones/ficha-evaluacion', title: 'Ficha Evaluación', type: 'link', }
+        { path: '/simulaciones/ficha-evaluacion', title: 'Ficha Evaluación', type: 'link', } */
       ]
     },
     {
-      title: 'SEGURIDAD', tooltip: 'Seguridad', icon: 'shield', type: 'sub', active: false, children: [
-        { path: '/simulaciones/seguridad/permisos', title: 'Permisos', type: 'link' },
-        { path: '/simulaciones/seguridad/perfiles', title: 'Perfiles', type: 'link' },
+      title: 'VISUALIZACION', tooltip: 'Seguridad', icon: 'shield', type: 'sub', active: false, children: [
+        
+      ]
+    },
+    {
+      title: 'SEGURIDAD', tooltip: 'Seguridad', icon: 'folder-plus', type: 'sub', active: false, children: [
+        { path: '/sirad/seguridad/usuarios', title: 'Usuarios', type: 'link' },
         { path: '/simulaciones/seguridad/usuarios', title: 'Usuarios', type: 'link' },
-        { path: '/simulaciones/seguridad/usuarios-solicitud-add', title: 'Solicitar credencial', type: 'link' },
-      ]
-    },
-    {
-      title: 'REPORTES', tooltip: 'Seguridad', icon: 'folder-plus', type: 'sub', active: false, children: [
-        { path: '/simulaciones/seguridad/permisos', title: 'Reportes', type: 'link' },
       ]
     },
     /* {

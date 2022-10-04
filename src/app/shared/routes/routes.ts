@@ -82,4 +82,8 @@ export const routeContent: Routes = [
     path: 'simulaciones',
     loadChildren: () => import('../../pages/simulaciones/simulaciones.module').then(m => m.SimulacionesModule)
   },
+  {
+    path: 'sirad',
+    loadChildren: () => import('../../pages/sirad/sirad.module').then(m => m.SiradModuleComponent)
+  },
 ]

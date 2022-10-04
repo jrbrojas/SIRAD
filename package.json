@@ -43,6 +43,7 @@
     "date-fns": "^2.28.0",
     "feather-icons": "^4.28.0",
     "font-awesome": "^4.7.0",
+    "force": "^0.0.3",
     "geojson": "^0.5.0",
     "html2canvas": "^1.4.1",
     "jshint": "^2.13.5",

@@ -31,6 +31,9 @@ import { MonitoringEmergenciesComponent } from './pages/emergencies/monitoring-e
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { GeneralReportesComponent } from './pages/reportes/general-reportes/general-reportes.component';
+import { RegistroComponent } from './pages/sirad/registro/registro/registro.component';
+import { VisualizacionComponent } from './pages/sirad/visualizacion/visualizacion/visualizacion.component';
+import { SeguridadComponent } from './pages/sirad/seguridad/seguridad/seguridad.component';
 // @ts-ignore
 // @ts-ignore
 @NgModule({
@@ -41,7 +44,10 @@ import { GeneralReportesComponent } from './pages/reportes/general-reportes/gene
     RegisterComponent,
     ResetPasswordComponent,
     GeneralReportesComponent,
-    MonitoringEmergenciesComponent
+    MonitoringEmergenciesComponent,
+    RegistroComponent,
+    VisualizacionComponent,
+    SeguridadComponent
 
   ],
   imports: [
