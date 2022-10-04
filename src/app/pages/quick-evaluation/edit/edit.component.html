@@ -1,0 +1,1106 @@
+<app-breadcrumb [title]="'EVALUACIÓN RÁPIDA - CÓDIGO SINPAD NRO: {{idEmergencia}}'" [items]="['Evaluación Rápida']" [active_item]="'Crear'"></app-breadcrumb>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-xl-12">
+      <div class="card">
+
+        <div class="card-body">
+          <ul class="nav nav-tabs nav-primary">
+            <li class="nav-item">
+              <a href="javascript:void(0)" [class.active]="tabId === 'general'" class="nav-link" id="general" (click)="tabChange('general')">
+                <i class="icofont icofont-ui-home"></i>
+                Informaci&oacute;n General
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="javascript:void(0)" [class.active]="tabId === 'damage'" class="nav-link" id="damage" (click)="tabChange('damage')">
+                <i class="icofont icofont-man-in-glasses"></i>
+                Daños
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="javascript:void(0)" [class.active]="tabId === 'map'" class="nav-link" id="map" (click)="tabChange('map')">
+                <i class="icofont icofont-man-in-glasses"></i>
+                Mapa
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="javascript:void(0)" [class.active]="tabId === 'actions'" class="nav-link" id="actions" (click)="tabChange('actions')">
+                <i class="icofont icofont-contacts"></i>
+                Atención de Emergencia
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="javascript:void(0)" [class.active]="tabId === 'files'" class="nav-link" id="files" (click)="tabChange('files')">
+                <i href="javascript:void(0)" class="icofont icofont-contacts"></i>
+                Adjuntar archivo
+              </a>
+            </li>
+          </ul>
+          <div class="tab-content">
+
+            <div class="tab-pane fade" [ngClass]="['show', 'active']" *ngIf="tabId === 'general'">
+              <div class="row">
+                <!--div class="col-sm-2">
+                  <div class="form-group" style="font-size: 14px">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Código Interno Evaluación Rápida</mat-label>
+                      <input matInput [disabled]="true" value="00457">
+                    </mat-form-field>
+                  </div>
+                </div-->
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Nro. Formulario</mat-label>
+                      <input matInput>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <div class="col-sm-2">
+                  <div class="form-group">
+
+                    <mat-form-field class="example-full-width" appearance="outline">
+                      <mat-label>Tipo de Fen&oacute;meno</mat-label>
+                      <input type="text"
+                             placeholder="Pick one"
+                             aria-label="Number"
+                             matInput
+                             [formControl]="myControl"
+                             [matAutocomplete]="auto">
+                      <mat-autocomplete #auto="matAutocomplete" disabled="">
+                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option" >
+                          {{option}}
+                        </mat-option>
+                      </mat-autocomplete>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Grupo de Fen&oacute;meno</mat-label>
+                      <mat-select required>
+                        <mat-option value="1">Peligros de Geodinamica Externa</mat-option>
+                        <mat-option value="2">Medium</mat-option>
+                        <mat-option value="3">High</mat-option>
+                        <mat-option value="4">Urgent</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Ubigeo</mat-label>
+                      <mat-select required>
+                        <mat-option value="">Seleccione</mat-option>
+                        <mat-option value="1">Low</mat-option>
+                        <mat-option value="2">Medium</mat-option>
+                        <mat-option value="3">High</mat-option>
+                        <mat-option value="4">Urgent</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Centro Poblado</mat-label>
+                      <mat-select required>
+                        <mat-option value="">Seleccione</mat-option>
+                        <mat-option value="1">Low</mat-option>
+                        <mat-option value="2">Medium</mat-option>
+                        <mat-option value="3">High</mat-option>
+                        <mat-option value="4">Urgent</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row">
+
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Fecha y Hora de Evento</mat-label>
+                      <input matInput [matDatepicker]="picker">
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+
+
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Barrio / Sector / Urbanizaci&oacute;n / Ninguno</mat-label>
+                      <mat-select required>
+                        <mat-option value="">Seleccione</mat-option>
+                        <mat-option value="1">Barrio</mat-option>
+                        <mat-option value="2">Sector</mat-option>
+                        <mat-option value="3">Urbanizaci&oacute;n</mat-option>
+                        <mat-option value="4">Ninguno</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <!--div class="col-sm-3">
+                  <div class="form-group">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Barrio</mat-label>
+                      <input matInput>
+                    </mat-form-field>
+                  </div>
+                </div-->
+
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Caserio / Anexo / Ninguno</mat-label>
+                      <mat-select required>
+                        <mat-option value="">Seleccione</mat-option>
+                        <mat-option value="1">Caserio</mat-option>
+                        <mat-option value="2">Anexo</mat-option>
+                        <mat-option value="3">Ninguno</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <!--div class="col-sm-3">
+                  <div class="form-group">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Caserio</mat-label>
+                      <input matInput>
+                    </mat-form-field>
+                  </div>
+                </div-->
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Punto de referencia para llegar a la localidad afectada</mat-label>
+                      <textarea matInput></textarea>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Medio de transporte</mat-label>
+                      <textarea matInput></textarea>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Altitud (m.s.n.m)</mat-label>
+                      <input matInput>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Altitud</mat-label>
+                      <input matInput>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Longitud</mat-label>
+                      <input matInput>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Zona</mat-label>
+                      <mat-select required>
+                        <mat-option value="">Seleccione</mat-option>
+                        <mat-option value="1">Low</mat-option>
+                        <mat-option value="2">Medium</mat-option>
+                        <mat-option value="3">High</mat-option>
+                        <mat-option value="4">Urgent</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Este</mat-label>
+                      <input matInput>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Norte</mat-label>
+                      <input matInput>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <div class="form-group mb-0 text-right">
+                    <button type="button" class="btn btn-primary" (click)="tabChange('damage')"> Siguiente</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" [ngClass]="['show', 'active']" *ngIf="tabId === 'map'">
+              <!--app-map-sinpad></app-map-sinpad-->
+            </div>
+
+            <div class="tab-pane fade" [ngClass]="['show', 'active']" *ngIf="tabId === 'damage'">
+              <div class="row">
+                <div class="col-sm-12 col-xl-6">
+                  <div class="card">
+                    <div class="card-header b-t-success" style="padding: 15px; text-align: center">
+                      <h6>Vida y Salud</h6>
+                    </div>
+                    <div class="card-body">
+
+                      <table class="table table-bordered">
+                        <tbody>
+                        <tr>
+                          <td>Lesionados (Heridos)</td>
+                          <td class="w-30">
+                            <div class="media-body icon-state">
+                              <label class="switch">
+                                <input type="checkbox" checked="">
+                                <span class="switch-state"></span>
+                              </label>
+                            </div>
+                          </td>
+                          <td>
+                            <div class="media-body">
+                              <input type="text" class="form-control input" placeholder="Cantidad">
+                            </div>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>Personas Atrapadas</td>
+                          <td class="w-30">
+                            <div class="media-body icon-state">
+                              <label class="switch">
+                                <input type="checkbox" checked="">
+                                <span class="switch-state"></span>
+                              </label>
+                            </div>
+                          </td>
+                          <td>
+                            <div class="media-body">
+                              <input type="text" class="form-control input" placeholder="Cantidad">
+                            </div>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>Personas Aisladas</td>
+                          <td class="w-30">
+                            <div class="media-body icon-state">
+                              <label class="switch">
+                                <input type="checkbox" checked="">
+                                <span class="switch-state"></span>
+                              </label>
+                            </div>
+                          </td>
+                          <td>
+                            <div class="media-body">
+                              <input type="text" class="form-control input" placeholder="Cantidad">
+                            </div>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>Desaparecidos</td>
+                          <td class="w-30">
+                            <div class="media-body icon-state">
+                              <label class="switch">
+                                <input type="checkbox" checked="">
+                                <span class="switch-state"></span>
+                              </label>
+                            </div>
+                          </td>
+                          <td>
+                            <div class="media-body">
+                              <input type="text" class="form-control input" placeholder="Cantidad">
+                            </div>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>Fallecidos</td>
+                          <td class="w-30">
+                            <div class="media-body icon-state">
+                              <label class="switch">
+                                <input type="checkbox" checked="">
+                                <span class="switch-state"></span>
+                              </label>
+                            </div>
+                          </td>
+                          <td>
+                            <div class="media-body">
+                              <input type="text" class="form-control input" placeholder="Cantidad">
+                            </div>
+                          </td>
+                        </tr>
+
+                        </tbody>
+                      </table>
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-12 col-xl-6">
+                  <div class="card">
+                    <div class="card-header b-t-success" style="padding: 15px; text-align: center">
+                      <h6>Servicios Basicos</h6>
+                    </div>
+                    <div class="card-body">
+                      <div class="col-sm-12">
+                        <table class="table table-bordered">
+                          <tbody>
+                          <tr>
+                            <td>Agua</td>
+                            <td>
+                              <div class="media-body text-right icon-state">
+                                <label class="switch">
+                                  <input type="checkbox" checked="">
+                                  <span class="switch-state"></span>
+                                </label>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Desague</td>
+                            <td>
+                              <div class="media-body text-right icon-state">
+                                <label class="switch">
+                                  <input type="checkbox" checked="">
+                                  <span class="switch-state"></span>
+                                </label>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Energia Electrica</td>
+                            <td>
+                              <div class="media-body text-right icon-state">
+                                <label class="switch">
+                                  <input type="checkbox" checked="">
+                                  <span class="switch-state"></span>
+                                </label>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Telefono</td>
+                            <td>
+                              <div class="media-body text-right icon-state">
+                                <label class="switch">
+                                  <input type="checkbox" checked="">
+                                  <span class="switch-state"></span>
+                                </label>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Gas</td>
+                            <td>
+                              <div class="media-body text-right icon-state">
+                                <label class="switch">
+                                  <input type="checkbox" checked="">
+                                  <span class="switch-state"></span>
+                                </label>
+                              </div>
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12 col-xl-6">
+                  <div class="card">
+                    <div class="card-header b-t-success" style="padding: 15px; text-align: center">
+                      <h6>Infraestructura</h6>
+                    </div>
+                    <div class="card-body">
+                      <div class="col-sm-12">
+
+                        <div class="media">
+                          <label class="col-form-label m-r-10">Viviendas</label>
+                          <div class="media-body text-right icon-state">
+                            <label class="switch">
+                              <input type="checkbox" checked="">
+                              <span class="switch-state"></span>
+                            </label>
+                          </div>
+                        </div>
+
+                        <div class="media">
+                          <label class="col-form-label m-r-10">Carreteras</label>
+                          <div class="media-body text-right icon-state">
+                            <label class="switch">
+                              <input type="checkbox">
+                              <span class="switch-state"></span>
+                            </label>
+                          </div>
+                        </div>
+
+                        <div class="media">
+                          <label class="col-form-label m-r-10">Puentes</label>
+                          <div class="media-body text-right icon-state">
+                            <label class="switch">
+                              <input type="checkbox">
+                              <span class="switch-state"></span>
+                            </label>
+                          </div>
+                        </div>
+
+                        <div class="media">
+                          <label class="col-form-label m-r-10">Establecimiento de Salud</label>
+                          <div class="media-body text-right icon-state">
+                            <label class="switch">
+                              <input type="checkbox">
+                              <span class="switch-state"></span>
+                            </label>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-12 col-xl-6">
+                  <div class="card">
+                    <div class="card-header b-t-success" style="padding: 15px; text-align: center">
+                      <h6>Medios de vida</h6>
+                    </div>
+                    <div class="card-body">
+                      <div class="col-sm-12">
+
+                        <div class="media">
+                          <label class="col-form-label m-r-10">Ganaderia</label>
+                          <div class="media-body text-right icon-state">
+                            <label class="switch">
+                              <input type="checkbox" checked="">
+                              <span class="switch-state"></span>
+                            </label>
+                          </div>
+                        </div>
+
+                        <div class="media">
+                          <label class="col-form-label m-r-10">Agricultura</label>
+                          <div class="media-body text-right icon-state">
+                            <label class="switch">
+                              <input type="checkbox">
+                              <span class="switch-state"></span>
+                            </label>
+                          </div>
+                        </div>
+
+                        <div class="media">
+                          <label class="col-form-label m-r-10">Comercio</label>
+                          <div class="media-body text-right icon-state">
+                            <label class="switch">
+                              <input type="checkbox">
+                              <span class="switch-state"></span>
+                            </label>
+                          </div>
+                        </div>
+
+                        <div class="media">
+                          <label class="col-form-label m-r-10">Turismo</label>
+                          <div class="media-body text-right icon-state">
+                            <label class="switch">
+                              <input type="checkbox">
+                              <span class="switch-state"></span>
+                            </label>
+                          </div>
+                        </div>
+
+                        <div class="media">
+                          <label class="col-form-label m-r-10">Pesca</label>
+                          <div class="media-body text-right icon-state">
+                            <label class="switch">
+                              <input type="checkbox">
+                              <span class="switch-state"></span>
+                            </label>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <div class="form-group mb-0 text-right">
+                    <button type="button" class="btn btn-primary" (click)="tabChange('actions')"> Siguiente</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" [ngClass]="['show', 'active']" *ngIf="tabId === 'actions'">
+              <div class="row">
+                <div class="col-sm-12 col-xl-6">
+                  <div class="card">
+                    <div class="card-header b-t-success" style="padding: 15px; text-align: center">
+                      <h6>Actividades a Realizar</h6>
+                    </div>
+                    <div class="card-body">
+                      <div class="col-sm-12">
+
+                        <div class="media">
+                          <label class="col-form-label m-r-10">B&uacute;squeda y Rescate</label>
+                          <div class="media-body text-right icon-state">
+                            <label class="switch">
+                              <input type="checkbox" checked="">
+                              <span class="switch-state"></span>
+                            </label>
+                          </div>
+                        </div>
+
+                        <div class="media">
+                          <label class="col-form-label m-r-10">Evacuaci&oacute;n</label>
+                          <div class="media-body text-right icon-state">
+                            <label class="switch">
+                              <input type="checkbox">
+                              <span class="switch-state"></span>
+                            </label>
+                          </div>
+                        </div>
+
+                        <div class="media">
+                          <label class="col-form-label m-r-10">Atenci&oacute;n de Salud</label>
+                          <div class="media-body text-right icon-state">
+                            <label class="switch">
+                              <input type="checkbox">
+                              <span class="switch-state"></span>
+                            </label>
+                          </div>
+                        </div>
+
+                        <div class="media">
+                          <label class="col-form-label m-r-10">Equipo Edan</label>
+                          <div class="media-body text-right icon-state">
+                            <label class="switch">
+                              <input type="checkbox">
+                              <span class="switch-state"></span>
+                            </label>
+                          </div>
+                        </div>
+
+                        <div class="media">
+                          <label class="col-form-label m-r-10">Medidas de Control</label>
+                          <div class="media-body text-right icon-state">
+                            <label class="switch">
+                              <input type="checkbox">
+                              <span class="switch-state"></span>
+                            </label>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-12 col-xl-6">
+                  <div class="card">
+                    <div class="card-header b-t-success" style="padding: 15px; text-align: center">
+                      <h6>Necesidades de Apoyo Externo</h6>
+                    </div>
+                    <div class="card-body">
+                      <div class="col-sm-12">
+
+                        <div class="media">
+                          <label class="col-form-label m-r-10">Bienes de Ayuda Humanitaria</label>
+                          <div class="media-body text-right icon-state">
+                            <label class="switch">
+                              <input type="checkbox" checked="">
+                              <span class="switch-state"></span>
+                            </label>
+                          </div>
+                        </div>
+
+                        <div class="media">
+                          <label class="col-form-label m-r-10">Maquinaria Pesada</label>
+                          <div class="media-body text-right icon-state">
+                            <label class="switch">
+                              <input type="checkbox">
+                              <span class="switch-state"></span>
+                            </label>
+                          </div>
+                        </div>
+
+                        <div class="media">
+                          <label class="col-form-label m-r-10">Asistencia Tecnica</label>
+                          <div class="media-body text-right icon-state">
+                            <label class="switch">
+                              <input type="checkbox">
+                              <span class="switch-state"></span>
+                            </label>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+
+                <div class="col-sm-12 col-xl-6">
+                  <div class="card">
+                    <div class="card-header b-t-success" style="padding: 15px; text-align: center">
+                      <h6>Otras Actividades</h6>
+                    </div>
+                    <div class="card-body">
+                      <div class="col-sm-12">
+
+                        <div class="media" *ngFor="let item of [].constructor(15);">
+                          <label class="col-form-label m-r-10">B&uacute;squeda y Rescate</label>
+                          <div class="media-body text-right icon-state">
+                            <label class="switch">
+                              <input type="checkbox" checked="">
+                              <span class="switch-state"></span>
+                            </label>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-12 col-xl-6">
+                  <div class="card">
+                    <div class="card-header b-t-success" style="padding: 15px; text-align: center">
+                      <h6>Otras Necesidades</h6>
+                    </div>
+                    <div class="card-body">
+                      <div class="col-sm-12">
+
+                        <div class="media" *ngFor="let item of [].constructor(15);">
+                          <label class="col-form-label m-r-10">Bienes de Ayuda Humanitaria</label>
+                          <div class="media-body text-right icon-state">
+                            <label class="switch">
+                              <input type="checkbox" checked="">
+                              <span class="switch-state"></span>
+                            </label>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <div class="form-group mb-0 text-right">
+                    <button type="button" class="btn btn-primary" (click)="tabChange('files')"> Siguiente</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" [ngClass]="['show', 'active']" *ngIf="tabId === 'files'">
+
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label>Descripcion</label>
+                    <textarea class="form-control textarea" id="exampleFormControlTextarea4" rows="3"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label>Cargar Archivos</label>
+                    <form class="dropzone digits" id="singleFileUpload">
+                      <div class="dz-message needsclick"><i class="icon-cloud-up"></i>
+                        <h6>Suelte los archivos aqu&iacute; o haga clic para cargarlos.</h6>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="order-history table-responsive">
+                  <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                      <th>Image</th>
+                      <th>Descripcion</th>
+                      <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let item of [].constructor(2);">
+                      <td>
+                        <img class="img-fluid img-40" src="https://media-cdn.tripadvisor.com/media/photo-s/15/a4/9b/77/legacy-hotel-at-img-academy.jpg" alt="#"></td>
+                      <td>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam consequatur delectus
+                      </td>
+                      <td>
+                        <a style="color: #f73164; cursor: pointer;" ngbTooltip="Enviar">
+                          <i class="fa fa-trash-o" style="font-size: 25px"></i>
+                        </a>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <div class="form-group mb-0 text-right">
+                    <button (click)="save()" type="button" class="btn btn-primary"> Guardar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-xl-12 xl-100">
+      <div class="card">
+        <div class="card-body">
+          <div class="product-page-details">
+            <h3>Historial de Cambios</h3>
+          </div>
+          <div>
+            <table class="product-page-width ">
+              <!--p>GESTION DE FUNCIONARIOS</p-->
+              <tbody>
+              <tr>
+                <td> <b>Asignado &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
+                <td>COEN</td>
+              </tr><tr>
+                <td> <b>Estado &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
+                <td>POR APROBAR COEN</td>
+              </tr>
+              <tr>
+                <td> <b>Usuario Creador &nbsp;&nbsp;&nbsp;:</b></td>
+                <td>COEL</td>
+              </tr>
+              <tr>
+                <td> <b>Fecha Hora Creaci&oacute;n &nbsp;&nbsp;&nbsp;:</b></td>
+                <td>04/04/2022 09:00 hrs</td>
+              </tr>
+              <tr>
+                <td> <b>Fecha Hora Modificaci&oacute;n &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
+                <td class="txt-success">04/04/2022 09:00 hrs</td>
+              </tr>
+              <tr>
+                <td> <b>Modificaci&oacute;n &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
+                <td>CAMBIO DE TIPO DE FENOMENO</td>
+              </tr>
+              <tr>
+                <td> <b>Usuario Modificador &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
+                <td>CRUEDA-COEL-LAMBAYEQUE</td>
+              </tr>
+
+
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!--div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <form class="needs-validation">
+
+            <div class="row">
+
+              <div class="col-sm-2">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Nro. Formulario</mat-label>
+                    <input matInput>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="col-sm-2">
+                <div class="form-group">
+
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Tipo de Fenómeno</mat-label>
+                    <input type="text"
+                           placeholder="Pick one"
+                           aria-label="Number"
+                           matInput
+                           [formControl]="myControl"
+                           [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete" disabled="">
+                      <mat-option *ngFor="let option of filteredOptions | async" [value]="option" >
+                        {{option}}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Grupo de Fenómeno</mat-label>
+                    <mat-select required>
+                      <mat-option value="1">Peligros de Geodinamica Externa</mat-option>
+                      <mat-option value="2">Medium</mat-option>
+                      <mat-option value="3">High</mat-option>
+                      <mat-option value="4">Urgent</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="col-sm-2">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Ubigeo</mat-label>
+                    <mat-select required>
+                      <mat-option value="">Seleccione</mat-option>
+                      <mat-option value="1">Low</mat-option>
+                      <mat-option value="2">Medium</mat-option>
+                      <mat-option value="3">High</mat-option>
+                      <mat-option value="4">Urgent</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Centro Poblado</mat-label>
+                    <mat-select required>
+                      <mat-option value="">Seleccione</mat-option>
+                      <mat-option value="1">Low</mat-option>
+                      <mat-option value="2">Medium</mat-option>
+                      <mat-option value="3">High</mat-option>
+                      <mat-option value="4">Urgent</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Fecha y Hora de Evento</mat-label>
+                    <input matInput [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                </div>
+              </div>
+
+
+
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Barrio / Sector / Urbanización / Ninguno</mat-label>
+                    <mat-select required>
+                      <mat-option value="">Seleccione</mat-option>
+                      <mat-option value="1">Barrio</mat-option>
+                      <mat-option value="2">Sector</mat-option>
+                      <mat-option value="3">Urbanización</mat-option>
+                      <mat-option value="4">Ninguno</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+
+
+
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Caserio / Anexo / Ninguno</mat-label>
+                    <mat-select required>
+                      <mat-option value="">Seleccione</mat-option>
+                      <mat-option value="1">Caserio</mat-option>
+                      <mat-option value="2">Anexo</mat-option>
+                      <mat-option value="3">Ninguno</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+
+
+            </div>
+
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Punto de referencia para llegar a la localidad afectada</mat-label>
+                    <textarea matInput></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Medio de transporte</mat-label>
+                    <textarea matInput></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Altitud (m.s.n.m)</mat-label>
+                    <input matInput>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Altitud</mat-label>
+                    <input matInput>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Longitud</mat-label>
+                    <input matInput>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Zona</mat-label>
+                    <mat-select required>
+                      <mat-option value="">Seleccione</mat-option>
+                      <mat-option value="1">Low</mat-option>
+                      <mat-option value="2">Medium</mat-option>
+                      <mat-option value="3">High</mat-option>
+                      <mat-option value="4">Urgent</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Este</mat-label>
+                    <input matInput>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Norte</mat-label>
+                    <input matInput>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <div class="form-group mb-0">
+                  <button type="button" class="btn btn-outline-primary mr-3" >
+                    <span>Guardar</span>
+                  </button>
+                  <button type="button" class="btn btn-outline-danger"> Regresar</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div-->

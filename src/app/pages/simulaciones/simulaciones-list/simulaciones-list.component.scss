@@ -1,0 +1,128 @@
+/*input:focus {
+  outline: none !important;
+  border-color: #7366ff;
+  box-shadow: 0 0 1px #7366ff;
+}
+
+textarea:focus {
+  outline: none !important;
+  border-color: #7366ff;
+  box-shadow: 0 0 1px #7366ff;
+}
+
+select:focus {
+  outline: none !important;
+  border-color: #7366ff;
+  box-shadow: 0 0 1px #7366ff;
+}*/
+
+.dropdown-toggle::after {
+    border-top: 0px!important;
+    border-right: 0px!important;
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }
+  
+  /*input::-webkit-input-placeholder {
+    font-size: 14px;
+    line-height: 3;
+  }*/
+  
+  
+  @media (max-width: 575px) { /*30 x 16px = 480px*/
+    table {
+      width: 100%;
+    }
+    table tr {
+      display: flex;
+      flex-direction: column;
+      border-radius: 5px;
+      border: 1px solid #d3d3d3;
+      padding: 1em;
+      margin-bottom: 1em;
+    }
+    table thead {
+      display: none;
+    }
+  }
+  
+  .dataTables_wrapper .dataTables_length select {
+    border-color: #f4f4f4;
+    color: #2c323f;
+    padding: 0 10px;
+    margin: 0 10px;
+    height: 2.7142em;
+    background-color: #fff;
+  }
+  
+
+
+  .mat-stepper-horizontal {
+    margin-top: 8px;
+  }
+  
+  .mat-form-field {
+    margin-top: 16px;
+  }
+
+/* Structure */
+.example-container {
+    position: relative;
+  }
+  
+  .example-table-container {
+    position: relative;
+    min-height: 200px;
+    max-height: 400px;
+    overflow: auto;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  .example-loading-shade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 56px;
+    right: 0;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .example-rate-limit-reached {
+    max-width: 360px;
+    text-align: center;
+  }
+  
+  /* Column Widths */
+  .mat-column-number,
+  .mat-column-state {
+    max-width: 64px;
+  }
+  
+  .mat-column-created {
+    max-width: 124px;
+  }
+  .si-active {
+    font-size: 13px;
+    font-weight: bold;
+    color: rgb(0, 128, 0);
+}
+  
+.no-active {
+    font-size: 13px;
+    font-weight: bold;
+    color: red;
+}
+
+.evento-activo {
+  background-color: rgb(32, 214, 47); 
+  color: white;
+}

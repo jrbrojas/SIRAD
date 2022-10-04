@@ -1,0 +1,168 @@
+<form [formGroup]="livingPlaceForm">
+
+  <div class="row">
+
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label>Direcci&oacute;n</label>
+        <input type="text" formControlName="direccion" class="form-control" placeholder="Dirección" />
+      </div>
+    </div>
+
+    <div class="col-sm-2">
+      <div class="form-group">
+        <label>N&uacute;mero de Lote</label>
+        <input type="text" formControlName="numeroLote" class="form-control" placeholder="Número de lote" />
+      </div>
+    </div>
+
+    <div class="col-sm-2">
+      <div class="form-group">
+        <label>Tenencia Propia</label>
+        <select class="form-control" formControlName="tenenciaPropia">
+          <option value="">-- Seleccione --</option>
+          <option value="SI">SI</option>
+          <option value="NO">NO</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-sm-2">
+      <div class="form-group">
+        <label>Uso de Instalación</label>
+        <ng-select [items]="selectUso" bindLabel="descripcion" bindValue="id" formControlName="tipoUsoVivienda"
+          (change)="getSelectUso($event)" placeholder="Seleccione">
+        </ng-select>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-sm-2">
+      <div class="form-group">
+        <label>Condici&oacute;n de Vivienda</label>
+        <ng-select [items]="selectCondicionUso" bindLabel="descripcion" bindValue="id"
+          formControlName="tipoCondicionUso" (change)="getSelectCondicionUso($event)" placeholder="Seleccione">
+        </ng-select>
+      </div>
+    </div>
+
+    <div class="col-sm-1">
+      <div class="for-group">
+        <label>Area(m<sup>2</sup>)</label>
+        <input type="text" formControlName="unidadMedidaArea" class="form-control" placeholder="Area" />
+      </div>
+    </div>
+
+
+    <div class="col-sm-3">
+      <div class="form-group">
+        <label>Tipo techo</label>
+        <ng-select [items]="selectTecho" bindLabel="descripcion" bindValue="id" formControlName="tipoTechoVivienda"
+          (change)="getSelectTecho($event)" placeholder="Seleccione">
+        </ng-select>
+      </div>
+    </div>
+
+    <div class="col-sm-3">
+      <div class="form-group">
+        <label>Tipo Pared</label>
+        <ng-select [items]="selectPared" bindLabel="descripcion" bindValue="id" formControlName="tipoParedVivienda"
+          (change)="getSelectPared($event)" placeholder="Seleccione">
+        </ng-select>
+      </div>
+    </div>
+
+    <div class="col-sm-3">
+      <div class="form-group">
+        <label>Tipo Piso</label>
+        <ng-select [items]="selectPiso" bindLabel="descripcion" bindValue="id" formControlName="tipoPisoVivienda"
+          (change)="getSelectPiso($event)" placeholder="Seleccione">
+        </ng-select>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="text-center">
+    <button type="button" class="btn btn-primary mr-3" [class.loader--text]="form2aService.showLoader"
+      [disabled]="!livingPlaceForm.valid || form2aService.showLoader" (click)="createAffectedHousing()"
+      *ngIf="!livingPlaceForm.value.id">
+      <span>{{ form2aService.showLoader ? '' : 'Guardar' }}</span>
+    </button>
+    <button *ngIf="livingPlaceForm.value.id"
+      (click)="updateAffectedHousing()" class="btn btn-primary m-r-10" type="button" title="">
+      <i class="fa fa-check-circle-o mr-1"></i>Actualizar
+    </button>
+    <button type="button" class="btn btn-outline-danger">
+      <span>Cancelar</span>
+    </button>
+  </div>
+</form>
+
+<!-- Tabla -->
+<div class="row m-t-20" *ngIf="detailsAffectedHousing">
+  <div class="col-sm-12 col-xl-12">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="text-center">Direcci&oacute;n</th>
+            <th class="text-center">N&uacute;mero de Lote</th>
+            <th class="text-center">Tenencia Propia</th>
+            <th class="text-center">Uso</th>
+            <th class="text-center">Condici&oacute;n de Uso</th>
+            <th class="text-center">Area</th>
+            <th class="text-center">Tipo techo</th>
+            <th class="text-center">Tipo Pared</th>
+            <th class="text-center">Tipo Piso</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="text-center">
+            <td>
+              {{detailsAffectedHousing.direccion}}
+            </td>
+            <td>
+              {{detailsAffectedHousing.numeroLote}}
+            </td>
+            <td>
+              {{detailsAffectedHousing.tenenciaPropia}}
+            </td>
+            <td>
+              {{detailsAffectedHousing.uso}}
+            </td>
+            <td>
+              {{detailsAffectedHousing.condicion}}
+            </td>
+            <td>
+              {{detailsAffectedHousing.unidadMedidaArea}}
+            </td>
+            <td>
+              {{detailsAffectedHousing.tipoTecho}}
+            </td>
+            <td>
+              {{detailsAffectedHousing.tipoPared}}
+            </td>
+            <td>
+              {{detailsAffectedHousing.tipoPiso}}
+            </td>
+            <td>
+            <td>
+              <div>
+                <a class="mr-2 ml-2"
+                  style="color: #f73164; cursor: pointer; font-size: 20px" ngbTooltip="Eliminar"
+                  (click)="editHousing()">
+                  <i class="fa fa-edit"></i>
+                </a>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

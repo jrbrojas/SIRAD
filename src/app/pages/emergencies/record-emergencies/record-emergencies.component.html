@@ -1,0 +1,43 @@
+<app-breadcrumb [title]="'Historial de cambios'" [active_item]="'Historial de Cambios'"></app-breadcrumb>
+<div class="mb-4">
+  <div class="d-flex justify-content-between mt-4">
+    <h4 style="margin-left: 20px;" *ngIf="codigoSinpad">CODIGO SINPAD: {{codigoSinpad}}</h4>
+    <button (click)="detailEmergency(isId)" class="btn btn-primary m-r-10 mr-4" type="button" title="">
+        <i class="fa fa-angle-left mr-2" aria-hidden="true" ></i>Atras
+    </button>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row" *ngIf="dataRecord">
+
+    <div class="col-xl-12 xl-100" *ngFor="let i of dataRecord | paginate: { itemsPerPage: 3, currentPage: page }">
+      <div class="card">
+        <div class="card-header" style="padding-top: 20px !important; padding-bottom: 10px !important;">
+            <h5>Cambio #{{i.index}}</h5>
+        </div>
+        <div class="card-body">
+          <div>
+            <table class="product-page-width ">
+              <tbody>
+                <tr class="b-b-light" >
+                    <td class="py-2"> <b>Usuario Modificador: &nbsp;&nbsp;&nbsp;</b></td>
+                    <td class="py-2">{{i.modificadoPor}} - {{i.nombresApellidosModificadoPor}}</td>
+                  </tr>
+                <tr class="b-b-light" >
+                  <td class="py-2"> <b>Fecha Hora Modificaci&oacute;n: &nbsp;&nbsp;&nbsp;</b></td>
+                  <td class="py-2" style="color: #7366ff ;"><b>{{i.fechaHoraModificacion}}</b></td>
+                </tr>
+                <tr class="b-b-light" >
+                  <td class="py-2"> <b>Modificaci&oacute;n: &nbsp;&nbsp;&nbsp;</b></td>
+                  <td class="py-2" style="width : 45%">{{i.cambios}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+  </div>
+</div>

@@ -1,0 +1,182 @@
+<app-breadcrumb title="EDAN PERU Preliminar - CODIGO SINPAD NRO: {{ codigoSinpad }}" [items]="['Emergencias','Formularios','Preliminar']" [active_item]="'Crear'"></app-breadcrumb>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-xl-12">
+      <div class="card">
+
+        <div class="card-body">
+
+          <ul class="nav nav-tabs nav-primary">
+            <li class="nav-item">
+              <a href="javascript:void(0)" [class.active]="tabId === 'general'"
+                class="nav-link">
+                <i class="icofont icofont-ui-home"></i>
+                Informaci&oacute;n General
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="javascript:void(0)" class="nav-link">
+                <i class="icofont icofont-man-in-glasses"></i>
+                Caracter&iacute;stica del peligro
+              </a>
+              <span class="hidden">Caracter&iacute;stica del peligro de origen natural o inducido por la acci&oacute;n humana</span>
+            </li>
+            <li class="nav-item">
+              <a href="javascript:void(0)" class="nav-link">
+                <i class="icofont icofont-contacts"></i>
+                Daños a la vida y salud
+              </a>
+              <span class="hidden">Daños a la vida y salud de la persona</span>
+            </li>
+            <li class="nav-item">
+              <a href="javascript:void(0)" class="nav-link">
+                <i href="javascript:void(0)" class="icofont icofont-contacts"></i>
+                Daños Materiales
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="javascript:void(0)" class="nav-link">
+                <i href="javascript:void(0)" class="icofont icofont-contacts"></i>
+                An&aacute;lisis de Necesidades
+              </a>
+              <span class="hidden">An&aacute;lisis de Necesidades</span>
+            </li>
+
+            <li class="nav-item">
+              <a href="javascript:void(0)" class="nav-link">
+                <i href="javascript:void(0)" class="icofont icofont-contacts"></i>
+                Coordinaciones
+              </a>
+              <span class="hidden">An&aacute;lisis de Necesidades</span>
+            </li>
+
+            <li class="nav-item">
+              <a href="javascript:void(0)" class="nav-link">
+                <i href="javascript:void(0)" class="icofont icofont-contacts"></i>
+                Conclusiones y observaciones
+              </a>
+              <span class="hidden">An&aacute;lisis de Necesidades</span>
+            </li>
+
+            <li class="nav-item">
+              <a href="javascript:void(0)" class="nav-link">
+                <i href="javascript:void(0)" class="icofont icofont-contacts"></i>
+                Recomendaciones finales
+              </a>
+              <span class="hidden">An&aacute;lisis de Necesidades</span>
+            </li>
+
+            <li class="nav-item">
+              <a href="javascript:void(0)" class="nav-link">
+                <i href="javascript:void(0)" class="icofont icofont-contacts"></i>
+                Resumen
+              </a>
+              <span class="hidden">An&aacute;lisis de Necesidades</span>
+            </li>
+
+            <li class="nav-item">
+              <a href="javascript:void(0)" class="nav-link">
+                <i href="javascript:void(0)" class="icofont icofont-contacts"></i>
+                Adjuntar archivos
+              </a>
+              <span class="hidden">An&aacute;lisis de Necesidades</span>
+            </li>
+
+          </ul>
+
+          <div class="tab-content">
+            <form class="needs-validation" novalidate >
+              <div class="tab-pane fade" [ngClass]="['show', 'active']" *ngIf="tabId === 'general'">
+                <form [formGroup]="formCrearInfoGeneral">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <label for="document">Condicion clim&aacute;tica</label>
+                        <textarea class="form-control" formControlName="condicionClimatica"></textarea>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <label for="format">Vias de transporte</label>
+                        <select
+                          class="form-control"
+                          formControlName="idViaTransporte"
+                          (change)="changeViaTransporte($event)">
+                          <option value="">-- Seleccione --</option>
+                          <option value="{{i.id}}" *ngFor="let i of listarTransporte" [attr.name]="i.descripcion">{{i.descripcion}}</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <label for="format">Lugar de partida</label>
+                        <input type="text" class="form-control" formControlName="lugarPartida" placeholder="Lugar de partida">
+                      </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <label for="format">Ruta principal</label>
+                        <input type="text" class="form-control" formControlName="rutaPrincipal" placeholder="Ruta principal">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <label for="format">Tipo de vehiculo</label>
+                        <select
+                          class="form-control"
+                          formControlName="idTipoVehiculo"
+                          (change)="changeTipoVehiculo($event)">
+                          <option value="">-- Seleccione --</option>
+                          <option value="{{i.id}}" *ngFor="let i of listarTipoVehiculo" [attr.name]="i.descripcion">{{i.descripcion}}</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <label for="format">Tiempo estimado de llegada</label>
+                        <input type="text" class="form-control" formControlName="tiempoEstimadoLlegada" placeholder="Tiempo estimado de llegada">
+                      </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <label for="format">Rutas alternas</label>
+                        <input type="text" class="form-control" formControlName="rutaAlterna" placeholder="Rutas alternas">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group mb-0 text-center">
+                        <button
+                          type="button"
+                          class="btn btn-danger m-r-20"
+                          (click)="back()"> Cancelar</button>
+                        <button
+                          type="button"
+                          class="btn btn-primary"
+                          [disabled]="!formCrearInfoGeneral.valid"
+                          (click)="crearInfoGeneral()"> Siguiente</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

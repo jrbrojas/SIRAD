@@ -1,0 +1,100 @@
+<app-breadcrumb [title]="'Grupo Permisos'" [items]="['Seguridad']" [active_item]="'Grupo Permisos'"></app-breadcrumb>
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <form [formGroup]="showEntries">
+                        <div class="row">
+
+                            <div class="col-sm-8">
+                                <!--<div class="form-group" style="font-size: 13px">
+                                    <div class="mb-2">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Buscar por Nombre y Descripción</mat-label>
+                                            <input matInput type="text" formControlName="textoBusqueda">
+                                        </mat-form-field>
+                                    </div>
+                                </div>-->
+                            </div>
+                            <div class="col-sm-2">
+
+                            </div>
+                            <div class="col-sm-2">
+                                <a class="btn btn-primary btn-lg" (click)="createPermissionGroup()">
+                                    <i class="fa fa-plus-square-o"></i> Nuevo
+                                </a>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="table-responsive">
+                            <div id="data-source-1_wrapper" class="dataTables_wrapper">
+                                <!--<div class="dataTables_length">
+                                    <label>Mostrar
+                      <select name="data-source-1_length" formControlName="cantidadRegistro" (change)="showEntriesChange($event)">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                      </select> entradas</label>
+                                </div>-->
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Nombre</th>
+                                            <th class="text-center">Descripci&oacute;n</th>
+                                            <th class="text-center">Opciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr class="text-center" *ngFor="let i of permissionGroup">
+                                            <td>
+                                                {{i.nombre}}
+                                            </td>
+                                            <td>
+                                                {{i.descripcion}}
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <a (click)="detailPermissionGroup(i.id)" style="color: #08afe0; cursor: pointer; font-size: 20px" ngbTooltip="Ver / Editar">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                                <!--<nav class="m-b-30">
+
+                                    <ul class="meal-list">
+                                        <li *ngFor="let i of emergencies | paginate:
+                    { id: 'server', itemsPerPage: cantidadItemsForm, currentPage: paginaActalForm,
+                     totalItems: cantidadTotalRegistrosBusqueda }"></li>
+                                    </ul>
+
+                                    <div class="has-text-centered">
+                                        <div class="row" *ngIf="loading">
+                                            <div class="col-sm-12">
+                                                <ngx-skeleton-loader count="10" appearance="line" animation="progress"></ngx-skeleton-loader>
+                                            </div>
+                                        </div>
+                                        <pagination-controls previousLabel="Anterior" nextLabel="Siguiente" (pageChange)="paginateEmergency($event)" id="server"></pagination-controls>
+                                    </div>
+                                </nav>-->
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

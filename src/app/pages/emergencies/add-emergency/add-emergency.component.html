@@ -1,0 +1,113 @@
+<app-breadcrumb [title]="'Crear emergencia'" [items]="['Emergencias']" [active_item]="'Crear'"></app-breadcrumb>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <form class="needs-validation" novalidate [formGroup]="createEmergency">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+
+                  <label>Tipo de Peligro</label>
+                  <ng-select
+                    [items]="selectTipoPeligro"
+                    bindLabel="tipoPeligro"
+                    bindValue="idTipoPeligro"
+                    formControlName="idTipoPeligro"
+                    (change)="getSelectPeligro($event)"
+                    placeholder="Seleccione"></ng-select>
+                  <div class="invalid-feedback"
+                       *ngIf="createEmergency.controls['idTipoPeligro'].touched && createEmergency.controls['idTipoPeligro'].errors?.['required']">
+                    Seleccione el tipo de peligro
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Grupo de Peligro</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="grupoPeligro"
+                    readonly>
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Ubicaci&oacute;n</label>
+                  <ng-select
+                    [items]="selectUbigeo"
+                    bindLabel="ubigeo"
+                    bindValue="id"
+                    formControlName="codigoUbigeo"
+                    (change)="getSelectUbigeo($event)"
+                    placeholder="Seleccione"></ng-select>
+                  <div class="invalid-feedback"
+                       *ngIf="createEmergency.controls['codigoUbigeo'].touched && createEmergency.controls['codigoUbigeo'].errors?.['required']">
+                    Seleccione la Ubicaci&oacute;n
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Fecha y Hora de Evento</mat-label>
+                    <input readonly matInput [min]="dateLimitMin" [max]="dateLimitMax" formControlName="fechaHoraEvento" [ngxMatDatetimePicker]="picker" placeholder="Seleccione una fecha">
+                    <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+                    <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
+                  </mat-form-field>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label>Descripci&oacute;n del evento</label>
+                  <textarea
+                    onkeyup="this.value=this.value.toUpperCase();"
+                    class="form-control"
+                    formControlName="descripcionEvento"
+                    (keyup)="onKey($event)"
+                    rows="3"
+                    maxlength="1000"
+                    [class.is-invalid]="createEmergency.controls['descripcionEvento'].touched && createEmergency.controls['descripcionEvento'].errors?.['required']">
+                  </textarea>
+                  <div class="">
+                    {{counter}} / 1000
+                  </div>
+                  <div class="invalid-feedback"
+                       *ngIf="createEmergency.controls['descripcionEvento'].touched && createEmergency.controls['descripcionEvento'].errors?.['required']">
+                    La descripci&oacute;n del evento es requerida
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row text-center" style="text-size-adjust:40px;">
+              <div class="col">
+                <div class="form-group mb-0" >
+                  <button
+                    type="button"
+                    class="btn btn-primary mr-3"
+                    [class.loader--text]="emergencyService.showLoader"
+                    [disabled]="!createEmergency.valid || emergencyService.showLoader"
+                    (click)="createEmergencies()">
+                    <span>{{ emergencyService.showLoader ? '' : 'Guardar' }}</span>
+                  </button>
+                  <button type="button" class="btn btn-danger" (click)="cancelProject()">Cancelar</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

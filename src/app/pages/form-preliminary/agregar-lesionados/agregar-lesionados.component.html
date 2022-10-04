@@ -1,0 +1,71 @@
+<div class="modal-header text-center">
+    <h5 class="modal-title text-center">Lesionados (Heridos)</h5>
+    <button class="close" type="button" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">×</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="formCrearInfoGeneral">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Lugar de Atenci&oacute;n</label>
+                    <input class="form-control" type="text" formControlName="lugarAtencion" placeholder="Lugar de Atención">
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Graves (Total)</label>
+                    <input type="text" class="form-control" formControlName="cantidadGrave" placeholder="Graves (Total)">
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Moderados (Total)</label>
+                    <input type="text" class="form-control" formControlName="cantidadModerado" placeholder="Moderados (Total)">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Leves (Total)</label>
+                    <input type="text" class="form-control" formControlName="cantidadLeve" placeholder="Leves (Total)">
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Con tratamiento local</label>
+                    <input type="text" class="form-control" formControlName="cantidadTratamientoLocal" placeholder="Con tratamiento local">
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Con necesidad de evacuaci&oacute;n</label>
+                    <input type="text" class="form-control" formControlName="cantidadNecesidadEvacuacion" placeholder="Con necesidad de evacuación">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="text-center">
+            <button type="button" *ngIf="!statusButton" (click)="agregarLesionados()" class="btn btn-primary m-r-20">
+                <span>Agregar</span>
+            </button>
+
+            <button type="button" *ngIf="statusButton" (click)="actualizarLesionados()" class="btn btn-primary m-r-20">
+              <span>Actualizar</span>
+          </button>
+
+            <button type="button" class="btn btn-outline-danger" (click)="closeModal()">
+                <span>Cerrar</span>
+            </button>
+        </div>
+    </form>
+
+</div>

@@ -1,0 +1,183 @@
+<app-breadcrumb [title]="'Solicitudes de Credenciales'" [active_item]="'Solicitudes de Credenciales'"></app-breadcrumb>
+
+
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+
+          <form [formGroup]="showEntries">
+            <div class="row">
+
+              <div class="col-sm-6">
+                <div class="form-group" style="font-size: 13px">
+                  <div class="mb-2">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Buscar por Codigo Sinpad, Tipo Peligro, Ubicaci&oacute;n</mat-label>
+                      <input matInput type="text" formControlName="parBusqueda" [(ngModel)]="value"
+                        onkeyup="this.value=this.value.toUpperCase();">
+                      <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-2">
+                <div class="form-group" style="font-size: 13px">
+                  <div class="mb-2">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Fecha Inicio</mat-label>
+                      <input readonly matInput [matDatepicker]="picker1" formControlName="fechaInicio">
+                      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                      <mat-datepicker #picker1>
+                        <mat-datepicker-actions>
+                          <button mat-button matDatepickerCancel (click)="limpiarFecha()">Cancel</button>
+                          <button mat-raised-button color="primary" matDatepickerApply>Aceptar</button>
+                        </mat-datepicker-actions>
+                      </mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-2">
+                <div class="form-group" style="font-size: 13px">
+                  <div class="mb-2">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Fecha Fin</mat-label>
+                      <input readonly matInput [min]="showEntries.value.fechaInicio" [matDatepicker]="picker2"
+                        formControlName="fechaFin">
+                      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                      <mat-datepicker #picker2>
+                        <mat-datepicker-actions>
+                          <button mat-button matDatepickerCancel (click)="limpiarFecha()">Cancel</button>
+                          <button mat-raised-button color="primary" matDatepickerApply>Aceptar</button>
+                        </mat-datepicker-actions>
+                      </mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="col-sm-2">
+                <div class="form-group">
+                  <div class="mb-2">
+                    <a class="btn btn-primary btn-lg" (click)="createSolicitudUsuarios()">
+                      <i class="fa fa-plus-square-o"></i> Nuevo
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <div id="data-source-1_wrapper" class="dataTables_wrapper">
+                <div class="dataTables_length">
+                  <label>Mostrar
+                    <select name="data-source-1_length" formControlName="cantRegistro"
+                      (change)="showEntriesChange($event)">
+                      <option value="10">10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </select> entradas</label>
+                </div>
+
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th class="text-center">Nro Solicitud</th>
+                      <th class="text-center">Nombres y Apellidos</th>
+                      <th class="text-center">Fecha Solicitud</th>
+                      <th class="text-center">Estado</th>
+                      <th class="text-center">Observaci&oacute;n</th>
+                      <th class="text-center">Comentarios</th>
+                      <th class="text-center">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="text-center" *ngFor="let i of solicitudUser">
+                      <td style="display:none ;">
+                        {{i.id}}
+                      </td>
+                      <td>
+                        {{i.codSolicitud}}
+                      </td>
+                      <td>
+                        {{i.nombresApellidos}}
+                      </td>
+                      <td>
+                        {{i.fechaSolicitud}}
+                      </td>
+                      <td>
+                        <span class="bg bg-primary" *ngIf="i.estado == 1">POR APROBAR</span>
+                        <span class="bg bg-success" *ngIf="i.estado == 2">APROBADO</span>
+                        <span class="bg bg-danger" *ngIf="i.estado == 3">OBSERVADO</span>
+                      </td>
+                      <td>
+                        <span *ngIf="i.observacion == null">SIN OBSERVACIONES</span>
+                        <span *ngIf="i.observacion != null">{{i.observacion}}</span>
+                      </td>
+                      <td>
+                        <span *ngIf="i.comentarios == null">SIN COMENTARIOS</span>
+                        <span *ngIf="i.comentarios != null">{{i.comentarios}}</span>
+                      </td>
+
+                      <td>
+                        <a *ngIf="!isShowButton && i.estado != 2" (click)="detailSolicitudUsuario(i.id)"
+                          class="mr-2 ml-2" style="color: #08afe0; cursor: pointer; font-size: 20px"
+                          ngbTooltip="Ver / Editar">
+                          <i class="fa fa-edit"></i>
+                        </a>
+                        <a *ngIf="!isShowButton && i.estado != 2" class="mr-2 ml-2"
+                          style="color: #f73164; cursor: pointer; font-size: 20px" ngbTooltip="Eliminar" (click)="eliminarSolicitur(i.id)">
+                          <i class="fa fa-trash"></i>
+                        </a>
+                        <a *ngIf="!isShowButton && i.estado != 2 && i.estado != 3" (click)="AprobarSolicitud(i.id)" class="mr-2 ml-2"
+                          style="color: #08afe0; cursor: pointer; font-size: 24px" ngbTooltip="Aprobar">
+                          <i class="fa fa-check-circle"></i>
+                        </a>
+                        <a *ngIf="!isShowButton && i.estado != 2" (click)="aprobarObservarSolicitud(i.id)"
+                          class="mr-2 ml-2" style="color: #000000; cursor: pointer; font-size: 24px"
+                          ngbTooltip="Observar">
+                          <i class="fa fa-eye"></i>
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <nav class="m-b-30">
+
+
+                  <ul class="meal-list">
+                    <li *ngFor="let i of solicitudUser | paginate:
+                  { id: 'server', itemsPerPage: cantidadItemsForm, currentPage: paginaActalForm,
+                   totalItems: cantidadTotalRegistrosBusqueda }"></li>
+                  </ul>
+
+                  <div class="has-text-centered">
+                    <div class="row" *ngIf="loading">
+                      <div class="col-sm-12">
+                        <ngx-skeleton-loader count="10" appearance="line" animation="progress"></ngx-skeleton-loader>
+                      </div>
+                    </div>
+                    <pagination-controls previousLabel="Anterior" nextLabel="Siguiente"
+                      (pageChange)="paginateSolicitudUsuario($event)" id="server"></pagination-controls>
+                  </div>
+                </nav>
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

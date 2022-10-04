@@ -1,0 +1,268 @@
+<div class="modal-header">
+  <h5 class="modal-title">Integrantes de familia</h5>
+  <button
+    class="close"
+    type="button"
+    data-dismiss="modal"
+    aria-label="Close"
+    (click)="closeModal()">
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="createIntFam">
+
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label>Tipo integrante</label>
+          <input type="text" readonly class="form-control" placeholder="Dependiente" formControlName="typeIntegral">
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="format">Medios de vida</label>
+          <select class="form-control" id="format" formControlName="format2B">
+            <option value="">-- Seleccione --</option>
+            <option *ngFor="let i of form2b" [value]="i.value">{{i.name}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="document">Tipo de documento</label>
+          <select
+            class="form-control"
+            id="document"
+            formControlName="idTypeDocument"
+            (change)="changeTypeDocument($event)"
+            #y>
+            <option value="">-- Seleccione --</option>
+            <option *ngFor="let i of typeDocuments" value="{{i.value}}" [attr.name]="i.name">{{i.name}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="num">N&uacute;mero de documento</label>
+          <input
+            class="form-control"
+            type="number"
+            id="num"
+            formControlName="numberDocument"
+            placeholder="Número de documento">
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="lastNames">Nombres</label>
+          <input
+            class="form-control"
+            type="text"
+            id="lastNames"
+            formControlName="lastNames"
+            placeholder="Nombres">
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="surname">Apellidos</label>
+          <input
+            class="form-control"
+            type="text"
+            id="surname"
+            formControlName="surname"
+            placeholder="Apellidos">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="birthDate">Fecha de Nacimiento</label>
+          <input
+            class="form-control"
+            type="text"
+            id="birthDate"
+            formControlName="birthDate"
+            (ngModelChange)="isCalculateAge($event)"
+            placeholder="Fecha Nacimiento"
+            bsDatepicker>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="yearAndMonth">Edad</label>
+          <input
+            class="form-control"
+            type="number"
+            readonly
+            id="yearAndMonth"
+            formControlName="yearAndMonth"
+            placeholder="Edad">
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="sex">Sexo</label>
+          <select
+            class="form-control"
+            id="sex"
+            formControlName="sex"
+            (change)="isWoman($event)">
+            <option value="">-- Seleccione --</option>
+            <option value="F" [attr.name]="'F'">Femenino</option>
+            <option value="M" [attr.name]="'M'">Masculino</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="pregnantWomen">Direccion</label>
+          <input
+            formControlName="address"
+            class="form-control"
+            type="text"
+            id="address"
+            placeholder="Direccion">
+        </div>
+      </div>
+
+      <div class="col-sm-2">
+        <div class="form-group">
+          <label for="pregnantWomen">Nro Lote</label>
+          <input
+            class="form-control"
+            type="text"
+            id="lotNumber"
+            formControlName="lotNumber"
+            placeholder="Nro Lote">
+        </div>
+      </div>
+
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="pregnantWomen">Gestante</label>
+          <select
+            [attr.disabled]="!isWomanDisable ? '' : null"
+            class="form-control"
+            id="pregnantWomen"
+            formControlName="pregnantWomen"
+            (change)="isPregnantWomen($event)">
+            <option value="">-- Seleccione --</option>
+            <option value="SI" [attr.name]="'SI'">SI</option>
+            <option value="NO" [attr.name]="'NO'">NO</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="weeks">Semanas</label>
+          <input
+            [attr.disabled]="!disabled ? '' : null"
+            class="form-control"
+            type="number"
+            id="weeks"
+            formControlName="weeks"
+            placeholder="Semanas">
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center">
+      <button
+        *ngIf="!isUpdate"
+        type="button"
+        class="btn btn-primary"
+        [disabled]="!createIntFam.valid"
+        (click)="createFamilyInfo()">
+        <span>Agregar</span>
+      </button>
+
+      <button
+        *ngIf="isUpdate"
+        type="button"
+        class="btn btn-primary"
+        [disabled]="!createIntFam.valid"
+        (click)="updateFamilyInfo()">
+        <span>Actualizar</span>
+      </button>
+    </div>
+
+  </form>
+
+  <div class="row">
+    <div class="col-sm-12 col-xl-12 mt-3">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+          <tr>
+            <th class="text-center">Nro. Doc</th>
+            <th class="text-center">Nombres y Apellidos</th>
+            <th class="text-center">Edad</th>
+            <th class="text-center">Sexo</th>
+            <th class="text-center">Condicion</th>
+            <th class="text-center">Medios de Vida</th>
+            <th class="text-center">Opciones</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="text-center">
+            <td>
+              76957680
+            </td>
+            <td>
+              LEODAN PEREZ
+            </td>
+            <td>
+              20
+            </td>
+            <td>
+              MASCULINO
+            </td>
+            <td>
+              DEPENDIENTE
+            </td>
+            <td>
+              SI
+            </td>
+            <td>
+              <div>
+                <a
+                  style="color: #08afe0; cursor: pointer; font-size: 20px"
+                  ngbTooltip="Editar">
+                  <i class="fa fa-edit"></i>
+                </a>
+                <a
+                  class="mr-2 ml-2"
+                  style="color: #f73164; cursor: pointer; font-size: 20px"
+                  ngbTooltip="Eliminar">
+                  <i class="fa fa-trash"></i>
+                </a>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

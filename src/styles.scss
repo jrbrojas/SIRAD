@@ -1,0 +1,140 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./assets/scss/app.scss";
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+.router-wrapper  {
+  position:  relative;
+  overflow:  hidden;
+  width:  100vw;
+  height:  calc(100%  -  47px);
+  perspective:  1200px;
+  transform-style:  preserve-3d;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+:host  {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #60d7a9;
+}
+
+.modal-backdrop {
+  z-index: 999!important;
+}
+
+
+.modal-content {
+  border-radius: 20px;
+}
+.mat-table-container {
+  position: relative;
+  max-height: 100%;
+}
+table {
+  width: 100%;
+  overflow: auto;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.ol-control button {
+  height: 1.85em;
+  width: 1.85em;
+  background-color: rgba(0,0,0,0.5);
+}
+
+
+.ol-btn-hand-extent {
+  top: 6.343em;
+  left: .5em;
+}
+
+.ol-btn-point-extent {
+  top: 9.343em;
+  left: .5em;
+}
+
+.ol-btn-linestring-extent {
+  top: 12.343em;
+  left: .5em;
+}
+
+.ol-btn-polygon-extent {
+  top: 15.343em;
+  left: .5em;
+}
+
+.ol-btn-delete-extent {
+  top: 18.343em;
+  left: .5em;
+}
+
+
+.map-icon-point {
+  position: relative;
+}
+.map-icon-point::after {
+  content:" ";
+    height:10px;
+    width:10px;
+    background-color:red;
+    position:absolute;
+    top: -5px;
+    left:-5px;
+    border-radius: 50%;
+}
+
+.map-icon-line {
+  position: relative;
+}
+.map-icon-line::after {
+  content:" ";
+    height: 2px;
+    width: 20px;
+    background-color:red;
+    position:absolute;
+    top:-1px;
+    left:-10px;
+    -moz-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+
+.map-icon-polygon {
+  position: relative;
+}
+
+.map-icon-polygon::after {
+  content:" ";
+  height: 24px;
+  width: 5px;
+  position:absolute;
+  top: -18px;
+  left: -7px;
+  border-bottom: 5px solid red;
+  border-right: 10px solid red;
+  border-left: 6px solid transparent;
+  border-top: 21px solid transparent;
+    -moz-transform: rotate(71deg) scale(0.78) skewX(20deg);
+  -webkit-transform: rotate(71deg) scale(0.78) skewX(20deg);
+  -o-transform: rotate(71deg) scale(0.78) skewX(20deg);
+  -ms-transform: rotate(71deg) scale(0.78) skewX(20deg);
+  transform: rotate(71deg) scale(0.78) skewX(20deg);
+}
+
+
+/* Importing Bootstrap SCSS file. */
+//@import "~bootstrap/scss/bootstrap";
+
+/* Importing Datepicker SCSS file. */
+@import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";

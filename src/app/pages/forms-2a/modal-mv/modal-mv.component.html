@@ -1,0 +1,137 @@
+<div class="modal-header text-center">
+  <h5 class="modal-title text-center">Formulario 2B (Empadronamiento de medios de vida)</h5>
+  <button class="close" type="button" (click)="closeModal()">
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="createFormMv">
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Nombres y apellidos</mat-label>
+            <input type="text" readonly matInput formControlName="lastName">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>N&uacute;mero de documento</mat-label>
+            <input matInput readonly formControlName="numberDocument">
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-sm-3">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Tipo de medio de vida</mat-label>
+            <mat-select
+              formControlName="idWayOfLife"
+              (selectionChange)="onChangeWayOfLife(a)" #a>
+              <mat-option value="1">Medio de vida comercio</mat-option>
+              <mat-option value="2">Medio de vida pesca</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="col-sm-3">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Cantidad afectada</mat-label>
+            <input matInput formControlName="amountAffected">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="col-sm-3">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Producto especie</mat-label>
+            <mat-select
+              formControlName="idKindProduct"
+              (selectionChange)="onChangeKindProd(e)" #e>
+              <mat-option value="1">Conserva</mat-option>
+              <mat-option value="2">Embarcacion</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="col-sm-3">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Cantidad perdida</mat-label>
+            <input matInput formControlName="lastAmount">
+          </mat-form-field>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center">
+      <button
+        type="button"
+        class="btn btn-primary"
+        [disabled]="!createFormMv.valid"
+        (click)="createForm2b()">
+        <span>Agregar</span>
+      </button>
+    </div>
+
+    <!--{{createFormMv.value | json}}-->
+  </form>
+
+  <div class="row">
+    <div class="col-sm-12 col-xl-12 mt-3">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+          <tr>
+            <th class="text-center">Medio de vida</th>
+            <th class="text-center">Cantidad afectada</th>
+            <th class="text-center">Producto / especie</th>
+            <th class="text-center">cantidad perdida</th>
+            <th class="text-center">Opciones</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="text-center" *ngFor="let i of mv">
+            <td>
+              {{i.TIPO_MEDIO_VIDA}}
+            </td>
+            <td>
+              {{i.CANTIDAD_AFECTADA}}
+            </td>
+            <td>
+              {{i.PRODUCTO_ESPECIE}}
+            </td>
+            <td>
+              {{i.CANTIDAD_PERDIDA}}
+            </td>
+            <td>
+              <div>
+                <a
+                  class="mr-2 ml-2"
+                  style="color: #f73164; cursor: pointer; font-size: 20px"
+                  ngbTooltip="Eliminar"
+                  (click)="deleteMv(i.ID)">
+                  <i class="fa fa-trash"></i>
+                </a>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

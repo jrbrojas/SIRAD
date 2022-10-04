@@ -1,0 +1,62 @@
+<div class="modal-header text-center">
+  <h5 class="modal-title text-center">Necesidad para la atenci&oacute;n de salud</h5>
+  <button class="close" type="button" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="formCrearNecesidades">
+
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label>Necesidad</label>
+          <select class="form-control" formControlName="idNecesidad" (change)="changeNecesidad($event)">
+            <option value="">-- Seleccione --</option>
+            <option *ngFor="let i of necesidad" value="{{i.id}}" [attr.name]="i.descripcion">{{i.descripcion}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label>Recurso</label>
+          <select class="form-control" formControlName="idTipoRecurso" (change)="changeRecurso($event)">
+            <option value="">-- Seleccione --</option>
+            <option *ngFor="let i of recurso" value="{{i.id}}" [attr.name]="i.descripcion">{{i.descripcion}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label>Cantidad</label>
+          <input type="text" class="form-control" formControlName="cantidad" placeholder="0">
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <button
+        type="button"
+        class="btn btn-primary m-r-20"
+        [disabled]="!formCrearNecesidades.valid"
+        (click)="agregarNecesidad()">
+        <span>Agregar</span>
+      </button>
+
+      <button
+        type="button"
+        class="btn btn-primary m-r-20"
+        [disabled]="!formCrearNecesidades.valid"
+        (click)="actualizarNecesidad()">
+        <span>Actualizar</span>
+      </button>
+
+      <button type="button" class="btn btn-outline-danger" (click)="closeModal()">
+        <span>Cancelar</span>
+      </button>
+    </div>
+  </form>
+
+</div>

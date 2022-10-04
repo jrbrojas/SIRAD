@@ -1,0 +1,196 @@
+<app-breadcrumb [title]="'Tasks'" [items]="['Apps']" [active_item]="'Tasks'"></app-breadcrumb>
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+  <div class="email-wrap bookmark-wrap">
+    <div class="row">
+      <div class="col-xl-3 box-col-6">
+        <div class="email-left-aside">
+          <div class="card">
+            <div class="card-body">
+              <div class="email-app-sidebar left-bookmark">
+                <div class="media">
+                  <div class="media-size-email">
+                    <img class="mr-3 rounded-circle" src="assets/images/user/user.png" alt="">
+                  </div>
+                  <div class="media-body">
+                    <h6 class="f-w-600">MARK JENCO</h6>
+                    <p>Markjecno@gmail.com</p>
+                  </div>
+                </div>
+                <ul class="nav main-menu" role="tablist">
+                  <li class="nav-item">
+                    <button class="badge-light-primary btn-block btn-mail" type="button" (click)="AddTask.openModal()">
+                      <i class="mr-2" data-feather="check-circle"></i> New Task
+                    </button>
+                  </li>
+                  <li class="nav-item">
+                    <span class="main-title"> Views</span>
+                  </li>
+                  <li>
+                    <a id="pills-created-tab" data-toggle="pill" href="javascript:void(0)" role="tab" aria-controls="pills-created" aria-selected="true">
+                      <span class="title"> Created by me</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="show" id="pills-todaytask-tab" data-toggle="pill" href="javascript:void(0)" role="tab" aria-controls="pills-todaytask" aria-selected="false">
+                      <span class="title"> Today's Tasks</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-9 col-md-12 box-col-12">
+        <div class="email-right-aside bookmark-tabcontent">
+          <div class="card email-body radius-left">
+            <div class="pl-0">
+              <div class="tab-content">
+                <div class="tab-pane fade active show" id="pills-created" role="tabpanel"
+                     aria-labelledby="pills-created-tab">
+                  <div class="card mb-0">
+                    <div class="card-header d-flex">
+                      <h5 class="mb-0">Created by me</h5>
+                      <a href="javascript:void(0)">
+                        <i class="mr-2" data-feather="printer"></i>Print
+                      </a>
+                    </div>
+                    <div class="card-body p-0">
+                      <div class="taskadd">
+                        <div class="table-responsive table-bordernone">
+                          <table class="table">
+                            <tr>
+                              <td>
+                                <h6 class="task_title_0">Client meeting</h6>
+                                <p class="project_name_0">General</p>
+                              </td>
+                              <td>
+                                <p class="task_desc_0">Lorem Ipsum is simply dummy text of the printing and typesetting
+                                  industry. Lorem Ipsum has been</p>
+                              </td>
+                              <td><a class="mr-2" href="javascript:void(0)"><i data-feather="link"></i></a><a
+                                href="javascript:void(0)"><i data-feather="more-horizontal"></i></a></td>
+                              <td><a href="javascript:void(0)"><i data-feather="trash-2"></i></a></td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <h6 class="task_title_0">Plan webinar</h6>
+                                <p class="project_name_0">General</p>
+                              </td>
+                              <td>
+                                <p class="task_desc_0">Lorem Ipsum is simply dummy text of the printing and typesetting
+                                  industry. Lorem Ipsum has been</p>
+                              </td>
+                              <td><a class="mr-2" href="javascript:void(0)"><i data-feather="link"></i></a><a
+                                href="javascript:void(0)"><i data-feather="more-horizontal"></i></a></td>
+                              <td><a href="javascript:void(0)"><i data-feather="trash-2"></i></a></td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <h6 class="task_title_0">Email newsletter</h6>
+                                <p class="project_name_0">General</p>
+                              </td>
+                              <td>
+                                <p class="task_desc_0">Lorem Ipsum is simply dummy text of the printing and typesetting
+                                  industry. Lorem Ipsum has been</p>
+                              </td>
+                              <td><a class="mr-2" href="javascript:void(0)"><i data-feather="link"></i></a><a
+                                href="javascript:void(0)"><i data-feather="more-horizontal"></i></a></td>
+                              <td><a href="javascript:void(0)"><i data-feather="trash-2"></i></a></td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <h6 class="task_title_0">Publish podcast</h6>
+                                <p class="project_name_0">General</p>
+                              </td>
+                              <td>
+                                <p class="task_desc_0">Lorem Ipsum is simply dummy text of the printing and typesetting
+                                  industry. Lorem Ipsum has been</p>
+                              </td>
+                              <td><a class="mr-2" href="javascript:void(0)"><i data-feather="link"></i></a><a
+                                href="javascript:void(0)"><i data-feather="more-horizontal"></i></a></td>
+                              <td><a href="javascript:void(0)"><i data-feather="trash-2"></i></a></td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <h6 class="task_title_0">Lunch website</h6>
+                                <p class="project_name_0">General</p>
+                              </td>
+                              <td>
+                                <p class="task_desc_0">Lorem Ipsum is simply dummy text of the printing and typesetting
+                                  industry. Lorem Ipsum has been</p>
+                              </td>
+                              <td><a class="mr-2" href="javascript:void(0)"><i data-feather="link"></i></a><a
+                                href="javascript:void(0)"><i data-feather="more-horizontal"></i></a></td>
+                              <td><a href="javascript:void(0)"><i data-feather="trash-2"></i></a></td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <h6 class="task_title_0">Client meeting</h6>
+                                <p class="project_name_0">General</p>
+                              </td>
+                              <td>
+                                <p class="task_desc_0">Lorem Ipsum is simply dummy text of the printing and typesetting
+                                  industry. Lorem Ipsum has been</p>
+                              </td>
+                              <td><a class="mr-2" href="javascript:void(0)"><i data-feather="link"></i></a><a
+                                href="javascript:void(0)"><i data-feather="more-horizontal"></i></a></td>
+                              <td><a href="javascript:void(0)"><i data-feather="trash-2"></i></a></td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <h6 class="task_title_0">Plan webinar</h6>
+                                <p class="project_name_0">General</p>
+                              </td>
+                              <td>
+                                <p class="task_desc_0">Lorem Ipsum is simply dummy text of the printing and typesetting
+                                  industry. Lorem Ipsum has been</p>
+                              </td>
+                              <td><a class="mr-2" href="javascript:void(0)"><i data-feather="link"></i></a><a
+                                href="javascript:void(0)"><i data-feather="more-horizontal"></i></a></td>
+                              <td><a href="javascript:void(0)"><i data-feather="trash-2"></i></a></td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <h6 class="task_title_0">Email newsletter</h6>
+                                <p class="project_name_0">General</p>
+                              </td>
+                              <td>
+                                <p class="task_desc_0">Lorem Ipsum is simply dummy text of the printing and typesetting
+                                  industry. Lorem Ipsum has been</p>
+                              </td>
+                              <td><a class="mr-2" href="javascript:void(0)"><i data-feather="link"></i></a><a
+                                href="javascript:void(0)"><i data-feather="more-horizontal"></i></a></td>
+                              <td><a href="javascript:void(0)"><i data-feather="trash-2"></i></a></td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="fade tab-pane" id="pills-todaytask" role="tabpanel" aria-labelledby="pills-todaytask-tab">
+                  <div class="card mb-0">
+                    <div class="card-header d-flex">
+                      <h6 class="mb-0">Today's Tasks</h6><a href="javascript:void(0)"><i class="mr-2"
+                                                                                         data-feather="printer"></i>Print</a>
+                    </div>
+                    <div class="card-body">
+                      <div class="details-bookmark text-center">
+                        <div class="row" id="favouriteData"></div>
+                        <div class="no-favourite"><span>No task due today.</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-add-task #addTask></app-add-task>
+<!-- Container-fluid Ends-->

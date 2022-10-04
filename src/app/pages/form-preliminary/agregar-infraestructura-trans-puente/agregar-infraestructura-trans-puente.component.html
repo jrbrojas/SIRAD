@@ -1,0 +1,67 @@
+<div class="modal-header text-center">
+    <h5 class="modal-title text-center">A la infraestructura de transporte (Daños en puentes, puertos y otros)</h5>
+    <button class="close" type="button" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">×</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form class="needs-validation" novalidate [formGroup]="data">
+        <div class="row">
+            <div class="col-sm-3" >
+                <div class="form-group">
+                    <label>Tipo de infraestructura</label>
+                    <ng-select
+                    [items]="maestrasInfraestructura"
+                    bindLabel="descripcion"
+                    bindValue="id"
+                    formControlName="idTipoInfraestructura"
+                    (change)="getSelectPeligro($event)"
+                    placeholder="Seleccione"></ng-select>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Destruidos (unidad)</label>
+                    <input type="text" class="form-control" placeholder="Destruidos" formControlName="cantidadDestruido">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Afectados (unidad)</label>
+                    <input type="text" class="form-control" placeholder="Afectados" formControlName="cantidadAfectado">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Inhabitables</label>
+                    <input type="text" class="form-control" placeholder="Inhabitables" formControlName="cantidadInhabitable">
+                </div>
+            </div>            
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Ubicaci&oacute;n</label>
+                    <input type="text" class="form-control" placeholder="Ubicación" formControlName="ubicacion">
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <label>Observaci&oacute;n</label>
+                    <textarea class="form-control"  formControlName="observacion"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="button" class="btn btn-primary m-r-20" (click)="addData()">
+                <span>Agregar</span>
+            </button>
+
+            <button type="button" class="btn btn-outline-danger" (click)="closeModal()">
+                <span>Cancelar</span>
+            </button>
+        </div>
+    </form>
+</div>

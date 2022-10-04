@@ -1,0 +1,64 @@
+<div class="modal-header text-center">
+    <h5 class="modal-title text-center">Personal de primera respuesta afectado</h5>
+    <button class="close" type="button" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">×</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="formCrearPersonal">
+
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Potencial Humano</label>
+                    <input type="text" class="form-control" formControlName="potencialHumano" placeholder="Potencial Humano">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Total personal</label>
+                    <input type="text" class="form-control" formControlName="totalPersonal" placeholder="Total personal">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Lesionados</label>
+                    <input type="text" class="form-control" formControlName="cantidadLesionado" placeholder="Lesionados">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Fallecido</label>
+                    <input type="text" class="form-control" formControlName="cantidadFallecido" placeholder="Fallecido">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Desaparecido</label>
+                    <input type="text" class="form-control" formControlName="cantidadDesaparecido" placeholder="Desaparecido">
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div class="form-group">
+                    <label>Observacion</label>
+                    <input type="text" class="form-control" formControlName="observacion" placeholder="Desaparecido">
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="button" *ngIf="!statusButton" (click)="agregarPersonal()" class="btn btn-primary m-r-20">
+                <span>Agregar</span>
+            </button>
+
+            <button type="button" *ngIf="statusButton"  (click)="actualizarPersonal()" class="btn btn-primary m-r-20">
+                <span>Actualizar</span>
+            </button>
+
+            <button type="button" class="btn btn-outline-danger" (click)="closeModal()">
+                <span>Cancelar</span>
+            </button>
+        </div>
+    </form>
+
+</div>

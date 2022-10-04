@@ -1,0 +1,638 @@
+<app-breadcrumb title="EVALUACIÓN R&Aacute;PIDA - CODIGO SINPAD NRO {{codeSinpad}}" [items]="['Evaluación Rpida']"
+  [active_item]="'Crear'">
+</app-breadcrumb>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-xl-12">
+      <div class="card">
+
+        <div class="card-body">
+          <ul class="nav nav-tabs nav-primary">
+            <li class="nav-item">
+              <a href="javascript:void(0)" [class.active]="tabId === 'general'" class="nav-link" id="general"
+                (click)="tabChange('general')">
+                <i class="icofont icofont-ui-home"></i>
+                Informaci&oacute;n General
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="javascript:void(0)" [class.active]="tabId === 'mapa'" class="nav-link {{disabledTabString}}"
+                id="mapa" (click)="tabChange('mapa')">
+                <i class="icofont icofont-man-in-glasses"></i>
+                Mapa
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="javascript:void(0)" [class.active]="tabId === 'damage'" class='nav-link {{disabledTabString}}'
+                id="damage" (click)="tabChange('damage')">
+                <i class="icofont icofont-man-in-glasses"></i>
+                Daños
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="javascript:void(0)" [class.active]="tabId === 'actions'" class="nav-link {{disabledTabString}}"
+                id="actions" (click)="tabChange('actions')">
+                <i class="icofont icofont-contacts"></i>
+                Atenci&oacute;n de Emergencia
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="javascript:void(0)" [class.active]="tabId === 'resumen'" class="nav-link {{disabledTabString}}"
+                (click)="EvalucaionRapida()" id="actions" (click)="tabChange('actions')">
+                <i class="icofont icofont-contacts"></i>
+                Resumen
+              </a>
+            </li>
+            <!-- <li class="nav-item">
+              <a href="javascript:void(0)" (click)="openPdf()" class="nav-link">
+                <i class="icofont icofont-contacts"></i>
+                Resumen
+              </a>
+            </li> -->
+            <li class="nav-item">
+              <!--[ngClass]="'disabled'"-->
+              <a href="javascript:void(0)" [class.active]="tabId === 'files'" class="nav-link {{disabledTabString}}"
+                id="files" (click)="tabChange('files')">
+                <i href="javascript:void(0)" class="icofont icofont-contacts"></i>
+                Adjuntar archivo
+              </a>
+            </li>
+          </ul>
+          <div class="tab-content">
+
+            <form class="needs-validation" novalidate [formGroup]="createEvaluation">
+              <div class="tab-pane fade" [ngClass]="['show', 'active']" *ngIf="tabId === 'general'">
+
+                <div class="row">
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Nro. Formulario</mat-label>
+                        <input maxlength="200" matInput formControlName="numeroFormulario" required>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Fecha y Hora de Evento</mat-label>
+                        <input readonly matInput type="datetime-local" formControlName="fechaHoraEvento">
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Tipo de Peligro</mat-label>
+                        <input matInput formControlName="tipoPeligro" readonly>
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <mat-form-field appearance="outline" readonly="">
+                        <mat-label>Grupo de Peligro</mat-label>
+                        <input matInput formControlName="grupoPeligro" readonly>
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-4">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Peligro secundario</mat-label>
+                      <mat-select required formControlName="idTipoPeligroSecundario"
+                        (selectionChange)="getSelectPeligro2(z)" #z>
+                        <input placeholder="Search..." matInput type="text" (keyup)="onKeyPS($event.target)" class="example-input">
+                        <mat-option value="">Seleccione</mat-option>
+                        <mat-option *ngFor="let i of selectTipoPeligro2" value="{{i.idTipoPeligro}}"
+                          [attr.name]="i.descripcion">
+                          {{i.tipoPeligro}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Ubicaci&oacute;n</mat-label>
+                        <input matInput formControlName="descripcionUbigeo" readonly>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Centro Poblado</mat-label>
+
+                        <mat-select required formControlName="codigoUbigeoCentroPoblado"
+                          (selectionChange)="getPopulated(e)" #e>
+                          <mat-option value="">Seleccione</mat-option>
+                          <mat-option *ngFor="let i of getPopulatedCenter" value="{{i.id}}" [attr.name]="i.descripcion">
+                            {{i.descripcion}}</mat-option>
+                        </mat-select>
+
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Barrio / Sector / Urbanizaci&oacute;n / Ninguno</mat-label>
+                        <mat-select required formControlName="idTipoLugar" (selectionChange)="changeKindPlaces(c)" #c>
+                          <mat-option value="">Seleccione</mat-option>
+                          <mat-option *ngFor="let i of kindPlaces" value="{{i.id}}" [attr.name]="i.descripcion">{{
+                            i.descripcion }}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Ingrese el nombre del {{ createEvaluation.get('tipoLugar')?.value?.toLowerCase() }}
+                        </mat-label>
+                        <input matInput formControlName="descripcionLugar" required>
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Caserio / Anexo / Ninguno</mat-label>
+                        <mat-select required formControlName="idLugarEspecifico"
+                          (selectionChange)="changeSpecificPlaces(a)" #a>
+                          <mat-option value="">Seleccione</mat-option>
+                          <mat-option *ngFor="let i of specificPlaces" value="{{i.id}}" [attr.name]="i.descripcion">{{
+                            i.descripcion }}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Ingrese el nombre del {{
+                          createEvaluation.get('lugarEspecifico')?.value?.toLowerCase() }}</mat-label>
+                        <input matInput formControlName="descripcionLugarEspecifico" required>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Punto de referencia para llegar a la localidad afectada</mat-label>
+                        <textarea matInput formControlName="referencia" (keyup)="onKey($event)"
+                          onkeyup="this.value=this.value.toUpperCase();" maxlength="500" rows="4">
+                        </textarea>
+                        <mat-hint align="end">{{counter}} / 500</mat-hint>
+                      </mat-form-field>
+
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Medio de transporte</mat-label>
+                        <textarea matInput formControlName="medioTransporte" (keyup)="onKey1($event)"
+                          onkeyup="this.value=this.value.toUpperCase();" maxlength="500" rows="4">
+                        </textarea>
+                        <mat-hint align="end">{{counter1}} / 500</mat-hint>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div> -->
+
+                <div class="row">
+                  <div class="col-sm-9">
+                    <div class="form-group">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Punto de referencia para llegar a la localidad afectada</mat-label>
+                        <textarea matInput formControlName="referencia" (keyup)="onKey($event)"
+                          onkeyup="this.value=this.value.toUpperCase();" maxlength="500" rows="1">
+                        </textarea>
+                        <mat-hint align="end">{{counter}} / 500</mat-hint>
+                      </mat-form-field>
+
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Medio de transporte</mat-label>
+                        <mat-select required formControlName="idMedioTransporte"
+                          (selectionChange)="changeMedioTransporte(y)" #y>
+                          <mat-option value="">Seleccione</mat-option>
+                          <mat-option *ngFor="let i of listarTransporte" value="{{i.id}}" [attr.name]="i.descripcion">{{
+                            i.descripcion }}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group mb-0 text-center">
+                      <button type="button" class="btn btn-danger m-r-20" (click)="back()"> Cancelar</button>
+                      <button type="button" class="btn btn-primary" (click)="tabChange('mapa')"
+                        [disabled]="!createEvaluation.valid"> Siguiente</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" [ngClass]="['show', 'active']" *ngIf="tabId === 'mapa'">
+                <div class="row">
+                  <div class="col" id="mapaImagen">
+                    <app-map-sinpad [idMapa]="idMapa" [typeAction]="typeAction" [wrapGeometria]="wrapGeometria">
+                    </app-map-sinpad>
+                  </div>
+                </div>
+                <br />
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group mb-0 text-center">
+                      <button type="button" class="btn btn-primary m-r-10" (click)="tabChange('general')">
+                        Anterior</button>
+                      <button type="button" class="btn btn-primary" (click)="tabChange('damage')"> Siguiente</button>
+                      <!--button type="button" class="btn btn-primary" (click)="crearImagen()"> Siguiente</button-->
+                    </div>
+                  </div>
+                </div>
+
+                <!--div class="row">
+                  <ng-container *ngIf="imgcreada === true;">
+                    <div align="center"-->
+
+                <!-- Imagen Creada -->
+                <!--h4>Imagen Creada:</h4>
+                       <img src={{imagenCreada}}-->
+
+                <!-- Botón para descargar la imagen creada -->
+                <!--a type="button" class="btn btn-success mt-3" href="{{imagenCreada}}" download>
+                       Descargar
+                       </a>
+
+                    </div>
+                 </ng-container>
+                </div-->
+              </div>
+
+              <div class="tab-pane fade" [ngClass]="['show', 'active']" *ngIf="tabId === 'damage'">
+                <div class="row">
+                  <div class="col-sm-12 col-xl-6">
+                    <div class="card">
+                      <div class="card-header b-t-success" style="padding: 15px; text-align: center">
+                        <h6>Vida y Salud</h6>
+                      </div>
+                      <div class="card-body">
+
+                        <table class="table table-bordered">
+                          <tbody>
+
+                            <tr *ngFor="let i of lifeHealth">
+                              <td>{{ i.name }}</td>
+                              <td class="w-30">
+                                <div class="media-body icon-state">
+                                  <label class="switch">
+                                    <!-- <input type="checkbox" checked [formControlName]="i.formName" (click)="habilitar($event, i)"> -->
+                                    <input type="checkbox" checked [formControlName]="i.formName"
+                                      (click)="habilitar($event ,i)">
+                                    <span class="switch-state"></span>
+                                  </label>
+                                </div>
+                              </td>
+                              <td>
+                                <div class="media-body">
+                                  <input type="number" class="form-control input" placeholder=""
+                                    [formControlName]="i.formQuantity">
+                                </div>
+                              </td>
+                            </tr>
+
+                          </tbody>
+                        </table>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12 col-xl-6">
+                    <div class="card">
+                      <div class="card-header b-t-success" style="padding: 15px; text-align: center">
+                        <h6>Servicios Basicos</h6>
+                      </div>
+                      <div class="card-body">
+                        <div class="col-sm-12">
+                          <table class="table table-bordered">
+                            <tbody>
+                              <tr *ngFor="let i of basicServices">
+                                <td>{{ i.name }}</td>
+                                <td>
+                                  <div class="media-body text-right icon-state">
+                                    <label class="switch">
+                                      <input type="checkbox" [formControlName]="i.formName">
+                                      <span class="switch-state"></span>
+                                    </label>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-12 col-xl-6">
+                    <div class="card">
+                      <div class="card-header b-t-success" style="padding: 15px; text-align: center">
+                        <h6>Infraestructura</h6>
+                      </div>
+                      <div class="card-body">
+                        <div class="col-sm-12">
+
+                          <div class="media" *ngFor="let i of infrastructures">
+                            <label class="col-form-label m-r-10">{{i.name}}</label>
+                            <div class="media-body text-right icon-state">
+                              <label class="switch">
+                                <input type="checkbox" [formControlName]="i.formName">
+                                <span class="switch-state"></span>
+                              </label>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12 col-xl-6">
+                    <div class="card">
+                      <div class="card-header b-t-success" style="padding: 15px; text-align: center">
+                        <h6>Medios de vida</h6>
+                      </div>
+                      <div class="card-body">
+                        <div class="col-sm-12">
+
+                          <div class="media" *ngFor="let i of livelihoods">
+                            <label class="col-form-label m-r-10">{{ i.name }}</label>
+                            <div class="media-body text-right icon-state">
+                              <label class="switch">
+                                <input type="checkbox" [formControlName]="i.formName">
+                                <span class="switch-state"></span>
+                              </label>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group mb-0 text-center">
+                      <button type="button" class="btn btn-primary m-r-10" (click)="tabChange('mapa')">
+                        Anterior</button>
+                      <button type="button" class="btn btn-primary" (click)="tabChange('actions')"> Siguiente</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" [ngClass]="['show', 'active']" *ngIf="tabId === 'actions'">
+                <div class="row">
+                  <div class="col-sm-12 col-xl-6">
+                    <div class="card">
+                      <div class="card-header b-t-success" style="padding: 15px; text-align: center">
+                        <h6>Actividades a Realizar</h6>
+                      </div>
+                      <div class="card-body">
+                        <div class="col-sm-12">
+
+                          <div class="media" *ngFor="let i of taskTodo">
+                            <label class="col-form-label m-r-10">{{ i.name }}</label>
+                            <div class="media-body text-right icon-state">
+                              <label class="switch">
+                                <input type="checkbox" [formControlName]="i.formName">
+                                <span class="switch-state"></span>
+                              </label>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12 col-xl-6">
+                    <div class="card">
+                      <div class="card-header b-t-success" style="padding: 15px; text-align: center">
+                        <h6>Necesidades de Apoyo Externo</h6>
+                      </div>
+                      <div class="card-body">
+                        <div class="col-sm-12">
+
+                          <div class="media" *ngFor="let i of needs">
+                            <label class="col-form-label m-r-10">{{ i.name }}</label>
+                            <div class="media-body text-right icon-state">
+                              <label class="switch">
+                                <input type="checkbox" [formControlName]="i.formName">
+                                <span class="switch-state"></span>
+                              </label>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+
+                  <div class="col-sm-12 col-xl-6">
+                    <div class="card">
+                      <div class="card-header b-t-success" style="padding: 15px; text-align: center">
+                        <h6>Otras Actividades</h6>
+                      </div>
+                      <div class="card-body">
+                        <div class="col-sm-12">
+
+                          <div class="media" *ngFor="let i of otherActivities">
+                            <label class="col-form-label m-r-10">{{i.name}}</label>
+                            <div class="media-body text-right icon-state">
+                              <label class="switch">
+                                <input type="checkbox" [formControlName]="i.formName">
+                                <span class="switch-state"></span>
+                              </label>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12 col-xl-6">
+                    <div class="card">
+                      <div class="card-header b-t-success" style="padding: 15px; text-align: center">
+                        <h6>Otras Necesidades</h6>
+                      </div>
+                      <div class="card-body">
+                        <div class="col-sm-12">
+
+                          <div class="media" *ngFor="let i of otherNeeds">
+                            <label class="col-form-label m-r-10">{{ i.name }}</label>
+                            <div class="media-body text-right icon-state">
+                              <label class="switch">
+                                <input type="checkbox" [formControlName]="i.formName">
+                                <span class="switch-state"></span>
+                              </label>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-12 col-xl-6">
+                    <div class="form-group">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Observaci&oacute;n</mat-label>
+                        <textarea matInput formControlName="observacion" onkeyup="this.value=this.value.toUpperCase();"
+                          (keyup)="onKey2($event)" maxlength="2000">
+                        </textarea>
+                        <mat-hint align="end">{{counter2}} / 2000</mat-hint>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-xl-6">
+                    <div class="form-group">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Observaciones de Necesidades de Apoyo Externo:</mat-label>
+                        <textarea matInput formControlName="observacion1" onkeyup="this.value=this.value.toUpperCase();"
+                          (keyup)="onKey3($event)" maxlength="2000">
+                        </textarea>
+                        <mat-hint align="end">{{counter3}} / 2000</mat-hint>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group mb-0 text-center">
+                      <button type="button" class="btn btn-primary m-r-10" (click)="tabChange('damage')">
+                        Anterior</button>
+                      <button type="button" class="btn btn-primary" (click)="tabChange('resumen')"> Siguiente</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" [ngClass]="['show', 'active']" *ngIf="tabId === 'files'">
+                <!-- {{ this.files.value | json }} -->
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="fileEval" class="filezone w-100">
+                        <div class="fz-message needsclick" (dragover)="onDragOver($event)"
+                          (drop)="onDropSuccess($event)">
+                          <i class="icon-cloud-up"></i>
+                          <h6>Suelte los archivos aqu&iacute; o haga clic para cargarlos.</h6>
+                          <input id="fileEval" (change)="onChange($event)" type="file" multiple formControlName="file"
+                            class="form-control mb-2" class="hidden">
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <ul class="list-group">
+                      <li class="list-group-item list-group-item-primary">
+                        <div class="row">
+                          <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">#</div>
+                          <div class="col-lg-4 col-md-4 col-sm-7 col-xs-7">Archivo</div>
+                          <div class="col-lg-4 col-md-4 hidden-sm hidden-xs">Descripcion</div>
+                          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">Opciones</div>
+                        </div>
+                      </li>
+                      <!-- <li class="list-group-item" ng-show="doc.files.length === 0"> -->
+                      <!-- <li class="list-group-item">
+                        <div class="text-center">No hay archivos</div>
+                      </li> -->
+                      <li formArrayName="files" *ngFor="let file of files.controls; index as i"
+                        class="list-group-item xlist" data-as-sortable-item>
+                        <div class="row" [formGroupName]="i">
+                          <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+                            <div class="row">
+                              <div class="col-xs-4" data-as-sortable-item-handle style="padding-top:5px;">
+                                <i class="fa fa-grip-o"></i> {{i + 1}}
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-11 col-md-11 col-sm-7 col-xs-7">
+                            <div class="row">
+                              <div class="col-lg-4 col-md-4 col-sm-11 col-xs-10 wraptext">
+                                <span>{{ getNameFile(i)}}</span>
+                              </div>
+                              <div class="col-lg-5 col-md-5 hidden-sm hidden-xs wraptext">
+                                <input type="text" class="form-control" formControlName="descripcion">
+                              </div>
+                              <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2 wraptext">
+                                <a style="color: #f73164; cursor: pointer;" (click)="delete(i)" ngbTooltip="Eliminar">
+                                  <i class="fa fa-trash-o" style="font-size: 25px"></i>
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group mb-0 text-center">
+                      <button type="button" class="btn btn-primary m-r-10 mt-4" (click)="tabChange('actions')">
+                        Anterior</button>
+                      <button (click)="createEval()" type="button" class="btn btn-primary mt-4"> Guardar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <pre style="font-size: 20px; color: black; width: max-content">
+                {{ createEvaluation.value | json }}
+              </pre> -->
+            </form>
+            <!-- <pre style="font-size: 20px; color: black; width: max-content">
+              {{ geoQuickEvaluation?.geometria }}
+            </pre> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

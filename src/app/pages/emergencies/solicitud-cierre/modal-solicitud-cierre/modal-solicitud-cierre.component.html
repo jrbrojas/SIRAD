@@ -1,0 +1,82 @@
+<div class="modal-header text-center">
+    <h5 class="modal-title text-center">{{titulo}}</h5>
+    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">×</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form class="needs-validation" novalidate [formGroup]="dataObservacion">
+        <div class="text-center p-t-20">
+            <button class="btn btn-primary m-r-10" (click)="aprobar()"
+                *ngIf="authService.validarPermisos([PERMISOS.APROBAR_SOLICITUD_CIERRE]) && (!observarModal && !aprobarModal)">Aprobar</button>
+            <button class="btn btn-primary m-r-10" (click)="observar()"
+                *ngIf="authService.validarPermisos([PERMISOS.OBSERVAR_SOLICITUD_CIERRE]) && (!observarModal && !aprobarModal)">Observar</button>
+
+        </div>
+        <div class="row" *ngIf="observarModal || aprobarModal">
+            <div class="col">
+                <div class="form-group">
+                    <label>Ingresar nota adicional</label>
+                    <textarea class="form-control" formControlName="motivo" (keyup)="onKey($event)" rows="3"
+                        maxlength="1000" required="true">
+                </textarea>
+                    <div class="">
+                        {{counter}} / 1000
+                    </div>
+                    <div class="invalid-feedback">
+                        La observacion es requerida
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="observarModal">
+            <div class="col">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Numero</th>
+                            <th class="text-center">Formulario</th>
+                            <th class="text-center">Ubigeo</th>
+                            <th class="text-center">Peligro</th>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center" *ngFor="let i of formularios; let cont = index">
+                            <td *ngIf="i.tipoFormulario != 'PRELIMINAR'">
+                                {{i.numeroFormulario}}
+                            </td>
+                            <td *ngIf="i.tipoFormulario == 'PRELIMINAR'">
+                                001
+                            </td>
+                            <td>
+                                {{i.tipoFormulario}}
+                            </td>
+                            <td>
+                                {{i.descripcionUbigeo}}
+                            </td>
+                            <td>
+                                {{i.tipoPeligro}}
+                            </td>
+                            <td>
+                                <div class=" icon-state">
+                                    <label class="switch">
+                                        <input type="checkbox" (click)="changeStatus(cont)">
+                                        <span class="switch-state"></span>
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="text-center p-t-20">
+            <button class="btn btn-primary m-r-10" *ngIf="observarModal || aprobarModal"
+                (click)="revisarForm()">Guardar</button>
+            <button class="btn btn-primary m-r-10"
+                *ngIf="status == 2 && authService.validarPermisos([PERMISOS.ENVIAR_SOLICITUD_CIERRE])"
+                (click)="revisarForm()">Enviar</button>
+            <button class="btn btn-danger" (click)="closeModal()">Cancelar</button>
+
+        </div>
+    </form>
+</div>

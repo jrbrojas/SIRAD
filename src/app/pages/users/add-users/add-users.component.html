@@ -1,0 +1,263 @@
+<app-breadcrumb [title]="'Crear Nuevo Usuario'" [items]="['Seguridad','Usuarios']" [active_item]="'Crear'">
+</app-breadcrumb>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <form class="needs-validation" novalidate [formGroup]="createUser">
+                        <h6>Datos de Usuarios</h6>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>TIPO DOCUMENTO</label>
+                                    <ng-select formControlName="idTipoDocumento" placeholder="Seleccione">
+                                        <ng-option value="1">DNI</ng-option>
+                                        <ng-option value="2">PASAPORTE</ng-option>
+                                        <ng-option value="3">CARNET DE EXTRANJERIA</ng-option>
+                                        <ng-option value="4">OTRO DOCUMENTO</ng-option>
+                                    </ng-select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group" *ngIf="createUser.get('idTipoDocumento')?.value != '1' &&
+                                        createUser.get('idTipoDocumento')?.value != '2' &&
+                                        createUser.get('idTipoDocumento')?.value != '3' &&
+                                        createUser.get('idTipoDocumento')?.value != '4'">
+                                    <label>N&Uacute;MERO DE DOCUMENTO</label>
+                                    <input type="text" class="form-control" formControlName="numeroDocumento">
+                                    <button matSuffix mat-icon-button (click)="consultarDni()" >
+                                        <mat-icon>search</mat-icon>
+                                    </button>
+                                </div>
+                                <div class="form-group" *ngIf="createUser.get('idTipoDocumento')?.value != '2' &&
+                                    createUser.get('idTipoDocumento')?.value != '3' &&
+                                    createUser.get('idTipoDocumento')?.value != '4' &&
+                                    createUser.get('idTipoDocumento')?.value != ''">
+                                    <label>N&Uacute;MERO DE DOCUMENTO (DNI)</label>
+                                    <input type="text" class="form-control" pattern="[0-9]{8}"
+                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                        maxlength="8" formControlName="numeroDocumento">
+                                    <button matSuffix mat-icon-button (click)="consultarDni()">
+                                            <mat-icon>search</mat-icon>
+                                    </button>
+                                        <span style="color: #ff0000;"
+                                        *ngIf="this.createUser.get('numeroDocumento')?.errors?.['required']">
+                                        (El dni no puede quedar vac&iacute;o)
+                                    </span>
+                                </div>
+                                <div class="form-group" *ngIf="createUser.get('idTipoDocumento')?.value != '1' &&
+                                        createUser.get('idTipoDocumento')?.value != '3' &&
+                                        createUser.get('idTipoDocumento')?.value != '4' &&
+                                        createUser.get('idTipoDocumento')?.value != ''">
+                                    <label>N&Uacute;MERO DE DOCUMENTO (PASAPORTE)</label>
+                                    <input onkeyup="this.value=this.value.toUpperCase();" type="text" class="form-control" maxlength="12"
+                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                        formControlName="numeroDocumento">
+                                        <button matSuffix mat-icon-button (click)="consultarDni()">
+                                            <mat-icon>search</mat-icon>
+                                        </button>
+                                    <span style="color: #ff0000;"
+                                        *ngIf="this.createUser.get('numeroDocumento')?.errors?.['required']">
+                                        (El pasaporte no puede quedar vac&iacute;o)
+                                    </span>
+                                </div>
+                                <div class="form-group" *ngIf="createUser.get('idTipoDocumento')?.value != '1' &&
+                                        createUser.get('idTipoDocumento')?.value != '2' &&
+                                        createUser.get('idTipoDocumento')?.value != '4' &&
+                                        createUser.get('idTipoDocumento')?.value != ''">
+                                    <label>N&Uacute;MERO DE DOCUMENTO (CARNET DE EXTRANJER&Iacute;A)</label>
+                                    <input onkeyup="this.value=this.value.toUpperCase();" type="text" class="form-control"
+                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                        maxlength="12" formControlName="numeroDocumento">
+                                        <button matSuffix mat-icon-button (click)="consultarDni()">
+                                            <mat-icon>search</mat-icon>
+                                        </button>
+                                    <span style="color: #ff0000;"
+                                        *ngIf="this.createUser.get('numeroDocumento')?.errors?.['required']">
+                                        (El carnet de extranjer&iacute;a no puede quedar vac&iacute;o)
+                                    </span>
+                                </div>
+                                <div class="form-group" *ngIf="createUser.get('idTipoDocumento')?.value != '1' &&
+                                        createUser.get('idTipoDocumento')?.value != '2' &&
+                                        createUser.get('idTipoDocumento')?.value != '3' &&
+                                        createUser.get('idTipoDocumento')?.value != ''">
+                                    <label>N&Uacute;MERO DE DOCUMENTO (OTROS DOCUMENTOS)</label>
+                                    <input onkeyup="this.value=this.value.toUpperCase();" type="text" class="form-control"
+                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                        maxlength="15" formControlName="numeroDocumento">
+                                        <button matSuffix mat-icon-button (click)="consultarDni()">
+                                            <mat-icon>search</mat-icon>
+                                        </button>
+                                    <span style="color: #ff0000;"
+                                        *ngIf="this.createUser.get('numeroDocumento')?.errors?.['required']">
+                                        (Otros Documentos no puede quedar vac&iacute;o)
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group ">
+                                    <div class="form-group">
+                                        <label>NOMBRES</label>
+                                        <input onkeyup="this.value=this.value.toUpperCase();" type="text" class="form-control" formControlName="nombres" >
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label>APELLIDOS</label>
+                                        <input onkeyup="this.value=this.value.toUpperCase();" type="text" class="form-control" formControlName="apellidos">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h6 >Usuarios</h6>
+                        <hr>
+                        <div class="row" >
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label>USUARIO</label>
+                                        <input onkeyup="this.value=this.value.toUpperCase();" type="number" readonly [value]="createUser.get('numeroDocumento')?.value"
+                                            class="form-control" formControlName="username">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group ">
+                                    <div class="form-group">
+                                        <label>CONTRASE&Ntilde;A</label>
+                                        <input type="password" class="form-control" formControlName="password">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group ">
+                                    <div class="form-group">
+                                        <label>EMAIL</label>
+                                        <input type="text" class="form-control" formControlName="email" onchange="ValidacionEmail()"
+                                            placeholder="Ex. pat@example.com">
+                                        <span style="color: #ff0000;"
+                                            *ngIf="this.createUser.get('email')?.errors?.['required']">
+                                            (El mail no puede quedar vac&iacute;o)
+                                        </span>
+                                        <span style="color: #ff0000;"
+                                            *ngIf="this.createUser.get('email')?.errors?.['email']">
+                                            (El mail no es v&aacute;lido)
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <h6>Geopol&iacute;tica</h6>
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>NIVELES</label>
+                                    <ng-select formControlName="levels" placeholder="Seleccione" (change)="setvalue()">
+                                        <ng-option value="1">NACIONAL</ng-option>
+                                        <ng-option value="2">REGIONAL</ng-option>
+                                        <ng-option value="3">PROVINCIAL</ng-option>
+                                        <ng-option value="4">DISTRITAL</ng-option>
+                                    </ng-select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3" *ngIf="createUser.get('levels')?.value != '1'">
+                                <div class="form-group">
+                                    <label>REGI&Oacute;N</label>
+                                    <ng-select [items]="selectRegion" bindLabel="descripcion" bindValue="codRegion"
+                                        formControlName="codRegion" (change)="getSelectRegion($event)"
+                                        placeholder="Seleccione" (click)="HabUigeo('Region')" >
+                                    </ng-select>
+                                    <div class="invalid-feedback"
+                                        *ngIf="createUser.controls['codigoRegion'].touched && createUser.controls['codigoRegion'].errors?.['required']">
+                                        Seleccione el ubigeo
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3"
+                                *ngIf="createUser.get('levels')?.value != '1' && createUser.get('levels')?.value != '2'">
+                                <div class="form-group">
+                                    <label>PROVINCIA</label>
+                                    <ng-select [items]="selectProvincia" bindLabel="descripcion"
+                                        bindValue="codProvincia" formControlName="codProvincia"
+                                        (change)="getSelectProvincia($event)" placeholder="Seleccione" (click)="HabUigeo('Provincia')" >
+                                    </ng-select>
+                                    <div class="invalid-feedback"
+                                        *ngIf="createUser.controls['codProvincia'].touched && createUser.controls['codProvincia'].errors?.['required']">
+                                        Seleccione el ubigeo
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3"
+                                *ngIf="createUser.get('levels')?.value != '1' && createUser.get('levels')?.value != '2' && createUser.get('levels')?.value != '3'">
+                                <div class="form-group">
+                                    <label>DISTRITO</label>
+                                    <ng-select [items]="selectDistrito" bindLabel="descripcion" bindValue="codDistrito"
+                                        formControlName="codDistrito" (change)="getSelectDistrito($event)"
+                                        placeholder="Seleccione" (click)="HabUigeo('Distrito')" >
+                                    </ng-select>
+                                    <div class="invalid-feedback"
+                                        *ngIf="createUser.controls['codDistrito'].touched && createUser.controls['codDistrito'].errors?.['required']">
+                                        Seleccione el ubigeo
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label [hidden]="HabilitarPerfil" >PERFILES</label>
+                                <ng-container>
+                                    <ng-container>
+                                        <ng-select formControlName="idPerfil" [items]="selectProfile" [hidden]="HabilitarPerfil"
+                                            bindLabel="nombre" bindValue="id" (change)="getSelectProfile($event)"
+                                            placeholder="Seleccione" [multiple]="false">
+                                        </ng-select>
+                                    </ng-container>
+                                </ng-container>
+                                <div class="invalid-feedback"
+                                    *ngIf="createUser.controls['idPerfil'].touched && createUser.controls['idPerfil'].errors?.['required']">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <div class="col">
+                                <div class="form-group mb-0">
+                                    <button type="button" class="btn btn-primary mr-3"
+                                        [class.loader--text]="usuarioService.showLoader"
+                                        [disabled]="!createUser.valid || usuarioService.showLoader"
+                                        (click)="createUsuarios()">
+                                        <span>{{ usuarioService.showLoader ? '' : 'Guardar' }}</span>
+                                    </button>
+                                    <button type="button" class="btn btn-danger"
+                                        (click)="cancelProject()">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

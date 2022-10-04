@@ -1,0 +1,181 @@
+<app-breadcrumb [title]="'Monitoreo'" [items]="['Emergencias']" [active_item]="'Monitoreo'"></app-breadcrumb>
+<div class="container-fluid">
+    <div class="row m-4">
+        <div class="col">
+            <label class=" col-form-label m-r-10">Todo</label>
+            <div class=" icon-state">
+                <label class="switch">
+                    <input type="checkbox" [(ngModel)]="statusTodo" (click)="changeStatus(0)">
+                    <span class="switch-state"></span>
+                </label>
+            </div>
+        </div>
+        <div class="col">
+            <label class="col-form-label m-r-10">Por revisar</label>
+            <div class="icon-state">
+                <label class="switch">
+                    <input type="checkbox" [(ngModel)]="statusRevisar" (click)="changeStatus(2)">
+                    <span class="switch-state"></span>
+                </label>
+            </div>
+        </div>
+        <div class="col">
+            <label class="col-form-label m-r-10">Por aprobar</label>
+            <div class="icon-state">
+                <label class="switch">
+                    <input type="checkbox" [(ngModel)]="statusAprobar" (click)="changeStatus(3)">
+                    <span class="switch-state"></span>
+                </label>
+            </div>
+        </div>
+        <div class="col">
+            <label class="col-form-label m-r-10">Observado</label>
+            <div class="icon-state">
+                <label class="switch">
+                    <input type="checkbox" [(ngModel)]="statusObservar" (click)="changeStatus(5)">
+                    <span class="switch-state"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr class="text-center">
+                        <th class="text-center">
+                            Codigo Sinpad
+                        </th>
+                        <th class="text-center">
+                            <div class="row">
+                                <div class="col-10">Tipo Formulario</div>
+                                <div class="col-2">Analizar</div>
+                            </div>
+                        </th>
+                        <th class="text-center">
+                            Estado
+                        </th>
+                        <th class="text-center">
+                            Accion
+                        </th>
+                        <th class="text-center">
+                            Seleccionar Todo
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="text-center"
+                        *ngFor="let i of emergencies | paginate: { itemsPerPage: 4, currentPage: page }">
+                        <td *ngIf="i.formularios.length > 0 || i.atenciones.length > 0" class="align-middle">{{ i.codigoSinpad }}</td>
+                        <td *ngIf="i.formularios.length > 0 || i.atenciones.length > 0">
+                            <div class="row" *ngFor="let j of i.formularios">
+                                <div class="col-10">
+                                    <p>{{ j.tipoFormulario }} - {{ j.tipoPeligro }}</p>
+                                </div>
+                                <div class="col-2" style="font-size: 20px;"><a
+                                        (click)="viewFormulario(j.tipoFormulario,j.id, i.id,i.codigoSinpad)"><i
+                                            class="fa fa-eye"></i></a>
+                                </div>
+                            </div>
+                            <div class="row" *ngFor="let j of i.atenciones">
+                                <div class="col-10">
+                                    <p>{{ j.tipoFormulario }} - {{ j.ubigeo_almacen }}</p>
+                                </div>
+                                <div class="col-2" style="font-size: 20px;"><a
+                                        (click)="viewFormulario(j.tipoFormulario,j.id, i.id,i.codigoSinpad)"><i
+                                            class="fa fa-eye"></i></a>
+                                </div>
+                            </div>
+                        </td>
+                        <!-- <td *ngIf="i.formularios.length > 0 || i.atenciones.length > 0">
+                            <div class="row" align="center" *ngFor="let j of i.formularios">
+                                <div class="col-2" style="font-size: 22.5px;"><a
+                                        (click)="viewFormulario(j.tipoFormulario,j.id, i.id,i.codigoSinpad)"><i
+                                            class="fa fa-eye"></i></a>
+                                </div>
+                            </div>
+                            <div class="row" align="center" *ngFor="let j of i.atenciones">
+                                <div class="col-2" style="font-size: 22.5px;"><a
+                                        (click)="viewFormulario(j.tipoFormulario,j.id, i.id,i.codigoSinpad)"><i
+                                            class="fa fa-eye"></i></a>
+                                </div>
+                            </div>
+                        </td> -->
+                        <td *ngIf="i.formularios.length > 0 || i.atenciones.length > 0">
+                            <div class="col" *ngFor="let j of i.formularios">
+                                <p class="bg bg-primary" *ngIf="j.estado_formulario == 1">POR ENVIAR</p>
+                                <p class="bg bg-warning" *ngIf="j.estado_formulario == 2">POR REVISAR</p>
+                                <p class="bg bg-secondary" *ngIf="j.estado_formulario == 3">POR APROBAR</p>
+                                <p class="bg bg-success" *ngIf="j.estado_formulario == 4">APROBADO</p>
+                                <p class="bg bg-danger" *ngIf="j.estado_formulario == 5">OBSERVADO</p>
+                            </div>
+                            <div class="col" *ngFor="let j of i.atenciones">
+                                <p class="bg bg-primary" *ngIf="j.estado == 1">POR ENVIAR</p>
+                                <p class="bg bg-warning" *ngIf="j.estado == 2">POR REVISAR</p>
+                                <p class="bg bg-secondary" *ngIf="j.estado == 3">POR APROBAR</p>
+                                <p class="bg bg-success" *ngIf="j.estado == 4">APROBADO</p>
+                                <p class="bg bg-danger" *ngIf="j.estado == 5">OBSERVADO</p>
+                            </div>
+                        </td>
+                        <td *ngIf="i.formularios.length > 0 || i.atenciones.length > 0">
+                            <div class="col" *ngFor="let j of i.formularios">
+                                <div *ngIf="!i.selected">
+                                    <a (click)="accion(j.id,i.id,1,j.tipoFormulario)"
+                                        style="color: #08afe0; cursor: pointer; font-size: 24px"
+                                        ngbTooltip="Revisar / Observar">
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                    <a (click)="accion(j.id,i.id,2,j.tipoFormulario)"
+                                        style="color: #08afe0; cursor: pointer; font-size: 24px"
+                                        ngbTooltip="Aprobar / Observar">
+                                        <i class="fa fa-check-circle"></i>
+                                    </a>
+                                </div>
+                                <div *ngIf="i.selected">
+                                    <input type="checkbox" [(ngModel)]="j.selected" (click)="changeRadio()"
+                                        style="margin-top: 15px;">
+                                </div>
+                            </div>
+                            <div class="col" *ngFor="let j of i.atenciones">
+                                <div *ngIf="!i.selected">
+                                    <a (click)="accion(j.id,i.id,1,j.tipoFormulario)"
+                                        style="color: #08afe0; cursor: pointer; font-size: 24px"
+                                        ngbTooltip="Revisar / Observar">
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                    <a (click)="accion(j.id,i.id,2,j.tipoFormulario)"
+                                        style="color: #08afe0; cursor: pointer; font-size: 24px"
+                                        ngbTooltip="Aprobar / Observar">
+                                        <i class="fa fa-check-circle"></i>
+                                    </a>
+                                </div>
+                                <div *ngIf="i.selected">
+                                    <input type="checkbox" [(ngModel)]="j.selected" (click)="changeRadio()"
+                                        style="margin-top: 15px;">
+                                </div>
+                            </div>
+                        </td>
+                        <td *ngIf="i.formularios.length > 0 || i.atenciones.length > 0">
+                            <div *ngIf="statusRevisar || statusAprobar" class="icon-state">
+                                <label class="switch">
+                                    <input type="checkbox" [(ngModel)]="i.selected">
+                                    <span class="switch-state"></span>
+                                </label>
+                            </div>
+                            <div *ngIf="i.selected">
+                                <a (click)="revisar(i.id)" style="color: #08afe0; cursor: pointer; font-size: 24px"
+                                    ngbTooltip="Revisar / Observar">
+                                    <i class="fa fa-check-circle"></i>
+                                </a>
+                            </div>
+
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+            <pagination-controls (pageChange)="page = $event"></pagination-controls>
+        </div>
+    </div>
+</div>

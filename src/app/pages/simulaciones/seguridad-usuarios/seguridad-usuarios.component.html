@@ -1,0 +1,167 @@
+<app-breadcrumb [title]="'Usuarios'" [items]="['Seguridad']" [active_item]="'Usuarios'"></app-breadcrumb>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <form>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group" style="font-size: 13px">
+                                    <div class="mb-2">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Buscar por Username, Nombres, Apellidos y Perfil</mat-label>
+                                            <input matInput type="text" formControlName="textoBusqueda"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+
+
+                                            <button matSuffix mat-icon-button aria-label="Clear">
+                                                <mat-icon>close</mat-icon>
+                                            </button>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                            </div>
+                            <div class="col-sm-2">
+                                <a class="btn btn-primary btn-lg" ngbTooltip="Nuevo" (click)="add()">
+                                    <i class="fa fa-plus-square-o"></i> Nuevo
+                                </a>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="table-responsive">
+                            <div name="data-source-1_length" class="dataTables_wrapper">
+                                <div class="dataTables_length">
+                                    <label>Mostrar
+                                        <select name="data-source-1_length">
+                                            <option value="10">10</option>
+                                            <option value="25">25</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select> entradas</label>
+                                </div>
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Username</th>
+                                            <th class="text-center">Nombres y Apellidos</th>
+                                            <th class="text-center">Perfil</th>
+                                            <th class="text-center">Estado</th>
+                                            <th class="text-center">Opciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="text-center">
+                                            <td class="text-center">User01</td>
+                                            <td class="text-center">Daniel Vallejos</td>
+                                            <td class="text-center">Perfil 1</td>
+                                            <td class="text-center badge badge-success fw-bold">habilitado</td>
+                                            <td>
+                                                <div>
+                                                    <a style="color: #08afe0; cursor: pointer; font-size: 20px"
+                                                        ngbTooltip="Ver / Editar">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                    <a class="mr-2 ml-2"
+                                                        style="color: #f73164; cursor: pointer; font-size: 20px"
+                                                        ngbTooltip="Eliminar">
+                                                        <i class="fa fa-trash"></i>
+                                                    </a>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                        <tr class="text-center">
+                                            <td class="text-center">User02</td>
+                                            <td class="text-center">Antony Barboza</td>
+                                            <td class="text-center">Perfil 2</td>
+                                            <td class="text-center badge badge-success fw-bold">habilitado</td>
+                                            <td>
+                                                <div>
+                                                    <a style="color: #08afe0; cursor: pointer; font-size: 20px"
+                                                        ngbTooltip="Ver / Editar">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                    <a class="mr-2 ml-2"
+                                                        style="color: #f73164; cursor: pointer; font-size: 20px"
+                                                        ngbTooltip="Eliminar">
+                                                        <i class="fa fa-trash"></i>
+                                                    </a>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                        <tr class="text-center">
+                                            <td class="text-center">User03</td>
+                                            <td class="text-center">Jose Salazar</td>
+                                            <td class="text-center">Perfil 1</td>
+                                            <td class="text-center badge badge-success fw-bold">habilitado</td>
+                                            <td>
+                                                <div>
+                                                    <a style="color: #08afe0; cursor: pointer; font-size: 20px"
+                                                        ngbTooltip="Ver / Editar">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                    <a class="mr-2 ml-2"
+                                                        style="color: #f73164; cursor: pointer; font-size: 20px"
+                                                        ngbTooltip="Eliminar">
+                                                        <i class="fa fa-trash"></i>
+                                                    </a>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                        <tr class="text-center">
+                                            <td class="text-center">User04</td>
+                                            <td class="text-center">Julio Diaz</td>
+                                            <td class="text-center">Perfil 2</td>
+                                            <td class="text-center badge badge-success fw-bold">habilitado</td>
+                                            <td>
+                                                <div>
+                                                    <a style="color: #08afe0; cursor: pointer; font-size: 20px"
+                                                        ngbTooltip="Ver / Editar">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                    <a class="mr-2 ml-2"
+                                                        style="color: #f73164; cursor: pointer; font-size: 20px"
+                                                        ngbTooltip="Eliminar">
+                                                        <i class="fa fa-trash"></i>
+                                                    </a>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                        <tr class="text-center">
+                                            <td class="text-center">User05</td>
+                                            <td class="text-center">Ada Gonzales</td>
+                                            <td class="text-center">Perfil 1</td>
+                                            <td class="text-center badge badge-success fw-bold">habilitado</td>
+                                            <td>
+                                                <div>
+                                                    <a style="color: #08afe0; cursor: pointer; font-size: 20px"
+                                                        ngbTooltip="Ver / Editar">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                    <a class="mr-2 ml-2"
+                                                        style="color: #f73164; cursor: pointer; font-size: 20px"
+                                                        ngbTooltip="Eliminar">
+                                                        <i class="fa fa-trash"></i>
+                                                    </a>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

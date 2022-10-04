@@ -1,0 +1,246 @@
+<app-breadcrumb [title]="'Detalle'" [items]="['Emergencia']" [active_item]="'Detalle'"></app-breadcrumb>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <form class="needs-validation" novalidate [formGroup]="detailSolicitudUsuario">
+                        <h6>Datos de Usuario</h6>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>TIPO DOCUMENTO</label>
+                                    <ng-select formControlName="idTipoDocumento" [items]="documentTypes"
+                                        bindLabel="descripcion" bindValue="id" placeholder="Seleccione">
+                                    </ng-select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>N&Uacute;MERO DE DOCUMENTO</label>
+                                    <input type="text" class="form-control" formControlName="numeroDocumento" readonly>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group ">
+                                    <div class="form-group">
+                                        <label>NOMBRES</label>
+                                        <input onkeyup="this.value=this.value.toUpperCase();" type="text"
+                                            class="form-control" formControlName="nombres" readonly>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label>APELLIDOS</label>
+                                        <input onkeyup="this.value=this.value.toUpperCase();" type="text"
+                                            class="form-control" formControlName="apellidos" readonly>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                        <h6>Instituciones</h6>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>TIPO DE INSTITUCION</label>
+                                    <br>
+
+                                    <div class="custom-control custom-radio custom-control-inline"
+                                        style="margin-right: 120px">
+                                        <input formControlName="rinstitucion" name="rinstitucion" type="radio"
+                                            class="custom-control-input" id="defaultInline1" value="1"
+                                            (click)="changeStatus(1)">
+                                        <label class="custom-control-label" for="defaultInline1">PUBLICO</label>
+                                    </div>
+
+                                    <div class="custom-control custom-radio custom-control-inline"
+                                        style="margin-right: 150px;">
+                                        <input formControlName="rinstitucion" name="rinstitucion" type="radio"
+                                            class="custom-control-input" id="defaultInline2" value="2"
+                                            (click)="changeStatus(2)">
+                                        <label class="custom-control-label" for="defaultInline2">PRIVADO</label>
+                                    </div>
+
+                                    <!--
+                                    <mat-radio-group formControlName="tipoInstitucion">
+                                        <mat-radio-button value="1" style="margin-right: 20px;" (change)="changeStatus(1)" >PUBLICO</mat-radio-button>
+                                        <mat-radio-button value="2" (change)="changeStatus(2)" >PRIVADO</mat-radio-button>
+                                    </mat-radio-group>
+                               -->
+
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group"
+                                    *ngIf="detailSolicitudUsuario.get('tipoInstitucion')?.value != '2'">
+                                    <label>{{descripciontipoInstitucion}}</label>
+                                    <ng-select [items]="selectInstitucion" bindLabel="nombre" bindValue="id"
+                                        formControlName="descripcionInstitucion" (change)="getSelectInstitucion($event)"
+                                        placeholder="Seleccione">
+                                    </ng-select>
+                                </div>
+
+                                <!--
+                                <div class="form-group" *ngIf="detailSolicitudUsuario.get('tipoInstitucion')?.value != '1'">
+                                    <label>INSTITUCION PRIVADA</label>
+                                    <ng-select [items]="selectInstitucionPrivada" bindLabel="nombre" bindValue="id"
+                                        formControlName="descripcionInstitucionPrivada" (change)="getSelectInstitucionPrivada($event)"
+                                        placeholder="Seleccione">
+                                    </ng-select>
+                                </div>
+    -->
+
+
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>CARGO</label>
+                                    <input type="text" class="form-control" formControlName="cargo">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group ">
+                                    <div class="form-group">
+                                        <label>EMAIL</label>
+                                        <input formControlName="email" type="text" class="form-control"
+                                            placeholder="Ex. pat@example.com">
+                                        <span style="color: #ff0000;">
+                                            (El mail no puede quedar vac&iacute;o)
+                                        </span>
+                                        <span style="color: #ff0000;">
+                                            (El mail no es v&aacute;lido)
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <h6>Geopol&iacute;tica</h6>
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>NIVELES</label>
+                                    <ng-select formControlName="levels" [items]="nivelTypes" bindLabel="descripcion"
+                                        bindValue="id" placeholder="Seleccione" (change)="getPerfilNivel()">
+                                    </ng-select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3" *ngIf="detailSolicitudUsuario.get('levels')?.value != '1'">
+                                <div class="form-group">
+                                    <label>REGI&Oacute;N</label>
+                                    <ng-select [items]="selectRegion" bindLabel="descripcion" bindValue="codRegion"
+                                        formControlName="codRegion" (change)="getSelectRegion($event)"
+                                        placeholder="Seleccione">
+                                    </ng-select>
+                                    <div class="invalid-feedback"
+                                        *ngIf="detailSolicitudUsuario.controls['codigoRegion'].touched && detailSolicitudUsuario.controls['codigoRegion'].errors?.['required']">
+                                        Seleccione el ubigeo
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3"
+                                *ngIf="detailSolicitudUsuario.get('levels')?.value != '1' && detailSolicitudUsuario.get('levels')?.value != '2'">
+                                <div class="form-group">
+                                    <label>PROVINCIA</label>
+                                    <ng-select [items]="selectProvincia" bindLabel="descripcion"
+                                        bindValue="codProvincia" formControlName="codProvincia"
+                                        (change)="getSelectProvincia($event)" placeholder="Seleccione">
+                                    </ng-select>
+                                    <div class="invalid-feedback"
+                                        *ngIf="detailSolicitudUsuario.controls['codProvincia'].touched && detailSolicitudUsuario.controls['codProvincia'].errors?.['required']">
+                                        Seleccione el ubigeo
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3"
+                                *ngIf="detailSolicitudUsuario.get('levels')?.value != '1' && detailSolicitudUsuario.get('levels')?.value != '2' && detailSolicitudUsuario.get('levels')?.value != '3'">
+                                <div class="form-group">
+                                    <label>DISTRITO</label>
+                                    <ng-select [items]="selectDistrito" bindLabel="descripcion" bindValue="codDistrito"
+                                        formControlName="codDistrito" (change)="getSelectDistrito($event)"
+                                        placeholder="Seleccione">
+                                    </ng-select>
+                                    <div class="invalid-feedback"
+                                        *ngIf="detailSolicitudUsuario.controls['codDistrito'].touched && detailSolicitudUsuario.controls['codDistrito'].errors?.['required']">
+                                        Seleccione el ubigeo
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>PERFIL</label>
+                                    <ng-container>
+                                        <ng-container>
+                                            <ng-select formControlName="idPerfil" [items]="selectPerfilNivel"
+                                                bindLabel="nombre" bindValue="id"
+                                                (change)="getSelectPerfilNivel($event)" placeholder="Seleccione"
+                                                [multiple]="false">
+                                            </ng-select>
+                                        </ng-container>
+                                    </ng-container>
+                                    <div class="invalid-feedback"
+                                        *ngIf="detailSolicitudUsuario.controls['idPerfil'].touched && detailSolicitudUsuario.controls['idPerfil'].errors?.['required']">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h6>Notas Adicionales</h6>
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>OBSERVACIONES</label>
+                                    <textarea class="form-control" formControlName="observacion" rows="3"
+                                        maxlength="1000" required="true" readonly></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>COMENTARIOS</label>
+                                    <textarea class="form-control" formControlName="comentarios" rows="3"
+                                        maxlength="1000" required="true"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row text-center">
+                            <div class="col">
+                                <div class="form-group mb-0">
+                                    <button (click)="EditarUsuario()" type="button" class="btn btn-primary mr-3">
+                                        <span>Guardar</span>
+                                    </button>
+                                    <button type="button" class="btn btn-danger"
+                                        (click)="cancelProject()">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

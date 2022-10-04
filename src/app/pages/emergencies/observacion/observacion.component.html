@@ -1,0 +1,77 @@
+<div class="modal-header text-center">
+    <h5 class="modal-title text-center">Notas</h5>
+    <button class="close" type="button" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">×</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="createEstado">
+        <!-- <div class="row">
+        <div class="col-xl-12 xl-100">
+            <div class="card">
+                <table class="product-page-width">
+                    <tbody>
+                        <tr>
+                            <td> <b>Codigo Sinpad &nbsp;&nbsp;&nbsp;:</b></td>
+                            <td>{{detailsEmergency?.codigoSinpad}}</td>
+                        </tr>
+                        <tr>
+                            <td> <b>Tipo de Peligro &nbsp;&nbsp;&nbsp;:</b></td>
+                            <td>{{detailsEmergency?.tipoPeligro}}</td>
+                        </tr>
+                        <tr>
+                            <td> <b>Grupo de Peligro &nbsp;&nbsp;&nbsp;:</b></td>
+                            <td>{{detailsEmergency?.grupoPeligro}}</td>
+                        </tr>
+                        <tr>
+                            <td> <b>Ubigeo &nbsp;&nbsp;&nbsp;:</b></td>
+                            <td>{{detailsEmergency?.descripcionUbigeo}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr>
+                <h6>Descripcion:</h6>
+                <p>
+                    {{detailsEmergency?.descripcionEvento}}
+                </p>
+                <hr>
+                <table class="product-page-width">
+                    <tbody>
+                        <tr>
+                            <td> <b>Fecha y hora evento &nbsp;&nbsp;&nbsp;:</b></td>
+                            <td>{{detailsEmergency?.fechaHoraEvento}}</td>
+                        </tr>
+                        <tr>
+                            <td> <b>Registrado por &nbsp;&nbsp;&nbsp;:</b></td>
+                            <td>{{detailsEmergency?.registradoPor}}</td>
+                        </tr>
+                        <tr>
+                            <td> <b>Revisado por &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
+                            <td>{{detailsEmergency?.revisadoPor}}</td>
+                        </tr>
+                        <tr>
+                            <td> <b>Aprobado por &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
+                            <td>{{detailsEmergency?.idAprobadoPor}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div> -->
+        <div class="row">
+            <div class="col s-m-12">
+
+                <textarea class="form-control" placeholder="Escriba sus observaciones aqui!"
+                    formControlName="nota"></textarea>
+
+                <!-- <label>Observaciones:</label> -->
+            </div>
+        </div>
+        <div class="text-center p-t-20">
+            <button class="btn btn-primary m-r-10" (click)="revisarForm()">Revisar</button>
+            <button class="btn btn-primary m-r-10" (click)="aprobarForm()">Aprobar</button>
+            <button class="btn btn-primary m-r-10" (click)="observarForm()">Observar</button>
+            <button class="btn btn-danger" (click)="closeModal()">Cancelar</button>
+        </div>
+    </form>
+</div>

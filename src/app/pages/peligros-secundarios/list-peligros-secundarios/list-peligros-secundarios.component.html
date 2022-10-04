@@ -1,0 +1,112 @@
+<app-breadcrumb [title]="'Peligros Secundarios'" [items]="['Administración']" [active_item]="'Peligros Secundarios'"></app-breadcrumb>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <form>
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <div class="form-group" style="font-size: 13px;">
+                                    <div class="mb-2">
+                                        <mat-form-field appearance="outline" class="border-red">
+                                            <mat-label>Buscar por siglas, descripci&oacute;n</mat-label>
+                                            <input matInput type="text" formControlName="textoBusqueda" onkeyup="this.value=this.value.toUpperCase();">
+                                            <button matSuffix mat-icon-button aria-label="Clear">
+                                                <mat-icon>close</mat-icon>
+                                            </button>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+
+                            </div>
+                            <div class="col-sm-2">
+                                <a class="btn btn-primary btn-lg" ngbTooltip="Nuevo Peligro" (click)="createPeligrosSecundarios()">
+                                    <i class="fa fa-plus-square-o"></i> Nuevo
+                                </a>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <div name="data-source-1_length" class="dataTables_wrapper">
+                                <div class="dataTables_length">
+                                    <label>Mostrar
+                                        <select name="data-source-1_length" formControlName="cantidadRegistro" (change)="showEntriesChange($event)">
+                                            <option value="10">10</option>
+                                            <option value="25">25</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select>
+                                        Peligros
+                                    </label>
+                                </div>
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Nombre</th>
+                                            <th class="text-center">Descripcion</th>
+                                            <th class="text-center">Tipo de Peligro</th>
+                                            <th class="text-center">Grupo de Peligro</th>
+                                            <th class="text-center">Opciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="text-center">
+                                            <td>
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <a style="color: #08afe0; cursor: pointer; font-size: 20px" ngbTooltip="Ver / Editar">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <nav class="m-b-30">
+                                    <br>
+                                    <div class="has-text-centered">
+                                        <pagination-controls previousLabel="Anterior" nextLabel="Siguiente" id="server">
+                                        </pagination-controls>
+                                    </div>
+                                </nav>
+                                <!--nav class="m-b-30">
+
+                                    <ul class="meal-list">
+                                        <li *ngFor="let i of danger | paginate:
+                  { id: 'server', itemsPerPage: cantidadItemsForm, currentPage: paginaActalForm,
+                   totalItems: cantidadTotalRegistrosBusqueda}"></li>
+                                    </ul>
+                                    <br>
+                                    <div class="has-text-centered">
+                                        <div class="row" *ngIf="loading">
+                                            <div class="col-sm-12">
+                                                <ngx-skeleton-loader count="10" appearance="line" animation="progress">
+                                                </ngx-skeleton-loader>
+                                            </div>
+                                        </div>
+                                        <pagination-controls previousLabel="Anterior" nextLabel="Siguiente" (pageChange)="paginateDanger($event)" id="server">
+                                        </pagination-controls>
+                                    </div>
+                                </nav-->
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

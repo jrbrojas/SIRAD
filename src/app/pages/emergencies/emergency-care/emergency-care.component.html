@@ -1,0 +1,72 @@
+<app-breadcrumb [title]="'Atención de emergencia'" [items]="['Emergencias']" [active_item]="'Atenciones'"></app-breadcrumb>
+
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="mb-2 d-flex flex-wrap justify-content-between">
+            <h6 class="align-middle text-uppercase" *ngIf="emergenciaTotal">Codigo Sinpad NRO. {{emergenciaTotal.codigoSinpad}}</h6>
+            <a class="btn btn-primary m-t-12 align-middle" (click)="addEmergencyCare()">
+              Nuevo
+            </a>
+          </div>
+
+          <div class="table-responsive">
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="text-center">Atenci&oacute;n</th>
+                  <th class="text-center">Almac&eacute;n</th>
+                  <th class="text-center">Fecha Registro</th>
+                  <th class="text-center">Adjuntos</th>
+                  <th class="text-center">Estado</th>
+                  <th class="text-center">Opciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr class="text-center" *ngFor="let item of atention_arr | paginate: { itemsPerPage: 10, currentPage: page }" >
+                    <td>{{item.index}}</td>
+                    <td class="text-uppercase">{{item.ubigeo_almacen}}<br>{{item.nombre_almacen}}</td>
+                    <td>{{item.fecha_atencion  }}</td>
+                    <td><a style="cursor: pointer; max-width: 300px;" target="_blank" [href]="url + item.archivo" [download]="item.archivo" class="d-inline-block text-truncate">{{item.archivo}}</a></td>
+                    <td>
+                      <p class="bg bg-primary" *ngIf="item.estado == 1">POR ENVIAR</p>
+                      <p class="bg bg-warning" *ngIf="item.estado == 2">POR REVISAR</p>
+                      <p class="bg bg-secondary" *ngIf="item.estado == 3">POR APROBAR</p>
+                      <p class="bg bg-success" *ngIf="item.estado == 4">APROBADO</p>
+                      <p class="bg bg-danger" *ngIf="item.estado == 5">OBSERVADO</p>
+                    </td>
+                    <td>
+                      <div>
+                        <a style="color: #08afe0; cursor: pointer; font-size: 20px"
+                          ngbTooltip="Ver / Editar" (click)="editViewEmergencyCare(item)">
+                          <i class="fa fa-edit"></i>
+                        </a>
+                        <a  (click)="deleteAtention(item.id)" class="mr-2 ml-2"
+                          style="color: #f73164; cursor: pointer; font-size: 20px" ngbTooltip="Eliminar">
+                          <i class="fa fa-trash"></i>
+                        </a>
+                        <a style="color: #08afe0; cursor: pointer; font-size: 20px"
+                          ngbTooltip="Artículos" (click)="addArticles(item.codigo_sinpad)">
+                          <i class="fa fa-cubes"></i>
+                        </a>
+                        <a *ngIf="item.estado == '1'" style="color: #08afe0; cursor: pointer; font-size: 20px" class="mr-2 ml-2"
+                          ngbTooltip="Enviar" (click)="changeStatus(item.id,item.codigo_sinpad)">
+                          <i class="fa fa-send"></i>
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                  <pagination-controls (pageChange)="page = $event"></pagination-controls>          
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

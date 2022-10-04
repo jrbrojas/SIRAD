@@ -1,0 +1,344 @@
+<app-breadcrumb [title]="'Simulaciones'" [active_item]="'Simulaciones'"></app-breadcrumb>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <form>
+
+                        <div class="row" *ngIf="!bolNuevoEvento && !addEdit && !boolPerfil && !boolGroup">
+                            <div class="col-sm-4">
+                                <div class="form-group" style="font-size: 13px">
+                                    <div class="mb-2">
+                                        <mat-form-field appearance="outline">
+                                            <input matInput placeholder="Buscar" type="text"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <div class="form-group" style="font-size: 13px;">
+                                    <div class="mb-2">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Rango de fechas</mat-label>
+                                            <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+                                                <input matStartDate formControlName="start" placeholder="Start date">
+                                                <input matEndDate formControlName="end" placeholder="End date">
+                                            </mat-date-range-input>
+                                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                            <mat-date-range-picker #picker></mat-date-range-picker>
+                                        </mat-form-field>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4" style="font-size: 13px; padding-top: 17px;" *ngIf="!bolNuevoEvento">
+                                <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+                                    <mat-button-toggle (click)="onFiltro(0)" value="bold">TODOS</mat-button-toggle>
+                                    <mat-button-toggle (click)="onFiltro(1)" value="italic">INICIADOS
+                                    </mat-button-toggle>
+                                    <mat-button-toggle (click)="onFiltro(2)" value="underline">PENDIENTES
+                                    </mat-button-toggle>
+                                    <mat-button-toggle (click)="onFiltro(3)" value="underline">FINALIZADOS
+                                    </mat-button-toggle>
+                                </mat-button-toggle-group>
+                            </div>
+                            <div class="col-sm-2" style="font-size: 13px; padding-top: 17px;">
+                                <div class="form-group">
+                                    <div class="align-middle">
+                                        <button class="btn btn-primary btn-lg" mat-raised-button color="primary"><mat-icon>add</mat-icon> Nuevo
+                                            Evento</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div *ngIf="!bolNuevoEvento && !addEdit && !boolPerfil && !boolGroup">
+                            <hr>
+                            <div class="row">
+                                <div class="col-lg-3" *ngFor="let item of dataEventoFiltro; let i = index;">
+                                    <mat-card
+                                        [ngClass]="item.bolEventoIniciado ? 'evento-activo' : (item.bolEventoActivo ? 'evento-pendiente' :'evento-finalizado-caducado')">
+
+                                        <h5 class="card-title">{{ item.txtEventoNombre }}</h5>
+                                        <mat-card-content>
+                                            <h6 class="card-subtitle mb-2 text-muted">{{ item.txtEventoLugar }}</h6>
+                                            <p>{{item.txtEventoDescripcion}}</p>
+                                            <div>
+                                                <table class="product-page-width">
+                                                    <tbody>
+                                                        <tr class="d-flex justify-content-between">
+                                                            <td> <b>Estado:</b></td>
+                                                            <td class="px-4 badge badge-success">Activo</td>
+                                                        </tr>
+                                                        <tr class="d-flex justify-content-between">
+                                                            <td> <b>Inicio:</b>
+                                                            </td>
+                                                            <td>15/08/2022</td>
+                                                        </tr>
+                                                        <tr class="d-flex justify-content-between">
+                                                            <td> <b>Fin:</b></td>
+                                                            <td>30/08/2022</td>
+                                                        </tr>
+                                                        <tr class="d-flex justify-content-between">
+                                                            <td> <b>Participantes:
+                                                            </b></td>
+                                                            <td>25</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </mat-card-content>
+                                        <mat-divider inset></mat-divider>
+                                        <mat-card-actions class="d-flex justify-content-center pt-4">
+                                            <!-- <button mat-raised-button [disabled]="!item.bolEventoActivo"
+                                                *ngIf="!item.bolEventoIniciado" (click)="onEditarEvento(item, i)">
+                                                <mat-icon>edit</mat-icon>Editar
+                                            </button> -->
+                                            <button mat-raised-button (click)="addEditF()">
+                                                <mat-icon>edit</mat-icon>Editar
+                                            </button>
+                                            <button mat-raised-button [disabled]="!item.bolEventoActivo"
+                                                *ngIf="!item.bolEventoIniciado" (click)="onIniciarEvento(i)">
+                                                <mat-icon>send</mat-icon>Iniciar
+                                            </button>
+                                            <button mat-raised-button *ngIf="item.bolEventoIniciado">
+                                                <mat-icon>visibility</mat-icon> ver
+                                            </button>
+                                            <button mat-raised-button *ngIf="item.bolEventoIniciado"
+                                                (click)="onFinalizarEvento(i)">
+                                                <mat-icon>close</mat-icon>Finalizar
+                                            </button>
+                                        </mat-card-actions>
+                                        <mat-divider inset></mat-divider>
+                                        <mat-card-actions class="d-flex justify-content-between px-2">
+                                            <button mat-mini-fab (click)="addGroup()" ngbTooltip="Grupos" color="primary">
+                                                <mat-icon>group</mat-icon>
+                                            </button>
+                                            <button mat-mini-fab (click)="addParticipantes()" ngbTooltip="Participantes" color="primary">
+                                                <mat-icon>account_box</mat-icon>
+                                            </button>
+                                            <button mat-mini-fab ngbTooltip="Mensajes" color="primary">
+                                                <mat-icon>message</mat-icon>
+                                            </button>
+                                            <button mat-mini-fab ngbTooltip="Tareas" color="primary">
+                                                <mat-icon>task</mat-icon>
+                                            </button>
+                                        </mat-card-actions>
+                                        <mat-card-footer>
+                                            <mat-progress-bar *ngIf="item.bolEventoIniciado" mode="indeterminate">
+                                            </mat-progress-bar>
+                                        </mat-card-footer>
+                                    </mat-card>&nbsp;
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="addEdit">
+                            <form>
+                                <ng-template matStepLabel title="DATOS EVENTO">DATOS EVENTO</ng-template>
+                                <div class="col-lg-12 row">
+                                    <mat-form-field class="col-lg-12" appearance="outline">
+                                        <mat-label>Nombre</mat-label>
+                                        <input matInput maxlength="200" #inputtxtEventoNombre placeholder="Nombre"
+                                            required>
+                                        <mat-hint align="end">0/200
+                                        </mat-hint>
+                                    </mat-form-field>
+                                    <mat-form-field class="col-lg-12" appearance="outline">
+                                        <mat-label>Descripción</mat-label>
+                                        <textarea matInput maxlength="400" #inputtxtEventoDescripcion rows="4"
+                                            placeholder="Descripción" required></textarea>
+                                        <mat-hint align="end">0/200</mat-hint>
+                                    </mat-form-field>
+                                    <mat-form-field class="col-lg-12" appearance="outline">
+                                        <mat-label>Lugar</mat-label>
+                                        <input matInput maxlength="200" #inputtxtEventoLugar placeholder="Lugar"
+                                            required>
+                                        <mat-hint align="end">0/200
+                                        </mat-hint>
+                                    </mat-form-field>
+                                    <mat-form-field class="col-lg-3" appearance="outline">
+                                        <mat-label>Fecha Inicio</mat-label>
+                                        <input matInput type="date" placeholder="Fecha" required>
+                                        <mat-hint align="end">Formato; DD/MM/YYYY</mat-hint>
+                                    </mat-form-field>
+                                    <mat-form-field class="col-lg-3" appearance="outline">
+                                        <mat-label>Fecha Fin</mat-label>
+                                        <input matInput type="date" placeholder="Fecha" required>
+                                        <mat-hint align="end">Formato; DD/MM/YYYY</mat-hint>
+                                    </mat-form-field>
+                                    <mat-form-field class="col-lg-3" appearance="outline">
+                                        <mat-label>Hora Inicio</mat-label>
+                                        <input matInput type="time" placeholder="Hora Inicio" required>
+                                        <mat-hint align="end">Formato: 24h, ejem 15:30</mat-hint>
+                                    </mat-form-field>
+                                    <mat-form-field class="col-lg-3" appearance="outline">
+                                        <mat-label>Hora Fin</mat-label>
+                                        <input matInput type="time" placeholder="Hora Fin" required>
+                                        <mat-hint align="end">Formato: 24h, ejem 15:30</mat-hint>
+                                    </mat-form-field>
+                                    <div>
+                                        <button mat-stroked-button (click)="noaddEditF()" color="primary"
+                                            class="m-2">Guardar</button>
+                                    </div>
+                                    <div>
+                                        <button mat-stroked-button (click)="noaddEditF()" color="warn"
+                                            class="m-2">Cancelar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div *ngIf="boolPerfil">
+                            <form>
+                                <ng-template matStepLabel title="SUB GRUPOS">PERFILES EXCON - GRUPO
+                                </ng-template>
+                                <div class="col-lg-12 row">
+                                    <div class="col-lg-4" *ngFor="let item of dataGrupo; let i = index;">
+                                        <mat-card>
+                                            <h5 class="card-title">{{ item.descripcion }}</h5>
+                                            <mat-card-content>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <h6 class="card-subtitle mb-2 text-muted">Test</h6>
+                                                    </div>
+                                                    <div class="col-3"><a class="btn btn-primary btn-lg"
+                                                            ngbTooltip="Nuevo" (click)="add()">
+                                                            <i class="fa fa-plus-square-o"></i>
+                                                        </a></div>
+                                                </div>
+                                            </mat-card-content>
+                                            <mat-divider inset></mat-divider>
+                                        </mat-card>&nbsp;
+                                    </div>
+                                </div>
+                                <div>
+                                    <button mat-stroked-button (click)="noadd()" color="primary"
+                                        class="m-2">Guardar</button>
+                                </div>
+                                <div>
+                                    <button mat-stroked-button (click)="noadd()" color="warn"
+                                        class="m-2">Cancelar</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div *ngIf="boolGroup">
+                            <form>
+                                <ng-template matStepLabel title="DATOS EVENTO">GRUPOS</ng-template>
+                                <div *ngIf="!addGroupTreeF">
+                                    <button mat-stroked-button (click)="addGroupTree()" color="primary"
+                                        class="m-2">Grupo</button>
+                                </div>
+
+                                <div *ngIf="addGroupTreeF">
+                                    <form [formGroup]="formGroupTree">
+                                        <mat-form-field class="col-lg-10" appearance="outline">
+                                            <mat-label>Nombre del grupo</mat-label>
+                                            <input matInput maxlength="200" placeholder="Nombre del grupo" required
+                                                formControlName="descripcion">
+                                        </mat-form-field>
+                                        <button mat-stroked-button (click)="addGroupTreeOne()" color="primary"
+                                            class="m-2">Guardar</button>
+                                        <button mat-stroked-button (click)="noAddGroupTreeOne()" color="warn"
+                                            class="m-2">Cancelar</button>
+                                    </form>
+                                </div>
+                                <div *ngIf="addGroupTreeSub">
+                                    <form [formGroup]="formGroupTree">
+                                        <mat-form-field class="col-lg-10" appearance="outline">
+                                            <mat-label>Nombre de {{addGroupTreeSubDesc}}</mat-label>
+                                            <input matInput maxlength="200" placeholder="Nombre del grupo" required
+                                                formControlName="descripcion">
+                                        </mat-form-field>
+                                        <button mat-stroked-button (click)="addGroupTreeFinal()" color="primary"
+                                            class="m-2">Guardar</button>
+                                        <button mat-stroked-button (click)="noAddGroupTreeOne()" color="warn"
+                                            class="m-2">Cancelar</button>
+                                    </form>
+                                </div>
+                                <div class="col-lg-12 row">
+
+                                    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+                                        <!-- This is the tree node template for leaf nodes -->
+                                        <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+                                            <!-- use a disabled button to provide padding for tree leaf -->
+                                            <button mat-icon-button disabled></button>
+                                            {{node.name}}
+                                            <a (click)="viewData(node,1)" class="mr-2 ml-2"
+                                                style="color: primary; cursor: pointer; font-size: 20px"
+                                                ngbTooltip="Sub Grupo">
+                                                <i class="fa fa-users"></i>
+                                            </a>
+                                            <a (click)="viewData(node,2)" class="mr-2 ml-2"
+                                                style="color: primary; cursor: pointer; font-size: 20px"
+                                                ngbTooltip="Institucion">
+                                                <i class="fa fa-globe"></i>
+                                            </a>
+                                        </mat-tree-node>
+                                        <!-- This is the tree node template for expandable nodes -->
+                                        <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+                                            <button mat-icon-button matTreeNodeToggle
+                                                [attr.aria-label]="'Toggle ' + node.name">
+                                                <mat-icon class="mat-icon-rtl-mirror">
+                                                    {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                                                </mat-icon>
+                                            </button>
+                                            {{node.name}}
+                                            <a (click)="viewData(node,1)" class="mr-2 ml-2"
+                                                style="color: primary; cursor: pointer; font-size: 20px"
+                                                ngbTooltip="Sub Grupo">
+                                                <i class="fa fa-users"></i>
+                                            </a>
+                                            <a (click)="viewData(node,2)" class="mr-2 ml-2"
+                                                style="color: primary; cursor: pointer; font-size: 20px"
+                                                ngbTooltip="Institucion">
+                                                <i class="fa fa-globe"></i>
+                                            </a>
+                                        </mat-tree-node>
+                                    </mat-tree>
+                                </div>
+                            </form>
+                        </div>
+                    </form>
+                    <div class="col-lg-12">
+                        <div class="example-container mat-elevation-z8">
+                            <div class="example-table-container">
+                                <table mat-table [dataSource]="dataEventoPerfil" class="example-table" matSort matSortActive="created" matSortDisableClear matSortDirection="desc">
+                                    <ng-container matColumnDef="item">
+                                        <th mat-header-cell *matHeaderCellDef>#</th>
+                                        <td mat-cell *matCellDef="let row; let i = index;">{{ i + 1 }}</td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="txtGrupoNombre">
+                                        <th mat-header-cell *matHeaderCellDef>Grupo</th>
+                                        <td mat-cell *matCellDef="let row">{{row.txtGrupoNombre}}</td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="txtPerfilEncargadoNombre">
+                                        <th mat-header-cell *matHeaderCellDef>Encargado Nombre</th>
+                                        <td mat-cell *matCellDef="let row">{{row.txtPerfilEncargadoNombre}}</td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="bolPerfilEncargadoActivo">
+                                        <th mat-header-cell *matHeaderCellDef>Activo</th>
+                                        <td mat-cell *matCellDef="let row">
+                                            <mat-slide-toggle [(ngModel)]="row.bolPerfilEncargadoActivo"></mat-slide-toggle>
+                                        </td>
+                                    </ng-container>
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumnsPerfilEncargado"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumnsPerfilEncargado;"></tr>
+                                </table>
+                            </div>
+                            <mat-paginator [length]="resultsLength" [pageSize]="30" aria-label="Select page of GitHub search results"></mat-paginator>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

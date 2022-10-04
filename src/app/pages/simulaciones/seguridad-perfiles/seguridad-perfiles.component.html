@@ -1,0 +1,170 @@
+<app-breadcrumb [title]="'Permisos'" [items]="['Seguridad']" [active_item]="'Permisos'"></app-breadcrumb>
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <form>
+                        <div class="row">
+
+                            <div class="col-sm-8">
+                                <div class="form-group" style="font-size: 13px">
+                                    <div class="mb-2">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Buscar por Perfil</mat-label>
+                                            <input formControlName="textoBusqueda" matInput type="text">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+
+                            </div>
+                            <div class="col-sm-2">
+                                <a class="btn btn-primary btn-lg" (click)="createPermission()"
+                                    ngbTooltip="Nuevo Permiso">
+                                    <i class="fa fa-plus-square-o"></i> Nuevo
+                                </a>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="table-responsive">
+                            <div id="data-source-1_wrapper" class="dataTables_wrapper">
+                                <div class="dataTables_length">
+                                    <label>Mostrar
+                                        <select name="data-source-1_length" formControlName="cantidadRegistro">
+                                            <option value="10" selected>10</option>
+                                            <option value="25">25</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select> entradas</label>
+                                </div>
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">PERFIL</th>
+                                            <th class="text-center">DESCRIPCIÓN</th>
+                                            <th class="text-center">PERMISOS</th>
+                                            <th class="text-center">HABILITADO</th>
+                                            <th class="text-center">OPCIONES</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr class="text-center">
+                                            <td>Administrador 1</td>
+                                            <td>Descripcion 1</td>
+                                            <td>Permisos 1</td>
+                                            <td>Si</td>
+                                            <td>
+                                                <div>
+                                                    <a style="color: #08afe0; cursor: pointer; font-size: 20px"
+                                                        ngbTooltip="Ver / Editar">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                    <a class="mr-2 ml-2"
+                                                        style="color: #f73164; cursor: pointer; font-size: 20px"
+                                                        ngbTooltip="Eliminar">
+                                                        <i class="fa fa-trash"></i>
+                                                    </a>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                        <tr class="text-center">
+                                            <td>Administrador 2</td>
+                                            <td>Descripcion 2</td>
+                                            <td>Permisos 2</td>
+                                            <td>Si</td>
+                                            <td>
+                                                <div>
+                                                    <a style="color: #08afe0; cursor: pointer; font-size: 20px"
+                                                        ngbTooltip="Ver / Editar">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                    <a class="mr-2 ml-2"
+                                                        style="color: #f73164; cursor: pointer; font-size: 20px"
+                                                        ngbTooltip="Eliminar">
+                                                        <i class="fa fa-trash"></i>
+                                                    </a>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                        <tr class="text-center">
+                                            <td>Administrador 3</td>
+                                            <td>Descripcion 3</td>
+                                            <td>Permisos 3</td>
+                                            <td>Si</td>
+                                            <td>
+                                                <div>
+                                                    <a style="color: #08afe0; cursor: pointer; font-size: 20px"
+                                                        ngbTooltip="Ver / Editar">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                    <a class="mr-2 ml-2"
+                                                        style="color: #f73164; cursor: pointer; font-size: 20px"
+                                                        ngbTooltip="Eliminar">
+                                                        <i class="fa fa-trash"></i>
+                                                    </a>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                        <tr class="text-center">
+                                            <td>Administrador 4</td>
+                                            <td>Descripcion 4</td>
+                                            <td>Permisos 4</td>
+                                            <td>Si</td>
+                                            <td>
+                                                <div>
+                                                    <a style="color: #08afe0; cursor: pointer; font-size: 20px"
+                                                        ngbTooltip="Ver / Editar">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                    <a class="mr-2 ml-2"
+                                                        style="color: #f73164; cursor: pointer; font-size: 20px"
+                                                        ngbTooltip="Eliminar">
+                                                        <i class="fa fa-trash"></i>
+                                                    </a>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                        <tr class="text-center">
+                                            <td>Administrador 5</td>
+                                            <td>Descripcion 5</td>
+                                            <td>Permisos 5</td>
+                                            <td>Si</td>
+                                            <td>
+                                                <div>
+                                                    <a style="color: #08afe0; cursor: pointer; font-size: 20px"
+                                                        ngbTooltip="Ver / Editar">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                    <a class="mr-2 ml-2"
+                                                        style="color: #f73164; cursor: pointer; font-size: 20px"
+                                                        ngbTooltip="Eliminar">
+                                                        <i class="fa fa-trash"></i>
+                                                    </a>
+                                                </div>
+
+                                            </td>
+                                        </tr>                                       
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

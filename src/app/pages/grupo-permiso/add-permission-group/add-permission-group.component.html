@@ -1,0 +1,55 @@
+<app-breadcrumb [title]="'Crear Grupo Permisos'" [items]="['Seguridad','Grupo Permisos']" [active_item]="'Crear'"></app-breadcrumb>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <form class="needs-validation" novalidate [formGroup]="createPermissionGroup">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Nombre</label>
+                                    <input type="text" class="form-control" formControlName="nombre" rows="3" maxlength="255" (keyup)="onKey($event)" [class.is-invalid]="createPermissionGroup.controls['nombre'].touched && createPermissionGroup.controls['nombre'].errors?.['required']" onkeyup="this.value=this.value.toUpperCase();">
+                                    <div class="">
+                                        {{counter}} / 255
+                                    </div>
+                                    <div class="invalid-feedback" *ngIf="createPermissionGroup.controls['nombre'].touched && createPermissionGroup.controls['nombre'].errors?.['required']">
+                                        Nombre es requerido
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Descripci&oacute;n</label>
+                                    <input type="text" class="form-control" formControlName="descripcion" rows="3" maxlength="255" (keyup)="onKey1($event)" [class.is-invalid]="createPermissionGroup.controls['descripcion'].touched && createPermissionGroup.controls['descripcion'].errors?.['required']"
+                                        onkeyup="this.value=this.value.toUpperCase();">
+                                    <div class="">
+                                        {{counter1}} / 255
+                                    </div>
+                                    <div class="invalid-feedback" *ngIf="createPermissionGroup.controls['descripcion'].touched && createPermissionGroup.controls['descripcion'].errors?.['required']">
+                                        Descripci&oacute;n es requerido
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row text-center">
+                            <div class="col">
+                                <div class="form-group mb-0">
+                                    <div class="form-group mb-0">
+                                        <button type="button" class="btn btn-primary mr-3" [class.loader--text]="permissionGroupService.showLoader" [disabled]="!createPermissionGroup.valid || permissionGroupService.showLoader" (click)="createPermissionGroup1()">
+                        <span><i class="fa fa-save"></i>{{ permissionGroupService.showLoader ? '' : 'Guardar' }}</span>
+                      </button>
+                                        <button type="button" class="btn btn-danger" (click)="cancelProject()"><i class="fa fa-ban"></i> Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

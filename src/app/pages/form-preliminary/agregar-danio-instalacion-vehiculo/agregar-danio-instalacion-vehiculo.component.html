@@ -1,0 +1,69 @@
+<div class="modal-header text-center">
+    <h5 class="modal-title text-center">Daños a las instalaciones y vehiculos de primera respuesta</h5>
+    <button class="close" type="button" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">×</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="data">
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Funcionamiento</label>
+                    <ng-select
+                    [items]="tipoVehiculo"
+                    bindLabel="descripcion"
+                    bindValue="id"
+                    formControlName="idTipoInstalacion"
+                    (change)="getSelectTipoInstalacion($event)"
+                    placeholder="Seleccione"></ng-select>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Entidad</label>
+                    <input type="text" class="form-control" formControlName="entidad">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label># Destruida</label>
+                    <input type="text" class="form-control" formControlName="cantidadDestruida">
+                </div>
+            </div>            
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label># Inhabitable - Inoperativo</label>
+                    <input class="form-control" formControlName="cantidadInhabitableInoperativo">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label># Afectada</label>
+                    <input class="form-control" formControlName="cantidadAfectada">
+                </div>
+            </div>                                            
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Observacion</label>
+                    <input class="form-control" formControlName="observacion">
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="button" [disabled]="!data.valid" class="btn btn-primary m-r-20" (click)="addData()">
+                <span>Agregar</span>
+            </button>
+
+            <button type="button" class="btn btn-outline-danger" (click)="closeModal()">
+                <span>Cancelar</span>
+            </button>
+        </div>
+    </form>
+
+</div>

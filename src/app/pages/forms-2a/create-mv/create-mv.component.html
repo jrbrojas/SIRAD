@@ -1,0 +1,122 @@
+<div *ngIf="cantidadMediosDeVIda == 0">
+    <img src="https://www.moominmatrimony.com/img/nodata-available.jpg" alt="">
+</div>
+<div *ngIf="cantidadMediosDeVIda != 0">
+    <form [formGroup]="createFormMv">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label> Integrante</label>
+                    <ng-select [items]="members" bindLabel="nombresApellidos" bindValue="id"
+                        formControlName="idIntegrante" placeholder="Seleccione">
+                    </ng-select>
+                </div>
+            </div>
+            <!-- <div class="col-sm-12">
+                <div class="form-group">
+                    <label>Seleccionar Integrantes</label>
+                    <ng-select [items]="defaultBindingsList" class="js-example-basic-multiple"
+                        placeholder="Seleccione integrantes" [(ngModel)]="select" [multiple]="true">
+                    </ng-select>
+                </div>
+            </div> -->
+
+        </div>
+        <div class="row">
+
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Tipo</label>
+                    <ng-select [items]="groupProductsWayLife" bindLabel="descripcion" bindValue="idTipoProducto"
+                        formControlName="idMedioVida" (change)="getSelectGroupWayLife($event)" placeholder="Seleccione">
+                    </ng-select>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Producto / Especie</label>
+                    <ng-select [items]="productsWayLife" bindLabel="descripcion" bindValue="id"
+                        formControlName="idSubCategoriaMedioVida" (change)="getSelectWayLife($event)"
+                        placeholder="Seleccione">
+                    </ng-select>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Cantidad afectada</label>
+                    <input type="text" formControlName="cantidadAfectada" class="form-control" placeholder="Cantidad" />
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Cantidad perdida</label>
+                    <input type="text" formControlName="cantidadPerdida" class="form-control" placeholder="Cantidad">
+                </div>
+            </div>
+        </div>
+
+
+        <!-- <pre>{{ createFormMv.value | json }}</pre> -->
+        <div class="text-center">
+            <button type="button"
+                class="btn btn-primary m-r-20" [disabled]="!createFormMv.valid" (click)="craateWayLife()">
+                <span>Agregar</span>
+            </button>
+            <button type="button" class="btn btn-outline-danger" (click)="resetInput()">
+                <span>Cancelar</span>
+            </button>
+        </div>
+    </form>
+
+    <div class="row m-t-20">
+        <div class="col-sm-12 col-xl-12">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Tipo</th>
+                            <th class="text-center">Prodiucto especie</th>
+                            <th class="text-center">Cantidad afectada</th>
+                            <th class="text-center">Cantidad perdida</th>
+                            <th class="text-center">Nombres y Apellidos</th>
+                            <th class="text-center">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center" *ngFor="let i of waysLifeFamily">
+                            <td>
+                                {{i.categoriaMedioVida}}
+                            </td>
+                            <td>
+                                {{i.subCategoriaMedioVida}}
+                            </td>
+                            <td>
+                                {{i.cantidadAfectada}}
+                            </td>
+                            <td>
+                                {{i.cantidadPerdida}}
+                            </td>
+                            <td>
+                                <a>
+                                    {{ getFullName(i.integrante?.nombres, i.integrante?.apellidos)}}
+                                </a>
+                            </td>
+                            <td>
+                                <div>
+                                    <a  class="mr-2 ml-2"
+                                        style="color: #f73164; cursor: pointer; font-size: 20px" ngbTooltip="Eliminar"
+                                        (click)="deleteWayLife(i.id)">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

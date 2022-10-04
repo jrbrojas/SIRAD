@@ -1,0 +1,38 @@
+<app-breadcrumb title="Ver / Editar Peligro Nº: {{detailsDangerGroup.id}} " [items]="['Administración','Grupo Peligro']" [active_item]="'Ver - Editar'"></app-breadcrumb>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <form class="needs-validation" novalidate [formGroup]="updateFormDangerGroup">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Nombre</label>
+                                    <input type="text" class="form-control" formControlName="nombre" onkeyup="this.value=this.value.toUpperCase();">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Descripci&oacute;n</label>
+                                    <input type="text" class="form-control" formControlName="descripcion" onkeyup="this.value=this.value.toUpperCase();">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="m-t-15 text-center">
+                            <button (click)="updateDangerGroup1()" class="btn btn-primary m-r-10" type="button" title="">
+                  <i class="fa fa-check-circle-o mr-1"></i>Grabar
+                </button>
+                            <button *ngIf="!isShowInputUpdate" (click)="cancel()" class="btn btn-primary m-r-10" type="button" title="">
+                  <i class="fa fa-ban mr-1"></i>Cancelar
+                </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

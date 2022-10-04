@@ -1,0 +1,205 @@
+<app-breadcrumb [title]="'Create New'" [items]="['Apps', 'Project']" [active_item]="'Create New'"></app-breadcrumb>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <form class="needs-validation" novalidate [formGroup]="createForm">
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label>First Name</label>
+                  <input class="form-control" type="text" formControlName="firstName" placeholder="First Name *" id="firstName"
+                         [class.is-invalid]="createForm.controls['firstName'].touched && createForm.controls['firstName'].errors?.['required']">
+                  <div class="invalid-feedback"
+                       *ngIf="createForm.controls['firstName'].touched && createForm.controls['firstName'].errors?.['required']">
+                    First name is required
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label>Last Name</label>
+                  <input class="form-control" type="text" formControlName="lastName" placeholder="Last name *"
+                         [class.is-invalid]="createForm.controls['lastName'].touched && createForm.controls['lastName'].errors?.['required']">
+                  <div class="invalid-feedback"
+                       *ngIf="createForm.controls['lastName'].touched && createForm.controls['lastName'].errors?.['required']">
+                    Last name is required
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label>Email</label>
+                  <input class="form-control" type="email" formControlName="email" placeholder="Email *" required=""
+                         [class.is-invalid]="createForm.controls['email'].touched && createForm.controls['email'].errors?.['required']">
+                  <div class="invalid-feedback"
+                       *ngIf="createForm.controls['email'].touched && createForm.controls['email'].errors?.['email']">
+                    Invalid email
+                  </div>
+                  <div class="invalid-feedback"
+                       *ngIf="createForm.controls['email'].touched && createForm.controls['email'].errors?.['required']">
+                    Email is required
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label>DNI</label>
+                  <input class="form-control" type="number" formControlName="dni" placeholder="DNI *"
+                         [class.is-invalid]="createForm.controls['dni'].touched && createForm.controls['dni'].errors?.['required']">
+                  <div class="invalid-feedback"
+                       *ngIf="createForm.controls['dni'].touched && createForm.controls['dni'].errors?.['required']">
+                    Dni is required
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label>Client Name</label>
+                  <input class="form-control" type="text" formControlName="clientName" placeholder="Name client or company name *"
+                         [class.is-invalid]="createForm.controls['clientName'].touched && createForm.controls['clientName'].errors?.['required']">
+                  <div class="invalid-feedback"
+                       *ngIf="createForm.controls['clientName'].touched && createForm.controls['clientName'].errors?.['required']">
+                    Client name is required
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label>Address</label>
+                  <input class="form-control" type="text" formControlName="address" placeholder="Address *"
+                         [class.is-invalid]="createForm.controls['address'].touched && createForm.controls['address'].errors?.['required']">
+                  <div class="invalid-feedback"
+                       *ngIf="createForm.controls['address'].touched && createForm.controls['address'].errors?.['required']">
+                    Address is required
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label>Project Rate</label>
+                  <input class="form-control" type="text" formControlName="projectRate" placeholder="Enter project Rate"
+                         [class.is-invalid]="createForm.controls['projectRate'].touched && createForm.controls['projectRate'].errors?.['required']">
+                  <div class="invalid-feedback"
+                       *ngIf="createForm.controls['projectRate'].touched && createForm.controls['projectRate'].errors?.['required']">
+                    Project rate is required
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label>Project Type</label>
+                  <select class="form-control digits" formControlName="projectType"
+                          [class.is-invalid]="createForm.controls['projectType'].touched && createForm.controls['projectType'].errors?.['required']">
+                    <option>Hourly</option>
+                    <option>Fix price</option>
+                  </select>
+                  <div class="invalid-feedback"
+                       *ngIf="createForm.controls['projectType'].touched && createForm.controls['projectType'].errors?.['required']">
+                    Project type is required
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label>Priority</label>
+                  <select class="form-control digits" formControlName="priority"
+                          [class.is-invalid]="createForm.controls['priority'].touched && createForm.controls['priority'].errors?.['required']">
+                    <option>Low</option>
+                    <option>Medium</option>
+                    <option>High</option>
+                    <option>Urgent</option>
+                  </select>
+                  <div class="invalid-feedback"
+                       *ngIf="createForm.controls['priority'].touched && createForm.controls['priority'].errors?.['required']">
+                    Priority is required
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label>Project Size</label>
+                  <select class="form-control digits" formControlName="projectSize"
+                          [class.is-invalid]="createForm.controls['projectSize'].touched && createForm.controls['projectSize'].errors?.['required']">
+                    <option>Small</option>
+                    <option>Medium</option>
+                    <option>Big</option>
+                  </select>
+                  <div class="invalid-feedback"
+                       *ngIf="createForm.controls['projectSize'].touched && createForm.controls['projectSize'].errors?.['required']">
+                    Project size is required
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label>Starting date</label>
+                  <input class="datepicker-here form-control" type="text" formControlName="startDate"
+                         [class.is-invalid]="createForm.controls['startDate'].touched && createForm.controls['startDate'].errors?.['required']">
+                  <div class="invalid-feedback"
+                       *ngIf="createForm.controls['startDate'].touched && createForm.controls['startDate'].errors?.['required']">
+                    Start date is required
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label>Ending date</label>
+                  <input class="datepicker-here form-control" type="text" formControlName="endDate"
+                         [class.is-invalid]="createForm.controls['endDate'].touched && createForm.controls['endDate'].errors?.['required']">
+                  <div class="invalid-feedback"
+                       *ngIf="createForm.controls['endDate'].touched && createForm.controls['endDate'].errors?.['required']">
+                    End date is required
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label>Enter some Details</label>
+                  <textarea class="form-control" formControlName="description" rows="3"></textarea>
+                </div>
+              </div>
+            </div>
+            <!--div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label>Upload project file</label>
+                  <form class="dropzone digits" id="singleFileUpload">
+                    <div class="dz-message needsclick"><i class="icon-cloud-up"></i>
+                      <h6>Drop files here or click to upload.</h6>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div-->
+            <div class="row">
+              <div class="col">
+                <div class="form-group mb-0">
+                  <button
+                    type="button"
+                    class="btn btn-outline-primary mr-3"
+                    [class.loader--text]="projectService.showLoader"
+                    [disabled]="!createForm.valid || projectService.showLoader"
+                    (click)="addProject()">
+                    <span>{{ projectService.showLoader ? '' : 'Add' }}</span>
+                  </button>
+                  <button type="button" class="btn btn-outline-danger" (click)="cancelProject()">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

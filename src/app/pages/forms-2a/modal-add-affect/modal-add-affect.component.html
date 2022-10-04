@@ -1,0 +1,91 @@
+<div class="modal-header text-center">
+    <h5 class="modal-title text-center">Afectaci&oacute;n - Salud</h5>
+    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">×</span>
+    </button>
+</div>
+<div class="modal-body">
+
+    <div class="tab-content">
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="idPersonalInjury">Daños personales</label>
+                    <select class="form-control" id="idPersonalInjury">
+                        <option value="">-- Seleccione --</option>
+                        <option value="1" class="bg-primary" disabled>DESAPARECIDO</option>
+                        <option value="2">FALLECIDO</option>
+                        <option value="3">LESIONADO (HERIDO)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Discapacidad</label>
+                    <select class="form-control">
+                        <option value="">-- Seleccione --</option>
+                        <option *ngFor="let i of personDisability" value="{{i.value}}" [attr.name]="i.name">
+                            {{i.name}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Enfermedad cr&oacute;nica</label>
+                    <select class="form-control">
+                        <option value="">-- Seleccione --</option>
+                        <option *ngFor="let i of chronicIllness" value="{{i.value}}" [attr.name]="i.name">
+                            {{i.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Enfermedades Pand&eacute;micas</label>
+                    <select class="form-control">
+                        <option value="">-- Seleccione --</option>
+                        <option>COVID 19</option>
+                        <option>VIRUELA DEL MONO</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Enfermedades End&eacute;micas</label>
+                    <select class="form-control">
+                        <option value="">-- Seleccione --</option>
+                        <option>ZIKA</option>
+                        <option>CHIKUNGUNYA</option>
+                        <option>ERAS</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Otras Enfermedades</label>
+                    <select class="form-control">
+                        <option value="">-- Seleccione --</option>
+                        <option>ETA - ENFERMEDAD TRANSTORNO ALIMENTISIO</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center p-t-20">
+            <button type="button" class="btn btn-outline-danger">
+              <span>Cancelar</span>
+            </button>
+        </div>
+
+        <!--{{familyMembersForm.value | json}}-->
+
+    </div>
+
+</div>

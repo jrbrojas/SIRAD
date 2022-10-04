@@ -1,0 +1,79 @@
+<div class="modal-header text-center">
+    <h5 class="modal-title text-center">A la Infraestructura educativa dsdsfdfs</h5>
+    <button class="close" type="button" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">×</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form class="needs-validation" novalidate [formGroup]="data">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Nombre II.EE</label>
+                    <input type="text" class="form-control" placeholder="Nombre II.EE" formControlName="nombreInstitucion">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Total de aulas (pre-emergencia o desastre)</label>
+                    <input type="text" class="form-control" placeholder="Total de aulas" formControlName="totalAula">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Destruidas (n° de aulas)</label>
+                    <input type="text" class="form-control" placeholder="Destruidas" formControlName="cantidadDestruida">
+                </div>
+            </div>            
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Inhabitables (n° de aulas)</label>
+                    <input type="text" class="form-control" placeholder="Inhabitables" formControlName="cantidadInhabitable">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Afectadas (n° de aulas)</label>
+                    <input type="text" class="form-control" placeholder="Afectadas" formControlName="cantidadAfectada">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Cerco Perom&eacute;trica (m2)</label>
+                    <ng-select
+                    [items]="maestrasCercoPerimetro"
+                    bindLabel="descripcion"
+                    bindValue="id"
+                    formControlName="idSituacionCercoPerimetrico"
+                    (change)="getSelectPerimetro($event)"
+                    placeholder="Seleccione"></ng-select>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Nivel Educativo</label>
+                    <ng-select
+                    [items]="maestrasNivelEducativo"
+                    bindLabel="descripcion"
+                    bindValue="id"
+                    formControlName="idNivelEducativo"
+                    (change)="getSelectNivelEducativo($event)"
+                    placeholder="Seleccione"></ng-select>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="button" class="btn btn-primary m-r-20" (click)="addData()">
+                <span>Agregar</span>
+            </button>
+
+            <button type="button" class="btn btn-outline-danger" (click)="closeModal()">
+                <span>Cancelar</span>
+            </button>
+        </div>
+    </form>
+</div>

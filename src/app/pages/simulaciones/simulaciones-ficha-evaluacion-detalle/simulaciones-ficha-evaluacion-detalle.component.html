@@ -1,0 +1,147 @@
+<p>simulaciones-ficha-evaluacion-detalle works!</p>
+<app-breadcrumb [title]="'Ficha Evaluación'" [active_item]="'Ficha Evaluación'"></app-breadcrumb>
+
+<div class="container-fluid">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <form>
+                        <h2>Datos Ficha</h2>
+                        <mat-form-field class="col-lg-12 row" appearance="outline">
+                            <mat-label>Ttulo Ficha</mat-label>
+                            <input matInput maxlength="400" #inputtxtPregunta
+                                [ngModelOptions]="{standalone: true}" [(ngModel)]="formFichaEvaluacion.txtTitulo" placeholder="Titulo" required>
+                            <mat-hint align="end">{{inputtxtPregunta.value.length || 0}}/400</mat-hint>
+                        </mat-form-field>
+                        <br>
+                        <!--<h5>Peguntas inicio</h5>
+                        <div *ngFor="let item of formFichaEvaluacion.fichaEvaluacionPreguntasInicio; let i = index;">
+                            <mat-form-field class="col-lg-3" appearance="outline">
+                                <mat-label>Tipo respuesta</mat-label>
+                                <mat-select [(ngModel)]="item.numIdTipoRespuesta" [ngModelOptions]="{standalone: true}">
+                                  <mat-option *ngFor="let itemTipo of dataTipoRespuesta" [value]="itemTipo.numId">
+                                    <mat-icon *ngIf="itemTipo.numId == 1">dialpad</mat-icon>
+                                    <mat-icon *ngIf="itemTipo.numId == 2">short_text</mat-icon>
+                                    <mat-icon *ngIf="itemTipo.numId == 3">subject</mat-icon>
+                                    <mat-icon *ngIf="itemTipo.numId == 4">radio_button_checked</mat-icon>
+                                    <mat-icon *ngIf="itemTipo.numId == 5">check_box</mat-icon>
+                                    {{ itemTipo.txtNombre }}
+                                </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field class="col-lg-9" appearance="outline">
+                                <input matInput maxlength="400" #inputtxtPregunta
+                                    [ngModelOptions]="{standalone: true}" [(ngModel)]="item.txtPregunta" placeholder="Nombre Pregunta" required>
+                                <button mat-icon-button matSuffix color="warn" (click)="ngEliminarItem(formFichaEvaluacion.fichaEvaluacionPreguntasInicio, i)"><mat-icon matSuffix>delete</mat-icon></button>
+                                <mat-hint align="end">{{inputtxtPregunta.value.length || 0}}/400</mat-hint>
+                            </mat-form-field>
+                        </div>-->
+                        <hr>
+                        <h5>Secciones</h5>
+                        <div>
+                            <button mat-stroked-button align="end" (click)="ngAgregarSegmento()" color="primary"><mat-icon>add</mat-icon> Agregar Sección</button>
+                        </div>
+                        <br>
+                        <div *ngFor="let itemSegmento of formFichaEvaluacion.fichaEvaluacionSegmentos, let i = index;">
+                            <mat-card>
+                                <mat-form-field class="col-lg-12" appearance="outline">
+                                    <mat-label>Ttulo Sección</mat-label>
+                                    <input matInput maxlength="400" rows="3" #inputtxtPregunta
+                                        [ngModelOptions]="{standalone: true}" [(ngModel)]="itemSegmento.txtTituloSegmento" placeholder="Ttulo" required>
+                                        <button mat-icon-button matSuffix color="warn" (click)="ngEliminarItem(formFichaEvaluacion.fichaEvaluacionSegmentos, i)"><mat-icon matSuffix>delete</mat-icon></button>
+                                    <mat-hint align="end">{{inputtxtPregunta.value.length || 0}}/400
+                                    </mat-hint>
+                                </mat-form-field>
+                                <div class="col-lg-12">
+                                    <button mat-stroked-button align="end" (click)="ngAgregarDetalleSegmento(itemSegmento)" color="primary"><mat-icon>add</mat-icon> Agregar preguntas</button>
+                                </div>
+                                <br>
+                                <div class="col-lg-12" *ngFor="let item of itemSegmento.fichaEvaluacionDetalleSegmentos, let i = index;">
+                                    <mat-card>
+                                        <mat-card-content>
+                                            <mat-form-field class="col-lg-3" appearance="outline">
+                                                <mat-label>Tipo respuesta</mat-label>
+                                                <mat-select [(ngModel)]="item.numIdTipoRespuesta" [ngModelOptions]="{standalone: true}">
+                                                  <mat-option *ngFor="let item of dataTipoRespuesta" [value]="item.numId">
+                                                    <mat-icon *ngIf="item.numId == 1">dialpad</mat-icon>
+                                                    <mat-icon *ngIf="item.numId == 2">short_text</mat-icon>
+                                                    <mat-icon *ngIf="item.numId == 3">subject</mat-icon>
+                                                    <mat-icon *ngIf="item.numId == 4">radio_button_checked</mat-icon>
+                                                    <mat-icon *ngIf="item.numId == 5">check_box</mat-icon>
+                                                    {{ item.txtNombre }}
+                                                </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                            <mat-form-field class="col-lg-9" appearance="outline">
+                                                <mat-label>Pregunta</mat-label>
+                                                <input matInput maxlength="400" rows="3" #inputtxtPregunta
+                                                    [ngModelOptions]="{standalone: true}" [(ngModel)]="item.txtPregunta" placeholder="Pregunta" required>
+                                                <button mat-icon-button matSuffix color="warn" (click)="ngEliminarItem(itemSegmento.fichaEvaluacionDetalleSegmentos, i)"><mat-icon matSuffix>delete</mat-icon></button>
+                                                <mat-hint align="end">{{inputtxtPregunta.value.length || 0}}/400
+                                                </mat-hint>
+                                            </mat-form-field>
+                                            <div class="col-lg-12" *ngIf="item.numIdTipoRespuesta == 4 || item.numIdTipoRespuesta == 5">
+                                                <button mat-stroked-button align="end" (click)="ngAgregarSegmentoOpcionesRespuesta(item.fichaEvaluacionDetalleSegmentosOpcionesRespuestas)" color="primary"><mat-icon>add</mat-icon> Opciones de Respuesta</button>
+                                            </div> 
+                                            <br>
+                                            <div *ngFor="let itemOpciones of item.fichaEvaluacionDetalleSegmentosOpcionesRespuestas; let i = index;" style="padding-left: 20px;">
+                                                <mat-form-field class="col-lg-12" appearance="outline">
+                                                    <mat-label>{{ i + 1 }} - Opciones de respuesta</mat-label>
+                                                    <input matInput maxlength="400" #inputtxtOpcionRespuesta
+                                                        [ngModelOptions]="{standalone: true}" [(ngModel)]="itemOpciones.txtOpcionRespuesta" placeholder="Opción Respuesta" required>
+                                                    <button mat-icon-button matSuffix color="warn" (click)="ngEliminarItem(item.fichaEvaluacionDetalleSegmentosOpcionesRespuestas, i)"><mat-icon matSuffix>delete</mat-icon></button>
+                                                    <mat-hint align="end">{{inputtxtOpcionRespuesta.value.length || 0}}/400
+                                                    </mat-hint>
+                                                </mat-form-field>
+                                            </div>
+                                        </mat-card-content>
+                                    </mat-card>
+                                    <hr>
+                                </div>
+                            </mat-card>
+                            <br>
+                        </div>
+                        <hr>
+                        <!--<h5>Peguntas fin</h5>
+                        <div>
+                            <button mat-stroked-button align="end" (click)="ngAgregarPreguntaFin()" color="primary"><mat-icon>add</mat-icon> Agregar Pregunta</button>
+                        </div>
+                        <br>
+                        <div *ngFor="let item of formFichaEvaluacion.fichaEvaluacionPreguntasFin; let i = index;">
+                            <mat-form-field class="col-lg-3" appearance="outline">
+                                <mat-label>Tipo respuesta</mat-label>
+                                <mat-select [(ngModel)]="item.numIdTipoRespuesta" [ngModelOptions]="{standalone: true}">
+                                  <mat-option *ngFor="let itemTipo of dataTipoRespuesta" [value]="itemTipo.numId">
+                                    <mat-icon *ngIf="itemTipo.numId == 1">dialpad</mat-icon>
+                                    <mat-icon *ngIf="itemTipo.numId == 2">short_text</mat-icon>
+                                    <mat-icon *ngIf="itemTipo.numId == 3">subject</mat-icon>
+                                    <mat-icon *ngIf="itemTipo.numId == 4">radio_button_checked</mat-icon>
+                                    <mat-icon *ngIf="itemTipo.numId == 5">check_box</mat-icon>
+                                    {{ itemTipo.txtNombre }}
+                                </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field class="col-lg-9" appearance="outline">
+                                <input matInput maxlength="400" #inputtxtPregunta
+                                    [ngModelOptions]="{standalone: true}" [(ngModel)]="item.txtPregunta" placeholder="Nombre Pregunta" required>
+                                <button mat-icon-button matSuffix color="warn" (click)="ngEliminarItem(formFichaEvaluacion.fichaEvaluacionPreguntasFin, i)"><mat-icon matSuffix>delete</mat-icon></button>
+                                <mat-hint align="end">{{inputtxtPregunta.value.length || 0}}/400</mat-hint>
+                            </mat-form-field>
+                        </div>-->
+                        <hr>
+                    </form>
+                    <div class="row text-center">
+                        <div class="col">
+                            <div class="form-group mb-0">
+                                <button type="button" (click)="ngGuardar()" class="btn btn-primary mr-3" >
+                                    <span>Guardar</span>
+                                </button>
+                                <button type="button" class="btn btn-danger"
+                                    (click)="ngCancelar()">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

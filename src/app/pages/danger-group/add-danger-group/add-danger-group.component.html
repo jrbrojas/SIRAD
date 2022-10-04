@@ -1,0 +1,55 @@
+<app-breadcrumb [title]="'Crear Nuevo Grupo Peligro'" [items]="['Administración','Grupo Peligro']" [active_item]="'Crear'"></app-breadcrumb>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <form class="needs-validation" novalidate [formGroup]="createDangerGroup">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Nombre</label>
+                                    <input type="text" class="form-control" formControlName="nombre" rows="3" maxlength="255" (keyup)="onKey($event)" [class.is-invalid]="createDangerGroup.controls['nombre'].touched && createDangerGroup.controls['nombre'].errors?.['required']" onkeyup="this.value=this.value.toUpperCase();">
+                                    <div class="">
+                                        {{counter}} / 255
+                                    </div>
+                                    <div class="invalid-feedback" *ngIf="createDangerGroup.controls['nombre'].touched && createDangerGroup.controls['nombre'].errors?.['required']">
+                                        Nombre es requerido
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Descripci&oacute;n</label>
+                                    <input type="text" class="form-control" formControlName="descripcion" rows="3" maxlength="255" (keyup)="onKey1($event)" [class.is-invalid]="createDangerGroup.controls['descripcion'].touched && createDangerGroup.controls['descripcion'].errors?.['required']"
+                                        onkeyup="this.value=this.value.toUpperCase();">
+                                    <div class="">
+                                        {{counter1}} / 255
+                                    </div>
+                                    <div class="invalid-feedback" *ngIf="createDangerGroup.controls['descripcion'].touched && createDangerGroup.controls['descripcion'].errors?.['required']">
+                                        Descripci&oacute;n es requerido
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row text-center">
+                            <div class="col">
+                                <div class="form-group mb-0">
+                                    <div class="form-group mb-0">
+                                        <button type="button" class="btn btn-primary mr-3" [class.loader--text]="dangerGroupService.showLoader" [disabled]="!createDangerGroup.valid || dangerGroupService.showLoader" (click)="createDangerGroup1()">
+                        <span><i class="fa fa-save"></i>{{ dangerGroupService.showLoader ? '' : 'Guardar' }}</span>
+                      </button>
+                                        <button type="button" class="btn btn-danger" (click)="cancelProject()"><i class="fa fa-ban"></i> Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,123 @@
+<div class="modal-header text-center">
+  <h5 class="modal-title text-center">Art&iacute;culos Atendidos</h5>
+  <button
+    class="close"
+    type="button"
+    data-dismiss="modal"
+    aria-label="Close"
+    (click)="closeModal()"
+  >
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+<div class="modal-body">
+  <!--form>
+  
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="search">
+              <i class="fa fa-search"></i>
+              <input type="text" class="form-control" placeholder="Buscar Almacén">
+              <button class="btn btn-primary">Buscar</button>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-sm-3">
+          <div class="form-group">
+            <select class="form-control form-control-input">
+              <option value="">-- Seleccione --</option>
+            </select>
+          </div>
+        </div>
+  
+        <div class="col-sm-3">
+          <div class="form-group">
+            <input class="form-control form-control-input" type="text" placeholder="Cantidad">
+          </div>
+        </div>
+      </div>
+  
+      <div class="text-center">
+        <button type="button" class="btn btn-primary m-r-20">
+          <span>Agregar</span>
+        </button>
+  
+        <button type="button" class="btn btn-outline-danger" (click)="closeModal()">
+          <span>Cancelar</span>
+        </button>
+      </div>
+    </form-->
+
+  <div class="row">
+    <div class="col-sm-12 col-xl-12 mt-3">
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th colspan="2" class="text-center" style="background-color : #f38282" >Necesidades</th>
+              <th colspan="5" class="text-center">Atenciones</th>
+            </tr>
+            <tr>
+              <th class="text-center" style="background-color : #f38282">Art&iacute;culos</th>
+              <th class="text-center" style="background-color : #f38282">Cantidad</th>
+              <th class="text-center">Cod. Art&iacute;culo</th>
+              <th class="text-center">Art&iacute;culos</th>
+              <th class="text-center">Cantidad</th>
+              <th class="text-center">Brecha</th>
+              <th class="text-center">Total General</th>
+              <th class="text-center">Opciones</th>
+            </tr>
+          </thead>
+        
+          <tbody>
+            <tr class="text-center" *ngFor="let i of dataArticulos">
+              <td *ngIf="i.especifica.length > 0" class="align-middle" style="background-color : #f38282">
+                {{ i.general.TIPO_RECURSO }}
+              </td>
+              <td *ngIf="i.especifica.length > 0" class="align-middle" style="background-color : #f38282">
+                {{ i.general.CANTIDAD }}
+              </td>
+              <td *ngIf="i.especifica.length > 0" class="align-middle">
+                <div class="col" *ngFor="let j of i.especifica">
+                  <p>{{ j.ID_TIPO_RECURSO_ATENDIDO }}</p>
+                </div>
+              </td>
+              <td *ngIf="i.especifica.length > 0" class="align-middle">
+                <div class="col" *ngFor="let j of i.especifica">
+                  <p>{{ j.TIPO_RECURSO_ATENDIDO }}</p>
+                </div>
+              </td>
+              <td *ngIf="i.especifica.length > 0" class="align-middle">
+                <div class="col" *ngFor="let j of i.especifica">
+                  <p>{{ j.CANTIDAD_ATENDIDO }}</p>
+                </div>
+              </td>
+              <td  *ngIf="i.especifica.length > 0" class="align-middle">
+                <div class="col" *ngFor="let j of i.especifica; let contador = index">
+                  <p id="cantidad">{{ getCantidad(i.general.CANTIDAD,contador, i.especifica,i.general) }}</p>
+                </div>
+              </td>
+              <td *ngIf="i.especifica.length > 0" class="align-middle">
+                <div class="col" *ngFor="let j of i.especifica">
+                  <p *ngIf="j.END">{{ j.TOTAL }}</p>
+                </div>
+              </td>
+              <td *ngIf="i.especifica.length > 0">
+                <div class="col" *ngFor="let j of i.especifica" class="align-middle">
+                  <a *ngIf="j.ID_TIPO_RECURSO_ATENDIDO !== null" (click)="deleteArticleAtention(i.general.ID_ARTICULO_EMERGENCIA)" class="align-middle mr-2 ml-2" style="color: #f73164; cursor: pointer; font-size: 20px" ngbTooltip="Eliminar">
+                    <i class="fa fa-trash mr-1 my-2"></i>
+                  </a>
+                  <a *ngIf="i.general.ultimo > 0 && j.END" class="align-middle" (click)="addEmergencyArticleAtention(i.general,j)"  ngbTooltip="Agregar atencion" style="cursor: pointer;">
+                    <i class="fa fa-plus mr-1"></i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

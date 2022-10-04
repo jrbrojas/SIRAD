@@ -1,0 +1,336 @@
+<app-breadcrumb [title]="'Solicitudes de Credenciales'" [active_item]="'Solicitudes de Credenciales'"></app-breadcrumb>
+
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <form>
+                        <div class="row">
+
+                            <div class="col-sm-6">
+                                <div class="form-group" style="font-size: 13px">
+                                    <div class="mb-2">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Buscar por Codigo Sinpad, Tipo Peligro, Ubicaci&oacute;n
+                                            </mat-label>
+                                            <input matInput type="text"
+                                                [(ngModel)]="value" onkeyup="this.value=this.value.toUpperCase();">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <div class="form-group" style="font-size: 13px">
+                                    <div class="mb-2">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Fecha Inicio</mat-label>
+                                            <input readonly matInput [matDatepicker]="picker1">
+                                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker1>
+                                                <mat-datepicker-actions>
+                                                    <button mat-button matDatepickerCancel>Cancel</button>
+                                                    <button mat-raised-button color="primary"
+                                                        matDatepickerApply>Aceptar</button>
+                                                </mat-datepicker-actions>
+                                            </mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <div class="form-group" style="font-size: 13px">
+                                    <div class="mb-2">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Fecha Fin</mat-label>
+                                            <input readonly matInput [matDatepicker]="picker2">
+                                            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker2>
+                                                <mat-datepicker-actions>
+                                                    <button mat-button matDatepickerCancel>Cancel</button>
+                                                    <button mat-raised-button color="primary"
+                                                        matDatepickerApply>Aceptar</button>
+                                                </mat-datepicker-actions>
+                                            </mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <div class="mb-2">
+                                        <a class="btn btn-primary btn-lg" (click)="createSolicitudUsuarios()">
+                                            <i class="fa fa-plus-square-o"></i> Nuevo
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <div id="data-source-1_wrapper" class="dataTables_wrapper">
+                                <div class="dataTables_length">
+                                    <label>Mostrar
+                                        <select name="data-source-1_length">
+                                            <option value="10">10</option>
+                                            <option value="25">25</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select> entradas</label>
+                                </div>
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Nro Solicitud</th>
+                                            <th class="text-center">Nombres y Apellidos</th>
+                                            <th class="text-center">Fecha Solicitud</th>
+                                            <th class="text-center">Estado</th>
+                                            <th class="text-center">Observaci&oacute;n</th>
+                                            <th class="text-center">Comentarios</th>
+                                            <th class="text-center">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="text-center">
+                                            <td>1</td>
+                                            <td>Daniel Vallejos</td>
+                                            <td>12/12/2020</td>
+                                            <td>
+                                                <span class="bg bg-primary">POR APROBAR</span>
+                                            </td>
+                                            <td>
+                                                <span>SIN OBSERVACIONES</span>
+                                            </td>
+                                            <td>
+                                                <span>SIN COMENTARIOS</span>
+                                            </td>
+
+                                            <td>
+                                                <a class="mr-2 ml-2"
+                                                    style="color: #08afe0; cursor: pointer; font-size: 20px"
+                                                    ngbTooltip="Ver / Editar">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <a class="mr-2 ml-2"
+                                                    style="color: #f73164; cursor: pointer; font-size: 20px"
+                                                    ngbTooltip="Eliminar">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                                <a class="mr-2 ml-2" (click)="aprobarUsuario()"
+                                                    style="color: #08afe0; cursor: pointer; font-size: 24px"
+                                                    ngbTooltip="Aprobar">
+                                                    <i class="fa fa-check-circle"></i>
+                                                </a>
+                                                <a class="mr-2 ml-2"
+                                                    style="color: #000000; cursor: pointer; font-size: 24px"
+                                                    ngbTooltip="Observar">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr class="text-center">
+                                            <td>2</td>
+                                            <td>Antony Barboza</td>
+                                            <td>13/12/2020</td>
+                                            <td>
+                                                <span class="bg bg-primary">POR APROBAR</span>
+                                            </td>
+                                            <td>
+                                                <span>SIN OBSERVACIONES</span>
+                                            </td>
+                                            <td>
+                                                <span>SIN COMENTARIOS</span>
+                                            </td>
+
+                                            <td>
+                                                <a class="mr-2 ml-2"
+                                                    style="color: #08afe0; cursor: pointer; font-size: 20px"
+                                                    ngbTooltip="Ver / Editar">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <a class="mr-2 ml-2"
+                                                    style="color: #f73164; cursor: pointer; font-size: 20px"
+                                                    ngbTooltip="Eliminar">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                                <a class="mr-2 ml-2" (click)="aprobarUsuario()"
+                                                    style="color: #08afe0; cursor: pointer; font-size: 24px"
+                                                    ngbTooltip="Aprobar">
+                                                    <i class="fa fa-check-circle"></i>
+                                                </a>
+                                                <a class="mr-2 ml-2"
+                                                    style="color: #000000; cursor: pointer; font-size: 24px"
+                                                    ngbTooltip="Observar">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr class="text-center">
+                                            <td>3</td>
+                                            <td>Daniel Salazar</td>
+                                            <td>20/12/2020</td>
+                                            <td>
+                                                <span class="bg bg-success">APROBADO</span>
+                                            </td>
+                                            <td>
+                                                <span>SIN OBSERVACIONES</span>
+                                            </td>
+                                            <td>
+                                                <span>SIN COMENTARIOS</span>
+                                            </td>
+
+                                            <td>
+                                                <a class="mr-2 ml-2"
+                                                    style="color: #08afe0; cursor: pointer; font-size: 20px"
+                                                    ngbTooltip="Ver / Editar">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <a class="mr-2 ml-2"
+                                                    style="color: #f73164; cursor: pointer; font-size: 20px"
+                                                    ngbTooltip="Eliminar">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                                <a class="mr-2 ml-2" (click)="aprobarUsuario()"
+                                                    style="color: #08afe0; cursor: pointer; font-size: 24px"
+                                                    ngbTooltip="Aprobar">
+                                                    <i class="fa fa-check-circle"></i>
+                                                </a>
+                                                <a class="mr-2 ml-2"
+                                                    style="color: #000000; cursor: pointer; font-size: 24px"
+                                                    ngbTooltip="Observar">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr class="text-center">
+                                            <td>4</td>
+                                            <td>Eli Diaz</td>
+                                            <td>02/12/2020</td>
+                                            <td>
+                                                <span class="bg bg-danger">OBSERVADO</span>
+                                            </td>
+                                            <td>
+                                                <span>SIN OBSERVACIONES</span>
+                                            </td>
+                                            <td>
+                                                <span>SIN COMENTARIOS</span>
+                                            </td>
+
+                                            <td>
+                                                <a class="mr-2 ml-2"
+                                                    style="color: #08afe0; cursor: pointer; font-size: 20px"
+                                                    ngbTooltip="Ver / Editar">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <a class="mr-2 ml-2"
+                                                    style="color: #f73164; cursor: pointer; font-size: 20px"
+                                                    ngbTooltip="Eliminar">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                                <a class="mr-2 ml-2" (click)="aprobarUsuario()"
+                                                    style="color: #08afe0; cursor: pointer; font-size: 24px"
+                                                    ngbTooltip="Aprobar">
+                                                    <i class="fa fa-check-circle"></i>
+                                                </a>
+                                                <a class="mr-2 ml-2"
+                                                    style="color: #000000; cursor: pointer; font-size: 24px"
+                                                    ngbTooltip="Observar">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr class="text-center">
+                                            <td>5</td>
+                                            <td>Marlon Goanzales</td>
+                                            <td>10/12/2020</td>
+                                            <td>
+                                                <span class="bg bg-primary">POR APROBAR</span>
+                                            </td>
+                                            <td>
+                                                <span>SIN OBSERVACIONES</span>
+                                            </td>
+                                            <td>
+                                                <span>SIN COMENTARIOS</span>
+                                            </td>
+
+                                            <td>
+                                                <a class="mr-2 ml-2"
+                                                    style="color: #08afe0; cursor: pointer; font-size: 20px"
+                                                    ngbTooltip="Ver / Editar">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <a class="mr-2 ml-2"
+                                                    style="color: #f73164; cursor: pointer; font-size: 20px"
+                                                    ngbTooltip="Eliminar">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                                <a class="mr-2 ml-2" (click)="aprobarUsuario()"
+                                                    style="color: #08afe0; cursor: pointer; font-size: 24px"
+                                                    ngbTooltip="Aprobar">
+                                                    <i class="fa fa-check-circle"></i>
+                                                </a>
+                                                <a class="mr-2 ml-2"
+                                                    style="color: #000000; cursor: pointer; font-size: 24px"
+                                                    ngbTooltip="Observar">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr class="text-center">
+                                            <td>6</td>
+                                            <td>Jose Rojas</td>
+                                            <td>18/12/2020</td>
+                                            <td>
+                                                <span class="bg bg-success">APROBADO</span>
+                                            </td>
+                                            <td>
+                                                <span>SIN OBSERVACIONES</span>
+                                            </td>
+                                            <td>
+                                                <span>SIN COMENTARIOS</span>
+                                            </td>
+
+                                            <td>
+                                                <a class="mr-2 ml-2"
+                                                    style="color: #08afe0; cursor: pointer; font-size: 20px"
+                                                    ngbTooltip="Ver / Editar">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <a class="mr-2 ml-2"
+                                                    style="color: #f73164; cursor: pointer; font-size: 20px"
+                                                    ngbTooltip="Eliminar">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                                <a class="mr-2 ml-2" (click)="aprobarUsuario()"
+                                                    style="color: #08afe0; cursor: pointer; font-size: 24px"
+                                                    ngbTooltip="Aprobar">
+                                                    <i class="fa fa-check-circle"></i>
+                                                </a>
+                                                <a class="mr-2 ml-2"
+                                                    style="color: #000000; cursor: pointer; font-size: 24px"
+                                                    ngbTooltip="Observar">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

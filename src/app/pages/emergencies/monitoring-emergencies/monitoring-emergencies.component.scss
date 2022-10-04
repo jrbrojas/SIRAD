@@ -1,0 +1,133 @@
+/*input:focus {
+  outline: none !important;
+  border-color: #7366ff;
+  box-shadow: 0 0 1px #7366ff;
+}
+
+textarea:focus {
+  outline: none !important;
+  border-color: #7366ff;
+  box-shadow: 0 0 1px #7366ff;
+}
+
+select:focus {
+  outline: none !important;
+  border-color: #7366ff;
+  box-shadow: 0 0 1px #7366ff;
+}*/
+
+.dropdown-toggle::after {
+  border-top: 0px!important;
+  border-right: 0px!important;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+@media (max-width: 575px) { /*30 x 16px = 480px*/
+  table {
+    width: 100%;
+  }
+  table tr {
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    border: 1px solid #d3d3d3;
+    padding: 1em;
+    margin-bottom: 1em;
+  }
+  table thead {
+    display: none;
+  }
+}
+
+.dataTables_wrapper .dataTables_length select {
+  border-color: #f4f4f4;
+  color: #2c323f;
+  padding: 0 10px;
+  margin: 0 10px;
+  height: 2.7142em;
+  background-color: #fff;
+}
+
+//---
+
+.example-card {
+  border: 1px solid #000000;
+  max-width: 700px;
+  transition: 0.3s;
+  background-color: #5494d8;
+  color: #000000;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.example-card1 {
+  border: 1px solid #000000;
+  max-width: 700px;
+  transition: 0.3s;
+  background-color: #53b9c2;
+  color: #000000;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.example-card2 {
+  border: 1px solid #000000;
+  max-width: 700px;
+  transition: 0.3s;
+  background-color: #ffa600;
+  color: #000000;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.example-card:hover {
+  background-color: #2F6DAE;
+}
+
+.example-card1:hover { 
+  background-color: #2C9CA6;
+}
+
+.example-card2:hover {
+  background-color: #cf8701; 
+}
+
+.container {
+  padding: 2px 16px;
+}
+
+/*.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 40%;
+  border-radius: 5px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+img {
+  border-radius: 5px 5px 0 0;
+}
+
+.container {
+  padding: 2px 16px;
+}*/
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+.clickCard{
+  cursor: pointer;
+}
+
+.icono{
+  size: 50rem;
+
+}

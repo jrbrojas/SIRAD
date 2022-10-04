@@ -1,0 +1,73 @@
+<app-breadcrumb [title]="'Ver / Editar Perfil'" [items]="['Seguridad','Perfiles']" [active_item]="'Ver - Editar'"></app-breadcrumb>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <form class="needs-validation" novalidate [formGroup]="updateFormProfile">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>NOMBRE</label>
+                                    <input type="text" class="form-control" formControlName="nombre" (keyup)="onKey1($event)" rows="3" maxlength="255" onkeyup="this.value=this.value.toUpperCase();">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>DESCRIPCI&Oacute;N</label>
+                                    <input type="text" class="form-control" formControlName="descripcion" (keyup)="onKey($event)" rows="3" maxlength="255" onkeyup="this.value=this.value.toUpperCase();">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>HABILITADO</label>
+                                    <select formControlName="habilitado" class="form-control" style="width: 100%;" placeholder="Seleccione">
+                                        <option value="1">SI</option>
+                                        <option value="0">NO</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <ng-container formArrayName="permisos">
+                                        <ng-container>
+                                            <label>Asignar Permisos</label>
+                                            <ng-select 
+                                                [items]="selectPermiso" 
+                                                bindLabel="nombre" 
+                                                bindValue="id"
+                                                (change)="getSelectPermiso($event)" 
+                                                placeholder="Seleccione Permisos" 
+                                                [multiple]="true"></ng-select>
+                                            <div class="invalid-feedback" *ngIf="updateFormProfile.controls['permission'].touched && updateFormProfile.controls['permission'].errors?.['required']">
+                                                Seleccione el ubigeo
+                                            </div>
+                                        </ng-container>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="m-t-15 text-center">
+                            <button (click)="updateProfile()" class="btn btn-primary m-r-10" type="button" title="">
+                  <i class="fa fa-check-circle-o mr-1"></i>Grabar
+                </button>
+                            <button *ngIf="!isShowInputUpdate" (click)="cancel()" class="btn btn-primary m-r-10" type="button" title="">
+                  <i class="fa fa-ban mr-1"></i>Cancelar
+                </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,254 @@
+<app-breadcrumb title="FORMULARIOS - CODIGO SINPAD NRO: {{codigoSinpad}}" [active_item]="'Formularios'">
+</app-breadcrumb>
+
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+
+          <form [formGroup]="showEntries">
+            <div class="row">
+
+              <div class="col-sm-6">
+                <div class="form-group" style="font-size: 13px">
+                  <div class="mb-2">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Buscar por Codigo Sinpad, Tipo Peligro, Ubicaci&oacute;n</mat-label>
+                      <input matInput type="text" formControlName="textoBusqueda" [(ngModel)]="value"
+                        onkeyup="this.value=this.value.toUpperCase();">
+                      <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-2">
+                <div class="form-group" style="font-size: 13px">
+                  <div class="mb-2">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Fecha Inicio</mat-label>
+                      <input readonly matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" type="text"
+                        formControlName="fechaInicio" (dateChange)="asignarFechaFin($event)">
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-2">
+                <div class="form-group" style="font-size: 13px">
+                  <div class="mb-2">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Fecha Fin</mat-label>
+                      <input readonly matInput [matDatepicker]="picker2" [min]="minDate" [max]="maxDate" type="text"
+                        formControlName="fechaFin">
+                      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                      <mat-datepicker #picker2>
+                        <mat-datepicker-actions>
+                          <button class="btn btn-primary" mat-button (click)="limpiarFecha()">Clear</button>
+                        </mat-datepicker-actions>
+                      </mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="col-sm-2">
+                <div class="form-group">
+                  <div class="mb-2">
+                    <a class="btn btn-primary btn-lg"
+                      (click)="createFormulario(questionModal)">
+                      <i class="fa fa-plus-square-o"></i> Nuevo
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <div id="data-source-1_wrapper" class="dataTables_wrapper">
+                <div class="dataTables_length">
+                  <label>Mostrar
+                    <select name="data-source-1_length" formControlName="cantidadRegistro"
+                      (change)="showEntriesChange($event)">
+                      <option value="10">10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </select> entradas</label>
+                </div>
+
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th style="display: none" class="text-center">id Formato</th>
+                      <th style="display: none" class="text-center">idEmergencia</th>
+                      <th class="text-center">Nro</th>
+                      <th class="text-center">Tipo Formulario</th>
+                      <th class="text-center">Tipo de Peligro</th>
+                      <th class="text-center">Fecha</th>
+                      <th class="text-center">Ubicaci&oacute;n</th>
+                      <th class="text-center">Estado</th>
+                      <th class="text-center">Observaci&oacute;n</th>
+                      <th class="text-center">Opciones</th>
+                    </tr>
+                  </thead>
+                  <tbody >
+
+                    <tr class="text-center" *ngFor="let i of formularios">
+                      <td style="display: none">
+                        {{i.id}}
+                      </td>
+                      <td style="display: none">
+                        {{i.idEmergencia}}
+                      </td>
+                      <td>
+                        <p *ngIf="i.tipoFormulario == 'PRELIMINAR'" >001</p>
+                        <p *ngIf="i.tipoFormulario != 'PRELIMINAR'" >{{i.numeroFormulario}}</p> 
+                      </td>
+                      <td>
+                        {{i.tipoFormulario}}
+                      </td>
+                      <td>
+                        {{i.tipoPeligro}}
+                      </td>
+                      <td>
+                        {{i.fechaHoraEvento }}
+                      </td>
+                      <td>
+                        {{i.descripcionUbigeo}}
+                      </td>
+                      <td>
+                        <span class="bg bg-primary" *ngIf="i.estado_formulario == 1">POR ENVIAR</span>
+                        <span class="bg bg-secondary" *ngIf="i.estado_formulario == 2">POR REVISAR</span>
+                        <span class="bg bg-warning" *ngIf="i.estado_formulario == 3">POR APROBAR</span>
+                        <span class="bg bg-success" *ngIf="i.estado_formulario == 4">APROBADO</span>
+                        <span class="bg bg-secondary" *ngIf="i.estado_formulario == 5">OBSERVADO</span>
+                      </td>
+                      <td *ngIf="!i.tamanionota" class="text-center">
+                        <p > {{i.nota}}</p>   
+                        <span *ngIf="i.nota == null">SIN OBSERVACIONES</span>                    
+                      </td>
+                      <td *ngIf="i.tamanionota" class="text-center">
+                        <a ngbTooltip="{{ i.notaAux }}">
+                            {{i.nota}}
+                        </a>                        
+                      </td>
+                      <td>
+                        <div>
+                          <a *ngIf="i.estado_formulario == 1 || i.estado_formulario == 5"
+                            (click)="detailFormulario(i.tipoFormulario, i.id)"
+                            style="color: #08afe0; cursor: pointer; font-size: 20px" ngbTooltip="Ver / Editar">
+                            <i class="fa fa-edit"></i>
+                          </a>
+
+                          <a 
+                            (click)="deleteFormulario(i.tipoFormulario, i.id)" class="mr-2 ml-2"
+                            style="color: #f73164; cursor: pointer; font-size: 20px" ngbTooltip="Eliminar">
+                            <i class="fa fa-trash"></i>
+                          </a>
+
+                          <a *ngIf="(i.estado_formulario == 1 && i.tipoFormulario == 'EVALUACION-RAPIDA' && authService.validarPermisos([PERMISOS.ENVIAR_EVALUACION_RAPIDA]))" (click)="enviarForm(i.id,1)"
+                          class="mr-2 ml-2" style="color: #08afe0; cursor: pointer; font-size: 20px"
+                          ngbTooltip="Enviar">
+                          <i class="fa fa-send"></i>
+                        </a>
+                        <a *ngIf="(i.estado_formulario == 1 && i.tipoFormulario == 'EMPADRONAMIENTO'  && authService.validarPermisos([PERMISOS.ENVIAR_EMP_FAMILIAR]))" (click)="enviarForm(i.id,2)"
+                          class="mr-2 ml-2" style="color: #08afe0; cursor: pointer; font-size: 20px"
+                          ngbTooltip="Enviar">
+                          <i class="fa fa-send"></i>
+                        </a>
+                        <a *ngIf="(i.estado_formulario == 1 && i.tipoFormulario == 'PRELIMINAR'  && authService.validarPermisos([PERMISOS.ENVIAR_PRELIMINAR]))" (click)="enviarForm(i.id,3)"
+                          class="mr-2 ml-2" style="color: #08afe0; cursor: pointer; font-size: 20px"
+                          ngbTooltip="Enviar">
+                          <i class="fa fa-send"></i>
+                        </a>
+                        </div>
+
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+                <nav class="m-b-30">
+
+
+                  <ul class="meal-list">
+                    <li *ngFor="let i of formularios | paginate:
+                  { id: 'server', itemsPerPage: cantidadItemsForm, currentPage: paginaActalForm,
+                   totalItems: cantidadTotalRegistrosBusqueda }"></li>
+                  </ul>
+
+                  <div class="has-text-centered">
+                    <div class="row" *ngIf="loading">
+                      <div class="col-sm-12">
+                        <ngx-skeleton-loader count="10" appearance="line" animation="progress"></ngx-skeleton-loader>
+                      </div>
+                    </div>
+                    <pagination-controls previousLabel="Anterior" nextLabel="Siguiente" (pageChange)="paginateFormulario($event)" id="server"></pagination-controls>
+                  </div>
+                </nav>
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+<ng-template #questionModal let-modal style="z-index: 999!important;">
+
+  <div class="modal-body" style="background: gray; border: none;">
+    <h4 align="center"><b>Seleccione el tipo de formulario:</b></h4>
+    <div class="row">
+      <div class="col-md-4 clickCard" (click)="irAFormatoRapido()">
+        <div class="example-card">
+          <img src="assets/images/notebook.png" alt="EVALUACION RAPIDA" style="width:60%">
+          <hr>
+          <div class="container">
+            <h4 style="text-align:center"><b>EVALUACI&Oacute;N R&Aacute;PIDA</b></h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 clickCard" (click)="irAFormato2A()">
+        <div class="example-card1">
+          <img src="assets/images/family.png" alt="EMPADRONAMIENTO FAMILIAR MEDIOS DE VIDA" style="width:60%">
+          <hr>
+          <div class="container">
+            <h4 style="text-align:center;"><b>EMP. FAMILIAR MEDIOS DE VIDA</b></h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 clickCard" (click)="irAFormato3()" id="">
+        <div class="example-card2">
+          <img src="assets/images/business-report.png" alt="EDAN PERU PRELIMINAR" style="width:60%; padding: 10px;">
+          <hr>
+          <div class="container">
+            <h4 style="text-align:center;"><b>EDAN PER&Uacute; PREELIMINAR</b></h4>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="row mt-4">
+      <div class="col" align="center">
+        <div class="btn btn-primary" (click)="closeModal()">Cancelar</div>
+      </div>
+    </div>
+  </div>
+</ng-template>

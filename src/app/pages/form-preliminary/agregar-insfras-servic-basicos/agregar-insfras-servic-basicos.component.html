@@ -1,0 +1,78 @@
+<div class="modal-header text-center">
+  <h5 class="modal-title text-center">Infraestructura de servicios b&aacute;sicos</h5>
+  <button class="close" type="button" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form class="needs-validation" novalidate [formGroup]="data">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label>Insfraestructura de servicio</label>
+          <ng-select
+          [items]="maestrasServiciosPublicos"
+          bindLabel="descripcion"
+          bindValue="id"
+          formControlName="idTipoInfraestructura"
+          (change)="getSelectInfra($event)"
+          placeholder="Seleccione"></ng-select>
+      </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label>Cuenta con servicio</label>
+          <ng-select
+          [items]="sino"
+          bindLabel="descripcion"
+          bindValue="id"
+          formControlName="indTieneServicio"
+          placeholder="Seleccione"></ng-select>
+      </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label>% sin servicio</label>
+          <input type="text" class="form-control" placeholder="Afectada" formControlName="porcentajeSinServicio">
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label>Destruido (ml)</label>
+          <input type="text" class="form-control" placeholder="Inhabitables" formControlName="cantidadDestruido">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label>Afectado (ml)</label>
+          <input type="text" class="form-control" placeholder="Afectada" formControlName="cantidadAfectado">
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label>Observaci&oacute;n</label>
+          <input type="text" class="form-control" placeholder="Inhabitables" formControlName="observacion">
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <button type="button" class="btn btn-primary m-r-20" (click)="addData()">
+        <span>Agregar</span>
+      </button>
+
+      <button type="button" class="btn btn-outline-danger" (click)="closeModal()">
+        <span>Cancelar</span>
+      </button>
+    </div>
+  </form>
+</div>

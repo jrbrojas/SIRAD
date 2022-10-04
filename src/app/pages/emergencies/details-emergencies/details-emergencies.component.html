@@ -1,0 +1,195 @@
+<app-breadcrumb [title]="'Detalle'" [items]="['Emergencia']" [active_item]="'Detalle'"></app-breadcrumb>
+<div class="container-fluid">
+
+  <div class="row">
+
+    <div class="col-xl-12 xl-100">
+      <div class="card">
+        <form class="needs-validation" novalidate [formGroup]="updateFormEmergency">
+          <div class="card-body">
+            <div class="product-page-details">
+              <h3>Emergencia en {{detailsEmergency?.descripcionUbigeo}}</h3>
+            </div>
+            <div>
+              <table class="product-page-width">
+                <tbody>
+                  <tr>
+                    <td> <b>C&oacute;digo Sinpad &nbsp;&nbsp;&nbsp;:</b></td>
+                    <td style="color: #7366ff ;"><b>{{detailsEmergency?.codigoSinpad}}</b></td>
+                  </tr>
+                  <tr>
+                    <td> <b>Tipo de Peligro &nbsp;&nbsp;&nbsp;:</b></td>
+                    <td *ngIf="!isShowInputUpdate">{{detailsEmergency?.tipoPeligro}}</td>
+                    <td *ngIf="isShowInputUpdate">
+                      <ng-select style="width: 50%" [items]="selecttipoPeligro" bindLabel="tipoPeligro"
+                        bindValue="idTipoPeligro" formControlName="idTipoPeligro" (change)="getSelectPeligro($event)"
+                        placeholder="Seleccione"></ng-select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td> <b>Grupo de Peligro &nbsp;&nbsp;&nbsp;:</b></td>
+                    <td *ngIf="!isShowInputUpdate">{{detailsEmergency?.grupoPeligro}}</td>
+                    <td *ngIf="isShowInputUpdate">
+                      <input class="form-control digits" type="text" style="width: 50%" readonly
+                        formControlName="grupoPeligro">
+
+                      <input type="hidden" formControlName="idGrupoPeligro">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td> <b>Ubigeo &nbsp;&nbsp;&nbsp;:</b></td>
+                    <td *ngIf="!isShowInputUpdate">{{detailsEmergency?.descripcionUbigeo}}</td>
+                    <td *ngIf="isShowInputUpdate">
+                      <!--select
+                        class="form-control digits"
+                        style="width: 50%"
+                        formControlName="codigoUbigeo"
+                        (change)="getSelectUbigeo($event)">
+                        <option *ngFor="let i of selectUbigeo" [value]="i.id">{{i.ubigeo}}</option>
+                      </select-->
+                      <ng-select style="width: 50%" [items]="selectUbigeo" bindLabel="ubigeo" bindValue="id"
+                        formControlName="codigoUbigeo" (change)="getSelectUbigeo($event)" placeholder="Seleccione">
+                      </ng-select>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <hr>
+            <div>
+              <table class="product-page-width">
+                <tbody>
+                  <!-- <tr>
+                    <td> <b>Asignado:</b></td>
+                    <td>COEN</td>
+                  </tr> -->
+                  <tr>
+                    <td> <b>Estado:</b></td>
+                    <td class="badge badge-success fw-bold" *ngIf="detailsEmergency?.estadoEmergencia == 1">ABIERTO</td>
+                    <td class="badge badge-danger" *ngIf="detailsEmergency?.estadoEmergencia == 2">CERRADO</td>
+                  </tr>
+                  <tr>
+                    <td> <b>Usuario Creador:</b></td>
+                    <td>{{detailsEmergency?.idRegistradoPor}} - {{detailsEmergency?.registradoPor}}</td>
+                  </tr>
+                  <tr>
+                    <td> <b>Fecha Hora de Creaci&oacute;n:</b></td>
+                    <td style="color: #7366ff ;"><b>{{fechaHoraCreacion}}</b><td>
+                    <!-- <td>{{usuarioCreador.fechaHoraModificacion}}</td> -->
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <hr>
+            <h6>Descripci&oacute;n:</h6>
+            <p *ngIf="!isShowInputUpdate">
+              {{detailsEmergency?.descripcionEvento}}
+            </p>
+            <div class="form-group" *ngIf="isShowInputUpdate">
+              <textarea onkeyup="this.value=this.value.toUpperCase();" type="text" class="form-control" onkeyup="this.value=this.value.toUpperCase();"
+                formControlName="descripcionEvento"></textarea>
+            </div>
+            <hr>
+            <div>
+              <table class="product-page-width">
+                <tbody>
+                  <tr>
+                    <td> <b>Fecha y Hora Evento &nbsp;&nbsp;&nbsp;:</b></td>
+                    <td *ngIf="!isShowInputUpdate" style="color: #7366ff ;"><b>{{fechaHoraFormateada}}</b></td>
+                    <td *ngIf="isShowInputUpdate">
+                      <div class="form-group">
+                        <input type="datetime-local" class="form-control" onkeydown="return false" value="{{fechaHoraFormateada}}"
+                          style="width: 50%" [min]="minDate" [max]="maxDate" formControlName="fechaHoraEvento" (change)="updateDate()">
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td> <b>Registrado por &nbsp;&nbsp;&nbsp;:</b></td>
+                    <td>{{detailsEmergency?.registradoPor}}</td>
+                  </tr>
+                  <!-- <tr>
+                    <td> <b>Revisado por &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
+                    <td>{{detailsEmergency?.revisadoPor}}</td>
+                  </tr>
+                  <tr>
+                    <td> <b>Aprobado por &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
+                    <td>{{detailsEmergency?.idAprobadoPor}}</td>
+                  </tr> -->
+                </tbody>
+              </table>
+            </div>
+            <hr>
+            <div class="m-t-15 text-center">
+              <button (click)="showUpdateForm()" *ngIf="!isShowButton && authService.validarPermisos([PERMISOS.EDITAR_EMERGENCIAS])" class="btn btn-primary m-r-10" type="button"
+                title="">
+                <i class="fa fa-edit mr-1"></i>Editar
+              </button>
+              <button (click)="updateEmergency()" *ngIf="isShowButton" class="btn btn-primary m-r-10" type="button"
+                title="">
+                <i class="fa fa-check-circle-o mr-1"></i>Guardar
+              </button>
+              <button *ngIf="!isShowInputUpdate" (click)="cancel()" class="btn btn-primary m-r-10" type="button"
+                title="">
+                <i class="fa fa-ban mr-1"></i>Cancelar
+              </button>
+              <button *ngIf="!isShowInputUpdate && authService.validarPermisos([PERMISOS.ELIMINAR_EMERGENCIAS])" (click)="deleteEmergency()" class="btn btn-secondary m-r-10"
+                type="button" title="">
+                <i class="fa fa-trash-o mr-1"></i>Eliminar
+              </button>
+              <button (click)="reverseForm()" *ngIf="isShowInputUpdate" class="btn btn-primary m-r-10" type="button"
+                title="">
+                <i class="fa fa-mail-reply mr-1"></i>
+              </button>
+            </div>
+
+          </div>
+          <!--pre style="font-size: 20px">
+              {{ updateFormEmergency.value | json }}
+            </pre-->
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-xl-12 xl-100" *ngFor="let i of [].constructor(1)">
+      <div class="card">
+        <div class="card-body">
+          <div class="product-page-details">
+            <h3>Historial de Cambios</h3>
+          </div>
+          <div *ngIf="dataRecord">
+            <table class="product-page-width ">
+              <!--p>GESTION DE FUNCIONARIOS</p-->
+              <tbody>
+                <tr>
+                  <td> <b>Fecha Hora Modificaci&oacute;n &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
+                  <td>{{dataRecord.fechaHoraModificacion}}</td>
+                </tr>
+                <tr>
+                  <td> <b>Usuario Modificador &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
+                  <td>{{dataRecord.modificadoPor}} - {{dataRecord.nombresApellidosModificadoPor}}</td>
+                </tr>
+                <tr>
+                  <td> <b>Modificaci&oacute;n &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
+                  <td>{{dataRecord.cambios}}</td>
+                </tr>
+
+
+              </tbody>
+            </table>
+            <button (click)="recordEmergence(detailsEmergency?.id,detailsEmergency?.codigoSinpad)" *ngIf="cantidadRecord > 1" class="btn btn-primary m-r-10 mt-4" type="button" title="">
+              <i class="fa fa-eye mr-1"></i>Ver m&aacute;s
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

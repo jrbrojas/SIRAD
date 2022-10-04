@@ -1,0 +1,63 @@
+<div class="modal-header text-center">
+    <h5 class="modal-title text-center">Asignar articulo de atencion</h5>
+    <button class="close" type="button" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="needs-validations" novalidate [formGroup]="viewEditRecursoAtendido" >
+      <div class="row">
+        <div class="col-sm-12">
+          <h6>Necesidad</h6>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="">Articulo necesitado</label>
+            <input type="text" class="form-control" value="{{tipo_recurso}}" readonly>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="">Cantidad necesitada</label>
+            <input type="text" class="form-control" value="{{cantidad}}" readonly>
+          </div>
+        </div>
+        <hr>
+        <div class="col-sm-12">
+          <h6>Atencion</h6>
+        </div>
+        <div class="col-sm-6">
+          <label for="">Articulo atencion</label>
+          <ng-select
+            (change)="obtenerCode($event)"
+            [items]="recursos"
+            style="padding : 0px !important; height: 45px !important; height: max-content;"
+            placeholder="Seleccione articulo"
+            class="form-control form-control-input"
+            bindLabel="recurso"
+            bindValue="recurso"
+            formControlName="recurso"
+          >
+
+          </ng-select>
+        </div>
+        <div class="col-sm-6">
+          <label for="">Cantidad atendido MAXIMO({{parametros.general.ultimo}})</label>
+          <input formControlName="cantidadAtendido" type="number" class="form-control" placeholder="Cantidad" min="0" max="{{parametros.especifico.DIFERENCIA}}">
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col">
+          <div class="form-group mt-3 mb-0">
+            <button class="btn btn-primary mr-3 " (click)="addEditArticleAtention()">
+              Guardar
+            </button>
+            <button type="button" class="btn btn-danger">
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  

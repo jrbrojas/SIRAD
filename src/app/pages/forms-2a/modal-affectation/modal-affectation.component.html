@@ -1,0 +1,126 @@
+<div class="modal-header text-center">
+  <h5 class="modal-title text-center">Afectaci&oacute;n - {{tabTitle}}</h5>
+  <button class="close" type="button" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+<div class="modal-body">
+
+  <ul class="nav nav-tabs nav-primary">
+    <li class="nav-item" *ngIf="isHealth">
+      <a href="javascript:void(0)" [class.active]="tabId === 'health'" class="nav-link" id="health"
+        (click)="tabChange('health')">
+        <i class="icofont icofont-ui-home"></i>
+        Salud
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="isMv">
+      <a href="javascript:void(0)" [class.active]="tabId === 'mv'" class="nav-link" id="mv" (click)="tabChange('mv')">
+        <i class="icofont icofont-man-in-glasses"></i>
+        Medios de Vida
+      </a>
+    </li>
+
+    <li class="nav-item" *ngIf="isViv">
+      <a href="javascript:void(0)" [class.active]="tabId === 'v'" class="nav-link" id="v" (click)="tabChange('v')">
+        <i class="icofont icofont-man-in-glasses"></i>
+        Vivienda
+      </a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+
+    <div class="tab-pane fade" [ngClass]="['show', 'active']" *ngIf="tabId === 'health'">
+
+      <form [formGroup]="createFormSalud">
+        <div formArrayName="integrantes" *ngFor="let f of integrantes.controls; index as i">
+          <div class="row" [formGroupName]="i">
+            <div class="col-12">
+              <div class="row">
+                <div class="col-4">
+                  <div class="card mb-1 shadow-none border">
+                    <div class="p-2">
+                      <div class="row align-items-center">
+                        <div class="col ps-0">
+                          <a href="javascript:void(0);" class="text-muted fw-bold">{{getNameIntegrante(i)}}</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-8">
+                  <ng-select [attr.name]="getIntegrante(i)" [items]="healths" bindLabel="descripcion" bindValue="id"
+                    groupBy="desGrupoEnfermedad" [multiple]="true" placeholder="Seleccione"
+                    formControlName="afectacionSalud" (change)="getSelectAfectacionesSalud($event, i)"
+                    [closeOnSelect]="false">
+                  </ng-select>
+                </div>
+              </div>
+            </div>
+            <div class="col-12" *ngIf="IsLesionado(i)">
+              <div class="row">
+                <div class="col-4"></div>
+                <div class="col-8">
+                  <div class="row">
+                    <div class="col-3">
+                      <div class="form-group">
+                        <label>Lesion</label>
+                        <ng-select [items]="lesiones" bindLabel="descripcion" bindValue="id"
+                          formControlName="idNivelLesion" (change)="getSelectNivelLesion($event,i)"
+                          placeholder="Seleccione"></ng-select>
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <div class="form-group">
+                        <label>Tratamiento</label>
+                        <ng-select [items]="tratamientos" bindLabel="descripcion" bindValue="id"
+                          formControlName="idCircunstanciaLesionado"
+                          (change)="getSelectCircunstanciaLesionado($event,i)" placeholder="Seleccione"></ng-select>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <label>Lugar de Dezplazamiento</label>
+                        <div class="buttonIn form-group">
+                          <input
+                            class="form-control"
+                            type="text"
+                            id="lugarDesplazamiento"
+                            formControlName="lugarDesplazamiento"
+                            placeholder=""
+                            >
+                          <button *ngIf="!loadButton" id="clear" type="button" class="btn btn-primary" (click)="guardarLugarDesplazamiento(i)"  ngbTooltip="Guardar">                           
+                          <i class="fa fa-save"></i>
+                          </button>
+                          <button id="clear" *ngIf="loadButton" class="btn btn-secondary" type="button">
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+                          </button>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="text-center p-t-20">
+          <button type="button" class="btn btn-outline-danger" (click)="closeModal()">
+            <span>Cancelar</span>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="tab-pane fade" [ngClass]="['show', 'active']" *ngIf="tabId === 'mv'">
+      <app-create-mv [fromIdFamily]="idFamilia"></app-create-mv>
+    </div>
+
+    <div class="tab-pane fade" [ngClass]="['show', 'active']" *ngIf="tabId === 'v'">
+      <app-create-viv [fromIdFamily]="idFamilia"></app-create-viv>
+    </div>
+  </div>
+
+</div>

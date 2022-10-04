@@ -1,0 +1,74 @@
+<div class="modal-header text-center">
+    <h5 class="modal-title text-center">{{titulo}}</h5>
+    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true" (click)="closeModal()">×</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form class="needs-validation" novalidate [formGroup]="dataObservacion">
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label>Ingresar nota adicional</label>
+                    <textarea class="form-control" formControlName="motivo" (keyup)="onKey($event)" rows="3"
+                        maxlength="1000" required="true">
+                </textarea>
+                    <div class="">
+                        {{counter}} / 1000
+                    </div>
+                    <div class="invalid-feedback">
+                        La observacion es requerida
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div *ngIf="formularios && formularios.length == 0" class="">
+                    <h4 class="text-center">Sin Formularios Registrados</h4>
+                </div>
+                <table *ngIf="formularios && formularios.length != 0" class="table">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Numero</th>
+                            <th class="text-center">Formulario</th>
+                            <th class="text-center">Ubigeo</th>
+                            <th class="text-center">Peligro</th>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center" *ngFor="let i of formularios; let cont = index">
+                            <td *ngIf="i.tipoFormulario != 'PRELIMINAR'">
+                                {{i.numeroFormulario}}
+                            </td>
+                            <td *ngIf="i.tipoFormulario == 'PRELIMINAR'">
+                                001
+                            </td>
+                            <td>
+                                {{i.tipoFormulario}}
+                            </td>
+                            <td>
+                                {{i.descripcionUbigeo}}
+                            </td>
+                            <td>
+                                {{i.tipoPeligro}}
+                            </td>
+                            <td>
+                                <div class=" icon-state">
+                                    <label class="switch">
+                                        <input type="checkbox" (click)="changeStatus(cont)">
+                                        <span class="switch-state"></span>
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="text-center p-t-20">
+            <button class="btn btn-primary m-r-10" (click)="revisarForm()">Guardar</button>
+            <button class="btn btn-danger" (click)="closeModal()">Cancelar</button>
+
+        </div>
+    </form>
+</div>

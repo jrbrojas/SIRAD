@@ -1,0 +1,159 @@
+<app-breadcrumb [title]="'Usuarios'" [items]="['Seguridad']" [active_item]="'Usuarios'"></app-breadcrumb>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <form  [formGroup]="showEntries">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group" style="font-size: 13px">
+                              <div class="mb-2">
+                                <mat-form-field appearance="outline">
+                                  <mat-label>Buscar por Username, Nombres, Apellidos y Perfil</mat-label>
+                                  <input matInput type="text" formControlName="textoBusqueda" [(ngModel)]="value"
+                                    onkeyup="this.value=this.value.toUpperCase();">
+
+                                   
+                                    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                                    <mat-icon>close</mat-icon>
+                                  </button>
+                                </mat-form-field>
+
+                                <div class="col-sm-1">
+                                  <div class="form-group" style="font-size: 13px">
+                                    <mat-form-field appearance="outline">
+                                      <mat-label>Estado</mat-label>
+                                      <mat-select required formControlName="estado"
+                                        (selectionChange)="getStatusUsuario(z)" #z>
+                                        <mat-option value="">Seleccione</mat-option>
+                                        <mat-option *ngFor="let i of statusForm" value="{{i.id}}" [attr.name]="i.descripcion">
+                                          {{i.descripcion}}</mat-option>
+                                      </mat-select>
+                                    </mat-form-field>
+                                  </div>
+                                </div>
+
+                                <!--
+                                <div class="col-sm-3">
+                                  <div class="form-group">
+                                      <label>ESTADO</label>
+                                      <ng-select formControlName="estado"  name="descripcion" placeholder="Seleccione" >
+                                          <ng-option value="1">HABILITADO</ng-option>
+                                          <ng-option value="0">DESHABILITADO</ng-option>
+                                      </ng-select>
+                                  </div>
+                              </div>
+-->
+
+
+
+                              </div>
+                            </div>
+                          </div>
+
+
+
+
+
+                            <div class="col-sm-2">
+
+                            </div>
+                            <div class="col-sm-2">
+                                <a class="btn btn-primary btn-lg" (click)="createUsers()" ngbTooltip="Nuevo Peligro">
+                                    <i class="fa fa-plus-square-o"></i> Nuevo
+                                </a>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="table-responsive">
+                            <div name="data-source-1_length" class="dataTables_wrapper">
+                                <div class="dataTables_length">
+                                    <label>Mostrar
+                                      <select name="data-source-1_length" formControlName="cantidadRegistro"
+                                        (change)="showEntriesUsuarios($event)">
+                                        <option value="10">10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                      </select> entradas</label>
+                                  </div>
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Username</th>
+                                            <th class="text-center">Nombres y Apellidos</th>
+                                            <th class="text-center">Perfil</th>
+                                            <th class="text-center">Estado</th>
+                                            <th class="text-center">Opciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="text-center" *ngFor="let i of users">
+                                            <td>
+                                              {{i.numDocumento}}
+                                            </td>
+                                            <td>
+                                              {{i.nombres}}
+                                            </td>
+                                            
+                                          
+                                          
+                                            <td>
+                                              {{i.perfil}}
+                                            </td>
+
+
+
+                                            <td>
+                                              <p class="badge badge-success fw-bold" *ngIf="i.habilitado == 1">HABILITADO</p>
+                                              <p class="badge badge-danger" *ngIf="i.habilitado == 0">DESHABILITADO</p>
+                                            </td>
+                                          
+
+
+                                            <td>
+                                              <div>
+                                                <a (click)="detailsUsers(i.numDocumento)" style="color: #08afe0; cursor: pointer; font-size: 20px"
+                                                  ngbTooltip="Ver / Editar">
+                                                  <i class="fa fa-edit"></i>
+                                                </a>
+                                                <a (click)="eliminar(i.numDocumento)" *ngIf="authService.validarPermisos([PERMISOS.ELIMINAR_EMERGENCIAS])" 
+                                                class="mr-2 ml-2" 
+                                               style="color: #f73164; cursor: pointer; font-size: 20px"  ngbTooltip="Eliminar">
+                                               <i class="fa fa-trash"></i>
+                                             </a>                                              </div>
+
+                                            </td>
+                                          </tr>
+                                    </tbody>
+                                </table>
+
+
+                                <nav class="m-b-30">
+
+                                    <ul class="meal-list">
+                                      <li *ngFor="let i of users | paginate:
+                                    { id: 'server', itemsPerPage: cantidadItemsForm, currentPage: paginaActalForm,
+                                     totalItems: cantidadTotalRegistrosBusqueda }"></li>
+                                    </ul>
+
+                                    <div class="has-text-centered">
+                                      <div class="row" *ngIf="loading">
+                                        <div class="col-sm-12">
+                                          <ngx-skeleton-loader count="10" appearance="line" animation="progress"></ngx-skeleton-loader>
+                                        </div>
+                                      </div>
+                                      <pagination-controls previousLabel="Anterior" nextLabel="Siguiente" (pageChange)="paginateUsuario($event)" id="server"></pagination-controls>
+                                    </div>
+                                </nav>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

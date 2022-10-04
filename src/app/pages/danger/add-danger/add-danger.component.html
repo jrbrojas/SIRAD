@@ -1,0 +1,66 @@
+<app-breadcrumb [title]="'Crear Nuevo Peligro'" [items]="['Administración','Peligros']" [active_item]="'Crear'"></app-breadcrumb>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <form class="needs-validation" novalidate [formGroup]="createDanger">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Nombre</label>
+                                    <input type="text" class="form-control" rows="3" maxlength="255" formControlName="nombre" (keyup)="onKey1($event)" [class.is-invalid]="createDanger.controls['nombre'].touched && createDanger.controls['nombre'].errors?.['required']" onkeyup="this.value=this.value.toUpperCase();">
+                                    <div class="">
+                                        {{counter1}} / 255
+                                    </div>
+                                    <div class="invalid-feedback" *ngIf="createDanger.controls['nombre'].touched && createDanger.controls['nombre'].errors?.['required']">
+                                        Siglas es requerido
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Descripci&oacute;n</label>
+                                    <input type="text" class="form-control" rows="3" maxlength="255" (keyup)="onKey($event)" formControlName="descripcion" [class.is-invalid]="createDanger.controls['descripcion'].touched && createDanger.controls['descripcion'].errors?.['required']" onkeyup="this.value=this.value.toUpperCase();">
+                                    <div class="">
+                                        {{counter}} / 255
+                                    </div>
+                                    <div class="invalid-feedback" *ngIf="createDanger.controls['descripcion'].touched && createDanger.controls['descripcion'].errors?.['required']">
+                                        Siglas es requerido
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Grupo Peligro</label>
+                                    <ng-select [items]="selectGrupoPeligro" bindLabel="nombre" bindValue="id" formControlName="idGrupoPeligro" (change)="getSelectGrupoPeligro($event)" placeholder="Seleccione"></ng-select>
+                                    <div class="invalid-feedback" *ngIf="createDanger.controls['idGrupoPeligro'].touched && createDanger.controls['idGrupoPeligro'].errors?.['required']">
+                                        Seleccione el ubigeo
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row text-center">
+                            <div class="col">
+                                <div class="form-group mb-0">
+                                    <div class="form-group mb-0">
+                                        <button type="button" class="btn btn-primary mr-3" [class.loader--text]="dangerService.showLoader" [disabled]="!createDanger.valid || dangerService.showLoader" (click)="createPeligros()">
+                        <span><i class="fa fa-save"></i>{{ dangerService.showLoader ? '' : 'Guardar' }}</span>
+                      </button>
+                                        <button type="button" class="btn btn-danger" (click)="cancelProject()"><i class="fa fa-ban"></i> Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

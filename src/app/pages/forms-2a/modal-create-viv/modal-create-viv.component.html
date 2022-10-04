@@ -1,0 +1,125 @@
+<div class="modal-header">
+  <h5 class="modal-title text-center">Informaci&oacute;n de vivienda</h5>
+  <button class="close" type="button" (click)="closeModal()">
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="livingPlaceForm">
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Direcci&oacute;n</mat-label>
+            <input matInput formControlName="address">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="col-sm-2">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>N&uacute;mero de Lote</mat-label>
+            <input matInput formControlName="lotNumber">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="col-sm-2">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Tenencia Propia</mat-label>
+            <mat-select required formControlName="ownPossession">
+              <mat-option value="">Seleccione</mat-option>
+              <mat-option value="SI">SI</mat-option>
+              <mat-option value="NO">NO</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="col-sm-2">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Condicion de uso de la instalaci&oacute;n</mat-label>
+            <mat-select required formControlName="installationConditionOfUse">
+              <mat-option value="">Seleccione</mat-option>
+              <mat-option value="VIVIENDA">VIVIENDA</mat-option>
+              <mat-option value="MEDIO-DE-VIDA">MEDIO DE VIDA</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-2">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Condici&oacute;n</mat-label>
+            <mat-select formControlName="condition">
+              <mat-option value="">Seleccione</mat-option>
+              <mat-option value="AFECTADA">AFECTADA</mat-option>
+              <mat-option value="COLAPSADA">COLAPSADA</mat-option>
+              <mat-option value="INHABITABLE">INHABITABLE</mat-option>
+              <mat-option value="SIN-AFECTACION">SIN AFECTACION</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="col-sm-1">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Area</mat-label>
+            <input matInput formControlName="area">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="col-sm-3"
+        *ngIf="livingPlaceForm.get('installationConditionOfUse')?.value != 'MEDIO-DE-VIDA' && livingPlaceForm.get('installationConditionOfUse')?.value != ''">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Tipo techo</mat-label>
+            <mat-select formControlName="idCeiling" (selectionChange)="changeCeiling(a)" #a>
+              <mat-option *ngFor="let i of ceilings" value="{{i.value}}" [attr.name]="i.name">{{i.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="col-sm-3"
+        *ngIf="livingPlaceForm.get('installationConditionOfUse')?.value != 'MEDIO-DE-VIDA' && livingPlaceForm.get('installationConditionOfUse')?.value != ''">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Tipo pared</mat-label>
+            <mat-select formControlName="idWalls" (selectionChange)="changeWalls(e)" #e>
+              <mat-option *ngFor="let i of walls" value="{{i.value}}" [attr.name]="i.name">{{i.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="col-sm-3"
+        *ngIf="livingPlaceForm.get('installationConditionOfUse')?.value != 'MEDIO-DE-VIDA' && livingPlaceForm.get('installationConditionOfUse')?.value != ''">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Tipo piso</mat-label>
+            <mat-select formControlName="idFloor" (selectionChange)="changeFloor(i)" #i>
+              <mat-option *ngFor="let i of floors" value="{{i.value}}" [attr.name]="i.name">{{i.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <button type="button" class="btn btn-primary mr-3" [disabled]="!livingPlaceForm.valid"
+        (click)="createHousingInfo()">
+        <span>Guardar</span>
+      </button>
+    </div>
+  </form>  
+</div>

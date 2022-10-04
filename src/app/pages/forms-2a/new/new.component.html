@@ -1,0 +1,67 @@
+<app-breadcrumb title="FORMULARIO 2A - 2B CODIGO SINPAD NRO: {{codigoSinpad}}" [items]="['Formato 2A']"
+  [active_item]="'Crear Formato'">
+</app-breadcrumb>
+
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-sm-12 col-xl-12">
+      <div class="card">
+        <div class="card-body my-card">
+          <form [formGroup]="createForm">
+            <div class="row m-4">
+              <div class="col-3">
+                <label for="" *ngIf="!isShow">Seleccione la evaluacion rapida</label>
+                <label for="" *ngIf="isShow">Evaluacion rapida seleccionada</label>
+              </div>
+              <div class="col-8">
+                <ng-select *ngIf="!isShow" [items]="formulariosEvaluacionRapida" bindLabel="descripcion" bindValue="id"
+                  formControlName="idEvaluacionRapida" (change)="getSelectFormularioEvaluacionRapida($event)"
+                  placeholder="Seleccione">
+                </ng-select>
+                <input *ngIf="isShow" type="text" class="form-control" readonly value="{{descripcionEvaluacionRapida}}">
+              </div>
+            </div>
+            <div>
+              <div class="row" *ngIf="changeInicial">
+                <div class="col-md-4">
+                  <div class="mb-3 btn btn-primary btn-lg w-100 text-center">
+                    <div class="form-check checkbox checkbox-solid-primary mb-0">
+                      <input class="form-check-input" formControlName="isHealth" id="checkbox-1" type="checkbox">
+                      <label class="form-check-label" for="checkbox-1">SALUD</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3 btn btn-primary btn-lg w-100 text-center">
+                    <div class="form-check checkbox checkbox-solid-primary mb-0">
+                      <input class="form-check-input" formControlName="isMv" id="checkbox-2" type="checkbox">
+                      <label class="form-check-label" for="checkbox-2">MEDIOS DE VIDA</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="mb-3 btn btn-primary btn-lg w-100 text-center">
+                    <div class="form-check checkbox checkbox-solid-primary mb-0">
+                      <input class="form-check-input" formControlName="isViv" id="checkbox-3" type="checkbox">
+                      <label class="form-check-label" for="checkbox-3">VIVIENDA</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                  <div class="col" align="center">
+                    <button type="button" class="btn btn-danger" style="margin: 20px;" (click)="back()">Cancelar</button>
+                    <button *ngIf="changeInicial" type="button" class="btn btn-primary" style="margin: 20px;" (click)="tabChange()">Siguiente</button>
+                  </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

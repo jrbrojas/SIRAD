@@ -1,0 +1,99 @@
+<div class="modal-header text-center">
+    <h3 class="modal-title text-center">Solicitud de Cierre de Emergencia</h3>
+    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">×</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="createSolicitud">
+        <div class="row">
+            <div class="col">
+                <div class="form-group text-center" *ngIf="tabla">
+                    <label style="font-size: 16px;">Emergencia Seleccionada: <b>{{ valores }}</b></label>
+                </div>
+                <div class="col-sm" *ngIf="!tabla">
+                    <div class="form-group" style="font-size: 13px">
+                      <div class="mb-2">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Buscar por Codigo Sinpad, Tipo peligro o Ubicacion</mat-label>
+                            <input matInput type="text" formControlName="textoBusqueda" [(ngModel)]="value"
+                        onkeyup="this.value=this.value.toUpperCase();">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                <div class="form-group text-center" *ngIf="tabla == false">
+
+                    <table class="table" >
+                        <thead>
+                            <tr>
+                                <th class="text-center">C&oacute;digo Sinpad</th>
+                                <th class="text-center">Tipo de Peligro</th>
+                                <th class="text-center">Ubicaci&oacute;n</th>
+                                <th class="text-center">Seleccionar</th>
+                        </thead>
+                        <tbody>
+                            <tr class="text-center"
+                                *ngFor="let i of listEmergencias">
+                                <td>
+                                    {{i.codigoSinpad}}
+                                </td>
+                                <td>
+                                    {{i.tipoPeligro}}
+                                </td>
+                                <td>
+                                    {{i.descripcionUbigeo}}
+                                </td>
+                                <td>
+                                    <a (click)="getSelectEmergencia(i.id,i.codigoSinpad,i.descripcionUbigeo,i.tipoPeligro)"
+                                        style="color: #08afe0; cursor: pointer; font-size: 24px"
+                                        ngbTooltip="Seleccionar">
+                                        <i class="fa fa-check"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <nav class="m-b-30">
+
+                        <ul class="meal-list">
+                          <li *ngFor="let i of listEmergencias | paginate:
+                                { id: 'server', itemsPerPage: cantidadItemsForm, currentPage: paginaActalForm,
+                                totalItems: cantidadTotalRegistrosBusqueda }"></li>
+                        </ul>
+      
+                        <div class="has-text-centered">
+                          <div class="row" *ngIf="loading">
+                            <div class="col-sm-12">
+                              <ngx-skeleton-loader count="10" appearance="line" animation="progress"></ngx-skeleton-loader>
+                            </div>
+                          </div>
+                          <pagination-controls previousLabel="Anterior" nextLabel="Siguiente" (pageChange)="paginationEmergency($event)" id="server"></pagination-controls>
+                        </div>
+                      </nav>
+
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="tabla">
+            <div class="col">
+                <div class="form-group">
+                    <label>Motivo de Cierre</label>
+                    <textarea class="form-control" formControlName="motivo" (keyup)="onKey($event)" rows="3"
+                        maxlength="1000" required="true">
+                </textarea>
+                    <div class="">
+                        {{counter}} / 1000
+                    </div>
+                    <div class="invalid-feedback">
+                        La observacion es requerida
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center p-t-20">
+            <button *ngIf="tabla && status == 0" class="btn btn-primary m-r-10"(click)="solicitudCierre()" >Enviar</button>
+            <button class="btn btn-danger" (click)="closeModal()">Cancelar</button>
+        </div>
+    </form>
+</div>

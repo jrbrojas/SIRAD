@@ -1,0 +1,1245 @@
+<app-breadcrumb title="EDAN PERU Preliminar - CODIGO SINPAD NRO: {{ codigoSinpad }}" [items]="['Preliminar']"
+  [active_item]="'Crear'"></app-breadcrumb>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-xl-12">
+      <div class="card">
+
+        <div class="card-body">
+
+          <ul class="nav nav-tabs nav-primary">
+            <li class="nav-item">
+              <a href="javascript:void(0)" (click)="tabChange('general')" [class.active]="tabId === 'general'"
+                class="nav-link">
+                <i class="icofont icofont-ui-home"></i>
+                Informaci&oacute;n General
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="javascript:void(0)" (click)="tabChange('caracterOne')" class='nav-link'
+                [class.active]="tabId === 'caracterOne'">
+                <i class="icofont icofont-man-in-glasses"></i>
+                Caracter&iacute;stica del peligro
+              </a>
+              <span class="hidden">Caracter&iacute;stica del peligro de origen natural o inducido por la acci&oacute;n
+                humana</span>
+            </li>
+            <li class="nav-item">
+              <a href="javascript:void(0)" class="nav-link" (click)="tabChange('health')" class='nav-link'
+                [class.active]="tabId === 'health'">
+                <i class="icofont icofont-contacts"></i>
+                Daños a la vida y salud
+              </a>
+              <span class="hidden">Daños a la vida y salud de la persona</span>
+            </li>
+            <li class="nav-item">
+              <a href="javascript:void(0)" class="nav-link" (click)="tabChange('material')" class='nav-link'
+                [class.active]="tabId === 'material'">
+                <i href="javascript:void(0)" class="icofont icofont-contacts"></i>
+                Daños Materiales
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="javascript:void(0)" class="nav-link" (click)="tabChange('analisisnece')" class='nav-link'
+                [class.active]="tabId === 'analisisnece'">
+                <i href="javascript:void(0)" class="icofont icofont-contacts"></i>
+                An&aacute;lisis de Necesidades
+              </a>
+              <span class="hidden">An&aacute;lisis de Necesidades</span>
+            </li>
+
+            <li class="nav-item">
+              <a href="javascript:void(0)" class="nav-link" (click)="tabChange('coordination')" class='nav-link'
+                [class.active]="tabId === 'coordination'">
+                <i href="javascript:void(0)" class="icofont icofont-contacts"></i>
+                Coordinaciones
+              </a>
+              <span class="hidden">An&aacute;lisis de Necesidades</span>
+            </li>
+
+            <li class="nav-item">
+              <a href="javascript:void(0)" class="nav-link" (click)="tabChange('concluciones')" class='nav-link'
+                [class.active]="tabId === 'concluciones'">
+                <i href="javascript:void(0)" class="icofont icofont-contacts"></i>
+                Conclusiones y observaciones
+              </a>
+              <span class="hidden">An&aacute;lisis de Necesidades</span>
+            </li>
+
+            <li class="nav-item">
+              <a href="javascript:void(0)" class="nav-link" (click)="tabChange('recomendacion')" class='nav-link'
+                [class.active]="tabId === 'recomendacion'">
+                <i href="javascript:void(0)" class="icofont icofont-contacts"></i>
+                Recomendaciones finales
+              </a>
+              <span class="hidden">An&aacute;lisis de Necesidades</span>
+            </li>
+
+            <li class="nav-item">
+              <a href="javascript:void(0)" class="nav-link" (click)="openPdf()" class='nav-link'>
+                <i href="javascript:void(0)" class="icofont icofont-contacts"></i>
+                Resumen
+              </a>
+              <span class="hidden">An&aacute;lisis de Necesidades</span>
+            </li>
+
+            <li class="nav-item">
+              <a href="javascript:void(0)" class="nav-link" (click)="tabChange('adjuntarArchivo')" class='nav-link'
+                [class.active]="tabId === 'adjuntarArchivo'">
+                <i href="javascript:void(0)" class="icofont icofont-contacts"></i>
+                Adjuntar archivos
+              </a>
+              <span class="hidden">An&aacute;lisis de Necesidades</span>
+            </li>
+
+          </ul>
+
+          <div class="tab-content">
+            <form class="needs-validation" novalidate>
+              <div class="tab-pane fade" [ngClass]="['show', 'active']" *ngIf="tabId === 'general'">
+                <form [formGroup]="formCrearInfoGeneral">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <label for="document">Condicion clim&aacute;tica</label>
+                        <textarea class="form-control" formControlName="condicionClimatica"></textarea>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <label for="format">Vias de transporte</label>
+                        <select class="form-control" formControlName="idViaTransporte"
+                          (change)="changeViaTransporte($event)">
+                          <option value="">-- Seleccione --</option>
+                          <option value="{{i.id}}" *ngFor="let i of listarTransporte" [attr.name]="i.descripcion">
+                            {{i.descripcion}}</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <label for="format">Lugar de partida</label>
+                        <input type="text" class="form-control" formControlName="lugarPartida"
+                          placeholder="Lugar de partida">
+                      </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <label for="format">Ruta principal</label>
+                        <input type="text" class="form-control" formControlName="rutaPrincipal"
+                          placeholder="Ruta principal">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <label for="format">Tipo de vehiculo</label>
+                        <select class="form-control" formControlName="idTipoVehiculo"
+                          (change)="changeTipoVehiculo($event)">
+                          <option value="">-- Seleccione --</option>
+                          <option value="{{i.id}}" *ngFor="let i of listarTipoVehiculo" [attr.name]="i.descripcion">
+                            {{i.descripcion}}</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <label for="format">Tiempo estimado de llegada</label>
+                        <input type="text" class="form-control" formControlName="tiempoEstimadoLlegada"
+                          placeholder="Tiempo estimado de llegada">
+                      </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <label for="format">Rutas alternas</label>
+                        <input type="text" class="form-control" formControlName="rutaAlterna"
+                          placeholder="Rutas alternas">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group mb-0 text-center">
+                        <button type="button" class="btn btn-primary" (click)="crearInfoGeneral()"> Siguiente</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              <div class="tab-pane fade" [ngClass]="['show', 'active']" *ngIf="tabId === 'caracterOne'">
+                <form [formGroup]="formCrearPeligro">
+                  <div class="row">
+                    <!-- <div class="col-sm-6">
+                      <div class="form-group">
+                        <label for="format">Peligros secundarios generados</label>
+                        <textarea class="form-control" formControlName="peligroSecundario" rows="3"></textarea>
+                      </div>
+                    </div> -->
+
+                    <div class="col-lg-6 grid-margin stretch-card">
+                      <div class="card b-border-black">
+                        <div class="card-body">
+                          <h4 class="card-title">Peligros secundarios generados</h4>
+                          <div class="row">
+                            <div class="col">
+                              <div class="m-t-15" style="width: 600px; height: 100px; overflow: scroll;">
+                                  <div *ngFor="let i of listTPeligroSecundarioER" class="form-check-label">* {{i.descripcion}}</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label for="format">Descripci&oacute;n del peligro de origen natural o inducido por la accion
+                          humana</label>
+                        <textarea class="form-control" formControlName="peligroNaturalHumana" rows="3"></textarea>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group mb-0 text-center">
+                        <button type="button" class="btn btn-primary m-r-10" (click)="tabChange('general')">
+                          Anterior</button>
+                        <button type="button" class="btn btn-primary" (click)="tabChange('health')"> Siguiente</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              <div class="tab-pane fade" [ngClass]="['show', 'active']" *ngIf="tabId === 'health'">
+                <!-- <div class="row">
+                  <div class="col-lg-6 grid-margin stretch-card">
+                    <div class="card b-border-black">
+                      <div class="card-body">
+                        <h4 class="card-title">Lesionados (Heridos)</h4>
+                        <div class="table-responsive">
+                          <table class="table">
+                            <thead>
+                              <tr align="center">
+                                <th>TIPO</th>
+                                <th>Leve</th>
+                                <th>Medio</th>
+                                <th>Grave</th>
+                                <th>Total</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr align="center">
+                                <th>Cantidad</th>
+                                <th>{{listHeridosLesionLeve}}</th>
+                                <th>{{listHeridosLesionModerado}}</th>
+                                <th>{{listHeridosLesionGrave}}</th>
+                                <th>{{listHeridosLesionTotal}}</th>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 grid-margin stretch-card">
+                    <div class="card b-border-black">
+                      <div class="card-body">
+                        <h4 class="card-title">Tratamiento (Heridos)</h4>
+                        <div class="table-responsive">
+                          <table class="table">
+                            <thead>
+                              <tr align="center">
+                                <th>TIPO</th>
+                                <th>Atencion Local</th>
+                                <th>evacuación Extrerna</th>
+                                <th>Total</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr align="center">
+                                <th>Cantidad</th>
+                                <th>{{listHeridosTratamientoLocal}}</th>
+                                <th>{{listHeridosTratamientoExterno}}</th>
+                                <th>{{listHeridosTratamientoTotal}}</th>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>   -->             
+                <div class="row">
+                  <!-- <div class="col-lg-6 grid-margin stretch-card">
+                    <div class="card b-border-black">
+                      <div class="card-body">
+                        <h4 class="card-title">Lugar de Desplazamiento</h4>
+                        <div class="table-responsive">
+                          <table class="table">
+                            <thead>
+                              <tr align="center">
+                                <th>Nombre y Apellidos</th>
+                                <th>Lugar</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <ng-container>
+                                <tr class="text-center" *ngFor="let i of listHeridosDesplazamiento">
+                                  <td *ngIf="i.LUGAR_DESPLAZAMIENTO != null" style="text-align: center">{{i.NOMBRE}}</td>
+                                  <td *ngIf="i.LUGAR_DESPLAZAMIENTO != null"style="text-align: center">{{i.LUGAR_DESPLAZAMIENTO}}</td>
+                                </tr>
+                              </ng-container>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div> -->
+                  
+                  <div class="col-lg-6 grid-margin stretch-card">
+                    <div class="card b-border-black">
+                      <div class="card-body">
+                        <h4 class="card-title">Personal de primera respuesta afectado</h4>
+                        <p class="card-description d-flex justify-content-center">
+                          <a class="btn btn-secondary btn-sm mr-1">Cargar</a>
+                          <a class="btn btn-primary btn-sm" (click)="agregarPersPrimRes()">Nuevo</a>
+                        </p>
+                        <div class="table-responsive">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th>Potencial Humano</th>
+                                <th>Total personal</th>
+                                <th>Lesionados</th>
+                                <th>Fallecidos</th>
+                                <th>Desaparecidos</th>
+                                <th>Observacion</th>
+                                <th>Acciones</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngIf="notFoundData2">
+                                <td colspan="7" class="text-center">No Hay Datos</td>
+                              </tr>
+                              <ng-container *ngIf="!notFoundData2">
+                                <tr class="text-center" *ngFor="let i of personal">
+                                  <td style="text-align: center">{{i.potencialHumano}}</td>
+                                  <td style="text-align: center">{{i.totalPersonal}}</td>
+                                  <td style="text-align: center">{{i.cantidadLesionado}}</td>
+                                  <td style="text-align: center">{{i.cantidadFallecido}}</td>
+                                  <td style="text-align: center">{{i.cantidadDesaparecido}}</td>
+                                  <td style="text-align: center">{{i.observacion}}</td>
+                                  <td style="text-align: center">
+                                    <a style="color: #08afe0; cursor: pointer; font-size: 16px"
+                                      ngbTooltip="Ver / Editar" (click)="editPersonal(i.id)">
+                                      <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a style="color: #f73164; cursor: pointer; font-size: 16px" ngbTooltip="Eliminar"
+                                      (click)="eliminarPersonal(i.id)">
+                                      <i class="fa fa-trash"></i>
+                                    </a>
+                                  </td>
+                                </tr>
+                              </ng-container>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group mb-0 text-center">
+                      <button type="button" class="btn btn-primary m-r-10" (click)="tabChange('caracterOne')">
+                        Anterior</button>
+                      <button type="button" class="btn btn-primary" (click)="tabChange('material')"> Siguiente</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" [ngClass]="['show', 'active']" *ngIf="tabId === 'material'">
+                <!-- A los servicios / infraestructura de salud de la localidad-->
+                <div class="row">
+                  <div class="col-lg-6 grid-margin stretch-card">
+                    <div class="card b-border-black">
+                      <div class="card-body">
+                        <h4 class="card-title">4.2 A los servicios / infraestructura de salud de la localidad</h4>
+                        <p class="card-description d-flex justify-content-center">
+                          <a class="btn btn-secondary btn-sm mr-1">Cargar</a>
+                          <a class="btn btn-primary btn-sm" (click)="agregarServiciosInfraestructura()">Nuevo</a>
+                        </p>
+                        <div class="table-responsive table-bordered">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th>Establecimiento</th>
+                                <th>Funcionamiento</th>
+                                <th>Condicion</th>
+                                <th>Observacion</th>
+                                <th>¿Porque?</th>
+                                <th>Acciones</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr class="text-center" *ngFor="let e of infraestructura">
+                                <td>{{e.establecimiento}}</td>
+                                <td>{{e.funcionamiento}}</td>
+                                <td>{{e.condicion}}</td>
+                                <td>{{e.observacion}}</td>
+                                <td>{{e.justificacionDanio}}</td>
+                                <td>
+                                  <div>
+                                    <a (click)="editServicioInfraestructura(e.id)"
+                                      style="color: #08afe0; cursor: pointer; font-size: 16px"
+                                      ngbTooltip="Ver / Editar">
+                                      <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a (click)="deleteServiciosInfraestructura(e.id)" class="m-l-10"
+                                      style="color: #f73164; cursor: pointer; font-size: 16px" ngbTooltip="Eliminar">
+                                      <i class="fa fa-trash"></i>
+                                    </a>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--Daños a las instalaciones y vehiculos de primera respuesta - Tambien cargar-->
+                  <div class="col-lg-6 grid-margin stretch-card">
+                    <div class="card b-border-black">
+                      <div class="card-body">
+                        <h4 class="card-title">4.3 Daños a las instalaciones y vehiculos de primera respuesta</h4>
+                        <p class="card-description d-flex justify-content-center">
+                          <a class="btn btn-secondary btn-sm mr-1">Cargar</a>
+                          <a class="btn btn-primary btn-sm" (click)="agregarDanioVehiculo()">Nuevo</a>
+                        </p>
+                        <div class="table-responsive">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th class="text-center">Tipo</th>
+                                <th class="text-center">Entidad</th>
+                                <th class="text-center"># Destruido</th>
+                                <th class="text-center"># Inhabitable - Inoperativa</th>
+                                <th class="text-center"># Afectada</th>
+                                <th class="text-center">Accion</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr class="text-center" *ngFor="let e of daniomaterial">
+                                <td>{{e.instalacion}}</td>
+                                <td>{{e.entidad}}</td>
+                                <td>{{e.cantidadDestruida}}</td>
+                                <td>{{e.cantidadInhabitableInoperativo}}</td>
+                                <td>{{e.cantidadAfectada}}</td>
+                                <td>
+                                  <div>
+                                    <a (click)="editDanioVehiculo(e.id)"
+                                      style="color: #08afe0; cursor: pointer; font-size: 16px"
+                                      ngbTooltip="Ver / Editar">
+                                      <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a (click)="deleteDanioVehiculo(e.id)" class="m-l-10"
+                                      style="color: #f73164; cursor: pointer; font-size: 16px" ngbTooltip="Eliminar">
+                                      <i class="fa fa-trash"></i>
+                                    </a>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-6 grid-margin stretch-card">
+                    <div class="card b-border-black">
+                      <div class="card-body">
+                        <h4 class="card-title">4.4 A la Infraestructura educativa</h4>
+                        <p class="card-description d-flex justify-content-center">
+                          <a class="btn btn-secondary btn-sm mr-1">Cargar</a>
+                          <a class="btn btn-primary btn-sm"
+                            (click)="agregarServiciosInfraestructuraEducativa()">Nuevo</a>
+                        </p>
+                        <div class="table-responsive">
+                          <table class="table">
+                            <thead>
+                              <tr class="text-center">
+                                <th class="text-center">Nombres II.EE</th>
+                                <th class="text-center">Total Aulas</th>
+                                <th class="text-center">Destruidas</th>
+                                <th class="text-center">Inhabitables</th>
+                                <th class="text-center">Afectadas</th>
+                                <th class="text-center">Cerco Perom&eacute;trica</th>
+                                <th class="text-center" colspan="2">Acciones</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr class="text-center" *ngFor="let e of infraestructuraEducativa">
+                                <td>{{e.nombreInstitucion}}</td>
+                                <td>{{e.totalAula}}</td>
+                                <td>{{e.cantidadDestruida}}</td>
+                                <td>{{e.cantidadInhabitable}}</td>
+                                <td>{{e.cantidadAfectada}}</td>
+                                <td>{{e.situacionCercoPerimetrico}}</td>
+                                <td>
+                                  <div>
+                                    <a (click)="editServicioInfraestructuraEducativa(e.id)"
+                                      style="color: #08afe0; cursor: pointer; font-size: 16px"
+                                      ngbTooltip="Ver / Editar">
+                                      <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a (click)="deleteServiciosInfraestructuraEducativa(e.id)" class="m-l-10"
+                                      style="color: #f73164; cursor: pointer; font-size: 16px" ngbTooltip="Eliminar">
+                                      <i class="fa fa-trash"></i>
+                                    </a>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--Daños en carreteras, víasférreas y otros-->
+                  <div class="col-lg-6 grid-margin stretch-card">
+                    <div class="card b-border-black">
+                      <div class="card-body">
+                        <h4 class="card-title">4.5.1 A la infraestructura de transporte - Daños en carreteras,
+                          v&iacute;as f&eacute;rreas y
+                          otros</h4>
+                        <p class="card-description d-flex justify-content-center">
+                          <a class="btn btn-secondary btn-sm mr-1">Cargar</a>
+                          <a class="btn btn-primary btn-sm" (click)="agregarInfraestructuraTransporte()">Nuevo</a>
+                        </p>
+                        <div class="table-responsive">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th class="text-center">Tipo de via</th>
+                                <th class="text-center">ml Destruido</th>
+                                <th class="text-center">ml afectados</th>
+                                <th class="text-center">Cant. de Tramos</th>
+                                <th class="text-center">Ubicaci&oacute;n</th>
+                                <th class="text-center">Observaci&oacute;n</th>
+                                <th class="text-center">Acciones</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr class="text-center" *ngFor="let e of TransporteTerrestre">
+                                <td>{{e.tipoVia}}</td>
+                                <td>{{e.mlDestruido}}</td>
+                                <td>{{e.mlAfectado}}</td>
+                                <td>{{e.cantidadTramo}}</td>
+                                <td>{{e.ubicacion}}</td>
+                                <td>{{e.observacion}}</td>
+                                <td>
+                                  <div>
+                                    <a (click)="editServicioInfraestructuraTransporte(e.id)"
+                                      style="color: #08afe0; cursor: pointer; font-size: 16px"
+                                      ngbTooltip="Ver / Editar">
+                                      <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a (click)="deleteServiciosInfraestructuraTransporte(e.id)" class="m-l-10"
+                                      style="color: #f73164; cursor: pointer; font-size: 16px" ngbTooltip="Eliminar">
+                                      <i class="fa fa-trash"></i>
+                                    </a>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <!--Daños en puentes, puertos y otros-->
+                  <div class="col-lg-6 grid-margin stretch-card">
+                    <div class="card b-border-black">
+                      <div class="card-body">
+                        <h4 class="card-title">4.5.2 A la infraestructura de transporte - Daños en puentes, puertos y
+                          otros
+                        </h4>
+                        <p class="card-description d-flex justify-content-center">
+                          <a class="btn btn-secondary btn-sm mr-1">Cargar</a>
+                          <a class="btn btn-primary btn-sm" (click)="agregarInfrestructuraTransMaritimo()">Nuevo</a>
+                        </p>
+                        <div class="table-responsive">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th class="text-center">Tipo de infraestructura</th>
+                                <th class="text-center">destruidos (unidad)</th>
+                                <th class="text-center">afectados (unidad)</th>
+                                <th class="text-center">Inhabitables</th>
+                                <th class="text-center">Ubicaci&oacute;n</th>
+                                <th class="text-center">Observaci&oacute;n</th>
+                                <th class="text-center">Acciones</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr class="text-center" *ngFor="let e of infraestructuraTransMaritimo">
+                                <td>{{e.tipoInfraestructura}}</td>
+                                <td>{{e.cantidadDestruido}}</td>
+                                <td>{{e.cantidadAfectado}}</td>
+                                <td>{{e.cantidadInhabitable}}</td>
+                                <td>{{e.ubicacion}}</td>
+                                <td>{{e.observacion}}</td>
+                                <td>
+                                  <div>
+                                    <a (click)="editServicioInfraestructuraTransMaritimo(e.id)"
+                                      style="color: #08afe0; cursor: pointer; font-size: 16px"
+                                      ngbTooltip="Ver / Editar">
+                                      <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a (click)="deleteServiciosInfraestructuraTransMaritimo(e.id)" class="m-l-10"
+                                      style="color: #f73164; cursor: pointer; font-size: 16px" ngbTooltip="Eliminar">
+                                      <i class="fa fa-trash"></i>
+                                    </a>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--4.6.1 A la infraestructura de riesgo - Daños en canales, defensa y otros-->
+                  <div class="col-lg-6 grid-margin stretch-card">
+                    <div class="card b-border-black">
+                      <div class="card-body">
+                        <h4 class="card-title">4.6.1 A la infraestructura de riesgo - Daños en canales, defensa y otros
+                        </h4>
+                        <p class="card-description d-flex justify-content-center">
+                          <a class="btn btn-secondary btn-sm mr-1">Cargar</a>
+                          <a class="btn btn-primary btn-sm" (click)="agregarInfrestructuraRiesgoDefensa()">Nuevo</a>
+                        </p>
+                        <div class="table-responsive">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th class="text-center">Tipo de infraestructura</th>
+                                <th class="text-center">ml destruidos</th>
+                                <th class="text-center">ml afectados</th>
+                                <th class="text-center">Cant. Tramos</th>
+                                <th class="text-center">Ubicaci&oacute;n</th>
+                                <th class="text-center">Acciones</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr class="text-center" *ngFor="let e of InfraestructuraRiesgo">
+                                <td>{{e.tipoInfraestructura}}</td>
+                                <td>{{e.cantidadDestruido}}</td>
+                                <td>{{e.cantidadAfectado}}</td>
+                                <td>{{e.cantidadTramo}}</td>
+                                <td>{{e.ubicacion}}</td>
+                                <td>
+                                  <div>
+                                    <a (click)="editServicioInfraestructuraRiesgoDefensa(e.id)"
+                                      style="color: #08afe0; cursor: pointer; font-size: 16px"
+                                      ngbTooltip="Ver / Editar">
+                                      <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a (click)="deleteServiciosInfraestructuraRiesgoDefensa(e.id)" class="m-l-10"
+                                      style="color: #f73164; cursor: pointer; font-size: 16px" ngbTooltip="Eliminar">
+                                      <i class="fa fa-trash"></i>
+                                    </a>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <!--4.6.2 A la infraestructura de riesgo - daños a la bocatomas, reservorios y otros-->
+                  <div class="col-lg-6 grid-margin stretch-card">
+                    <div class="card b-border-black">
+                      <div class="card-body">
+                        <h4 class="card-title">4.6.2 A la infraestructura de riesgo - daños a la bocatomas, reservorios
+                          y otros</h4>
+                        <p class="card-description d-flex justify-content-center">
+                          <a class="btn btn-secondary btn-sm mr-1">Cargar</a>
+                          <a class="btn btn-primary btn-sm" (click)="agregarInfrestructuraReserva()">Nuevo</a>
+                        </p>
+                        <div class="table-responsive">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th class="text-center">Tipo de infraestructura</th>
+                                <th class="text-center">destruidos (unidad)</th>
+                                <th class="text-center">afectados (unidad)</th>
+                                <th class="text-center">Ubicaci&oacute;n</th>
+                                <th class="text-center">Acciones</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr class="text-center" *ngFor="let e of infraestructuraLocalReserva">
+                                <td>{{e.tipoInfraestructura}}</td>
+                                <td>{{e.cantidadDestruido}}</td>
+                                <td>{{e.cantidadAfectado}}</td>
+                                <td>{{e.ubicacion}}</td>
+                                <td>
+                                  <div>
+                                    <a (click)="editServicioInfraestructuraReserva(e.id)"
+                                      style="color: #08afe0; cursor: pointer; font-size: 16px"
+                                      ngbTooltip="Ver / Editar">
+                                      <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a (click)="deleteServiciosInfraestructuraReserva(e.id)" class="m-l-10"
+                                      style="color: #f73164; cursor: pointer; font-size: 16px" ngbTooltip="Eliminar">
+                                      <i class="fa fa-trash"></i>
+                                    </a>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--A los locales públicos-->
+                  <div class="col-lg-6 grid-margin stretch-card">
+                    <div class="card b-border-black">
+                      <div class="card-body">
+                        <h4 class="card-title">4.7. A los locales públicos</h4>
+                        <p class="card-description d-flex justify-content-center">
+                          <a class="btn btn-secondary btn-sm mr-1">Cargar</a>
+                          <a class="btn btn-primary btn-sm" (click)="agregarLocalesPublicos()">Nuevo</a>
+                        </p>
+                        <div class="table-responsive">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th class="text-center">Local publico</th>
+                                <th class="text-center">destruidos (unidad)</th>
+                                <th class="text-center">afectados (unidad)</th>
+                                <th class="text-center">Inhabitables</th>
+                                <th class="text-center">Acciones</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr class="text-center" *ngFor="let e of InfraestructuraPublicos">
+                                <td>{{e.tipoLocalPublico}}</td>
+                                <td>{{e.cantidadDestruido}}</td>
+                                <td>{{e.cantidadAfectado}}</td>
+                                <td>{{e.cantidadInhabitable}}</td>
+                                <td>
+                                  <div>
+                                    <a (click)="editLocalesPublicos(e.id)"
+                                      style="color: #08afe0; cursor: pointer; font-size: 16px"
+                                      ngbTooltip="Ver / Editar">
+                                      <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a (click)="deleteLocalesPublicos(e.id)" class="m-l-10"
+                                      style="color: #f73164; cursor: pointer; font-size: 16px" ngbTooltip="Eliminar">
+                                      <i class="fa fa-trash"></i>
+                                    </a>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <!--Infraestructura de servicios básicos-->
+                  <div class="col-lg-6 grid-margin stretch-card">
+                    <div class="card b-border-black">
+                      <div class="card-body">
+                        <h4 class="card-title">4.8. A la infraestructura de servicios b&aacute;sicos</h4>
+                        <p class="card-description d-flex justify-content-center">
+                          <a class="btn btn-secondary btn-sm mr-1">Cargar</a>
+                          <a class="btn btn-primary btn-sm" (click)="agregarInfrestructuraServiciosBasicos()">Nuevo</a>
+                        </p>
+                        <div class="table-responsive">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th class="text-center">Infraestructura de servicio</th>
+                                <th class="text-center">Cuenta con servicio</th>
+                                <th class="text-center">Porcentaje sin servicio</th>
+                                <th class="text-center">Destruido (ml)</th>
+                                <th class="text-center">Afectado (ml)</th>
+                                <th class="text-center">Observaci&oacute;n</th>
+                                <th class="text-center">Acciones</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr class="text-center" *ngFor="let e of infraestructuraServicioPublico">
+                                <td>{{e.tipoInfraestructura}}</td>
+                                <td>{{setServiciosInfraestructuraServiciosBasicos(e.indTieneServicio)}}</td>
+                                <td>{{e.porcentajeSinServicio}}</td>
+                                <td>{{e.cantidadDestruido}}</td>
+                                <td>{{e.cantidadAfectado}}</td>
+                                <td>{{e.observacion}}</td>
+                                <td>
+                                  <div>
+                                    <a (click)="editServicioInfraestructuraServiciosBasicos(e.id)"
+                                      style="color: #08afe0; cursor: pointer; font-size: 16px"
+                                      ngbTooltip="Ver / Editar">
+                                      <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a (click)="deleteServiciosInfraestructuraServiciosBasicos(e.id)" class="m-l-10"
+                                      style="color: #f73164; cursor: pointer; font-size: 16px" ngbTooltip="Eliminar">
+                                      <i class="fa fa-trash"></i>
+                                    </a>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--Infraestructura cultural-->
+                  <div class="col-lg-6 grid-margin stretch-card">
+                    <div class="card b-border-black">
+                      <div class="card-body">
+                        <h4 class="card-title">4.9 A la infraestructura cultural</h4>
+                        <p class="card-description d-flex justify-content-center">
+                          <a class="btn btn-secondary btn-sm mr-1">Cargar</a>
+                          <a class="btn btn-primary btn-sm" (click)="agregarInfraestructuraCultural()">Nuevo</a>
+                        </p>
+                        <div class="table-responsive">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th class="text-center">Local publico</th>
+                                <th class="text-center">destruidos (unidad)</th>
+                                <th class="text-center">afectados (unidad)</th>
+                                <th class="text-center">Inhabitables</th>
+                                <th class="text-center">Ubicaci&oacute;n</th>
+                                <th class="text-center">Observaci&oacute;n</th>
+                                <th class="text-center">Acciones</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group mb-0 text-center">
+                      <button type="button" class="btn btn-primary m-r-10" (click)="tabChange('health')">
+                        Anterior</button>
+                      <button type="button" class="btn btn-primary" (click)="tabChange('analisisnece')">
+                        Siguiente</button>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="tab-pane fade" [ngClass]="['show', 'active']" *ngIf="tabId === 'analisisnece'">
+                <div class="row">
+                  <div class="col-lg-6 grid-margin stretch-card">
+                    <div class="card b-border-black">
+                      <div class="card-body">
+                        <h4 class="card-title">6.1 Acciones prioritarias</h4>
+                        <div class="row">
+                          <div class="col">
+                            <div class="m-t-15" style="width: 600px; height: 130px; overflow: scroll;">
+                              <div  class="form-check checkbox checkbox-primary" *ngFor="let i of accionesPrioritarias">
+                                <input class="form-check-input" id="{{i.id}}" type="checkbox">
+                                <label class="form-check-label" for="{{i.id}}">{{i.descripcion}}</label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-6 grid-margin stretch-card">
+                    <div class="card b-border-black">
+                      <div class="card-body">
+                        <h4 class="card-title">6.2 Necesidades prioritarias de asistencia humanitaria</h4>
+                        <p class="card-description d-flex justify-content-center">
+                          <a class="btn btn-primary btn-sm" (click)="agregarNecesidadesPrioritaarias()">Nuevo</a>
+                        </p>
+                        <div class="table-responsive">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th class="text-center">Necesidad</th>
+                                <th class="text-center">Recurso</th>
+                                <th class="text-center">Cantidad</th>
+                                <th class="text-center">Accion</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let i of necesidades">
+                                <td style="text-align: center">{{i.necesidad}}</td>
+                                <td style="text-align: center">{{i.tipoRecurso}}</td>
+                                <td style="text-align: center">{{i.cantidad}}</td>
+                                <td style="text-align: center">
+                                  <a style="color: #08afe0; cursor: pointer; font-size: 16px" ngbTooltip="Ver / Editar"
+                                    (click)="editarNecesidad(i.id)">
+                                    <i class="fa fa-edit"></i>
+                                  </a>
+                                  <a style="color: #f73164; cursor: pointer; font-size: 16px" ngbTooltip="Eliminar"
+                                    (click)="eliminarNecesidad(i.id)">
+                                    <i class="fa fa-trash"></i>
+                                  </a>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-6 grid-margin stretch-card">
+                    <div class="card b-border-black">
+                      <div class="card-body">
+                        <h4 class="card-title">6.3 Necesidades de recursos materiales y/o Equipos de servicios comunales
+                        </h4>
+                        <p class="card-description d-flex justify-content-center">
+                          <a class="btn btn-primary btn-sm" (click)="agregarNecesidadesRecursos()">Nuevo</a>
+                        </p>
+
+                        <div class="table-responsive">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th class="text-center">Necesidad</th>
+                                <th class="text-center">Recurso</th>
+                                <th class="text-center">Cantidad</th>
+                                <th class="text-center">Accion</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let i of necesidadesRecurso">
+                                <td style="text-align: center">{{i.necesidad}}</td>
+                                <td style="text-align: center">{{i.tipoRecurso}}</td>
+                                <td style="text-align: center">{{i.cantidad}}</td>
+                                <td style="text-align: center">
+                                  <a style="color: #08afe0; cursor: pointer; font-size: 16px" ngbTooltip="Ver / Editar"
+                                    (click)="editarNecesidadesRecursos(i.id)">
+                                    <i class="fa fa-edit"></i>
+                                  </a>
+                                  <a style="color: #f73164; cursor: pointer; font-size: 16px" ngbTooltip="Eliminar"
+                                    (click)="eliminarNecesidad(i.id)">
+                                    <i class="fa fa-trash"></i>
+                                  </a>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-6 grid-margin stretch-card">
+                    <div class="card b-border-black">
+                      <div class="card-body">
+                        <h4 class="card-title">6.4 Necesidad para la atenci&oacute;n de salud</h4>
+                        <p class="card-description d-flex justify-content-center">
+                          <a class="btn btn-primary btn-sm" (click)="agregarNecesidadAtencion()">Nuevo</a>
+                        </p>
+                        <div class="table-responsive">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th class="text-center">Necesidad</th>
+                                <th class="text-center">Recurso</th>
+                                <th class="text-center">Cantidad</th>
+                                <th class="text-center">Accion</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let i of necesidadSalud">
+                                <td style="text-align: center">{{i.necesidad}}</td>
+                                <td style="text-align: center">{{i.tipoRecurso}}</td>
+                                <td style="text-align: center">{{i.cantidad}}</td>
+                                <td style="text-align: center">
+                                  <a style="color: #08afe0; cursor: pointer; font-size: 16px" ngbTooltip="Ver / Editar"
+                                    (click)="editarNecesidadSalud(i.id)">
+                                    <i class="fa fa-edit"></i>
+                                  </a>
+                                  <a style="color: #f73164; cursor: pointer; font-size: 16px" ngbTooltip="Eliminar"
+                                    (click)="eliminarNecesidad(i.id)">
+                                    <i class="fa fa-trash"></i>
+                                  </a>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-6 grid-margin stretch-card">
+                    <div class="card b-border-black">
+                      <div class="card-body">
+                        <h4 class="card-title">6.5 Necesidad agropecuarios</h4>
+                        <p class="card-description d-flex justify-content-center">
+                          <a class="btn btn-primary btn-sm" (click)="agregarNecesidadAgropecuarios()">Nuevo</a>
+                        </p>
+
+                        <div class="table-responsive">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th class="text-center">Necesidad</th>
+                                <th class="text-center">Recurso</th>
+                                <th class="text-center">Cantidad</th>
+                                <th class="text-center">Accion</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let i of necesidadAgropecuarios">
+                                <td style="text-align: center">{{i.necesidad}}</td>
+                                <td style="text-align: center">{{i.tipoRecurso}}</td>
+                                <td style="text-align: center">{{i.cantidad}}</td>
+                                <td style="text-align: center">
+                                  <a style="color: #08afe0; cursor: pointer; font-size: 16px" ngbTooltip="Ver / Editar"
+                                    (click)="editarNecesidadAgropecuario(i.id)">
+                                    <i class="fa fa-edit"></i>
+                                  </a>
+                                  <a style="color: #f73164; cursor: pointer; font-size: 16px" ngbTooltip="Eliminar"
+                                    (click)="eliminarNecesidad(i.id)">
+                                    <i class="fa fa-trash"></i>
+                                  </a>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group mb-0 text-center">
+                      <button type="button" class="btn btn-primary m-r-10" (click)="tabChange('material')">
+                        Anterior</button>
+                      <button type="button" class="btn btn-primary" (click)="tabChange('coordination')">
+                        Siguiente</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" [ngClass]="['show', 'active']" *ngIf="tabId === 'coordination'">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <label for="format">Coordinaciones para el levantamiento de informacion</label>
+                      <textarea (blur)="crearCoordinacion($event)" [(ngModel)]="coordinacion" name="coordinacion"
+                        class="form-control" rows="3"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group mb-0 text-center">
+                      <button type="button" class="btn btn-primary m-r-10" (click)="tabChange('analisisnece')">
+                        Anterior</button>
+                      <button type="button" class="btn btn-primary" (click)="tabChange('concluciones')">
+                        Siguiente</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" [ngClass]="['show', 'active']" *ngIf="tabId === 'concluciones'">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <label for="format">Concluciones y obervaciones</label>
+                      <textarea (blur)="crearObservacion($event)" [(ngModel)]="observacion" name="observacion"
+                        class="form-control" rows="3"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group mb-0 text-center">
+                      <button type="button" class="btn btn-primary m-r-10" (click)="tabChange('coordination')">
+                        Anterior</button>
+                      <button type="button" class="btn btn-primary" (click)="tabChange('recomendacion')">
+                        Siguiente</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" [ngClass]="['show', 'active']" *ngIf="tabId === 'recomendacion'">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <label for="format">Recomendaciones finales</label>
+                      <textarea (blur)="crearRecomendacion($event)" [(ngModel)]="recomendacion" name="recomendacion"
+                        class="form-control" rows="3"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group mb-0 text-center">
+                      <button type="button" class="btn btn-primary m-r-10" (click)="tabChange('concluciones')">
+                        Anterior</button>
+                      <button type="button" class="btn btn-primary" (click)="tabChange('adjuntarArchivo')">
+                        Siguiente</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!--div class="tab-pane fade" [ngClass]="['show', 'active']" *ngIf="tabId === 'resumen'">
+                <div class="row">
+                  
+                </div>
+              </div>
+              <div (click)="openPdf()">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <p>resumnen</p>
+                  </div>
+                </div>
+              </div-->
+
+
+              <div class="tab-pane fade" [ngClass]="['show', 'active']" *ngIf="tabId === 'adjuntarArchivo'">
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="fileEval" class="filezone w-100">
+                        <div class="fz-message needsclick" (dragover)="onDragOver($event)"
+                          (drop)="onDropSuccess($event)">
+                          <i class="icon-cloud-up"></i>
+                          <h6>Suelte los archivos aqu&iacute; o haga clic para cargarlos.</h6>
+                          <input id="fileEval" (change)="onChange($event)" type="file" multiple formControlName="file"
+                            class="form-control mb-2" class="hidden">
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <ul class="list-group">
+                      <li class="list-group-item list-group-item-primary">
+                        <div class="row">
+                          <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">#</div>
+                          <div class="col-lg-4 col-md-4 col-sm-7 col-xs-7">Archivo</div>
+                          <div class="col-lg-4 col-md-4 hidden-sm hidden-xs">Descripcion</div>
+                          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">Opciones</div>
+                        </div>
+                      </li>
+
+                      <li formArrayName="files" *ngFor="let file of files.controls; index as i"
+                        class="list-group-item xlist" data-as-sortable-item>
+                        <div class="row" [formGroupName]="i">
+                          <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+                            <div class="row">
+                              <div class="col-xs-4" data-as-sortable-item-handle style="padding-top:5px;">
+                                <i class="fa fa-grip-o"></i> {{i + 1}}
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-11 col-md-11 col-sm-7 col-xs-7">
+                            <div class="row">
+                              <div class="col-lg-4 col-md-4 col-sm-11 col-xs-10 wraptext">
+                                <span>{{ getNameFile(i)}}</span>
+                              </div>
+                              <div class="col-lg-5 col-md-5 hidden-sm hidden-xs wraptext">
+                                <input type="text" class="form-control" formControlName="descripcion">
+                              </div>
+                              <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2 wraptext">
+                                <a style="color: #f73164; cursor: pointer;" (click)="delete(i)" ngbTooltip="Eliminar">
+                                  <i class="fa fa-trash-o" style="font-size: 25px"></i>
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group mb-0 text-right">
+                      <!--button 
+                        
+                        type="button"
+                        class="btn btn-primary m-r-10 m-t-20"
+                        (click)="back()"> Regresar</button-->
+                      <!-- *ngIf="authService.validarPermisos([PERMISOS.GUARDAR_PRELIMINAR])"-->
+                      <button type="button" class="btn btn-primary m-r-10" (click)="tabChange('recomendacion')">
+                        Anterior</button>
+                      <button type="button" class="btn btn-primary m-r-10 m-t-20" (click)="updateFiles()">
+                        Guardar</button>
+                      <button *ngIf="authService.validarPermisos([PERMISOS.VER_PRELIMINAR])" type="button"
+                        class="btn btn-primary m-r-10 m-t-20" (click)="updateFiles1()"> Terminar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

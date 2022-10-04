@@ -1,0 +1,47 @@
+<app-breadcrumb [title]="'Ver / Editar Permiso'" [items]="['Seguridad','Permisos']" [active_item]="'Ver - Editar'"></app-breadcrumb>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <form class="needs-validation" novalidate [formGroup]="updateFormPermission">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Nombre</label>
+                                    <input type="text" class="form-control" formControlName="nombre" (keyup)="onKey1($event)" rows="3" maxlength="255" onkeyup="this.value=this.value.toUpperCase();">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Descripci&oacute;n</label>
+                                    <input type="text" class="form-control" formControlName="descripcion" (keyup)="onKey($event)" rows="3" maxlength="255" onkeyup="this.value=this.value.toUpperCase();">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Grupo Permiso</label>
+                                    <ng-select [items]="selectGrupoPermiso" bindLabel="nombre" bindValue="id" formControlName="idGrupoPermiso" (change)="getSelectGrupoPermiso($event)" placeholder="Seleccione"></ng-select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="m-t-15 text-center">
+                            <button (click)="updatePermission()" class="btn btn-primary m-r-10" type="button" title="">
+                  <i class="fa fa-check-circle-o mr-1"></i>Grabar
+                </button>
+                            <button *ngIf="!isShowInputUpdate" (click)="cancel()" class="btn btn-primary m-r-10" type="button" title="">
+                  <i class="fa fa-ban mr-1"></i>Cancelar
+                </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

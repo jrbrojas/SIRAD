@@ -1,0 +1,234 @@
+<app-breadcrumb [title]="'Emergencias'" [active_item]="'Emergencias'"></app-breadcrumb>
+
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+
+          <form [formGroup]="showEntries">
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="form-group" style="font-size: 13px">
+                  <div class="mb-2">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Buscar por C&oacute;digo Sinpad, Tipo Peligro y Ubicaci&oacute;n</mat-label>
+                      <input matInput type="text" formControlName="textoBusqueda" [(ngModel)]="value"
+                        onkeyup="this.value=this.value.toUpperCase();">
+                      <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-2">
+                <div class="form-group" style="font-size: 13px">
+                  <div class="mb-2">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Fecha Inicio</mat-label>
+                      <input readonly matInput [matDatepicker]="picker1" formControlName="fechaInicio">
+                      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                      <mat-datepicker #picker1>
+                        <mat-datepicker-actions>
+                          <button mat-button matDatepickerCancel (click)="limpiarFecha()">Cancel</button>
+                          <button mat-raised-button color="primary" matDatepickerApply>Aceptar</button>
+                        </mat-datepicker-actions>
+                      </mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-2">
+                <div class="form-group" style="font-size: 13px">
+                  <div class="mb-2">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Fecha Fin</mat-label>
+                      <input readonly matInput [min]="showEntries.value.fechaInicio" [matDatepicker]="picker2"
+                        formControlName="fechaFin">
+                      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                      <mat-datepicker #picker2>
+                        <mat-datepicker-actions>
+                          <button mat-button matDatepickerCancel (click)="limpiarFecha()">Cancel</button>
+                          <button mat-raised-button color="primary" matDatepickerApply>Aceptar</button>
+                        </mat-datepicker-actions>
+                      </mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-1">
+                <div class="form-group" style="font-size: 13px">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Estado</mat-label>
+                    <mat-select required formControlName="estadoEmergencia"
+                      (selectionChange)="getStatusEmergencies(z)" #z>
+                      <mat-option value="">Seleccione</mat-option>
+                      <mat-option *ngFor="let i of statusForm" value="{{i.id}}" [attr.name]="i.descripcion">
+                        {{i.descripcion}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="col-sm-1" align="center">
+                <div class="form-group">
+                  <div class="mb-2" style="padding-right: 0px;">
+                    <a href="javascript:void(0)" ngbTooltip="Búsqueda Avanzada" class="m-t-30"
+                      (click)="showAdvancedSearch()">
+                      <img style="width: 40px;"
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqCAYAAADFw8lbAAAAAXNSR0IArs4c6QAAAcxJREFUWEft2NtRwkAUBuD/8ELQF6zApALpQEpwKxArQCsQO9AK1AZcOqAEoYKNFYgvEh9knYwJJAy57A2FCW8Mm83Hf9izYQl78qI9caKB2q7UYSR6zEXvG60hIH3bCZXNJ0HTL3Z6kx1Tmmibh68E9HaJTO/VgmSfLBin70uhHg/lXyB/7ynvIhaMdKBvAELH8PP1/NrQ/IUuwPkKHjqUIB8WLLh2kWQ8Z5eLbgR61yp9h4dTCZxlLr6KWPBkGxsjF6BJtsMorfojLi6WIJ6HSavYbUgCZgvm59pi5c7kcTEA6NEFtgjZhuzPWTCv3fDTgS6wKsjYUZmoC6wqUgkaD7aRrA5SGWqK1UVqQXWxJkhtqCrWFGkErYu1gTSGFmEj5q+6icfFCKDbzOPabFufrNrtarensok6XNxL0DAdUwb1IE82m3kV0kqiSaq51Mqg2c/qADOVUBm+fexmeRuoaaZNopkEraz6JtEm0SSBtD15L+ISRPEhwupI6F/1UUg52AQm3+EjYn5Xp8s4WUzFEP0/hjuC0jOwHEUs0D4Scgw1B9re6/sATdYltwe0Ck2eoPrxSYcExiYlLvp9Wym9zipWvaaBqiZWNf4HowZTOuY8Wk0AAAAASUVORK5CYII=" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-1" style="padding-left: 0px;">
+                <div class="form-group" >
+                  <div class="mb-2">
+                    <a *ngIf="authService.validarPermisos([PERMISOS.CREAR_EMERGENCIAS])" class="btn btn-primary m-t-12"
+                      (click)="createEmergency()" ngbTooltip="Registrar nueva emergencia">
+                      Registrar
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col"></div>
+
+            </div>
+
+            <div class="row" *ngIf="isShowSearch">
+
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label>REGI&Oacute;N</label>
+                  <ng-select [items]="selectRegion" bindLabel="descripcion" bindValue="codRegion"
+                    formControlName="codRegion" (change)="getSelectRegion($event)" placeholder="Seleccione">
+                  </ng-select>
+                </div>
+              </div>
+
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label>PROVINCIA</label>
+                  <ng-select [items]="selectProvincia" bindLabel="descripcion" bindValue="codProvincia"
+                    formControlName="codProvincia" (change)="getSelectProvincia($event)" placeholder="Seleccione">
+                  </ng-select>
+                  <!--div class="invalid-feedback"
+                    *ngIf="showEntries.controls['codProvincia'].touched && showEntries.controls['codProvincia'].errors?.['required']">
+                    Seleccione el ubigeo
+                  </div-->
+                </div>
+              </div>
+
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label>DISTRITO</label>
+                  <ng-select [items]="selectDistrito" bindLabel="descripcion" bindValue="codDistrito"
+                    formControlName="codDistrito" (change)="getSelectDistrito($event)" placeholder="Seleccione">
+                  </ng-select>
+                  <!--div class="invalid-feedback"
+                    *ngIf="showEntries.controls['codDistrito'].touched && showEntries.controls['codDistrito'].errors?.['required']">
+                    Seleccione el ubigeo
+                  </div-->
+                </div>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <div id="data-source-1_wrapper" class="dataTables_wrapper">
+                <div class="dataTables_length">
+                  <label>Mostrar
+                    <select name="data-source-1_length" formControlName="cantidadRegistro"
+                      (change)="showEntriesChange($event)">
+                      <option value="10">10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </select> entradas</label>
+                </div>
+
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th class="text-center">C&oacute;digo Sinpad</th>
+                      <th class="text-center">Tipo de Peligro</th>
+                      <th class="text-center">Ubicaci&oacute;n</th>
+                      <th class="text-center">Fecha y Hora Evento</th>
+                      <th class="text-center">Estado</th>
+                      <th class="text-center">Opciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    <tr class="text-center" *ngFor="let i of emergencies">
+                      <td>
+                        {{i.codigoSinpad}}
+                      </td>
+                      <td>
+                        {{i.tipoPeligro}}
+                      </td>
+                      <td>
+                        {{i.descripcionUbigeo}}
+                      </td>
+                      <td>
+                        {{i.fechaHoraEvento}}
+                      </td>
+                      <td>
+                        <p class="badge badge-success fw-bold" *ngIf="i.estadoEmergencia == 1">ABIERTO</p>
+                        <p class="badge badge-danger" *ngIf="i.estadoEmergencia == 2">CERRADO</p>
+                      </td>
+                      <td>
+                        <a *ngIf="i.isEdit" (click)="detailEmergency(i.id)" class="mr-2 ml-2"
+                          style="color: #08afe0; cursor: pointer; font-size: 20px" ngbTooltip="Ver / Editar">
+                          <i class="fa fa-edit"></i>
+                        </a>
+                        <a *ngIf="authService.validarPermisos([PERMISOS.ELIMINAR_EMERGENCIAS])"
+                          (click)="deleteEmergency(i.id,i.codigoSinpad)" class="mr-2 ml-2"
+                          style="color: #f73164; cursor: pointer; font-size: 20px" ngbTooltip="Eliminar">
+                          <i class="fa fa-trash"></i>
+                        </a>
+                        <a (click)="navigateForms(i.id,i.codigoSinpad)" class="mr-2 ml-2"
+                          style="color: #08afe0; cursor: pointer; font-size: 20px" ngbTooltip="Formularios">
+                          <i class="fa fa-file-text-o"></i>
+                        </a>
+                        <a class="mr-2 ml-2" *ngIf="authService.validarPermisos([PERMISOS.ATENCION_EMERGENCIA])"
+                          (click)="atentionEmergency(i.id)" style="color: #08afe0; cursor: pointer; font-size: 20px"
+                          ngbTooltip="Atenciones">
+                          <i class="fa fa-ambulance"></i>
+                        </a>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+                <nav class="m-b-30">
+
+                  <ul class="meal-list">
+                    <li *ngFor="let i of emergencies | paginate:
+                  { id: 'server', itemsPerPage: cantidadItemsForm, currentPage: paginaActalForm,
+                   totalItems: cantidadTotalRegistrosBusqueda }"></li>
+                  </ul>
+
+                  <div class="has-text-centered">
+                    <div class="row" *ngIf="loading">
+                      <div class="col-sm-12">
+                        <ngx-skeleton-loader count="10" appearance="line" animation="progress"></ngx-skeleton-loader>
+                      </div>
+                    </div>
+                    <pagination-controls previousLabel="Anterior" nextLabel="Siguiente" (pageChange)="paginateEmergency($event)" id="server"></pagination-controls>
+                  </div>
+                </nav>
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

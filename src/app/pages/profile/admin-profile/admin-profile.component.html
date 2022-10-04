@@ -1,0 +1,123 @@
+<app-breadcrumb [title]="'Administrar Permisos del Perfil: '" [items]="['Seguridad','Perfiles']" [active_item]="'Administrar Perfiless'">
+</app-breadcrumb>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 col-xl-12">
+            <div class="tab-content">
+
+                <form class="needs-validation" novalidate>
+                    <div class="tab-pane fade" [ngClass]="['show', 'active']" *ngIf="tabId === 'permission-group'">
+
+                        <div class="row">
+                            <div class="col-sm-12 col-xl-6">
+                                <div class="card">
+                                    <div class="card-header b-t-dark" style="padding: 15px; text-align: center">
+                                        <h6>{{getGroupName}}</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="col-sm-12">
+
+                                            <div class="media" *ngFor="let i of profilePer">
+                                                <label class="col-form-label m-r-10">{{i.nombre}}</label>
+                                                <div class="media-body text-right icon-state">
+                                                    <label class="switch">
+                                  <input type="checkbox">
+                                  <span class="switch-state"></span>
+                                </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--div class="col-sm-12 col-xl-6">
+                                <div class="card">
+                                    <div class="card-header b-t-dark" style="padding: 15px; text-align: center">
+                                        <h6>Grupo Permiso 2</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="col-sm-12">
+
+                                            <div class="media" *ngFor="let i of [].constructor(5)">
+                                                <label class="col-form-label m-r-10">Permiso 2</label>
+                                                <div class="media-body text-right icon-state">
+                                                    <label class="switch ">
+                                  <input type="checkbox">
+                                  <span class="switch-state"></span>
+                                </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div-->
+                        </div>
+
+                        <!--div class="row">
+
+                            <div class="col-sm-12 col-xl-6">
+                                <div class="card">
+                                    <div class="card-header b-t-dark" style="padding: 15px; text-align: center">
+                                        <h6>Grupo Permiso 3</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="col-sm-12">
+
+                                            <div class="media" *ngFor="let i of [].constructor(5)">
+                                                <label class="col-form-label m-r-10">Permiso 3</label>
+                                                <div class="media-body text-right icon-state">
+                                                    <label class="switch">
+                                  <input type="checkbox">
+                                  <span class="switch-state"></span>
+                                </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-xl-6">
+                                <div class="card">
+                                    <div class="card-header b-t-dark" style="padding: 15px; text-align: center">
+                                        <h6>Grupo Permiso 4</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="col-sm-12">
+
+                                            <div class="media" *ngFor="let i of [].constructor(5)">
+                                                <label class="col-form-label m-r-10">Permiso 4</label>
+                                                <div class="media-body text-right icon-state">
+                                                    <label class="switch ">
+                                  <input type="checkbox">
+                                  <span class="switch-state"></span>
+                                </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div-->
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group mb-0 text-right">
+                                    <!--<button type="button" class="btn btn-primary mt-2 mr-2" (click)="tabChange('permission-group')">Anterior</button>-->
+                                    <button routerLink="/seguridad/perfiles" type="button" class="btn btn-primary mt-2"><i class="fa fa-save"></i> Guardar</button>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

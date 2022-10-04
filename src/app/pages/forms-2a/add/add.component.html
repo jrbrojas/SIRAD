@@ -1,0 +1,435 @@
+<app-breadcrumb [title]="'FORMULARIO 2A - 2B'" [items]="['Formato 2A']" [active_item]="'Crear Formato'"></app-breadcrumb>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-xl-12">
+      <div class="card">
+        <div class="card-body my-card">
+          <ul class="">
+            <li class="nav-items">
+              <a href="">Codigo sinpad: <strong>{{codeSinpad}}</strong></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+
+        <div class="card-body">
+          <ul class="nav nav-tabs nav-primary">
+            <li class="nav-item" disabled>
+              <a href="javascript:void(0)" [class.active]="tabId === 'general'" class="nav-link disabled" id="general" disabled>
+                <i class="icofont icofont-ui-home"></i>
+                Informaci&oacute;n General
+              </a>
+            </li><!-- 
+            <li class="nav-item">
+              <a href="javascript:void(0)" [class.active]="tabId === 'mapa'" class="nav-link" id="mapa" (click)="tabChange('mapa')">
+                <i class="icofont icofont-man-in-glasses"></i>
+                Mapa
+              </a>
+            </li> -->
+            <li class="nav-item">
+              <a href="javascript:void(0)" [class.active]="tabId === 'damage'" class="nav-link disabled" id="damage" disabled>
+                <i class="icofont icofont-man-in-glasses"></i>
+                Grupo Familiar
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="javascript:void(0)" [class.active]="tabId === 'resumen'" class="nav-link disabled"
+                id="resumen">
+                <i class="icofont icofont-contacts"></i>
+                Resumen
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="javascript:void(0)" [class.active]="tabId === 'files'" class="nav-link disabled" id="files" disabled>
+                <i href="javascript:void(0)" class="icofont icofont-contacts"></i>
+                Adjuntar archivos
+              </a>
+            </li>
+          </ul>
+          <div class="tab-content">
+
+            <form [formGroup]="createForm2A">
+            <div class="tab-pane fade" [ngClass]="['show', 'active']" *ngIf="tabId === 'general'">
+
+                <div class="row">
+
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>N&uacute;mero de formulario</mat-label>
+                        <input matInput formControlName="formNumber">
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Fecha y hora del empadronamiento</mat-label>
+                        <input (change)="updateDate()" matInput formControlName="datetimeRegistration" [ngxMatDatetimePicker]="picker" placeholder="Seleccione una fecha" >
+                        <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+                        <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+
+
+
+                </div>
+
+                <div class="row">
+
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <mat-form-field appearance="fill">
+                        <mat-label>Fecha y Hora de Evento</mat-label>
+                        <input matInput readonly formControlName="datetimeEvent" [disabled]="true">
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <mat-form-field appearance="fill">
+                        <mat-label>Tipo de Peligro</mat-label>
+                        <input matInput formControlName="typeDanger" [readonly]="boolOp">
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <mat-form-field appearance="fill">
+                        <mat-label>Grupo de Peligro</mat-label>
+                        <input matInput readonly formControlName="groupDanger" [disabled]="true">
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <mat-form-field appearance="fill">
+                        <mat-label>Tipo de Peligro Secundario</mat-label>
+                        <input matInput readonly formControlName="peligroSecundario" [disabled]="true">
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <mat-form-field appearance="fill">
+                        <mat-label>Ubicaci&oacute;n</mat-label>
+                        <input matInput formControlName="ubigeoDesc" readonly="readonly" [disabled]="true">
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <mat-form-field appearance="fill">
+                        <mat-label>Centro Poblado</mat-label>
+                        <input matInput readonly formControlName="namePopulatedCenter" [disabled]="true">
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <mat-form-field appearance="fill">
+                        <mat-label>Barrio / Sector / Urbanizaci&oacute;n / Ninguno</mat-label>
+                        <input matInput readonly formControlName="sectorPlaceName" [disabled]="true">
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <mat-form-field appearance="fill">
+                        <mat-label>nombre {{ createForm2A.get('sectorPlaceName')?.value?.toLowerCase() }}</mat-label>
+                        <input matInput readonly formControlName="sectorPlaceDesc" [disabled]="true">
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <mat-form-field appearance="fill">
+                        <mat-label>Caserio / Anexo / Ninguno</mat-label>
+                        <input matInput  formControlName="specificPlaceName" [disabled]=true>
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <mat-form-field appearance="fill">
+                        <mat-label>nombre {{ createForm2A.get('specificPlaceName')?.value?.toLowerCase() }}</mat-label>
+                        <input matInput readonly formControlName="specificPlaceDesc" [disabled]="true">
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Calle / Manzana / Ninguno</mat-label>
+                        <!-- <mat-select
+                          formControlName="idStreet"
+                          (selectionChange)="changeStreet(c)" #c>
+                          <mat-option value="1">CALLE</mat-option>
+                          <mat-option value="2">MANZANA</mat-option>
+                          <mat-option value="3">NINGUNO</mat-option>
+                        </mat-select> -->
+                        <mat-select required formControlName="idStreet" (selectionChange)="changeStreet(c)" #c>
+                          <mat-option value="">Seleccione</mat-option>
+                          <mat-option *ngFor="let i of streetData" value={{i.id}} [attr.name]="i.descripcion">{{
+                            i.descripcion }}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Ingrese el nombre {{ createForm2A.get('streetName')?.value?.toLowerCase() }}</mat-label>
+                        <input matInput formControlName="streetDesc">
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Edificio/Piso/Departamento</mat-label>
+                        <input matInput formControlName="floorName">
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col" align="center">
+                    <div class="form-group mb-0">
+                      <button
+                        type="button"
+                        class="btn btn-danger m-r-10"
+                        (click)="back()"> Cancelar</button>
+                      <!-- <button
+                        type="button"
+                        class="btn btn-primary"
+                        *ngIf="!isHidden"
+                        [disabled]="!createForm2A.valid"
+                        (click)="tabChange('mapa')">
+                        <span>Siguiente</span>
+                      </button> -->
+                      <button type="button" class="btn btn-primary" (click)="tabChangeAndCreate('damage')"> Siguiente</button>
+                    </div>
+                  </div>
+                </div>
+
+            </div>
+
+            <div class="tab-pane fade" [ngClass]="['show', 'active']" *ngIf="tabId === 'mapa'">
+              <div class="row">
+                <div class="col">
+                  <app-map-sinpad [idMapa]="idMapa" [typeAction]="typeAction" [wrapGeometria]="wrapGeometria"></app-map-sinpad>
+                </div>
+              </div>
+              <br />
+              <div class="row">
+                <div class="col" align="center">
+                  <div class="form-group mb-0">
+                    <button
+                      type="button"
+                      class="btn btn-primary m-r-10"
+                      (click)="tabChange('general')"> Regresar</button>
+                    <button type="button" class="btn btn-primary" (click)="tabChangeAndCreate('damage')"> Siguiente</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" [ngClass]="['show', 'active']" *ngIf="tabId === 'damage'">
+
+              <div class="row">
+                <div class="col">
+                  <div class="form-group m-b-20 text-right">
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      (click)="addFamily()">Nuevo</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12 col-xl-12">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                          <tr>
+                              <th class="text-center">Familia</th>
+                              <th class="text-center">Lote</th>
+                              <th class="text-center">Jefe de Familia</th>
+                              <th class="text-center">Medio Vida</th>
+                              <th class="text-center">Opciones</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="text-center" *ngFor="let fg of familyGroup; let i = index">
+                          <td>
+                            0{{i+1}}
+                          </td>
+                          <td>
+                            {{fg.lote}}
+                          </td>
+                          <td>
+                            {{fg.nombresApellidos}}
+                          </td>
+                          <td>
+                            {{fg.existeMedioVida}} ({{fg.cantidadMedioDeVida}})
+                          </td>
+                          <td>
+                            <div>
+                              <a style="color: #08afe0; cursor: pointer; font-size: 20px" ngbTooltip="Editar"
+                              (click)="showToUpdate(fg.id)">
+                                <i class="fa fa-edit"></i>
+                              </a>
+                              <a class="mr-2 ml-2" style="color: #f73164; cursor: pointer; font-size: 20px"
+                                ngbTooltip="Eliminar"
+                              (click)="deleteFamily(fg.id)">
+                                <i class="fa fa-trash"></i>
+                              </a>
+                              <a style="color: #08afe0; cursor: pointer; font-size: 20px"
+                                ngbTooltip="Agregar Afectación" (click)="addAffectation(fg.id)">
+                                <i class="fa fa-file-text-o"></i>
+                              </a>
+
+                            </div>
+                          </td>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col" align="center">
+                  <div class="form-group">
+                    <button
+                        type="button"
+                        class="btn btn-primary m-r-10 m-t-20"
+                        (click)="tabChange('general')"> Regresar</button>
+                    <button type="button" class="btn btn-primary m-t-20" (click)="tabChange('resumen')"> Siguiente</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- adjuntar archivos -->
+            <div class="tab-pane fade" [ngClass]="['show', 'active']" *ngIf="tabId === 'files'">
+
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="fileEval" class="filezone w-100">
+                      <div class="fz-message needsclick"
+                      (dragover)="onDragOver($event)" (drop)="onDropSuccess($event)">
+                      <i class="icon-cloud-up"></i>
+                      <h6>Suelte los archivos aqu&iacute; o haga clic para cargarlos.</h6>
+                      <input id="fileEval"
+                      (change)="onChange($event)"
+                       type="file" multiple formControlName="file" class="form-control mb-2" class="hidden">
+                      </div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <ul class="list-group">
+                    <li class="list-group-item list-group-item-primary">
+                      <div class="row">
+                        <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">#</div>
+                        <div class="col-lg-4 col-md-4 col-sm-7 col-xs-7">Archivo</div>
+                        <div class="col-lg-4 col-md-4 hidden-sm hidden-xs">Descripcion</div>
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">Opciones</div>
+                      </div>
+                    </li>
+
+                    <li formArrayName="files" *ngFor="let file of files.controls; index as i" class="list-group-item xlist" data-as-sortable-item>
+                      <div class="row" [formGroupName]="i">
+                        <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+                          <div class="row">
+                            <div class="col-xs-4" data-as-sortable-item-handle style="padding-top:5px;">
+                              <i class="fa fa-grip-o"></i> {{i + 1}}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-11 col-md-11 col-sm-7 col-xs-7">
+                          <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-11 col-xs-10 wraptext">
+                             <span>{{ getNameFile(i)}}</span>
+                            </div>
+                            <div class="col-lg-5 col-md-5 hidden-sm hidden-xs wraptext">
+                              <input type="text" class="form-control" formControlName="descripcion">
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2 wraptext">
+                              <a
+                                style="color: #f73164; cursor: pointer;" (click)="delete(i)"  ngbTooltip="Eliminar">
+                                <i class="fa fa-trash-o" style="font-size: 25px"></i>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <div class="form-group mb-0 text-center">
+                      <button
+                        type="button"
+                        class="btn btn-primary m-r-10 m-t-20"
+                        (click)="tabChange('damage')"> Regresar</button>
+
+                    <button
+                      type="button"
+                      class="btn btn-primary m-r-10 m-t-20"
+                      (click)="updateFiles()"> Guardar</button>
+                  </div>
+                  <!-- <button
+                  type="button"
+                  class="btn btn-danger m-r-10 m-t-20"
+                  (click)="form2A()"> Imprimir 2A</button>
+                  <button
+                      type="button"
+                      class="btn btn-danger m-r-10 m-t-20"
+                      (click)="pdfForm2b()"> Imprimir 2b</button> -->
+                </div>
+              </div>
+            </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

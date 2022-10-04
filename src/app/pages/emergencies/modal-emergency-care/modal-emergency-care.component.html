@@ -1,0 +1,102 @@
+<div class="modal-header text-center">
+    <h5  class="modal-title text-center">Atenci&oacute;n de Emergencia <span *ngIf="codigoSinpad !== undefined">- CODIGO SINPAD : {{codigoSinpad}}</span> </h5>
+    <button class="close" type="button" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="needs-validation" novalidate [formGroup]="createEmergencyAtention">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <div class="search">
+              <label for="">Ubigeo</label>
+              <ng-select
+              [items]="selectUbigeo"
+              style="padding : 0px !important; height: 45px !important; height: max-content;"
+              class="form-control form-control-input"
+              bindLabel="ubigeo"
+              bindValue="ubigeo"
+              formControlName="ubigeoAlmacen"
+              (change)="getSelectUbigeo($event)"
+              placeholder="Seleccione Ubigeo Almacen"></ng-select>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-sm-12">
+          <div class="form-group" >
+            <label for="">Almac&eacute;n</label>
+            <ng-select
+            id="nombre_almacen"
+            [readonly]="boolOp"
+            [items]="almacenesUbigeo"
+            bindLabel="nombre_almacen"
+            bindValue="nombre_almacen"
+            formControlName="almacen"
+            (change)="selectAlmacen($event)"
+            [(ngModel)]="nombre_almacen"
+            
+            placeholder="Seleccione"></ng-select>
+           <!--  <select class="form-control form-control-input">
+              <option value="" selected disabled>-- Seleccione --</option>
+              <option (change)="selectAlmacen(item.nombre)" formControlName="almacen" *ngFor="let item of almacenesUbigeo" value="{{item.nombre}}">{{item.nombre}}</option>
+            </select> -->
+          </div>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label for="">Fecha Registro</label>
+            <input onkeydown="return false" type="date" class="form-control form-control-input" formControlName="fechaHoraAtencion" min="{{dateValidator}}">
+          </div>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label for="yearAndMonth">Descripci&oacute;n</label>
+            <textarea formControlName="descripcion" class="form-control" placeholder="Ingrese una descripci&oacute;n para la atenci&oacute;n"></textarea>
+          </div>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label *ngIf="!archivo" for="yearAndMonth">Adjuntar Archivo</label>
+            <label *ngIf="archivo" for="yearAndMonth" class="text-danger" >Archivo Actual: {{archivo}}</label>
+            <input formControlName="archivo" class="form-control form-control-input" type="file" (change)="fileChangeEvent($event)">
+          </div>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="text-center">
+            <button
+            *ngIf="id === undefined"
+            type="button"
+            class="btn btn-primary mr-3 m-t-20"
+            (click)="guardarAtencionEmergencia()">
+              <span>Guardar</span>
+            </button>
+            <button
+              *ngIf="id !== undefined && authService.validarPermisos([PERMISOS.EDITAR_ATENCION_EMERGENCIA])"
+              type="button"
+              class="btn btn-primary mr-3 m-t-20"
+              (click)="actualizarAtencionEmergencia(id)">
+              <span>Actualizar</span>
+            </button>
+            <button type="button" class="btn btn-danger m-t-20" (click)="closeModal()">
+                <span>Cancelar</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  

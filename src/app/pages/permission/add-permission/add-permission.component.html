@@ -1,0 +1,74 @@
+<app-breadcrumb [title]="'Crear Nuevo Permiso'" [items]="['Seguridad','Permisos']" [active_item]="'Crear'"></app-breadcrumb>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <form class="needs-validation" novalidate [formGroup]="createPermission">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Nombre</label>
+                                    <input type="text" class="form-control" rows="3" maxlength="255" formControlName="nombre" (keyup)="onKey1($event)" [class.is-invalid]="createPermission.controls['nombre'].touched && createPermission.controls['nombre'].errors?.['required']" onkeyup="this.value=this.value.toUpperCase();">
+                                    <div class="">
+                                        {{counter1}} / 255
+                                    </div>
+                                    <div class="invalid-feedback" *ngIf="createPermission.controls['nombre'].touched && createPermission.controls['nombre'].errors?.['required']">
+                                        Siglas es requerido
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Descripci&oacute;n</label>
+                                    <input type="text" class="form-control" rows="3" maxlength="255" (keyup)="onKey($event)" formControlName="descripcion" [class.is-invalid]="createPermission.controls['descripcion'].touched && createPermission.controls['descripcion'].errors?.['required']"
+                                        onkeyup="this.value=this.value.toUpperCase();">
+                                    <div class="">
+                                        {{counter}} / 255
+                                    </div>
+                                    <div class="invalid-feedback" *ngIf="createPermission.controls['descripcion'].touched && createPermission.controls['descripcion'].errors?.['required']">
+                                        Siglas es requerido
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Grupo Permiso</label>
+                                    <ng-select 
+                                        [items]="selectGrupoPermiso" 
+                                        bindLabel="nombre" 
+                                        bindValue="id" 
+                                        formControlName="idGrupoPermiso" 
+                                        (change)="getSelectGrupoPermiso($event)" 
+                                        placeholder="Seleccione">
+                                    </ng-select>
+                                    <div class="invalid-feedback" *ngIf="createPermission.controls['idGrupoPermiso'].touched && createPermission.controls['idGrupoPermiso'].errors?.['required']">
+                                        Seleccione el ubigeo
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row text-center">
+                            <div class="col">
+                                <div class="form-group mb-0">
+                                    <div class="form-group mb-0">
+                                        <button type="button" class="btn btn-primary mr-3" [class.loader--text]="permissionService.showLoader" [disabled]="!createPermission.valid || permissionService.showLoader" (click)="createPermisos()">
+                        <span><i class="fa fa-save"></i>{{ permissionService.showLoader ? '' : 'Guardar' }}</span>
+                      </button>
+                                        <button type="button" class="btn btn-danger" (click)="cancelProject()"><i class="fa fa-ban"></i> Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

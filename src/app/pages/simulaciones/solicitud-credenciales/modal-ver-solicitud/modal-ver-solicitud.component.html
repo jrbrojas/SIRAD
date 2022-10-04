@@ -1,0 +1,143 @@
+<div class="modal-header text-center">
+  <h5 class="modal-title text-center">Detalle de la Solicitud</h5>
+  <button class="close" type="button" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="row">
+      <div class="col-sm-2">
+        <div class="form-group">
+          <label for="">ID: </label>
+          <input type="text" class="form-control" value="{{solicitud.id}}" readonly>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <div class="form-group">
+          <label for="">Fecha Solicitud</label>
+          <input type="text" class="form-control" value="{{solicitud.fechaSolicitud}}" readonly>
+        </div>
+      </div>
+
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="form-group">
+        <label for="">Evento</label>
+        <input type="text" class="form-control" value="{{solicitud.evento}}" readonly>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-group">
+        <label for="">Perfiles</label>
+        <input type="text" class="form-control" value="{{solicitud.perfiles}}" readonly>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-group">
+        <label for="">Estado</label>
+        <input type="text" class="form-control" value="{{solicitud.estado}}" readonly>
+      </div>
+    </div>
+  </div>
+  <h6>Datos Personales</h6>
+  <hr>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="form-group">
+        <label for="">Titulo</label>
+        <input type="text" class="form-control" value="{{solicitud.titulo}}" readonly>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-group">
+        <label for="">Genero</label>
+        <input type="text" class="form-control" value="{{solicitud.genero}}" readonly>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-group">
+        <label for="">Tipo documento</label>
+        <input type="text" class="form-control" value="{{solicitud.tipoDocumento}}" readonly>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-group">
+        <label for="">Tipo documento</label>
+        <input type="text" class="form-control" value="{{solicitud.numeroDocumento}}" readonly>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-group">
+        <label for="">Nombres y apellidos</label>
+        <input type="text" class="form-control" value="{{solicitud.nombresApellidos}}" readonly>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-group">
+        <label for="">Pais de residencia</label>
+        <input type="text" class="form-control" value="{{solicitud.paisResidencia}}" readonly>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-group">
+        <label for="">Provincia de residencia</label>
+        <input type="text" class="form-control" value="{{solicitud.provinciaResidencia}}" readonly>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-group">
+        <label for="">Distrito de residencia</label>
+        <input type="text" class="form-control" value="{{solicitud.distritoResidencia}}" readonly>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-group">
+        <label for="">Dirección de residencia</label>
+        <input type="text" class="form-control" value="{{solicitud.direccionResidencia}}" readonly>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-group">
+        <label for="">Código postal</label>
+        <input type="text" class="form-control" value="{{solicitud.codigoPostal}}" readonly>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-group">
+        <label for="">Celular</label>
+        <input type="text" class="form-control" value="{{solicitud.celular}}" readonly>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-group">
+        <label for="">Telefono</label>
+        <input type="text" class="form-control" value="{{solicitud.telefono}}" readonly>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-group">
+        <label for="">Fax</label>
+        <input type="text" class="form-control" value="{{solicitud.fax}}" readonly>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-group">
+        <label for="">Organización / Institucion</label>
+        <input type="text" class="form-control" value="{{solicitud.OrganizacionInstitucion}}" readonly>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-group">
+        <label for="">Cargo</label>
+        <input type="text" class="form-control" value="{{solicitud.cargo}}" readonly>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-group">
+        <label for="">Email</label>
+        <input type="text" class="form-control" value="{{solicitud.email}}" readonly>
+      </div>
+    </div>
+  </div>
+</div>

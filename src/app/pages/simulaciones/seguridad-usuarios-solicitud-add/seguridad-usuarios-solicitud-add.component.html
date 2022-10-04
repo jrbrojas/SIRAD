@@ -1,0 +1,212 @@
+<app-breadcrumb [title]="'Solicitud de Credencial'" [active_item]="'Solicitud de Credencial'"></app-breadcrumb>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <form class="needs-validation">
+                        <h6>Datos Personales</h6>
+                        <hr>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <div class="form-group">
+                                  <label>TITULO</label>
+                                  <ng-select placeholder="Seleccione">
+                                      <ng-option value="1">SR.</ng-option>
+                                      <ng-option value="2">DR.</ng-option>
+                                      <ng-option value="3">SRTA.</ng-option>
+                                  </ng-select>
+                              </div>
+                          </div>
+                          <div class="col-sm-3">
+                            <div class="form-group">
+                                  <label>GENERO</label>
+                                  <ng-select placeholder="Seleccione">
+                                      <ng-option value="1">MASCULINO</ng-option>
+                                      <ng-option value="2">FEMENINO</ng-option>
+                                  </ng-select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>TIPO DOCUMENTO</label>
+                                    <ng-select placeholder="Seleccione">
+                                        <ng-option value="1">DNI</ng-option>
+                                        <ng-option value="2">PASAPORTE</ng-option>
+                                        <ng-option value="3">CARNET DE EXTRANJERIA</ng-option>
+                                        <ng-option value="4">OTRO DOCUMENTO</ng-option>
+                                    </ng-select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>N&Uacute;MERO DE DOCUMENTO</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label>NOMBRES</label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label>APELLIDOS</label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <div class="form-group">
+                                  <label>PAÍS DE RESIDENCIA</label>
+                                  <ng-select placeholder="Seleccione">
+                                      <ng-option value="1">PERÚ</ng-option>
+                                      <ng-option value="2">BOLIVIA</ng-option>
+                                      <ng-option value="3">EE.UU</ng-option>
+                                  </ng-select>
+                              </div>
+                          </div>
+                          <div class="col-sm-3">
+                            <div class="form-group">
+                                  <label>PROVINCIA DE RESIDENCIA</label>
+                                  <ng-select placeholder="Seleccione">
+                                      <ng-option value="1">LIMA</ng-option>
+                                      <ng-option value="2">LIMA 2</ng-option>
+                                  </ng-select>
+                            </div>
+                          </div>
+                          <div class="col-sm-3">
+                            <div class="form-group">
+                                  <label>DISTRITO DE RESIDENCIA</label>
+                                  <ng-select placeholder="Seleccione">
+                                      <ng-option value="1">LIMA</ng-option>
+                                      <ng-option value="2">LIMA 2</ng-option>
+                                  </ng-select>
+                            </div>
+                          </div>
+                          <div class="col-sm-3">
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label>DIRECCIÓN DE RESIDENCIA</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <div class="form-group">
+                                  <div class="form-group">
+                                      <label>CÓDIGO POSTAL DE RESIDENCIA</label>
+                                      <input type="text" class="form-control">
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-sm-3">
+                            <div class="form-group">
+                                  <div class="form-group">
+                                      <label>CELULAR</label>
+                                      <input type="text" class="form-control">
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-sm-3">
+                            <div class="form-group">
+                                  <div class="form-group">
+                                      <label>TELEFONO</label>
+                                      <input type="text" class="form-control">
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-sm-3">
+                            <div class="form-group">
+                                  <div class="form-group">
+                                      <label>FAX</label>
+                                      <input type="text" class="form-control">
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <div class="form-group">
+                                  <label>ORGANIZACIÓN / INSTITUCIÓN</label>
+                                  <ng-select placeholder="Seleccione">
+                                      <ng-option value="1">INDECI</ng-option>
+                                      <ng-option value="2">MINDEF</ng-option>
+                                      <ng-option value="3">ANA</ng-option>
+                                      <ng-option value="4">IGP</ng-option>
+                                  </ng-select>
+                              </div>
+                          </div>
+                          <div class="col-sm-3">
+                            <div class="form-group">
+                                  <div class="form-group">
+                                      <label>CARGO</label>
+                                      <input type="text" class="form-control">
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-sm-3">
+                            <div class="form-group ">
+                              <div class="form-group">
+                                  <label>EMAIL</label>
+                                  <input type="text" class="form-control"
+                                      placeholder="Ex. pat@example.com">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <h6>Evento y Perfil</h6>
+                        <hr>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <div class="form-group">
+                                  <label>EVENTO A PARTICIPAR</label>
+                                  <ng-select placeholder="Seleccione">
+                                      <ng-option value="1">EVENTO SIMULACION 01</ng-option>
+                                      <ng-option value="2">EVENTO SIMULACION 02</ng-option>
+                                      <ng-option value="3">EVENTO SIMULACION 03</ng-option>
+                                  </ng-select>
+                              </div>
+                          </div>
+                          <div class="col-sm-6">
+                              <div class="form-group">
+                                  <label>PERFILES</label>
+                                  <ng-select placeholder="Seleccione">
+                                      <ng-option value="1">EXCON</ng-option>
+                                      <ng-option value="2">EXCON ADMINISTRATIVO</ng-option>
+                                      <ng-option value="3">EVALUADOR</ng-option>
+                                      <ng-option value="4">OBSERVADOR</ng-option>
+                                      <ng-option value="5">PARTICIPANTE</ng-option>
+                                  </ng-select>
+                              </div>
+                          </div>
+                        </div>
+                        <div class="row text-center">
+                          <div class="col">
+                              <div class="form-group mb-0">
+                                  <button type="button" class="btn btn-primary mr-3" (click)="guardar()" >
+                                      <span>Guardar</span>
+                                  </button>
+                                  <button type="button" class="btn btn-danger"
+                                      (click)="cancelProject()">Cancelar</button>
+                              </div>
+                          </div>
+                      </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

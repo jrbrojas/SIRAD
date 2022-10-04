@@ -1,0 +1,69 @@
+<div class="modal-header text-center">
+    <h5 class="modal-title text-center">A los servicios / infraestructura de salud de la localidad</h5>
+    <button class="close" type="button" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">×</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form class="needs-validation" novalidate [formGroup]="data">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="format">Establecimiento</label>
+                    <input type="text" class="form-control"formControlName="establecimiento">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Funcionamiento</label>
+                    <ng-select
+                    [items]="maestrasFuncionamiento"
+                    bindLabel="descripcion"
+                    bindValue="id"
+                    formControlName="idFuncionamiento"
+                    (change)="getSelectFuncionamiento($event)"
+                    placeholder="Seleccione"></ng-select>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Condicion</label>
+                    <ng-select
+                    [items]="maestrasCondicion"
+                    bindLabel="descripcion"
+                    bindValue="id"
+                    formControlName="idCondicion"
+                    (change)="getSelectCondicion($event)"
+                    placeholder="Seleccione"></ng-select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="format">¿Porque? (Indicar daños a la infraestructura, equip. otros)</label>
+                    <textarea class="form-control"formControlName="justificacionDanio"></textarea>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="format">Observacion</label>
+                    <textarea class="form-control" formControlName="observacion"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="button" class="btn btn-primary m-r-20" (click)="addData()">
+                <span>Agregar</span>
+            </button>
+
+            <button type="button" class="btn btn-outline-danger" (click)="closeModal()">
+                <span>Cancelar</span>
+            </button>
+        </div>
+    </form>
+</div>

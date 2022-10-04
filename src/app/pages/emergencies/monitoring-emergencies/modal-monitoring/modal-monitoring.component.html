@@ -1,0 +1,74 @@
+<div class="modal-header text-center">
+    <h5 class="modal-title text-center">NOTAS</h5>
+    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">×</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form class="needs-validation" novalidate [formGroup]="dataObservacion">
+        <div class="text-center p-t-20">
+            <button
+                *ngIf="(typeForm1 == 1 && authService.validarPermisos([PERMISOS.REVISAR_EVALUACION_RAPIDA]) && tipoFormulario == 'EVALUACION-RAPIDA') 
+                            || (typeForm2 != 0 && authService.validarPermisos([PERMISOS.REVISAR_EVALUACION_RAPIDA]) && tipoFormulario == 'EVALUACION-RAPIDA')"
+                class="btn m-r-10 {{noobservar}}" (click)="revisar()" >Revisar</button>
+            <button
+                *ngIf="(typeForm1 == 1 && authService.validarPermisos([PERMISOS.REVISAR_EMP_FAMILIAR]) && tipoFormulario == 'EMPADRONAMIENTO') 
+                            || (typeForm2 != 0 && authService.validarPermisos([PERMISOS.REVISAR_EMP_FAMILIAR]) && tipoFormulario == 'EMPADRONAMIENTO')"
+                class="btn m-r-10 {{noobservar}}" (click)="revisar()">Revisar</button>
+            <button
+                *ngIf="(typeForm1 == 1 && authService.validarPermisos([PERMISOS.REVISAR_PRELIMINAR]) && tipoFormulario == 'PRELIMINAR') 
+                            || (typeForm2 != 0 && authService.validarPermisos([PERMISOS.REVISAR_PRELIMINAR]) && tipoFormulario == 'PRELIMINAR' )"
+                class="btn m-r-10 {{noobservar}}" (click)="revisar()">Revisar</button>
+            <button
+                *ngIf="(typeForm1 == 0 && authService.validarPermisos([PERMISOS.REVISAR_ATENCION_EMERGENCIA]) && tipoFormulario == 'ATENCIÓN') 
+                            || (typeForm2 != 0 && authService.validarPermisos([PERMISOS.REVISAR_ATENCION_EMERGENCIA]) && tipoFormulario == 'ATENCIÓN')"
+                class="btn m-r-10 {{noobservar}}" (click)="revisar()">Revisar</button>
+                <button class="btn m-r-10 {{noobservar}}" (click)="revisar()">Revisar</button>
+            <button *ngIf="(revisarAll)" class="btn m-r-10 {{noobservar}}" (click)="revisar()">Revisar</button>
+            <!-- revisar todo -->
+
+            <button *ngIf="(typeForm1 == 2 && authService.validarPermisos([PERMISOS.APROBAR_EVALUACION_RAPIDA])) 
+                            || (typeForm2 != 0 && authService.validarPermisos([PERMISOS.APROBAR_EVALUACION_RAPIDA]))"
+                class="btn m-r-10 {{noobservar}}" (click)="aprobar()">Aprobar</button>
+            <button *ngIf="(typeForm1 == 2 && authService.validarPermisos([PERMISOS.APROBAR_EMP_FAMILIAR])) 
+                            || (typeForm2 != 0 && authService.validarPermisos([PERMISOS.APROBAR_EMP_FAMILIAR]))"
+                class="btn m-r-10 {{noobservar}}" (click)="aprobar()">Aprobar</button>
+            <button *ngIf="(typeForm1 == 2 && authService.validarPermisos([PERMISOS.APROBAR_PRELIMINAR])) 
+                            || (typeForm2 != 0 && authService.validarPermisos([PERMISOS.APROBAR_PRELIMINAR]))"
+                class="btn m-r-10 {{noobservar}}" (click)="aprobar()">Aprobar</button>
+
+            <button *ngIf="typeForm2 == 0 && authService.validarPermisos([PERMISOS.OBSERVAR_EVALUACION_RAPIDA])"
+                class="btn bt m-r-10  {{siobservar}}" (click)="observar()">Observar</button>
+            <button *ngIf="typeForm2 == 0 && authService.validarPermisos([PERMISOS.OBSERVAR_EMP_FAMILIAR])"
+                class="btn btn m-r-10  {{siobservar}}" (click)="observar()">Observar</button>
+            <button *ngIf="typeForm2 == 0 && authService.validarPermisos([PERMISOS.OBSERVAR_PRELIMINAR])"
+                class="btn btn m-r-10  {{siobservar}}" (click)="observar()">Observar</button>
+
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label>Ingresar nota adicional</label>
+                    <textarea class="form-control" formControlName="nota" (keyup)="onKey($event)" rows="3"
+                        maxlength="1000" required="true"
+                        [class.is-invalid]="dataObservacion.controls['nota'].touched && dataObservacion.controls['nota'].errors?.['required']">
+                </textarea>
+                    <div class="">
+                        {{counter}} / 1000
+                    </div>
+                    <div class="invalid-feedback"
+                        *ngIf="dataObservacion.controls['nota'].touched && dataObservacion.controls['nota'].errors?.['required']">
+                        La observacion es requerida
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center p-t-20">
+            <button class="btn btn-primary m-r-10" *ngIf="revisarModal || observarModal || aprobarModal"
+                (click)="revisarForm()">Guardar</button>
+            <button class="btn btn-primary m-r-10" *ngIf="status == 2" (click)="revisarForm()">Guardar</button>
+            <button class="btn btn-danger" (click)="closeModal()">Cancelar</button>
+
+        </div>
+    </form>
+</div>

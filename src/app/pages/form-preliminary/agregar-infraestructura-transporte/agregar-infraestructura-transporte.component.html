@@ -1,0 +1,69 @@
+<div class="modal-header text-center">
+    <h5 class="modal-title text-center">A la infraestructura de transporte (Daños en carreteras, v&iacute;as f&eacute;rreas y otros)</h5>
+    <button class="close" type="button" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">×</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="data">
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Insfraestructura de servicio</label>
+                    <ng-select
+                    [items]="maestrasTipoTransporteTerrestre"
+                    bindLabel="descripcion"
+                    bindValue="id"
+                    formControlName="idTipoVia"
+                    (change)="getSelectTipoVia($event)"
+                    placeholder="Seleccione"></ng-select>
+                  </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>ml Destruido</label>
+                    <input type="text" class="form-control" formControlName="mlDestruido">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>ml afectados</label>
+                    <input type="text" class="form-control" formControlName="mlAfectado">
+                </div>
+            </div>            
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Cant. de Tramos</label>
+                    <input type="text" class="form-control" formControlName="cantidadTramo">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Ubicaci&oacute;n</label>
+                    <input type="text" class="form-control" formControlName="ubicacion">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Observaci&oacute;n</label>
+                    <textarea class="form-control" formControlName="observacion"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="button" [disabled]="!data.valid" class="btn btn-primary m-r-20" (click)="addData()">
+                <span>Agregar</span>
+            </button>
+
+            <button type="button" class="btn btn-outline-danger" (click)="closeModal()">
+                <span>Cancelar</span>
+            </button>
+        </div>
+    </form>
+
+</div>

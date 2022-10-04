@@ -1,0 +1,119 @@
+<app-breadcrumb [title]="'Solicitudes de Credenciales'" [active_item]="'Solicitudes de Credenciales'"></app-breadcrumb>
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <form [formGroup]="filtros">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group" style="font-size: 13px">
+                                <div class="mb-2">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Buscar por número solicitud, nombres y apellidos, institución
+                                        </mat-label>
+                                        <input matInput type="text" formControlName="textoBusqueda"
+                                            [(ngModel)]="value" onkeyup="this.value=this.value.toUpperCase();">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                          <div class="col-sm-2">
+                            <div class="form-group" style="font-size: 13px">
+                              <div class="mb-2">
+                                <mat-form-field appearance="outline">
+                                  <mat-label>Fecha Inicio</mat-label>
+                                  <input readonly matInput [matDatepicker]="picker1" formControlName="fechaInicio">
+                                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                  <mat-datepicker #picker1>
+                                    <mat-datepicker-actions>
+                                      <button mat-button matDatepickerCancel (click)="limpiarFecha()">Cancel</button>
+                                      <button mat-raised-button color="primary" matDatepickerApply>Aceptar</button>
+                                    </mat-datepicker-actions>
+                                  </mat-datepicker>
+                                </mat-form-field>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-sm-2">
+                            <div class="form-group" style="font-size: 13px">
+                              <div class="mb-2">
+                                <mat-form-field appearance="outline">
+                                  <mat-label>Fecha Fin</mat-label>
+                                  <input readonly matInput [matDatepicker]="picker2"
+                                    formControlName="fechaFin">
+                                  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                  <mat-datepicker #picker2>
+                                    <mat-datepicker-actions>
+                                      <button mat-button matDatepickerCancel (click)="limpiarFecha()">Cancel</button>
+                                      <button mat-raised-button color="primary" matDatepickerApply>Aceptar</button>
+                                    </mat-datepicker-actions>
+                                  </mat-datepicker>
+                                </mat-form-field>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <div id="data-source-1_wrapper" class="dataTables_wrapper">
+                                <div class="dataTables_length">
+                                    <label>Mostrar
+                                        <select name="data-source-1_length">
+                                            <option value="10">10</option>
+                                            <option value="25">25</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select> entradas</label>
+                                </div>
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Nro Solicitud</th>
+                                            <th class="text-center">Nombres y Apellidos</th>
+                                            <th class="text-center">Institución</th>
+                                            <th class="text-center">Fecha Solicitud</th>
+                                            <th class="text-center">Estado</th>
+                                            <th class="text-center">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of solicitudesFiltradas" class="text-center">
+                                            <td>{{ item.id }}</td>
+                                            <td>{{ item.nombresApellidos}}</td>
+                                            <td>{{ item.institucion}}</td>
+                                            <td>{{ item.fechaSolicitud}}</td>
+                                            <td>
+                                                <p [ngClass]="setClassEstado(item.estado)">{{ item.estado }}</p>
+                                            </td>
+                                            <td>
+                                                <a class="mr-2 ml-2" (click)="verSolicitud(item.id)"
+                                                  style="color: #000000; cursor: pointer; font-size: 24px"
+                                                  ngbTooltip="ver Solicitud">
+                                                  <i class="fa fa-eye"></i>
+                                                </a>
+                                                <a class="mr-2 ml-2" (click)="aprobarUsuario(item.id)"
+                                                    style="color: #08afe0; cursor: pointer; font-size: 24px"
+                                                    ngbTooltip="Aprobar">
+                                                    <i class="fa fa-check-circle"></i>
+                                                </a>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="modal-body">
+    <form class="needs-validation" novalidate [formGroup]="updateSolicitud">
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label>Ingresar Observaciones</label>
+                    <textarea (keyup)="onKey($event)" class="form-control" formControlName="observacion" rows="3"
+                        maxlength="1000" required="true">
+                </textarea>
+                <div class="">
+                    {{counter}} / 1000
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center p-t-20">
+            <button class="btn btn-primary m-r-10" (click)="updateSolicitudUsuario()">Observar</button>
+            <button class="btn btn-danger" (click)="closeModal()">Cancelar</button>
+        </div>
+    </form>
+</div>
