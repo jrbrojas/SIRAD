@@ -88,6 +88,7 @@ export class NavService implements OnDestroy {
     },*/
     {
       title: 'REGISTRO', icon: 'home', tooltip: 'Simulaciones', type: 'sub', badgeType: 'success', active: true, children: [
+        { path: '/sirad/registro/recursos', title: 'Recursos', type: 'link' },
         /* { path: '/simulaciones', title: 'Simulaciones', type: 'link', },
         { path: '/simulaciones/solicitud-credenciales', title: 'Aprobar Solicitudes Credenciales', type: 'link', },
         { path: '/simulaciones/seguimiento-reportes', title: 'Seguimiento', type: 'link', },
@@ -102,7 +103,6 @@ export class NavService implements OnDestroy {
     {
       title: 'SEGURIDAD', tooltip: 'Seguridad', icon: 'folder-plus', type: 'sub', active: false, children: [
         { path: '/sirad/seguridad/usuarios', title: 'Usuarios', type: 'link' },
-        { path: '/simulaciones/seguridad/usuarios', title: 'Usuarios', type: 'link' },
       ]
     },
     /* {
