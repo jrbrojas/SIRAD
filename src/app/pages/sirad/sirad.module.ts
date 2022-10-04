@@ -33,13 +33,15 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatTreeModule} from '@angular/material/tree';
 import { UsuariosListComponent } from './seguridad/seguridad/usuarios-list/usuarios-list.component';
 import { UsuariosDetailsComponent } from './seguridad/seguridad/usuarios-details/usuarios-details.component';
+import { CategoriesComponent } from './registro/categories/categories.component';
 
 
 @NgModule({
   declarations: [
   
     UsuariosListComponent,
-       UsuariosDetailsComponent
+       UsuariosDetailsComponent,
+       CategoriesComponent
   ],
   imports: [
     CommonModule,

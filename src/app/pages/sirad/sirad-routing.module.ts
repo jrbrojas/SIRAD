@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/shared/guard/auth.guard';
 import { PERMISOS } from 'src/app/shared/models/permisos';
+import { CategoriesComponent } from './registro/categories/categories.component';
 import { RegistroComponent } from './registro/registro/registro.component';
 import { UsuariosDetailsComponent } from './seguridad/seguridad/usuarios-details/usuarios-details.component';
 import { UsuariosListComponent } from './seguridad/seguridad/usuarios-list/usuarios-list.component';
@@ -15,6 +16,11 @@ const routes: Routes = [
       {
         path: 'registro',
         component: RegistroComponent,
+      },
+      {
+        path: 'registro/categorias',
+        component : CategoriesComponent
+
       },
       {
         path: 'seguridad/usuarios',

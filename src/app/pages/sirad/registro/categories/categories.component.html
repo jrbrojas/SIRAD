@@ -1,0 +1,106 @@
+<app-breadcrumb [title]="'Categorias y Subcategorias'" [active_item]="'Categorias'"></app-breadcrumb>
+
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+
+          <form>
+            <div class="row px-4">
+              <div class="col-sm-6">
+                <div class="form-group" style="font-size: 13px">
+                  <div class="mb-2">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Buscar</mat-label>
+                      <input matInput type="text" formControlName="textoBusqueda" 
+                        onkeyup="this.value=this.value.toUpperCase();">
+                      <button  matSuffix mat-icon-button aria-label="Clear">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-2">
+                <div class="form-group" style="font-size: 13px">
+                  <div class="mb-2">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Fecha Inicio</mat-label>
+                      <input readonly matInput [matDatepicker]="picker1" formControlName="fechaInicio">
+                      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                      <mat-datepicker #picker1>
+                        <mat-datepicker-actions>
+                          <button mat-button matDatepickerCancel>Cancel</button>
+                          <button mat-raised-button color="primary" matDatepickerApply>Aceptar</button>
+                        </mat-datepicker-actions>
+                      </mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-2">
+                <div class="form-group" style="font-size: 13px">
+                  <div class="mb-2">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Fecha Fin</mat-label>
+                      <input readonly matInput [matDatepicker]="picker2"
+                        formControlName="fechaFin">
+                      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                      <mat-datepicker #picker2>
+                        <mat-datepicker-actions>
+                          <button mat-button matDatepickerCancel>Cancel</button>
+                          <button mat-raised-button color="primary" matDatepickerApply>Aceptar</button>
+                        </mat-datepicker-actions>
+                      </mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-2" style="padding-left: 0px;">
+                <div class="form-group" >
+                  <div class="mb-2">
+                    <a  class="btn btn-primary m-t-12" ngbTooltip="Registrar nueva emergencia">
+                      Registrar
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col"></div>
+
+            </div>
+            <div>
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th class="text-center">C&oacute;digo Sinpad</th>
+                        <th class="text-center">Tipo de Peligro</th>
+                        <th class="text-center">Ubicaci&oacute;n</th>
+                        <th class="text-center">Fecha y Hora Evento</th>
+                        <th class="text-center">Estado</th>
+                        <th class="text-center">Opciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+  
+                      <tr class="text-center" >
+                
+                      </tr>
+  
+                    </tbody>
+                  </table>
+            </div>
+
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

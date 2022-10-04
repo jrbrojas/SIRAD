@@ -88,6 +88,7 @@ export class NavService implements OnDestroy {
     },*/
     {
       title: 'REGISTRO', icon: 'home', tooltip: 'Simulaciones', type: 'sub', badgeType: 'success', active: true, children: [
+        { path: '/sirad/registro/categorias', title : 'Categorias', type : 'link'}
         /* { path: '/simulaciones', title: 'Simulaciones', type: 'link', },
         { path: '/simulaciones/solicitud-credenciales', title: 'Aprobar Solicitudes Credenciales', type: 'link', },
         { path: '/simulaciones/seguimiento-reportes', title: 'Seguimiento', type: 'link', },
