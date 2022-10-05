@@ -1,0 +1,26 @@
+<app-breadcrumb [title]="'Carga'" [items]="['Masiva', 'Advance']" [active_item]="'Dropzone'"></app-breadcrumb>
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+  <div class="row dropzone-custom">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h5>Carga masiva de archivos</h5>
+        </div>
+        <div class="card-body">
+          <div class="dropzone dropzone-primary" [dropzone]="config1" (init)="onUploadInit($event)"
+            (error)="onUploadError($event)" (success)="onUploadSuccess($event)">
+            <div class="dz-message needsclick">
+              <i class="icon-cloud-up"></i>
+              <h6>Suelte los archivos aquí o haga click para cargarlos.</h6>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-center pt-2">
+            <button class="btn btn-primary">Subir Archivo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

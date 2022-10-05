@@ -9,6 +9,7 @@ import { RecursosComponent } from './registro/registro/recursos/recursos.compone
 import { RegistroComponent } from './registro/registro/registro.component';
 import { UsuariosDetailsComponent } from './seguridad/seguridad/usuarios-details/usuarios-details.component';
 import { UsuariosListComponent } from './seguridad/seguridad/usuarios-list/usuarios-list.component';
+import { CargaMasivaComponent } from './carga-masiva/carga-masiva.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,10 @@ const routes: Routes = [
       {
         path: 'registro/recursos',
         component: RecursosComponent,
+      },
+      {
+        path: 'registro/carga-masiva',
+        component: CargaMasivaComponent,
       },
       {
         path: 'registro/recursos-add',
