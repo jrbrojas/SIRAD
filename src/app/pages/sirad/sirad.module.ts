@@ -33,6 +33,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatTreeModule} from '@angular/material/tree';
 import { UsuariosListComponent } from './seguridad/seguridad/usuarios-list/usuarios-list.component';
 import { UsuariosDetailsComponent } from './seguridad/seguridad/usuarios-details/usuarios-details.component';
+import { RecursosComponent } from './registro/registro/recursos/recursos.component';
+import { RecursosAddComponent } from './registro/registro/recursos-add/recursos-add.component';
 import { CategoriesComponent } from './registro/categories/categories.component';
 
 
@@ -41,7 +43,9 @@ import { CategoriesComponent } from './registro/categories/categories.component'
   
     UsuariosListComponent,
        UsuariosDetailsComponent,
-       CategoriesComponent
+       CategoriesComponent,
+       RecursosComponent,
+       RecursosAddComponent
   ],
   imports: [
     CommonModule,

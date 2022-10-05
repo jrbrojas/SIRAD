@@ -64,8 +64,8 @@
               <div class="col-2" style="padding-left: 0px;">
                 <div class="form-group" >
                   <div class="mb-2">
-                    <a  class="btn btn-primary m-t-12" ngbTooltip="Registrar nueva emergencia">
-                      Registrar
+                    <a  class="btn btn-primary m-t-12">
+                      Registrar Categoria
                     </a>
                   </div>
                 </div>
@@ -74,24 +74,59 @@
 
             </div>
             <div>
-                <table class="table">
+                <table class="tid-table">
                     <thead>
-                      <tr>
-                        <th class="text-center">C&oacute;digo Sinpad</th>
-                        <th class="text-center">Tipo de Peligro</th>
-                        <th class="text-center">Ubicaci&oacute;n</th>
-                        <th class="text-center">Fecha y Hora Evento</th>
-                        <th class="text-center">Estado</th>
-                        <th class="text-center">Opciones</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-  
-                      <tr class="text-center" >
-                
-                      </tr>
-  
-                    </tbody>
+                        <tr>
+                          <th class="text-center">Nro.</th>
+                          <th class="text-center">Codigo Categoria</th>
+                          <th class="text-center">Nombre de categoria</th>
+                          <th class="text-center">Fecha actualizacion</th>
+                          <th class="text-center">Opciones</th>
+                        </tr>
+                      </thead>
+                    <ng-container *ngFor="let i of dataCategories; let index=index; let even=even">
+                      <tr class="tid-data-row"
+                        [ngClass]="{'tid-even': even}">
+                      <td class="text-center">
+                        {{index + 1}}
+                      </td>
+                      <td class="text-center">
+                        {{i.codCategory}}
+                      </td>
+                      <td class="text-center">
+                        {{i.nameCategory}}
+                      </td>
+                      <td class="text-center">
+                        {{i.updateDate}}
+                      </td>
+                      <td class="d-flex justify-content-center">
+                        <div class="pr-2">
+                            <button mat-mini-fab ngbTooltip="Ver/Editar"><mat-icon>visibility</mat-icon></button>
+                        </div>
+                        <div class="pr-2">
+                            <button mat-mini-fab ngbTooltip="Agregar SubCategoria" ><mat-icon>add</mat-icon></button>
+                        </div>
+                        <div class="pr-2">
+                            <button mat-mini-fab ngbTooltip="Eliminar Categoria" ><mat-icon>delete</mat-icon></button>
+                        </div>
+                        <div class="pr-2">
+                            <button  mat-mini-fab ngbTooltip="Ver Informacion" (click)="i.showDetail = !i.showDetail"><mat-icon>keyboard_arrow_down</mat-icon></button>
+                        </div>
+                          
+                      </td>
+                    </tr>
+                    <tr class="tid-detail-row"
+                        [ngClass]="{'show': i.showDetail}">
+                      <td>{{index}}</td>
+                      <td colspan="2">
+                        
+                        <div *ngFor="let j of dataSubCategories">
+                          <div *ngIf="i.codCategory === j.codCategory">{{j.codCategory}}</div>
+                            <td>{{j.codSubCategory}}</td>
+                          </div>
+                      </td>
+                    </tr>
+                    </ng-container>
                   </table>
             </div>
 
