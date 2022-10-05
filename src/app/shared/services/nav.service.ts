@@ -105,6 +105,8 @@ export class NavService implements OnDestroy {
     {
       title: 'SEGURIDAD', tooltip: 'Seguridad', icon: 'folder-plus', type: 'sub', active: false, children: [
         { path: '/sirad/seguridad/usuarios', title: 'Usuarios', type: 'link' },
+        { path: '/sirad/seguridad/perfiles', title: 'Perfil', type: 'link' },
+        { path: '/sirad/seguridad/permisos', title: 'Permisos', type: 'link' },
       ]
     },
     /* {

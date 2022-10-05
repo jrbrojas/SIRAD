@@ -39,6 +39,10 @@ import { RecursosComponent } from './registro/registro/recursos/recursos.compone
 import { RecursosAddComponent } from './registro/registro/recursos-add/recursos-add.component';
 import { CategoriesComponent } from './registro/categories/categories.component';
 import { CargaMasivaComponent } from './carga-masiva/carga-masiva.component';
+import { PerfilListComponent } from './seguridad/seguridad/perfil-list/perfil-list.component';
+import { PerfilAddComponent } from './seguridad/seguridad/perfil-add/perfil-add.component';
+import { PermisosAddComponent } from './seguridad/seguridad/permisos-add/permisos-add.component';
+import { PermisosListComponent } from './seguridad/seguridad/permisos-list/permisos-list.component';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -55,7 +59,11 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
        CategoriesComponent,
        RecursosComponent,
        RecursosAddComponent,
-       CargaMasivaComponent
+       CargaMasivaComponent,
+       PerfilListComponent,
+       PerfilAddComponent,
+       PermisosAddComponent,
+       PermisosListComponent
   ],
   imports: [
     CommonModule,

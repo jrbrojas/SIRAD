@@ -1,0 +1,52 @@
+<app-breadcrumb [title]="'Crear Nuevo Permiso'" [items]="['Seguridad','Permisos']" [active_item]="'Crear'">
+</app-breadcrumb>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <form class="needs-validation">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Nombre</label>
+                                    <input type="text" class="form-control" rows="3" maxlength="255"
+                                        onkeyup="this.value=this.value.toUpperCase();">
+                                    <div class="">
+                                        MAX 255 CARACTERES
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Descripci&oacute;n</label>
+                                    <input type="text" class="form-control" rows="3" maxlength="255"
+                                        onkeyup="this.value=this.value.toUpperCase();">
+                                    <div class="">
+                                        MAX 255 CARACTERES
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row text-center">
+                            <div class="col">
+                                <div class="form-group mb-0">
+                                    <div class="form-group mb-0">
+                                        <button type="button" class="btn btn-primary mr-3">
+                                            <span><i class="fa fa-save"></i> Guardar</span>
+                                        </button>
+                                        <button type="button" class="btn btn-danger"><i
+                                                class="fa fa-ban"></i> Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

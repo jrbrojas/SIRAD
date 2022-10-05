@@ -11,6 +11,10 @@ import { RegistroComponent } from './registro/registro/registro.component';
 import { UsuariosDetailsComponent } from './seguridad/seguridad/usuarios-details/usuarios-details.component';
 import { UsuariosListComponent } from './seguridad/seguridad/usuarios-list/usuarios-list.component';
 import { CargaMasivaComponent } from './carga-masiva/carga-masiva.component';
+import { PerfilListComponent } from './seguridad/seguridad/perfil-list/perfil-list.component';
+import { PerfilAddComponent } from './seguridad/seguridad/perfil-add/perfil-add.component';
+import { PermisosListComponent } from './seguridad/seguridad/permisos-list/permisos-list.component';
+import { PermisosAddComponent } from './seguridad/seguridad/permisos-add/permisos-add.component';
 
 const routes: Routes = [
   {
@@ -34,6 +38,23 @@ const routes: Routes = [
         path: 'seguridad/usuarios-add',
         component: UsuariosDetailsComponent,
       },
+      {
+        path: 'seguridad/perfiles',
+        component: PerfilListComponent,
+      },
+      {
+        path: 'seguridad/perfiles-add',
+        component: PerfilAddComponent,
+      },
+      {
+        path: 'seguridad/permisos',
+        component: PermisosListComponent,
+      },
+      {
+        path: 'seguridad/permisos-add',
+        component: PermisosAddComponent,
+      },
+      
       {
         path: 'registro/recursos',
         component: RecursosComponent,

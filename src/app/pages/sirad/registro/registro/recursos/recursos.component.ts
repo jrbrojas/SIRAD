@@ -14,7 +14,7 @@ export class RecursosComponent implements OnInit {
   constructor(
     private _router: Router
   ) {
-    for (let a = 0; a < 10; a++) {
+    for (let a = 0; a < 5; a++) {
       this.dataFichasEvaluacion.push(
         {
           numId: (a + 1),
