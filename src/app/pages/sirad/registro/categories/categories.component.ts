@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AlertService } from 'src/app/shared/services/alert.service';
+import { TYPE_ALERT } from 'src/app/shared/services/config';
+import { AddCategoriesModalComponent } from '../add-categories-modal/add-categories-modal.component';
+import { AddSubcategoriesModalComponent } from '../add-subcategories-modal/add-subcategories-modal.component';
+import { EditCategoriesModalComponent } from '../edit-categories-modal/edit-categories-modal.component';
+import { EditSubcategoriesModalComponent } from '../edit-subcategories-modal/edit-subcategories-modal.component';
 
 export interface DataCategories {
   codCategory : string;
@@ -40,7 +47,10 @@ export class CategoriesComponent implements OnInit {
   ]
 
 
-  constructor() { }
+  constructor(
+    private modalService : NgbModal,
+    private alert : AlertService
+  ) { }
 
   ngOnInit(): void {
 
@@ -87,8 +97,76 @@ export class CategoriesComponent implements OnInit {
       typeGeo : 'Punto',
       systemCoord: 'EPSG: 32718 - WGS 84 UTM zona 18 sur'
 
+    },
+    {
+      codCategory : 'C0001',
+      codSubCategory : 'SB0002',
+      nameSubCategory : 'Pozos',
+      keyWords : ['Agua Potable', 'Pozos'],
+      keyWordsGeo : 'Lima/Callao',
+      summary : `Ubicación y descripción de los pozos administrados por SEDAPAL con elementos técnicos y operacionales relativos a pozos y bombas`,
+      infoExtended : `Proyecto “Elaboración de un Sistema de Información Geográfico y Análisis de Recursos Esenciales para la Respuesta y Recuperación Temprana ante la Ocurrencia de un sismo y/o Tsunami en el Área Metropolitana de Lima y Callao” (Proyecto SIRAD Convocatoria PNUD/SDP-052/2009 / 22 de abril - 15 febrero 2011).
+      Practicas de Jérémy Guilbaud, estudiante ingeniero de la Escuela Nacional de Ciencias Geográficas de Francia.
+      .
+      `,
+      infoDate : '2010',
+      updateDateFinal : '2010-10-08',
+      dataSource : 'Sedapal',
+      generalManager : `Roberto D'Ercole (IRD)`,
+      responsibleInfoLayer : 'Pascale Mertzger(IRD)',
+      contactDataSource: ['Pierre Vernier', 'Pauline Gluski', 'Jeremy Guilbaud'],
+      typeGeo : 'Punto',
+      systemCoord: 'EPSG: 32718 - WGS 84 UTM zona 18 sur'
     })
 
+  }
+
+  addCategory(){
+    const modalRef = this.modalService.open(AddCategoriesModalComponent, {
+      size : 'lg',
+      ariaLabelledBy : 'modal',
+      centered : false,
+      windowClass : 'modal',
+      backdrop : 'static'
+    })
+  }
+
+  viewCategory(){
+    const modalRef = this.modalService.open(EditCategoriesModalComponent, {
+      size : 'lg',
+      ariaLabelledBy : 'modal',
+      centered : false,
+      windowClass : 'modal',
+      backdrop : 'static'
+    })
+  }
+
+  addSubCategory(){
+    const modalRef = this.modalService.open(AddSubcategoriesModalComponent, {
+      size : 'lg',
+      ariaLabelledBy : 'modal',
+      centered : false,
+      windowClass : 'modal',
+      backdrop : 'static'
+    })
+  }
+
+  viewSubCategory(){
+    const modalRef = this.modalService.open(EditSubcategoriesModalComponent, {
+      size : 'lg',
+      ariaLabelledBy : 'modal',
+      centered : false,
+      windowClass : 'modal',
+      backdrop : 'static'
+    })
+  }
+
+  deleteCategory(){
+    this.alert.questionAlertConfirm(`Esta seguro de Eliminar esta Categoria?`, `No se volvera a visualizar esta categoria`, 'Si, Eliminar', TYPE_ALERT.QUESTION)
+  }
+
+  deleteSubCategory(){
+    this.alert.questionAlertConfirm(`Esta seguro de Eliminar esta Sub-Categoria?`, `No se volvera a visualizar esta subcategoria`, 'Si, Eliminar', TYPE_ALERT.QUESTION)
   }
 
 }

@@ -34,6 +34,8 @@ import { GeneralReportesComponent } from './pages/reportes/general-reportes/gene
 import { RegistroComponent } from './pages/sirad/registro/registro/registro.component';
 import { VisualizacionComponent } from './pages/sirad/visualizacion/visualizacion/visualizacion.component';
 import { SeguridadComponent } from './pages/sirad/seguridad/seguridad/seguridad.component';
+import { AddCategoriesModalComponent } from './pages/registro/add-categories-modal/add-categories-modal.component';
+import { AddSubcategoriesModalComponent } from './pages/sirad/registro/add-subcategories-modal/add-subcategories-modal.component';
 // @ts-ignore
 // @ts-ignore
 @NgModule({
@@ -47,7 +49,8 @@ import { SeguridadComponent } from './pages/sirad/seguridad/seguridad/seguridad.
     MonitoringEmergenciesComponent,
     RegistroComponent,
     VisualizacionComponent,
-    SeguridadComponent
+    SeguridadComponent,
+    AddCategoriesModalComponent
 
   ],
   imports: [

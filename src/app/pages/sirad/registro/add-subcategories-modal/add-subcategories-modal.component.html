@@ -1,0 +1,235 @@
+<div class="modal-header text-center">
+    <h5 class="modal-title text-center">Registrar Sub-Categoria</h5>
+    <button class="close" type="button" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="needs-validations" novalidate>
+      
+        <mat-tab-group mat-align-tabs="center">
+            <div class="row">
+                <mat-tab label="Datos Basicos">
+                    <mat-form-field class="col-lg-12" appearance="outline">
+                        <mat-label>Nombre subcategoria</mat-label>
+                        <input matInput maxlength="400" rows="3" #inputtxtNombreCategory
+                            placeholder="Nombre categoria" required>
+                    </mat-form-field>
+                    <mat-form-field class="example-chip-list" appearance="fill">
+                        <mat-label>Palabras clave tematicas</mat-label>
+                        <mat-chip-list #chipList aria-label="Fruit selection">
+                          <mat-chip *ngFor="let fruit of keyWords" (removed)="remove(fruit)">
+                            {{fruit.name}}
+                            <button matChipRemove>
+                              <mat-icon>cancel</mat-icon>
+                            </button>
+                          </mat-chip>
+                          <input placeholder="Nueva palabra clave tematica..."
+                                 [matChipInputFor]="chipList"
+                                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                 [matChipInputAddOnBlur]="addOnBlur"
+                                 (matChipInputTokenEnd)="add($event)">
+                        </mat-chip-list>
+                    </mat-form-field>
+                    <mat-form-field class="col-lg-12" appearance="outline">
+                        <mat-label>Palabras clave geograficas</mat-label>
+                        <input matInput maxlength="400" rows="3" #inputtxtNombreCategory
+                            placeholder="Nombre categoria" required>
+                    </mat-form-field>
+                    <mat-form-field class="col-lg-12" appearance="outline">
+                        <mat-label>Resumen</mat-label>
+                        <textarea matInput maxlength="400" rows="3" #inputtxtNombreCategory
+                            placeholder="Descripcion" required></textarea>
+                    </mat-form-field>
+                    <mat-form-field class="col-lg-12" appearance="outline">
+                        <mat-label>Marco en el cual se ha credo la informacion</mat-label>
+                        <textarea matInput maxlength="400" rows="3" #inputtxtNombreCategory
+                            placeholder="Descripcion" required></textarea>
+                    </mat-form-field>
+                    <mat-form-field class="col-lg-12" appearance="outline">
+                        <mat-label>Numero de objetos</mat-label>
+                        <input matInput maxlength="400" type="number" rows="3" #inputtxtNombreCategory
+                            placeholder="Numero de objetos" required>
+                    </mat-form-field>
+                    <mat-form-field class="col-lg-12" appearance="outline">
+                        <mat-label>Fecha de la informacion</mat-label>
+                        <input matInput type="text" rows="3" #inputtxtNombreCategory
+                            placeholder="Fecha de la informacion" required>
+                    </mat-form-field>
+                    <mat-form-field class="col-lg-12" appearance="outline">
+                        <mat-label>Ultimate fecha de actualizacion de la capa de informacion</mat-label>
+                        <input matInput type="date" rows="3" #inputtxtNombreCategory
+                            placeholder="Fecha de la informacion" required>
+                    </mat-form-field>
+                    <mat-form-field class="col-lg-12" appearance="outline">
+                        <mat-label>Fuente</mat-label>
+                        <input matInput type="text" rows="3" #inputtxtNombreCategory
+                            placeholder="Fuente" required>
+                    </mat-form-field>
+                    <mat-form-field class="col-lg-12" appearance="outline">
+                        <mat-label>Responsable general</mat-label>
+                        <input matInput type="text" rows="3" #inputtxtNombreCategory
+                            placeholder="Responsable General" required>
+                    </mat-form-field>
+                    <mat-form-field class="example-chip-list" appearance="fill">
+                        <mat-label>Responsable(s) de la capa de información</mat-label>
+                        <mat-chip-list #chipList aria-label="Fruit selection">
+                          <mat-chip *ngFor="let fruit of keyWords" (removed)="remove(fruit)">
+                            {{fruit.name}}
+                            <button matChipRemove>
+                              <mat-icon>cancel</mat-icon>
+                            </button>
+                          </mat-chip>
+                          <input placeholder="Nuevo(s) Responsable(s) de la capa de información..."
+                                 [matChipInputFor]="chipList"
+                                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                 [matChipInputAddOnBlur]="addOnBlur"
+                                 (matChipInputTokenEnd)="add($event)">
+                        </mat-chip-list>
+                    </mat-form-field>
+                    <mat-form-field class="example-chip-list" appearance="fill">
+                        <mat-label>Responsable(s) de la capa de información</mat-label>
+                        <mat-chip-list #chipList aria-label="Fruit selection">
+                          <mat-chip *ngFor="let fruit of keyWords" (removed)="remove(fruit)">
+                            {{fruit.name}}
+                            <button matChipRemove>
+                              <mat-icon>cancel</mat-icon>
+                            </button>
+                          </mat-chip>
+                          <input placeholder="Nuevo(s) Responsable(s) de la integracion de los datos a la base..."
+                                 [matChipInputFor]="chipList"
+                                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                 [matChipInputAddOnBlur]="addOnBlur"
+                                 (matChipInputTokenEnd)="add($event)">
+                        </mat-chip-list>
+                    </mat-form-field>
+                    <mat-form-field class="example-chip-list" appearance="fill">
+                        <mat-label>Contacto de la fuente</mat-label>
+                        <mat-chip-list #chipList aria-label="Fruit selection">
+                          <mat-chip *ngFor="let fruit of keyWords" (removed)="remove(fruit)">
+                            {{fruit.name}}
+                            <button matChipRemove>
+                              <mat-icon>cancel</mat-icon>
+                            </button>
+                          </mat-chip>
+                          <input placeholder="Contactos de la fuente..."
+                                 [matChipInputFor]="chipList"
+                                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                 [matChipInputAddOnBlur]="addOnBlur"
+                                 (matChipInputTokenEnd)="add($event)">
+                        </mat-chip-list>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Restricciones de uso</mat-label>
+                        
+                            <select matNativeControl required>
+                                <option disabled value=""></option>
+                                <option value="volvo">Si</option>
+                                <option value="saab">No</option>
+                            </select>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Tipo de geometria</mat-label>
+                        <select matNativeControl required>
+                            <option disabled value=""></option>
+                            <option value="volvo">Punto</option>
+                            <option value="saab">Linea</option>
+                            <option value="mercedes">Poligono</option>
+                        </select>
+                    </mat-form-field>
+                    <mat-form-field class="col-lg-12" appearance="outline">
+                        <mat-label>Sistema de coordenadas</mat-label>
+                        <input matInput type="text" rows="3" #inputtxtNombreCategory
+                            placeholder="Sistema de coordenadas" required>
+                    </mat-form-field>
+                </mat-tab>
+                <mat-tab label="Estructura">
+                                    <form>
+                                        <div>
+                                            <button mat-stroked-button align="end" (click)="ngAgregarSegmento()" color="primary"><mat-icon>add</mat-icon> Agregar Estructura</button>
+                                        </div>
+                                        <br>
+                                        <div *ngFor="let itemSegmento of formFichaEvaluacion.fichaEvaluacionSegmentos, let i = index;">
+                                            <mat-card>
+                                                <mat-form-field class="col-lg-12" appearance="outline">
+                                                    <mat-label>Titulo de estructura</mat-label>
+                                                    <input matInput maxlength="400" rows="3" #inputtxtPregunta
+                                                        [ngModelOptions]="{standalone: true}" [(ngModel)]="itemSegmento.txtTituloSegmento" placeholder="Ttulo" required>
+                                                        <button mat-icon-button matSuffix color="warn" (click)="ngEliminarItem(formFichaEvaluacion.fichaEvaluacionSegmentos, i)"><mat-icon matSuffix>delete</mat-icon></button>
+                                                    <mat-hint align="end">{{inputtxtPregunta.value.length || 0}}/400
+                                                    </mat-hint>
+                                                </mat-form-field>
+                                                <div class="col-lg-12">
+                                                    <button mat-stroked-button align="end" (click)="ngAgregarDetalleSegmento(itemSegmento)" color="primary"><mat-icon>add</mat-icon>Agregar atributo</button>
+                                                </div>
+                                                <br>
+                                                <div class="col-lg-12" *ngFor="let item of itemSegmento.fichaEvaluacionDetalleSegmentos, let i = index;">
+                                                    <mat-card>
+                                                        <mat-card-content>
+                                                            <mat-form-field class="col-lg-3" appearance="outline">
+                                                                <mat-label>Tipo respuesta</mat-label>
+                                                                <mat-select [(ngModel)]="item.numIdTipoRespuesta" [ngModelOptions]="{standalone: true}">
+                                                                  <mat-option *ngFor="let item of dataTipoRespuesta" [value]="item.numId">
+                                                                    <mat-icon *ngIf="item.numId == 1">dialpad</mat-icon>
+                                                                    <mat-icon *ngIf="item.numId == 2">short_text</mat-icon>
+                                                                    <mat-icon *ngIf="item.numId == 3">subject</mat-icon>
+                                                                    <mat-icon *ngIf="item.numId == 4">radio_button_checked</mat-icon>
+                                                                    <mat-icon *ngIf="item.numId == 5">check_box</mat-icon>
+                                                                    {{ item.txtNombre }}
+                                                                </mat-option>
+                                                                </mat-select>
+                                                            </mat-form-field>
+                                                            <mat-form-field class="col-lg-9" appearance="outline">
+                                                                <mat-label>Atributo</mat-label>
+                                                                <input matInput maxlength="400" rows="3" #inputtxtPregunta
+                                                                    [ngModelOptions]="{standalone: true}" [(ngModel)]="item.txtPregunta" placeholder="Atributo" required>
+                                                                <button mat-icon-button matSuffix color="warn" (click)="ngEliminarItem(itemSegmento.fichaEvaluacionDetalleSegmentos, i)"><mat-icon matSuffix>delete</mat-icon></button>
+                                                                <mat-hint align="end">{{inputtxtPregunta.value.length || 0}}/400
+                                                                </mat-hint>
+                                                            </mat-form-field>
+                                                            <div class="col-lg-12" *ngIf="item.numIdTipoRespuesta == 4 || item.numIdTipoRespuesta == 5">
+                                                                <button mat-stroked-button align="end" (click)="ngAgregarSegmentoOpcionesRespuesta(item.fichaEvaluacionDetalleSegmentosOpcionesRespuestas)" color="primary"><mat-icon>add</mat-icon> Opciones de Respuesta</button>
+                                                            </div> 
+                                                            <br>
+                                                            <div *ngFor="let itemOpciones of item.fichaEvaluacionDetalleSegmentosOpcionesRespuestas; let i = index;" style="padding-left: 20px;">
+                                                                <mat-form-field class="col-lg-12" appearance="outline">
+                                                                    <mat-label>{{ i + 1 }} - Opciones de respuesta</mat-label>
+                                                                    <input matInput maxlength="400" #inputtxtOpcionRespuesta
+                                                                        [ngModelOptions]="{standalone: true}" [(ngModel)]="itemOpciones.txtOpcionRespuesta" placeholder="Opción Respuesta" required>
+                                                                    <button mat-icon-button matSuffix color="warn" (click)="ngEliminarItem(item.fichaEvaluacionDetalleSegmentosOpcionesRespuestas, i)"><mat-icon matSuffix>delete</mat-icon></button>
+                                                                    <mat-hint align="end">{{inputtxtOpcionRespuesta.value.length || 0}}/400
+                                                                    </mat-hint>
+                                                                </mat-form-field>
+                                                            </div>
+                                                        </mat-card-content>
+                                                    </mat-card>
+                                                    <hr>
+                                                </div>
+                                            </mat-card>
+                                            <br>
+                                        </div>
+                                        <hr>
+                                        <hr>
+                                    </form>
+                              
+                </mat-tab>
+            </div>
+            
+        </mat-tab-group>
+
+      
+      <div class="row text-center">
+        <div class="col">
+          <div class="form-group mt-3 mb-0">
+            <button class="btn btn-primary mr-3 ">
+              Guardar
+            </button>
+            <button type="button" class="btn btn-danger" (click)="closeModal()" >
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  

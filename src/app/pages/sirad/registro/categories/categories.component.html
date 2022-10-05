@@ -64,7 +64,7 @@
               <div class="col-2" style="padding-left: 0px;">
                 <div class="form-group" >
                   <div class="mb-2">
-                    <a  class="btn btn-primary m-t-12">
+                    <a  class="btn btn-primary m-t-12" (click)="addCategory()">
                       Registrar Categoria
                     </a>
                   </div>
@@ -101,26 +101,28 @@
                       </td>
                       <td class="d-flex justify-content-center">
                         <div class="pr-2">
-                            <button mat-mini-fab ngbTooltip="Ver/Editar"><mat-icon>visibility</mat-icon></button>
+                            <button mat-mini-fab ngbTooltip="Ver/Editar" color="primary" (click)="viewCategory()"  ><mat-icon>visibility</mat-icon></button>
                         </div>
                         <div class="pr-2">
-                            <button mat-mini-fab ngbTooltip="Agregar SubCategoria" ><mat-icon>add</mat-icon></button>
+                            <button mat-mini-fab ngbTooltip="Agregar SubCategoria" (click)="addSubCategory()" color="primary" ><mat-icon>add</mat-icon></button>
                         </div>
                         <div class="pr-2">
-                            <button mat-mini-fab ngbTooltip="Eliminar Categoria" ><mat-icon>delete</mat-icon></button>
+                            <button mat-mini-fab ngbTooltip="Eliminar Categoria" color="primary" (click)="deleteCategory()" ><mat-icon>delete</mat-icon></button>
                         </div>
                         <div class="pr-2">
-                            <button  mat-mini-fab ngbTooltip="Ver Informacion" (click)="i.showDetail = !i.showDetail"><mat-icon>keyboard_arrow_down</mat-icon></button>
+                            <button  mat-mini-fab ngbTooltip="Ver Informacion" (click)="i.showDetail = !i.showDetail" color="primary"><mat-icon>keyboard_arrow_down</mat-icon></button>
                         </div>
                           
                       </td>
                     </tr>
                     <tr class="tid-detail-row"
                         [ngClass]="{'show': i.showDetail}">
-                      <td colspan="4">
-                        
-                        <div *ngFor="let j of dataSubCategories; let indice2 = index">
-                          <div class="font-weight-bold" *ngIf="i.codCategory === j.codCategory">Sub Categoria: {{j.codSubCategory}} - {{j.nameSubCategory}}</div>
+                      
+                        <td colspan="5">
+                          <div *ngFor="let j of dataSubCategories; let indice2 = index">
+                            <div *ngIf="i.codCategory === j.codCategory">
+                              
+                              <span class="font-weight-bold">Sub Categoria: {{j.codSubCategory}} - {{j.nameSubCategory}}</span> 
                               <div class="d-flex justify-content-between">
                                 <div>
                                   <span class="font-weight-bold" >Palabras Clave: </span>{{j.keyWords}}
@@ -151,18 +153,26 @@
                                   <span class="font-weight-bold">Representante de la capa de informacion : </span>{{j.responsibleInfoLayer}}
                                 </div>
                               </div>
+                            </div>
+                            
+                            <div class="d-flex justify-content-center mb-4">
+                              <div class="pr-2">
+                                  <button mat-mini-fab ngbTooltip="Ver/Editar" (click)="viewSubCategory()" ><mat-icon>visibility</mat-icon></button>
+                              </div>
+                              <div class="pr-2">
+                                  <button mat-mini-fab ngbTooltip="Eliminar Categoria" (click)="deleteSubCategory()" ><mat-icon>delete</mat-icon></button>
+                              </div>
+                            </div>
+
+                            <mat-divider></mat-divider> 
+  
                           </div>
-                      </td>
-                      <td colspan="1">
-                        <div class="d-flex justify-content-center">
-                          <div class="pr-2">
-                              <button mat-mini-fab ngbTooltip="Ver/Editar"><mat-icon>visibility</mat-icon></button>
-                          </div>
-                          <div class="pr-2">
-                              <button mat-mini-fab ngbTooltip="Eliminar Categoria" ><mat-icon>delete</mat-icon></button>
-                          </div>
-                        </div>
-                      </td>
+                          
+                        </td>
+                        
+                        
+                      
+
                     </tr>
                     </ng-container>
                   </table>

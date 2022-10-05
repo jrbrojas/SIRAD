@@ -5,7 +5,7 @@ p {
 }
 
 table, th, td {
-    border: 1px solid black;
+    border: 1px solid rgb(187, 187, 187);
     border-collapse: collapse;
   }
 
@@ -38,7 +38,7 @@ table.tid-table {
       }
     }
     &.tid-even {
-    background-color: #e2e2e2;
+    background-color: #dad2fc ;
   }
   }
 }

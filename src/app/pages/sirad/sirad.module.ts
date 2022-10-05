@@ -39,6 +39,12 @@ import { RecursosComponent } from './registro/registro/recursos/recursos.compone
 import { RecursosAddComponent } from './registro/registro/recursos-add/recursos-add.component';
 import { CategoriesComponent } from './registro/categories/categories.component';
 import { CargaMasivaComponent } from './carga-masiva/carga-masiva.component';
+import { AddCategoriesModalComponent } from './registro/add-categories-modal/add-categories-modal.component';
+import { EditCategoriesModalComponent } from './registro/edit-categories-modal/edit-categories-modal.component';
+import { AddSubcategoriesModalComponent } from './registro/add-subcategories-modal/add-subcategories-modal.component';
+import { EditSubcategoriesModalComponent } from './registro/edit-subcategories-modal/edit-subcategories-modal.component';
+import { MatTabsModule } from '@angular/material/tabs'
+import { MatChipsModule } from '@angular/material/chips'
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -55,7 +61,11 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
        CategoriesComponent,
        RecursosComponent,
        RecursosAddComponent,
-       CargaMasivaComponent
+       CargaMasivaComponent,
+       AddCategoriesModalComponent,
+       EditCategoriesModalComponent,
+       AddSubcategoriesModalComponent,
+       EditSubcategoriesModalComponent
   ],
   imports: [
     CommonModule,
@@ -94,7 +104,9 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     FormsModule,
     MatButtonToggleModule,
     MatTreeModule,
-    DropzoneModule
+    DropzoneModule,
+    MatTabsModule,
+    MatChipsModule
 
   ],
   providers: [
