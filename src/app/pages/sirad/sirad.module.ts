@@ -17,6 +17,8 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatButtonModule } from '@angular/material/button';
 import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+import { DropzoneConfigInterface, DropzoneModule, DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
 
 
 import { MatCardModule } from '@angular/material/card';
@@ -36,16 +38,24 @@ import { UsuariosDetailsComponent } from './seguridad/seguridad/usuarios-details
 import { RecursosComponent } from './registro/registro/recursos/recursos.component';
 import { RecursosAddComponent } from './registro/registro/recursos-add/recursos-add.component';
 import { CategoriesComponent } from './registro/categories/categories.component';
+import { CargaMasivaComponent } from './carga-masiva/carga-masiva.component';
 
+const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
+  // Change this to your upload POST address:
+  url: 'https://httpbin.org/post',
+  acceptedFiles: 'image/*',
+  createImageThumbnails: true
+};
 
 @NgModule({
   declarations: [
-  
+
     UsuariosListComponent,
        UsuariosDetailsComponent,
        CategoriesComponent,
        RecursosComponent,
-       RecursosAddComponent
+       RecursosAddComponent,
+       CargaMasivaComponent
   ],
   imports: [
     CommonModule,
@@ -83,8 +93,12 @@ import { CategoriesComponent } from './registro/categories/categories.component'
     MatSlideToggleModule,
     FormsModule,
     MatButtonToggleModule,
-    MatTreeModule
+    MatTreeModule,
+    DropzoneModule
 
+  ],
+  providers: [
+    { provide: DROPZONE_CONFIG, useValue: DEFAULT_DROPZONE_CONFIG },
   ]
 })
 export class SiradModuleComponent { }

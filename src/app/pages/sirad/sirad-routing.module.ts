@@ -1,3 +1,4 @@
+import { VisualizacionComponent } from './visualizacion/visualizacion/visualizacion.component';
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -9,6 +10,7 @@ import { CategoriesComponent } from './registro/categories/categories.component'
 import { RegistroComponent } from './registro/registro/registro.component';
 import { UsuariosDetailsComponent } from './seguridad/seguridad/usuarios-details/usuarios-details.component';
 import { UsuariosListComponent } from './seguridad/seguridad/usuarios-list/usuarios-list.component';
+import { CargaMasivaComponent } from './carga-masiva/carga-masiva.component';
 
 const routes: Routes = [
   {
@@ -35,10 +37,18 @@ const routes: Routes = [
       {
         path: 'registro/recursos',
         component: RecursosComponent,
-      },      
+      },
+      {
+        path: 'registro/carga-masiva',
+        component: CargaMasivaComponent,
+      },
       {
         path: 'registro/recursos-add',
         component: RecursosAddComponent,
+      },
+      {
+        path:'visualizacion/mapa',
+        component: VisualizacionComponent
       }
     ]
   }

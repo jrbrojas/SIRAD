@@ -4,8 +4,9 @@ import { GeoJSON } from "geojson";
 
 export enum eTypeAction {
   insert,
-  update, 
-  delete
+  update,
+  delete,
+  view
 }
 
 export type sTypeAction = keyof typeof eTypeAction;
@@ -23,7 +24,7 @@ export enum eTypeGraphic {
     None = "NINGUNO",
     Delete = "DELETE"
   }
-  
+
 export type tTypeGraphicString = keyof typeof eTypeGraphic;
 
 

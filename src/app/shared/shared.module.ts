@@ -1,3 +1,5 @@
+import { MapLayersComponent } from './components/map/map-layers/map-layers.component';
+import { MapTableComponent } from './components/map/map-table/map-table.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -22,6 +24,9 @@ import { DragDropFileUploadDirective } from './directives/drag-drop-file-upload.
 import { LoaderComponent } from './components/loader/loader.component';
 import { MapComponent } from './components/map/map.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import {MatListModule} from '@angular/material/list';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatIconModule} from '@angular/material/icon'
 @NgModule({
   declarations: [
     ContentComponent,
@@ -38,7 +43,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     DateFormatPipe,
     DragDropFileUploadDirective,
     LoaderComponent,
-    MapComponent
+    MapComponent,
+    MapTableComponent,
+    MapLayersComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +53,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatListModule,
+    MatExpansionModule,
+    MatIconModule
   ],
   providers: [
     NavService,
