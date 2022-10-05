@@ -117,13 +117,51 @@
                     </tr>
                     <tr class="tid-detail-row"
                         [ngClass]="{'show': i.showDetail}">
-                      <td>{{index}}</td>
-                      <td colspan="2">
+                      <td colspan="4">
                         
-                        <div *ngFor="let j of dataSubCategories">
-                          <div *ngIf="i.codCategory === j.codCategory">{{j.codCategory}}</div>
-                            <td>{{j.codSubCategory}}</td>
+                        <div *ngFor="let j of dataSubCategories; let indice2 = index">
+                          <div class="font-weight-bold" *ngIf="i.codCategory === j.codCategory">Sub Categoria: {{j.codSubCategory}} - {{j.nameSubCategory}}</div>
+                              <div class="d-flex justify-content-between">
+                                <div>
+                                  <span class="font-weight-bold" >Palabras Clave: </span>{{j.keyWords}}
+                                </div>
+                                <div>
+                                  <span  class="font-weight-bold">Palabras Clave Geograficas: </span>{{j.keyWordsGeo}}
+                                </div>
+                                <div>
+                                  <span class="font-weight-bold" >Fecha de la informacion: </span>{{j.infoDate}}
+                                </div>
+                                <div>
+                                  <span class="font-weight-bold">Ultima actualizacion: </span>{{j.updateDateFinal}}
+                                </div>
+                              </div>
+                              <div class="d-flex justify-content-between">
+                                <div>
+                                  <span class="font-weight-bold">Resumen: </span>{{j.summary}}
+                                </div>
+                              </div>
+                              <div class="d-flex justify-content-between">
+                                <div>
+                                  <span class="font-weight-bold">Fuente : </span>{{j.dataSource}}
+                                </div>
+                                <div>
+                                  <span class="font-weight-bold">Representante general : </span>{{j.generalManager}}
+                                </div>
+                                <div>
+                                  <span class="font-weight-bold">Representante de la capa de informacion : </span>{{j.responsibleInfoLayer}}
+                                </div>
+                              </div>
                           </div>
+                      </td>
+                      <td colspan="1">
+                        <div class="d-flex justify-content-center">
+                          <div class="pr-2">
+                              <button mat-mini-fab ngbTooltip="Ver/Editar"><mat-icon>visibility</mat-icon></button>
+                          </div>
+                          <div class="pr-2">
+                              <button mat-mini-fab ngbTooltip="Eliminar Categoria" ><mat-icon>delete</mat-icon></button>
+                          </div>
+                        </div>
                       </td>
                     </tr>
                     </ng-container>
