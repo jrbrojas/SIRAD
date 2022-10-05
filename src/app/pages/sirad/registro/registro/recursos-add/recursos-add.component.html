@@ -1,124 +1,343 @@
-<app-breadcrumb [title]="'Registro de Recursos'" [active_item]="'Ficha Evaluación'"></app-breadcrumb>
+<app-breadcrumb [title]="'Crear Nuevo Recurso'" [items]="['Registro','Recursos']" [active_item]="'Crear'">
+</app-breadcrumb>
 
 <div class="container-fluid">
+    <div class="row">
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <form>
-                        <h2>Datos del Recurso</h2>
-                        <mat-form-field class="col-lg-12 row" appearance="outline">
-                            <mat-label>Ttulo recurso</mat-label>
-                            <input matInput maxlength="400" #inputtxtPregunta
-                                [ngModelOptions]="{standalone: true}" [(ngModel)]="formFichaEvaluacion.txtTitulo" placeholder="Titulo" required>
-                            <mat-hint align="end">{{inputtxtPregunta.value.length || 0}}/400</mat-hint>
-                        </mat-form-field>
-                        <br>
-                        <hr>
-                        <h5>Secciones</h5>
-                        <div>
-                            <button mat-stroked-button align="end" (click)="ngAgregarSegmento()" color="primary"><mat-icon>add</mat-icon> Agregar Sección</button>
-                        </div>
-                        <br>
-                        <div *ngFor="let itemSegmento of formFichaEvaluacion.fichaEvaluacionSegmentos, let i = index;">
-                            <mat-card>
-                                <mat-form-field class="col-lg-12" appearance="outline">
-                                    <mat-label>Ttulo Sección</mat-label>
-                                    <input matInput maxlength="400" rows="3" #inputtxtPregunta
-                                        [ngModelOptions]="{standalone: true}" [(ngModel)]="itemSegmento.txtTituloSegmento" placeholder="Ttulo" required>
-                                        <button mat-icon-button matSuffix color="warn" (click)="ngEliminarItem(formFichaEvaluacion.fichaEvaluacionSegmentos, i)"><mat-icon matSuffix>delete</mat-icon></button>
-                                    <mat-hint align="end">{{inputtxtPregunta.value.length || 0}}/400
-                                    </mat-hint>
+                    <div class="" >
+                        <div class="row">
+                            <div class="col">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Categoria</mat-label>
+                                    <mat-select
+                                    (selectionChange)="changeCat(a)" #a>
+                                        <mat-option>Ninguna</mat-option>
+                                        <mat-option *ngFor="let state of cat" [value]="state.id">{{state.desc}}</mat-option>
+                                    </mat-select>
                                 </mat-form-field>
-                                <div class="col-lg-12">
-                                    <button mat-stroked-button align="end" (click)="ngAgregarDetalleSegmento(itemSegmento)" color="primary"><mat-icon>add</mat-icon> Agregar preguntas</button>
-                                </div>
-                                <br>
-                                <div class="col-lg-12" *ngFor="let item of itemSegmento.fichaEvaluacionDetalleSegmentos, let i = index;">
-                                    <mat-card>
-                                        <mat-card-content>
-                                            <mat-form-field class="col-lg-3" appearance="outline">
-                                                <mat-label>Tipo respuesta</mat-label>
-                                                <mat-select [(ngModel)]="item.numIdTipoRespuesta" [ngModelOptions]="{standalone: true}">
-                                                  <mat-option *ngFor="let item of dataTipoRespuesta" [value]="item.numId">
-                                                    <mat-icon *ngIf="item.numId == 1">dialpad</mat-icon>
-                                                    <mat-icon *ngIf="item.numId == 2">short_text</mat-icon>
-                                                    <mat-icon *ngIf="item.numId == 3">subject</mat-icon>
-                                                    <mat-icon *ngIf="item.numId == 4">radio_button_checked</mat-icon>
-                                                    <mat-icon *ngIf="item.numId == 5">check_box</mat-icon>
-                                                    {{ item.txtNombre }}
-                                                </mat-option>
-                                                </mat-select>
-                                            </mat-form-field>
-                                            <mat-form-field class="col-lg-9" appearance="outline">
-                                                <mat-label>Pregunta</mat-label>
-                                                <input matInput maxlength="400" rows="3" #inputtxtPregunta
-                                                    [ngModelOptions]="{standalone: true}" [(ngModel)]="item.txtPregunta" placeholder="Pregunta" required>
-                                                <button mat-icon-button matSuffix color="warn" (click)="ngEliminarItem(itemSegmento.fichaEvaluacionDetalleSegmentos, i)"><mat-icon matSuffix>delete</mat-icon></button>
-                                                <mat-hint align="end">{{inputtxtPregunta.value.length || 0}}/400
-                                                </mat-hint>
-                                            </mat-form-field>
-                                            <div class="col-lg-12" *ngIf="item.numIdTipoRespuesta == 4 || item.numIdTipoRespuesta == 5">
-                                                <button mat-stroked-button align="end" (click)="ngAgregarSegmentoOpcionesRespuesta(item.fichaEvaluacionDetalleSegmentosOpcionesRespuestas)" color="primary"><mat-icon>add</mat-icon> Opciones de Respuesta</button>
-                                            </div> 
-                                            <br>
-                                            <div *ngFor="let itemOpciones of item.fichaEvaluacionDetalleSegmentosOpcionesRespuestas; let i = index;" style="padding-left: 20px;">
-                                                <mat-form-field class="col-lg-12" appearance="outline">
-                                                    <mat-label>{{ i + 1 }} - Opciones de respuesta</mat-label>
-                                                    <input matInput maxlength="400" #inputtxtOpcionRespuesta
-                                                        [ngModelOptions]="{standalone: true}" [(ngModel)]="itemOpciones.txtOpcionRespuesta" placeholder="Opción Respuesta" required>
-                                                    <button mat-icon-button matSuffix color="warn" (click)="ngEliminarItem(item.fichaEvaluacionDetalleSegmentosOpcionesRespuestas, i)"><mat-icon matSuffix>delete</mat-icon></button>
-                                                    <mat-hint align="end">{{inputtxtOpcionRespuesta.value.length || 0}}/400
-                                                    </mat-hint>
-                                                </mat-form-field>
-                                            </div>
-                                        </mat-card-content>
-                                    </mat-card>
-                                    <hr>
-                                </div>
-                            </mat-card>
-                            <br>
+                            </div>
+                            <div class="col">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Sub Categoria</mat-label>
+                                    <mat-select (selectionChange)="changeCatSub(b)" #b>
+                                        <mat-option>Ninguna</mat-option>
+                                        <mat-option *ngFor="let state of subcat" [value]="state.id">{{state.desc}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
                         </div>
-                        <hr>
-                        <!--<h5>Peguntas fin</h5>
-                        <div>
-                            <button mat-stroked-button align="end" (click)="ngAgregarPreguntaFin()" color="primary"><mat-icon>add</mat-icon> Agregar Pregunta</button>
-                        </div>
-                        <br>
-                        <div *ngFor="let item of formFichaEvaluacion.fichaEvaluacionPreguntasFin; let i = index;">
-                            <mat-form-field class="col-lg-3" appearance="outline">
-                                <mat-label>Tipo respuesta</mat-label>
-                                <mat-select [(ngModel)]="item.numIdTipoRespuesta" [ngModelOptions]="{standalone: true}">
-                                  <mat-option *ngFor="let itemTipo of dataTipoRespuesta" [value]="itemTipo.numId">
-                                    <mat-icon *ngIf="itemTipo.numId == 1">dialpad</mat-icon>
-                                    <mat-icon *ngIf="itemTipo.numId == 2">short_text</mat-icon>
-                                    <mat-icon *ngIf="itemTipo.numId == 3">subject</mat-icon>
-                                    <mat-icon *ngIf="itemTipo.numId == 4">radio_button_checked</mat-icon>
-                                    <mat-icon *ngIf="itemTipo.numId == 5">check_box</mat-icon>
-                                    {{ itemTipo.txtNombre }}
-                                </mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                            <mat-form-field class="col-lg-9" appearance="outline">
-                                <input matInput maxlength="400" #inputtxtPregunta
-                                    [ngModelOptions]="{standalone: true}" [(ngModel)]="item.txtPregunta" placeholder="Nombre Pregunta" required>
-                                <button mat-icon-button matSuffix color="warn" (click)="ngEliminarItem(formFichaEvaluacion.fichaEvaluacionPreguntasFin, i)"><mat-icon matSuffix>delete</mat-icon></button>
-                                <mat-hint align="end">{{inputtxtPregunta.value.length || 0}}/400</mat-hint>
-                            </mat-form-field>
-                        </div>-->
-                        <hr>
-                    </form>
+                    </div>
+                    <form *ngIf="isLinear" class="needs-validation">
+                        <mat-stepper [linear]="isLinear" #stepper>
+                            <mat-step label="Llenado de informacion 1">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Código del centro de servicios</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Nombre del centro de servicios</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Código del distrito</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Código del pozo</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Nombre del pozo</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Marca del motor eléctrico del pozo</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Potencia del motor eléctrico del pozo</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Amperaje del motor eléctrico del pozo</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <button mat-button matStepperNext class="btn btn-primary mr-3">
+                                        <mat-icon>arrow_forward_ios</mat-icon>
+                                    </button>
+                                </div>
+                            </mat-step>
+                            <mat-step label="Llenado de informacion 2">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Voltaje del motor eléctrico del pozo</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Longitud de la bomba en metros</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Tipo de bomba utilizada</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Marca de la bomba utilizada</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Modelo de bomba utilizada</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Estado del equipamiento del pozo</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Diámetro del la válvula del pozo en pulgadas</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Vuelta de trabajo de la válvula en vatios</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <button mat-button matStepperNext class="btn btn-primary mr-3">
+                                        <mat-icon>arrow_forward_ios</mat-icon>
+                                    </button>
+                                </div>
+                            </mat-step>
+                            <mat-step label="Llenado de informacion 3">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Vuelta total de la válvula en vatios</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Cota de nivel estático del pozo</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Cota de nivel dinámico del pozo</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Presión de salida con el número de vueltas de trabajo de la válvula
+                                                en
+                                                psi</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Presión de salida con el N° total de vueltas de la
+                                                válvula(psi)</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Caudal del pozo en litros por segundo</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Profundidad del pozo en metros</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Número de horas de funcionamiento del pozo mes</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <button mat-button matStepperNext class="btn btn-primary mr-3">
+                                        <mat-icon>arrow_forward_ios</mat-icon>
+                                    </button>
+                                </div>
+                            </mat-step>
+                            <mat-step label="Llenado de informacion 4">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Número de días de funcionamiento del pozo por mes </label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Producción total del pozo en miles de metros cúbicos</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Coordenada X del pozo en UTM</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Coordenada Y del pozo en UTM</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Coordenada Y del pozo en UTM</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Observación sobre el pozo</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Fuente de los datos sobre el pozo en Sedapal</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Nivel de esencialidad o de importancia del objeto</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <button mat-button matStepperNext class="btn btn-primary mr-3">
+                                        <mat-icon>arrow_forward_ios</mat-icon>
+                                    </button>
+                                </div>
+                            </mat-step>
+                            <mat-step label="Llenado de informacion 5">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Valor de la accesibilidad durante la noche</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Calidad de la accesibilidad durante el día</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                </div>
+                            </mat-step>
+                        </mat-stepper>
+                    </form>   
                     <div class="row text-center">
                         <div class="col">
                             <div class="form-group mb-0">
-                                <button type="button" (click)="ngGuardar()" class="btn btn-primary mr-3" >
-                                    <span>Guardar</span>
-                                </button>
-                                <button type="button" class="btn btn-danger"
-                                    (click)="ngCancelar()">Cancelar</button>
+                                <div class="form-group mb-0">
+                                    <button *ngIf="isLinear" type="button" class="btn btn-primary mr-3" (click)="ngGuardar()">
+                                        <span><i class="fa fa-save"></i> Guardar</span>
+                                    </button>
+                                    <button type="button" class="btn btn-danger" (click)="ngCancelar()"><i
+                                            class="fa fa-ban"></i>
+                                        Cancelar</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </div>

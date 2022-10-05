@@ -1,0 +1,76 @@
+<app-breadcrumb [title]="'Crear Nuevo Perfil'" [items]="['Seguridad','Permisos']" [active_item]="'Crear'">
+</app-breadcrumb>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <form class="needs-validation">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>NOMBRE</label>
+                                    <input type="text" class="form-control" rows="3" maxlength="20" formControlName="nombre" >
+                                    <div class="">
+                                        MAXIMO 255 CARACTERES
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>DESCRIPCI&Oacute;N</label>
+                                    <input type="text" class="form-control" rows="3" maxlength="20" >
+                                    <div class=" ">
+                                        MAXIMO 255 CARACTERES
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>HABILITADO</label>
+                                    <select formControlName="habilitado" class="form-control" style="width: 100%;" placeholder="Seleccione">
+                                        <option value="1">SI</option>
+                                        <option value="0">NO</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <ng-container formArrayName="permisos">
+                                        <ng-container>
+                                            <label>Asignar Permisos</label>
+                                            <select class="form-control" style="width: 100%;" placeholder="Seleccione">
+                                                <option value="1">Permiso 1</option>
+                                                <option value="0">Permiso 2</option>
+                                                <option value="0">Permiso 3</option>
+                                                <option value="0">Permiso 4</option>
+                                            </select>
+                                        </ng-container>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <div class="col">
+                                <div class="form-group mb-0">
+                                    <div class="form-group mb-0">
+                                        <button type="button" class="btn btn-primary mr-3">
+                                            <span><i class="fa fa-save"></i> Grabar</span>
+                                        </button>
+                                        <button type="button" class="btn btn-danger"><i
+                                                class="fa fa-ban"></i> Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -45,6 +45,10 @@ import { AddSubcategoriesModalComponent } from './registro/add-subcategories-mod
 import { EditSubcategoriesModalComponent } from './registro/edit-subcategories-modal/edit-subcategories-modal.component';
 import { MatTabsModule } from '@angular/material/tabs'
 import { MatChipsModule } from '@angular/material/chips'
+import { PerfilListComponent } from './seguridad/seguridad/perfil-list/perfil-list.component';
+import { PerfilAddComponent } from './seguridad/seguridad/perfil-add/perfil-add.component';
+import { PermisosAddComponent } from './seguridad/seguridad/permisos-add/permisos-add.component';
+import { PermisosListComponent } from './seguridad/seguridad/permisos-list/permisos-list.component';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -62,6 +66,10 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
        RecursosComponent,
        RecursosAddComponent,
        CargaMasivaComponent,
+       PerfilListComponent,
+       PerfilAddComponent,
+       PermisosAddComponent,
+       PermisosListComponent,
        AddCategoriesModalComponent,
        EditCategoriesModalComponent,
        AddSubcategoriesModalComponent,
