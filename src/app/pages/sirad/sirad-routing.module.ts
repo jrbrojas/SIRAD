@@ -1,3 +1,4 @@
+import { VisualizacionComponent } from './visualizacion/visualizacion/visualizacion.component';
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -29,10 +30,14 @@ const routes: Routes = [
       {
         path: 'registro/recursos',
         component: RecursosComponent,
-      },      
+      },
       {
         path: 'registro/recursos-add',
         component: RecursosAddComponent,
+      },
+      {
+        path:'visualizacion/mapa',
+        component: VisualizacionComponent
       }
     ]
   }

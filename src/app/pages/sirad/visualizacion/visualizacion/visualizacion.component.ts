@@ -1,3 +1,4 @@
+import { eTypeAction } from './../../../../shared/models/geometria.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VisualizacionComponent implements OnInit {
 
+  idMapa  = "visualizador";
+  typeAction = eTypeAction.view;
+  wrapGeometria = {};
   constructor() { }
 
   ngOnInit(): void {
