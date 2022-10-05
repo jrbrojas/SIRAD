@@ -10,6 +10,7 @@ export interface DataCategories {
 export interface DataSubCategories {
     codCategory : string;
     codSubCategory : string;
+    nameSubCategory : string;
     keyWords : Array<any>;
     keyWordsGeo : string;
     summary : string;
@@ -70,9 +71,10 @@ export class CategoriesComponent implements OnInit {
     this.dataSubCategories.push({
       codCategory : 'C0001',
       codSubCategory : 'SB0001',
+      nameSubCategory : 'Plantas de Agua Potable',
       keyWords : ['Agua Potable'],
       keyWordsGeo : 'Lima/Callao',
-      summary : 'Descripcion basica de las plantas ',
+      summary : `Descripción básica de las plantas de producción de agua potable en términos de producción y de tipo de instalaciones, reservorios etc…`,
       infoExtended : `Proyecto “Elaboración de un Sistema de Información Geográfico y Análisis de Recursos Esenciales para la Respuesta y Recuperación Temprana ante la Ocurrencia de un sismo y/o Tsunami en el Área Metropolitana de Lima y Callao” (Proyecto SIRAD Convocatoria PNUD/SDP-052/2009 / 22 de abril - 15 febrero 2011).
       Practicas de Jérémy Guilbaud, estudiante ingeniero de la Escuela Nacional de Ciencias Geográficas de Francia.
       `,
