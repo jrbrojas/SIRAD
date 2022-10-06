@@ -5,7 +5,7 @@
     </button>
   </div>
   <div class="modal-body">
-    <form class="needs-validations" novalidate>
+    <form class="needs-validations" novalidate [formGroup]="updateFormSubCategories">
       
         <mat-tab-group mat-align-tabs="center">
             <div class="row">
@@ -13,7 +13,7 @@
                     <mat-form-field class="col-lg-12" appearance="outline">
                         <mat-label>Nombre subcategoria</mat-label>
                         <input matInput maxlength="400" rows="3" #inputtxtNombreCategory
-                            placeholder="Nombre categoria" required>
+                            placeholder="Nombre subcategoria" required formControlName="nameSubCategory">
                     </mat-form-field>
                     <mat-form-field class="example-chip-list" appearance="fill">
                         <mat-label>Palabras clave tematicas</mat-label>
@@ -28,48 +28,49 @@
                                  [matChipInputFor]="chipList"
                                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                                  [matChipInputAddOnBlur]="addOnBlur"
-                                 (matChipInputTokenEnd)="add($event)">
+                                 (matChipInputTokenEnd)="add($event)"
+                                 formControlName="keyWords">
                         </mat-chip-list>
                     </mat-form-field>
                     <mat-form-field class="col-lg-12" appearance="outline">
                         <mat-label>Palabras clave geograficas</mat-label>
                         <input matInput maxlength="400" rows="3" #inputtxtNombreCategory
-                            placeholder="Nombre categoria" required>
+                            placeholder="Nombre categoria" required formControlName="keyWordsGeo">
                     </mat-form-field>
                     <mat-form-field class="col-lg-12" appearance="outline">
                         <mat-label>Resumen</mat-label>
                         <textarea matInput maxlength="400" rows="3" #inputtxtNombreCategory
-                            placeholder="Descripcion" required></textarea>
+                            placeholder="Descripcion" required formControlName="summary"></textarea>
                     </mat-form-field>
                     <mat-form-field class="col-lg-12" appearance="outline">
                         <mat-label>Marco en el cual se ha credo la informacion</mat-label>
                         <textarea matInput maxlength="400" rows="3" #inputtxtNombreCategory
-                            placeholder="Descripcion" required></textarea>
+                            placeholder="Descripcion" required formControlName="infoExtended"></textarea>
                     </mat-form-field>
                     <mat-form-field class="col-lg-12" appearance="outline">
                         <mat-label>Numero de objetos</mat-label>
                         <input matInput maxlength="400" type="number" rows="3" #inputtxtNombreCategory
-                            placeholder="Numero de objetos" required>
+                            placeholder="Numero de objetos" required value="8">
                     </mat-form-field>
                     <mat-form-field class="col-lg-12" appearance="outline">
                         <mat-label>Fecha de la informacion</mat-label>
                         <input matInput type="text" rows="3" #inputtxtNombreCategory
-                            placeholder="Fecha de la informacion" required>
+                            placeholder="Fecha de la informacion" required formControlName="infoDate">
                     </mat-form-field>
                     <mat-form-field class="col-lg-12" appearance="outline">
                         <mat-label>Ultimate fecha de actualizacion de la capa de informacion</mat-label>
                         <input matInput type="date" rows="3" #inputtxtNombreCategory
-                            placeholder="Fecha de la informacion" required>
+                            placeholder="Fecha de la informacion" required formControlName="updateDateFinal">
                     </mat-form-field>
                     <mat-form-field class="col-lg-12" appearance="outline">
                         <mat-label>Fuente</mat-label>
                         <input matInput type="text" rows="3" #inputtxtNombreCategory
-                            placeholder="Fuente" required>
+                            placeholder="Fuente" required formControlName="dataSource">
                     </mat-form-field>
                     <mat-form-field class="col-lg-12" appearance="outline">
                         <mat-label>Responsable general</mat-label>
                         <input matInput type="text" rows="3" #inputtxtNombreCategory
-                            placeholder="Responsable General" required>
+                            placeholder="Responsable General" required formControlName="generalManager">
                     </mat-form-field>
                     <mat-form-field class="example-chip-list" appearance="fill">
                         <mat-label>Responsable(s) de la capa de información</mat-label>
@@ -84,7 +85,8 @@
                                  [matChipInputFor]="chipList"
                                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                                  [matChipInputAddOnBlur]="addOnBlur"
-                                 (matChipInputTokenEnd)="add($event)">
+                                 (matChipInputTokenEnd)="add($event)"
+                                 formControlName="responsibleInfoLayer">
                         </mat-chip-list>
                     </mat-form-field>
                     <mat-form-field class="example-chip-list" appearance="fill">
@@ -116,7 +118,8 @@
                                  [matChipInputFor]="chipList"
                                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                                  [matChipInputAddOnBlur]="addOnBlur"
-                                 (matChipInputTokenEnd)="add($event)">
+                                 (matChipInputTokenEnd)="add($event)"
+                                 formControlName="contactDataSource">
                         </mat-chip-list>
                     </mat-form-field>
                     <mat-form-field appearance="fill">
@@ -140,7 +143,7 @@
                     <mat-form-field class="col-lg-12" appearance="outline">
                         <mat-label>Sistema de coordenadas</mat-label>
                         <input matInput type="text" rows="3" #inputtxtNombreCategory
-                            placeholder="Sistema de coordenadas" required>
+                            placeholder="Sistema de coordenadas" required formControlName="systemCoord">
                     </mat-form-field>
                 </mat-tab>
                 <mat-tab label="Estructura">
