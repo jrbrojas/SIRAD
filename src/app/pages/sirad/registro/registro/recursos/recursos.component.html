@@ -56,8 +56,8 @@
                                         <tr class="text-center" *ngFor="let item of dataFichasEvaluacion">
                                             <td class="text-center">{{ item.numId }}</td>
                                             <td class="text-center">{{ item.txtNombre }}</td>
-                                            <td *ngIf="item.bolEstado == 'Pendiente'" class="text-center badge badge-warning fw-bold">{{ item.bolEstado }}</td>
-                                            <td *ngIf="item.bolEstado != 'Pendiente'" class="text-center badge badge-success fw-bold">{{ item.bolEstado }}</td>
+                                            <td *ngIf="item.bolEstado == 'Pendiente'" ><p class="text-center badge badge-warning fw-bold">{{ item.bolEstado }}</p></td>
+                                            <td *ngIf="item.bolEstado != 'Pendiente'" ><p class="text-center badge badge-success fw-bold">{{ item.bolEstado }}</p></td>
                                             <td>
                                                 <div>
                                                     <a style="color: #08afe0; cursor: pointer; font-size: 20px" (click)="ngAsignarEvento(item)"
