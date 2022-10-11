@@ -6,12 +6,11 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <form class="needs-validation">
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label>NOMBRE</label>
-                                    <input type="text" class="form-control" rows="3" maxlength="20" formControlName="nombre" >
+                                    <input type="text" class="form-control" rows="3" maxlength="20" >
                                     <div class="">
                                         MAXIMO 255 CARACTERES
                                     </div>
@@ -30,7 +29,7 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label>HABILITADO</label>
-                                    <select formControlName="habilitado" class="form-control" style="width: 100%;" placeholder="Seleccione">
+                                    <select class="form-control" style="width: 100%;" placeholder="Seleccione">
                                         <option value="1">SI</option>
                                         <option value="0">NO</option>
                                     </select>
@@ -59,16 +58,15 @@
                             <div class="col">
                                 <div class="form-group mb-0">
                                     <div class="form-group mb-0">
-                                        <button type="button" class="btn btn-primary mr-3">
+                                        <button (click)="back(0)" type="button" class="btn btn-primary mr-3">
                                             <span><i class="fa fa-save"></i> Grabar</span>
                                         </button>
-                                        <button type="button" class="btn btn-danger"><i
+                                        <button  (click)="back(1)" type="button" class="btn btn-danger"><i
                                                 class="fa fa-ban"></i> Cancelar</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </form>
                 </div>
             </div>
         </div>

@@ -46,11 +46,21 @@ export class UsuariosDetailsComponent implements OnInit {
   public counter: number = 0;
   public nivel: number = 0
 
-  constructor(
-    ) {
-    }
+  constructor(public alert : AlertService, public router : Router) { }
 
   ngOnInit(): void {
+  }
+
+  back(type : number){
+    let mensaje = "Guardar"
+    if(type == 1) mensaje = "Cancelar"
+    this.alert.questionAlertConfirm('¿Está seguro de ' + mensaje + '?', '', 'Si, ' + mensaje, TYPE_ALERT.QUESTION).then(
+      (result) => {
+        if (result.value) {
+          this.router.navigate(['/sirad/seguridad/usuarios']);
+        }
+      }
+    );
   }
 
   get idPerfil() {
