@@ -32,6 +32,44 @@ export class RecursosAddComponent implements OnInit {
   subcatBu : categoria[] = [];
   subcat : categoria[] = [];
   
+  tsunami = [
+    {
+      id: 1,
+      estado: "Sismo más probable"
+    },
+    {
+      id: 2,
+      estado: "Sismo de tipo 1746"
+    },
+    {
+      id: 3,
+      estado: "No expuesto"
+    }
+  ]
+
+  sismo = [
+    {
+      id: 1,
+      estado: "Peligro bajo"
+    },
+    {
+      id: 2,
+      estado: "Peligro relativamente bajo"
+    },
+    {
+      id: 3,
+      estado: "Peligro alto"
+    },
+    {
+      id: 4,
+      estado: "Peligro muy alto"
+    },
+    {
+      id: 5,
+      estado: "Sin información"
+    }
+  ]
+
   bomba = [
     {
       id: 1,
