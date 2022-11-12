@@ -172,6 +172,27 @@ export class EditSubcategoriesModalComponent implements OnInit {
 
     this.atributosItem.fichaEvaluacionDetalleSegmentos.push({
       numId: 1,
+      numIdTipoRespuesta: 1,
+      txtPregunta: 'Departamento',
+      numRespuesta: 1,
+      txtObservacion: 'Nombre del Departamento',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 1,
+      txtPregunta: 'Provincia',
+      numRespuesta: 1,
+      txtObservacion: 'Nombre de la Provincia',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 1,
+      txtPregunta: 'Distrito',
+      numRespuesta: 1,
+      txtObservacion: 'Nombre del Distrito',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
       numIdTipoRespuesta: 3,
       txtPregunta: 'ID_CCSS',
       numRespuesta: 1,
@@ -531,7 +552,8 @@ export class EditSubcategoriesModalComponent implements OnInit {
       confirmButtonText: 'Si, eliminar!'
     }).then((result) => {
       if (result.isConfirmed) {
-        item.splice(index, 1);
+        //item.splice(index, 1);
+        item.fichaEvaluacionDetalleSegmentos.splice(index, 1);
         Swal.fire(
           'Eliminado!',
           'Eliminado correctamente.',

@@ -171,7 +171,7 @@
                                                         <mat-label>Nombre de Atributo</mat-label>
                                                         <input matInput maxlength="400" rows="3" #inputtxtPregunta
                                                             [ngModelOptions]="{standalone: true}" [(ngModel)]="item.txtPregunta" placeholder="Nombre del Atributo" required>
-                                                        <button mat-icon-button matSuffix color="warn"><mat-icon matSuffix>delete</mat-icon></button>
+                                                        <button mat-icon-button matSuffix (click)="ngEliminarItem(atributosItem, i)" color="warn"><mat-icon matSuffix>delete</mat-icon></button>
                                                         <mat-hint align="end">{{inputtxtPregunta.value.length || 0}}/400
                                                         </mat-hint>
                                                     </mat-form-field>

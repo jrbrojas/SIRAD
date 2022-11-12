@@ -1,0 +1,67 @@
+<app-breadcrumb [title]="'Análisis de Vulnerabilidad Por Riesgo'" [active_item]="'Análisis'"></app-breadcrumb>
+
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+
+          <form>
+            <div class="row px-4">
+              <div class="col-sm-10">
+                <label>Seleccione recurso</label>
+              </div>
+
+              <mat-form-field class="col-lg-6 pt-3" appearance="outline">
+                <mat-label>Seleccione Categoria</mat-label>
+                <select matNativeControl required>
+                  <option disabled value=""></option>
+                  <option value="volvo">ABASTECIMIENTO DE AGUA</option>
+                  <option value="saab">ABASTECIMIENTO DE ALIMENTOS </option>
+                  <option value="mercedes">ABASTECIMIENTO DE ENERGIA</option>
+                </select>
+              </mat-form-field>
+              <mat-form-field class="col-lg-6 pt-3" appearance="outline">
+                <mat-label>Seleccione SubCategoria</mat-label>
+                <select matNativeControl required>
+                  <option disabled value=""></option>
+                  <option value="volvo">Plantas de agua potable</option>
+                  <option value="saab">Red primario de agua potable </option>
+                  <option value="mercedes">Pozos</option>
+                </select>
+              </mat-form-field>
+              <mat-form-field class="col-lg-4" appearance="outline">
+                <mat-label>Seleccione Departamento</mat-label>
+                <select matNativeControl required>
+                  <option disabled value=""></option>
+                  <option value="volvo">Lima</option>
+                  <option value="saab">Junin </option>
+                  <option value="mercedes">Cusco</option>
+                </select>
+              </mat-form-field>
+              <mat-form-field class="col-lg-4" appearance="outline">
+                <mat-label>Seleccione Provincia</mat-label>
+                <select matNativeControl required>
+                  <option disabled value=""></option>
+                  <option value="volvo">Lima</option>
+                  <option value="saab">Surco </option>
+                  <option value="mercedes">San Isidro</option>
+                </select>
+              </mat-form-field>
+              <mat-form-field class="col-lg-4" appearance="outline">
+                <mat-label>Seleccione Distrito</mat-label>
+                <select matNativeControl required>
+                  <option disabled value=""></option>
+                  <option value="volvo">Pachacamac</option>
+                  <option value="saab">Manchay </option>
+                  <option value="mercedes">Cienguilla</option>
+                </select>
+              </mat-form-field>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
