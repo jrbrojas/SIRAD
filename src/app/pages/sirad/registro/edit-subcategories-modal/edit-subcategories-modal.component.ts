@@ -181,7 +181,7 @@ export class EditSubcategoriesModalComponent implements OnInit {
       numIdTipoRespuesta: 1,
       txtPregunta: 'UBIGEO',
       numRespuesta: 1,
-      txtObservacion: 'Código del distrito Ejemplo:15021',
+      txtObservacion: 'Código del distrito Ejemplo',
       fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
     }, {
       numId: 1,
