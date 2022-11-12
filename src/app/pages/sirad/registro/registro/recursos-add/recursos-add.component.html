@@ -141,11 +141,17 @@
                                         </div> -->
                                     </div>
                                     <div class="col-sm-3">
-                                        <div class="form-group">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>ME_HP</mat-label>
+                                            <input matInput placeholder="ME_HP" onkeyup="this.value=this.value.toUpperCase();">
+                                            <mat-icon matSuffix><a style="color: #3331319f; cursor: pointer; font-size: 24px"
+                                                ngbTooltip="Potencia del motor eléctrico del pozo"><i class="fa fa-exclamation"></i></a></mat-icon>
+                                        </mat-form-field>
+                                        <!-- <div class="form-group">
                                             <label>Amperaje del motor eléctrico del pozo</label>
                                             <input type="text" class="form-control" rows="3" maxlength="255"
                                                 onkeyup="this.value=this.value.toUpperCase();">
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <div class="text-right">
