@@ -2,6 +2,9 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
+import { TYPE_ALERT } from 'src/app/shared/services/config';
+import { AlertService } from 'src/app/shared/services/alert.service';
+import { Router } from '@angular/router';
 export interface categoria {
   id: number;
   desc: string;
@@ -46,7 +49,10 @@ export class CargaMasivaComponent implements OnInit {
   catBu : categoria[] = [];
   subcatBu : categoria[] = [];
   subcat : categoria[] = [];
-  constructor() { }
+  constructor(
+    public alert: AlertService,
+    public router: Router
+  ) { }
 
   ngOnInit(): void {
     this.inicializar()
@@ -247,4 +253,16 @@ export class CargaMasivaComponent implements OnInit {
     else this.isLinear = false
   }
 
+  accion(type : number){
+    let mensaje = "Reemplazar"
+    if(type == 1) mensaje = "Agregar"
+    this.alert.questionAlertConfirm('¿Está seguro de ' + mensaje + '?', '', 'Si, ' + mensaje, TYPE_ALERT.QUESTION).then(
+      (result) => {
+        if (result.value) {
+          this.router.navigate(['/sirad/registro/carga-masiva']);
+          this.alert.toastSuccess('170 registros actualizados correctamente')
+        }
+      }
+    );
+  }
 }
