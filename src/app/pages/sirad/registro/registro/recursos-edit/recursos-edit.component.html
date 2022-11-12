@@ -73,6 +73,19 @@
                                     </div>
                                     <div class="col-sm-3">
                                         <mat-form-field appearance="outline">
+                                            <mat-label>NOMBRE</mat-label>
+                                            <input matInput placeholder="NOMBRE" value="Jose Luis" onkeyup="this.value=this.value.toUpperCase();">
+                                            <mat-icon matSuffix><a style="color: #3331319f; cursor: pointer; font-size: 24px"
+                                                ngbTooltip="Distrito"><i class="fa fa-exclamation"></i></a></mat-icon>
+                                        </mat-form-field>
+                                        <!-- <div class="form-group">
+                                            <label>Código del distrito</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div> -->
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <mat-form-field appearance="outline">
                                             <mat-label>UBIGEO</mat-label>
                                             <input matInput placeholder="UBIGEO" value="15427" onkeyup="this.value=this.value.toUpperCase();">
                                             <mat-icon matSuffix><a style="color: #3331319f; cursor: pointer; font-size: 24px"
@@ -125,6 +138,8 @@
                                                 onkeyup="this.value=this.value.toUpperCase();">
                                         </div> -->
                                     </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-sm-3">
                                         <mat-form-field appearance="outline">
                                             <mat-label>NOM_PZ</mat-label>
@@ -138,13 +153,11 @@
                                                 onkeyup="this.value=this.value.toUpperCase();">
                                         </div> -->
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="col-sm-3">
                                         <mat-form-field appearance="outline">
                                             <mat-label>EST_PZ</mat-label>
                                             <mat-select>
-                                                <mat-option *ngFor="let i of estados" [value]="i.id">
+                                                <mat-option [value]="" *ngFor="let i of estados" [value]="i.id">
                                                     {{i.estado}}
                                                 </mat-option>
                                             </mat-select>

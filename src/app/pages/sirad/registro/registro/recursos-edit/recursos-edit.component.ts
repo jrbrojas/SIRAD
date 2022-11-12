@@ -330,6 +330,7 @@ export class RecursosEditComponent implements OnInit {
   ]
   categoria: FormGroup; 
   subcategoria: FormGroup; 
+  estadoss: FormGroup;
 
   constructor(private _formBuilder: FormBuilder, private _router: Router, private alert: AlertService, private modalService: NgbModal) { }
 
@@ -349,6 +350,13 @@ export class RecursosEditComponent implements OnInit {
 
     const toSelect2 = this.subcat.find(c => c.desc == 'Pozos');
       this.subcategoria.get('subcategoria').setValue(toSelect2);
+
+      this.estadoss = this._formBuilder.group({
+        estadoss: [null, Validators.required]
+      });
+  
+      const toSelect3 = this.estados.find(c => c.id == 1);
+        this.estadoss.get('estadoss').setValue(toSelect3);
   }
   
 
