@@ -49,11 +49,17 @@
                                         </div> -->
                                     </div>
                                     <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label>NOMB_CCSS Nombre del centro de servicios del que depende el pozo</label>
+                                        <mat-form-field appearance="legacy">
+                                            <mat-label>NOMB_CCSS</mat-label>
+                                            <input matInput placeholder="NOMB_CCSS" onkeyup="this.value=this.value.toUpperCase();">
+                                            <mat-icon matSuffix><a style="color: #333131; cursor: pointer; font-size: 24px"
+                                                ngbTooltip="Nombre del centro de servicios del que depende el pozo"><i class="fa fa-exclamation"></i></a></mat-icon>
+                                        </mat-form-field>
+                                        <!-- <div class="form-group">
+                                            <label>Nombre del centro de servicios del que depende el pozo</label>
                                             <input type="text" class="form-control" rows="3" maxlength="255"
                                                 onkeyup="this.value=this.value.toUpperCase();">
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
