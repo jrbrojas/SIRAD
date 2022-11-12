@@ -167,14 +167,14 @@ export class EditSubcategoriesModalComponent implements OnInit {
       numIdTipoRespuesta: 1,
       txtPregunta: 'ID_CCSS',
       numRespuesta: 1,
-      txtObservacion: 'Código del centro de servicios del que depende el pozo: S001',
+      txtObservacion: 'Código del centro de servicios del que depende el pozo',
       fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
     }, {
       numId: 1,
       numIdTipoRespuesta: 1,
       txtPregunta: 'NOMB_CCSS',
       numRespuesta: 1,
-      txtObservacion: 'Nombre del centro de servicios del que depende el pozo - SEDAPAL CENTRO (Texto, va depender de la organización de la empresa administradora del agua)',
+      txtObservacion: 'Nombre del centro de servicios del que depende el pozo)',
       fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
     }, {
       numId: 1,
@@ -188,7 +188,7 @@ export class EditSubcategoriesModalComponent implements OnInit {
       numIdTipoRespuesta: 1,
       txtPregunta: 'NRO_PZ',
       numRespuesta: 1,
-      txtObservacion: 'El primer grupo permite calificar la accesibilidad interna y considera la densidad de la red vial, la densidad de la red principal, el porcentaje del territorio de la zona a más de 500m de la red principal, el ancho promedio de las vías y el porcentaje del territorio de la zona ocupando cerros. - El segundo grupo califica la permeabilidad de las zonas (o accesibilidad externa). Considera el Código del pozo:  SEDAPAL098788',
+      txtObservacion: 'El primer grupo permite calificar la accesibilidad interna y considera la densidad de la red vial, la densidad de la red principal, el porcentaje del territorio de la zona a más de 500m de la red principal, el ancho promedio de las vías y el porcentaje del territorio de la zona ocupando cerros.',
       fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
     }, {
       numId: 1,
@@ -237,7 +237,7 @@ export class EditSubcategoriesModalComponent implements OnInit {
       numIdTipoRespuesta: 1,
       txtPregunta: 'BO_LGBM',
       numRespuesta: 1,
-      txtObservacion: 'l primer grupo permite calificar la accesibilidad interna y considera la densidad de la red vial, la densidad de la red principal, el porcentaje del territorio de la zona a más de 500m de la red principal, el ancho promedio de las vías y el porcentaje del territorio de la zona ocupando cerros. - El segundo grupo califica la permeabilidad de las zonas (o accesibilidad externa).',
+      txtObservacion: 'l primer grupo permite calificar la accesibilidad interna y considera la densidad de la red vial, la densidad de la red principal, el porcentaje del territorio de la zona a más de 500m de la red principal, el ancho promedio de las vías y el porcentaje del territorio de la zona ocupando cerros.',
       fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
     }, {
       numId: 1,
@@ -391,7 +391,7 @@ export class EditSubcategoriesModalComponent implements OnInit {
       numIdTipoRespuesta: 1,
       txtPregunta: 'ACCES_NOC ',
       numRespuesta: 1,
-      txtObservacion: 'Valor de la accesibilidad, durante la noche, de la zona en la cual se ubica el objeto. Para definir la accesibilidad de las zonas, se consideran 2 grupos de variables: - Enúmero de entradas y salidas (excluyendo los puentes y pasos a desnivel), y un valor de permeabilidad del perímetro en función de su naturaleza (ninguna permeabilidad para los límites tipo “cerro”, “espacio cerrado” y “mar”; permeabilidad limitada para los límites tipo “río” y “vía a desnivel” en función de la cantidad de puentes por km; el resto no presenta problema de permeabilidad). La accesibilidad de noche es una síntesis de esos 2 grupos de factores. ',
+      txtObservacion: 'Valor de la accesibilidad, durante la noche, de la zona en la cual se ubica el objeto. Para definir la accesibilidad de las zonas, se consideran 2 grupos de variables: - Enúmero de entradas y salidas (excluyendo los puentes y pasos a desnivel), y un valor de permeabilidad del perímetro en función de su naturaleza (ninguna permeabilidad para los límites tipo “cerro”, “espacio cerrado” y “mar”; permeabilidad limitada para los límites tipo “río” y “vía a desnivel” en función de la cantidad de puentes por km; el resto no presenta problema de permeabilidad).',
       fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
     }, {
       numId: 1,
