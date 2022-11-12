@@ -19,4 +19,8 @@ export class PermisosListComponent implements OnInit {
     this.router.navigate(['/sirad/seguridad/permisos-add']);
   }
 
+  editPermission(){
+    this.router.navigate(['/sirad/seguridad/permisos-edit']);
+  }
+
 }

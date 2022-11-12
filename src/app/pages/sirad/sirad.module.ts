@@ -50,6 +50,7 @@ import { PerfilAddComponent } from './seguridad/seguridad/perfil-add/perfil-add.
 import { PermisosAddComponent } from './seguridad/seguridad/permisos-add/permisos-add.component';
 import { PermisosListComponent } from './seguridad/seguridad/permisos-list/permisos-list.component';
 import { PerfilEditComponent } from './seguridad/seguridad/perfil-edit/perfil-edit.component';
+import { PermisosEditComponent } from './seguridad/seguridad/permisos-edit/permisos-edit.component';
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
   url: 'https://httpbin.org/post',
@@ -75,6 +76,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
        AddSubcategoriesModalComponent,
        EditSubcategoriesModalComponent,
        PerfilEditComponent,
+       PermisosEditComponent,
   ],
   imports: [
     CommonModule,

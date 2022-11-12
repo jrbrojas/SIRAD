@@ -16,6 +16,7 @@ import { PerfilAddComponent } from './seguridad/seguridad/perfil-add/perfil-add.
 import { PermisosListComponent } from './seguridad/seguridad/permisos-list/permisos-list.component';
 import { PermisosAddComponent } from './seguridad/seguridad/permisos-add/permisos-add.component';
 import { PerfilEditComponent } from './seguridad/seguridad/perfil-edit/perfil-edit.component';
+import { PermisosEditComponent } from './seguridad/seguridad/permisos-edit/permisos-edit.component';
 
 const routes: Routes = [
   {
@@ -59,7 +60,10 @@ const routes: Routes = [
         path: 'seguridad/permisos-add',
         component: PermisosAddComponent,
       },
-      
+      {
+        path: 'seguridad/permisos-edit',
+        component: PermisosEditComponent,
+      },
       {
         path: 'registro/recursos',
         component: RecursosComponent,
