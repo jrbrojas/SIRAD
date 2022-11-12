@@ -87,8 +87,17 @@ export class NavService implements OnDestroy {
       headTitle1: 'General', headTitle2: 'Dashboards & widgets.',
     },*/
     {
+      title: 'CATEGORIAS', icon: 'home', tooltip: 'Registro', type: 'sub', badgeType: 'success', active: true, children: [
+        { path: '/sirad/categorias/categoria', title : 'Categorias', type : 'link'},
+        /* { path: '/simulaciones', title: 'Simulaciones', type: 'link', },
+        { path: '/simulaciones/solicitud-credenciales', title: 'Aprobar Solicitudes Credenciales', type: 'link', },
+        { path: '/simulaciones/seguimiento-reportes', title: 'Seguimiento', type: 'link', },
+        { path: '/simulaciones/ficha-evaluacion', title: 'Ficha Evaluación', type: 'link', } */
+      ]
+    },
+    {
       title: 'REGISTRO', icon: 'home', tooltip: 'Registro', type: 'sub', badgeType: 'success', active: true, children: [
-        { path: '/sirad/registro/categorias', title : 'Categorias', type : 'link'},
+        //{ path: '/sirad/registro/categorias', title : 'Categorias', type : 'link'},
         { path: '/sirad/registro/recursos', title: 'Recursos', type: 'link' },
         { path: '/sirad/registro/carga-masiva', title: 'Carga Masiva', type: 'link' },
         /* { path: '/simulaciones', title: 'Simulaciones', type: 'link', },

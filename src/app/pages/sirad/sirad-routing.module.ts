@@ -29,7 +29,7 @@ const routes: Routes = [
         component: RegistroComponent,
       },
       {
-        path: 'registro/categorias',
+        path: 'categorias/categoria',
         component : CategoriesComponent
 
       },
