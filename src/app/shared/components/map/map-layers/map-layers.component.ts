@@ -173,6 +173,7 @@ export class MapLayersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
   }
 
   closeModal(){
