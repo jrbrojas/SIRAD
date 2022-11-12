@@ -46,9 +46,12 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th class="text-center">#</th>
-                                            <th class="text-center">Nombre Ficha Evaluación</th>
-                                            <th class="text-center">Estado</th>
+                                            <th class="text-center">ID</th>
+                                            <th class="text-center">Nombre</th>
+                                            <th class="text-center">Fecha de registro</th>
+                                            <th class="text-center">Departamento</th>
+                                            <th class="text-center">Provincia</th>
+                                            <th class="text-center">Distrito</th>
                                             <th class="text-center">Opciones</th>
                                         </tr>
                                     </thead>
@@ -56,8 +59,12 @@
                                         <tr class="text-center" *ngFor="let item of dataFichasEvaluacion">
                                             <td class="text-center">{{ item.numId }}</td>
                                             <td class="text-center">{{ item.txtNombre }}</td>
-                                            <td *ngIf="item.bolEstado == 'Pendiente'" ><p class="text-center badge badge-warning fw-bold">{{ item.bolEstado }}</p></td>
-                                            <td *ngIf="item.bolEstado != 'Pendiente'" ><p class="text-center badge badge-success fw-bold">{{ item.bolEstado }}</p></td>
+                                            <td class="text-center">11/11/2022</td>
+                                            <td class="text-center">Lima</td>
+                                            <td class="text-center">Lima</td>
+                                            <td class="text-center">San Juan de Lurigancho</td>
+                                            <!-- <td *ngIf="item.bolEstado == 'Pendiente'" ><p class="text-center badge badge-warning fw-bold">{{ item.bolEstado }}</p></td>
+                                            <td *ngIf="item.bolEstado != 'Pendiente'" ><p class="text-center badge badge-success fw-bold">{{ item.bolEstado }}</p></td> -->
                                             <td>
                                                 <div>
                                                     <a style="color: #08afe0; cursor: pointer; font-size: 20px" (click)="ngAsignarEvento(item)"

@@ -18,7 +18,7 @@ export class RecursosComponent implements OnInit {
       this.dataFichasEvaluacion.push(
         {
           numId: (a + 1),
-          txtNombre: 'Ficha Evaluación ' + (a + 1),
+          txtNombre: 'Nombre ' + (a + 1),
           bolEstado: 'Pendiente'
         }
       );
