@@ -35,6 +35,58 @@
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <mat-form-field appearance="outline">
+                                            <mat-label>DEPARTAMENTO</mat-label>
+                                            <input matInput placeholder="DEPARTAMENTO" onkeyup="this.value=this.value.toUpperCase();">
+                                            <mat-icon matSuffix><a style="color: #3331319f; cursor: pointer; font-size: 24px"
+                                                ngbTooltip="Departamento"><i class="fa fa-exclamation"></i></a></mat-icon>
+                                        </mat-form-field>
+                                        <!-- <div class="form-group">
+                                            <label>Código del distrito</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div> -->
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>PROVINCIA</mat-label>
+                                            <input matInput placeholder="PROVINCIA" onkeyup="this.value=this.value.toUpperCase();">
+                                            <mat-icon matSuffix><a style="color: #3331319f; cursor: pointer; font-size: 24px"
+                                                ngbTooltip="Provincia"><i class="fa fa-exclamation"></i></a></mat-icon>
+                                        </mat-form-field>
+                                        <!-- <div class="form-group">
+                                            <label>Código del distrito</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div> -->
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>DISTRITO</mat-label>
+                                            <input matInput placeholder="DISTRITO" onkeyup="this.value=this.value.toUpperCase();">
+                                            <mat-icon matSuffix><a style="color: #3331319f; cursor: pointer; font-size: 24px"
+                                                ngbTooltip="Distrito"><i class="fa fa-exclamation"></i></a></mat-icon>
+                                        </mat-form-field>
+                                        <!-- <div class="form-group">
+                                            <label>Código del distrito</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div> -->
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>UBIGEO</mat-label>
+                                            <input matInput placeholder="UBIGEO" onkeyup="this.value=this.value.toUpperCase();">
+                                            <mat-icon matSuffix><a style="color: #3331319f; cursor: pointer; font-size: 24px"
+                                                ngbTooltip="Código del distrito"><i class="fa fa-exclamation"></i></a></mat-icon>
+                                        </mat-form-field>
+                                        <!-- <div class="form-group">
+                                            <label>Código del distrito</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div> -->
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <mat-form-field appearance="outline">
                                             <mat-label>ID_CCSS</mat-label>
                                             <input matInput placeholder="ID_CCSS" onkeyup="this.value=this.value.toUpperCase();">
                                             <mat-icon matSuffix><a style="color: #3331319f; cursor: pointer; font-size: 24px"
@@ -63,19 +115,6 @@
                                     </div>
                                     <div class="col-sm-3">
                                         <mat-form-field appearance="outline">
-                                            <mat-label>UBIGEO</mat-label>
-                                            <input matInput placeholder="UBIGEO" onkeyup="this.value=this.value.toUpperCase();">
-                                            <mat-icon matSuffix><a style="color: #3331319f; cursor: pointer; font-size: 24px"
-                                                ngbTooltip="Código del distrito"><i class="fa fa-exclamation"></i></a></mat-icon>
-                                        </mat-form-field>
-                                        <!-- <div class="form-group">
-                                            <label>Código del distrito</label>
-                                            <input type="text" class="form-control" rows="3" maxlength="255"
-                                                onkeyup="this.value=this.value.toUpperCase();">
-                                        </div> -->
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <mat-form-field appearance="outline">
                                             <mat-label>NRO_PZ</mat-label>
                                             <input matInput placeholder="NRO_PZ" onkeyup="this.value=this.value.toUpperCase();">
                                             <mat-icon matSuffix><a style="color: #3331319f; cursor: pointer; font-size: 24px"
@@ -87,8 +126,6 @@
                                                 onkeyup="this.value=this.value.toUpperCase();">
                                         </div> -->
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="col-sm-3">
                                         <mat-form-field appearance="outline">
                                             <mat-label>NOM_PZ</mat-label>
@@ -102,6 +139,8 @@
                                                 onkeyup="this.value=this.value.toUpperCase();">
                                         </div> -->
                                     </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-sm-3">
                                         <mat-form-field appearance="outline">
                                             <mat-label>EST_PZ</mat-label>
@@ -154,6 +193,11 @@
                                         </div> -->
                                     </div>
                                 </div>
+                                <!-- <div class="text-left">
+                                    <button mat-button matStepperPrevious class="btn btn-primary mr-3">
+                                        <mat-icon>arrow_back_ios_new</mat-icon>
+                                    </button>
+                                </div> -->
                                 <div class="text-right">
                                     <button mat-button matStepperNext class="btn btn-primary mr-3">
                                         <mat-icon>arrow_forward_ios</mat-icon>
@@ -275,6 +319,11 @@
                                         </div> -->
                                     </div>
                                 </div>
+                                <div class="text-left">
+                                    <button mat-button matStepperPrevious class="btn btn-primary mr-3">
+                                        <mat-icon>arrow_back_ios_new</mat-icon>
+                                    </button>
+                                </div>
                                 <div class="text-right">
                                     <button mat-button matStepperNext class="btn btn-primary mr-3">
                                         <mat-icon>arrow_forward_ios</mat-icon>
@@ -392,6 +441,11 @@
                                                 onkeyup="this.value=this.value.toUpperCase();">
                                         </div> -->
                                     </div>
+                                </div>
+                                <div class="text-left">
+                                    <button mat-button matStepperPrevious class="btn btn-primary mr-3">
+                                        <mat-icon>arrow_back_ios_new</mat-icon>
+                                    </button>
                                 </div>
                                 <div class="text-right">
                                     <button mat-button matStepperNext class="btn btn-primary mr-3">
@@ -531,8 +585,13 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="text-left">
+                                    <button mat-button matStepperPrevious class="btn btn-primary mr-3" style="margin: 10px;">
+                                        <mat-icon>arrow_back_ios_new</mat-icon>
+                                    </button>
+                                </div>
                                 <div class="text-right">
-                                    <button mat-button matStepperNext class="btn btn-primary mr-3">
+                                    <button mat-button matStepperNext class="btn btn-primary mr-3" style="margin: -30px;">
                                         <mat-icon>arrow_forward_ios</mat-icon>
                                     </button>
                                 </div>
@@ -577,6 +636,11 @@
                                                 onkeyup="this.value=this.value.toUpperCase();">
                                         </div> -->
                                     </div>
+                                </div>
+                                <div class="text-left">
+                                    <button mat-button matStepperPrevious class="btn btn-primary mr-3">
+                                        <mat-icon>arrow_back_ios_new</mat-icon>
+                                    </button>
                                 </div>
                             </mat-step>
                         </mat-stepper>

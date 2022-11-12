@@ -69,6 +69,7 @@ export class FichaEvaluacionDetalleSegmentosOpcionesRespuestas {
 
 export class AddSubcategoriesModalComponent implements OnInit {
 
+  atributosItem: FichaEvaluacionSegmentos = new FichaEvaluacionSegmentos();
   formFichaEvaluacion: FichaEvaluacion = new FichaEvaluacion();
 
   options: Options[] = [
@@ -204,7 +205,7 @@ export class AddSubcategoriesModalComponent implements OnInit {
       confirmButtonText: 'Si, eliminar!'
     }).then((result) => {
       if (result.isConfirmed) {
-        item.splice(index, 1);
+        item.fichaEvaluacionDetalleSegmentos.splice(index, 1);
         Swal.fire(
           'Eliminado!',
           'Eliminado correctamente.',
@@ -224,6 +225,16 @@ export class AddSubcategoriesModalComponent implements OnInit {
       fichaEvaluacionDetalleSegmentosOpcionesRespuestas: []
     })
   }
+  // ngAgregarDetalleSegmento(item: FichaEvaluacionSegmentos) {
+  //   item.fichaEvaluacionDetalleSegmentos.push({
+  //     numId: 0,
+  //     numIdTipoRespuesta: 0,
+  //     txtPregunta: '',
+  //     numRespuesta: 0,
+  //     txtObservacion: '',
+  //     fichaEvaluacionDetalleSegmentosOpcionesRespuestas: []
+  //   })
+  // }
 
   ngAgregarSegmentoOpcionesRespuesta(item: FichaEvaluacionDetalleSegmentosOpcionesRespuestas[]) {
     item.push( {
