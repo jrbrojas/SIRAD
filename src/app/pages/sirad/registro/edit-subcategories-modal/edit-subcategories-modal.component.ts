@@ -68,7 +68,7 @@ export class EditSubcategoriesModalComponent implements OnInit {
   formFichaEvaluacion: FichaEvaluacion = new FichaEvaluacion();
 
   
-
+  atributosItem: FichaEvaluacionSegmentos = new FichaEvaluacionSegmentos();
 
   dataTipoRespuesta = [
     {
@@ -160,8 +160,249 @@ export class EditSubcategoriesModalComponent implements OnInit {
       systemCoord: 'EPSG: 32718 - WGS 84 UTM zona 18 sur'
     })
 
-    this.getDetailsSubCategory();
+    //hola mundo
 
+    this.atributosItem.fichaEvaluacionDetalleSegmentos.push({
+      numId: 1,
+      numIdTipoRespuesta: 1,
+      txtPregunta: 'ID_CCSS',
+      numRespuesta: 1,
+      txtObservacion: 'Código del centro de servicios del que depende el pozo',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 1,
+      txtPregunta: 'NOMB_CCSS',
+      numRespuesta: 1,
+      txtObservacion: 'Nombre del centro de servicios del que depende el pozo)',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 1,
+      txtPregunta: 'UBIGEO',
+      numRespuesta: 1,
+      txtObservacion: 'Código del distrito Ejemplo:15021',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 1,
+      txtPregunta: 'NRO_PZ',
+      numRespuesta: 1,
+      txtObservacion: 'El primer grupo permite calificar la accesibilidad interna y considera la densidad de la red vial, la densidad de la red principal, el porcentaje del territorio de la zona a más de 500m de la red principal, el ancho promedio de las vías y el porcentaje del territorio de la zona ocupando cerros.',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 1,
+      txtPregunta: 'NOM_PZ',
+      numRespuesta: 1,
+      txtObservacion: 'Nombre del pozo',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 1,
+      txtPregunta: 'EST_PZ',
+      numRespuesta: 1,
+      txtObservacion: 'Estado del pozo',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 1,
+      txtPregunta: 'ME_MARCA',
+      numRespuesta: 1,
+      txtObservacion: 'Marca del motor eléctrico del pozo',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 1,
+      txtPregunta: 'ME_HP',
+      numRespuesta: 1,
+      txtObservacion: 'Potencia del motor eléctrico del pozo',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 1,
+      txtPregunta: 'ME_AMP',
+      numRespuesta: 1,
+      txtObservacion: 'Amperaje del motor eléctrico del pozo',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 1,
+      txtPregunta: 'ME_VOL',
+      numRespuesta: 1,
+      txtObservacion: 'Voltaje del motor eléctrico del pozo',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 1,
+      txtPregunta: 'BO_LGBM',
+      numRespuesta: 1,
+      txtObservacion: 'l primer grupo permite calificar la accesibilidad interna y considera la densidad de la red vial, la densidad de la red principal, el porcentaje del territorio de la zona a más de 500m de la red principal, el ancho promedio de las vías y el porcentaje del territorio de la zona ocupando cerros.',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 1,
+      txtPregunta: 'BO_TIPO',
+      numRespuesta: 1,
+      txtObservacion: 'Tipo de bomba utilizada',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 1,
+      txtPregunta: 'BO_MARCA',
+      numRespuesta: 1,
+      txtObservacion: 'Marca de la bomba utilizada',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 1,
+      txtPregunta: 'BO_MODEL',
+      numRespuesta: 1,
+      txtObservacion: 'Modelo de bomba utilizada',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 1,
+      txtPregunta: 'PZ_EQUIP',
+      numRespuesta: 1,
+      txtObservacion: 'Estado del equipamiento del pozo',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 3,
+      txtPregunta: 'VAL_DIAM',
+      numRespuesta: 1,
+      txtObservacion: 'Diámetro del la válvula del pozo en pulgadas',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 3,
+      txtPregunta: 'VAL_VW',
+      numRespuesta: 1,
+      txtObservacion: 'Vuelta de trabajo de la válvula en vatios',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 3,
+      txtPregunta: 'VAL_VT',
+      numRespuesta: 1,
+      txtObservacion: 'Vuelta total de la válvula en vatios',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 3,
+      txtPregunta: 'CO_NE_M',
+      numRespuesta: 1,
+      txtObservacion: 'Cota de nivel estático del pozo',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 3,
+      txtPregunta: 'CO_ND_M',
+      numRespuesta: 1,
+      txtObservacion: 'ddddddddddddddddddddddd',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 3,
+      txtPregunta: 'CO_P1_LBS',
+      numRespuesta: 1,
+      txtObservacion: 'Presión de salida con el número de vueltas de trabajo de la válvula en psi (libras por pulgadas cuadradas)',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 3,
+      txtPregunta: 'CO_P2_LBS',
+      numRespuesta: 1,
+      txtObservacion: 'Presión de salida con el número total de vueltas de la válvula en psi (libras por pulgadas cuadradas)',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 3,
+      txtPregunta: 'CO_Q_LS',
+      numRespuesta: 1,
+      txtObservacion: 'Caudal del pozo en litros por segundo',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 3,
+      txtPregunta: 'PROF_PZ',
+      numRespuesta: 1,
+      txtObservacion: 'Profundidad del pozo en metros',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 3,
+      txtPregunta: 'HRS_DIA',
+      numRespuesta: 1,
+      txtObservacion: 'Número de horas de funcionamiento del pozo por ',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 3,
+      txtPregunta: 'DIAS_MES',
+      numRespuesta: 1,
+      txtObservacion: 'Número de días de funcionamiento del pozo por mes ',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 3,
+      txtPregunta: 'PROD_MM3',
+      numRespuesta: 1,
+      txtObservacion: 'Producción total del pozo en miles de metros cúbicos',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 3,
+      txtPregunta: 'X_UTM',
+      numRespuesta: 1,
+      txtObservacion: 'Coordenada X del pozo en UTM',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 3,
+      txtPregunta: 'Y_UTM',
+      numRespuesta: 1,
+      txtObservacion: 'Coordenada Y del pozo en UTM',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 1,
+      txtPregunta: 'OBS',
+      numRespuesta: 1,
+      txtObservacion: 'Observación sobre el pozo',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 1,
+      txtPregunta: 'FUENTE',
+      numRespuesta: 1,
+      txtObservacion: 'Fuente de los datos sobre el pozo en Sedapal',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 1,
+      txtPregunta: 'ESENCIAL',
+      numRespuesta: 1,
+      txtObservacion: 'Nivel de esencialidad o de importancia del objeto',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 1,
+      txtPregunta: 'ACCES_NOC ',
+      numRespuesta: 1,
+      txtObservacion: 'Valor de la accesibilidad, durante la noche, de la zona en la cual se ubica el objeto. Para definir la accesibilidad de las zonas, se consideran 2 grupos de variables: - Enúmero de entradas y salidas (excluyendo los puentes y pasos a desnivel), y un valor de permeabilidad del perímetro en función de su naturaleza (ninguna permeabilidad para los límites tipo “cerro”, “espacio cerrado” y “mar”; permeabilidad limitada para los límites tipo “río” y “vía a desnivel” en función de la cantidad de puentes por km; el resto no presenta problema de permeabilidad).',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 1,
+      txtPregunta: 'ACCES_DIA ',
+      numRespuesta: 1,
+      txtObservacion: 'Calidad de la accesibilidad, durante el día, de la zona de accesibilidad en la cual se ubica el objeto. La accesibilidad de día ha sido calculada a partir de la accesibilidad de noche, a la cual se ha añadido una variable de congestión vehicular (número de puntos de congestión por kilómetro de vías principales en la zona).',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    })
+
+    this.getDetailsSubCategory();
 
   }
 

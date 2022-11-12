@@ -148,7 +148,62 @@
                 </mat-tab>
                 <mat-tab label="Atributos">
                                     <form>
-                                        <div class="mt-4">
+                                        
+                                        <hr>
+                                        <div class="col-lg-12">
+                                            <button mat-stroked-button align="end" (click)="ngAgregarDetalleSegmento(atributosItem)" color="primary"><mat-icon>add</mat-icon>Agregar atributo</button>
+                                        </div>
+                                        <br>
+                                        <div class="col-lg-12" *ngFor="let item of atributosItem.fichaEvaluacionDetalleSegmentos; let i = index">
+                                            <mat-card>
+                                                <mat-card-content>
+
+                                                    <mat-form-field class="col-lg-12" appearance="outline">
+                                                        <mat-label>Nombre de Atributo</mat-label>
+                                                        <input matInput maxlength="400" rows="3" #inputtxtPregunta
+                                                            [ngModelOptions]="{standalone: true}" [(ngModel)]="item.txtPregunta" placeholder="Nombre del Atributo" required>
+                                                        <button mat-icon-button matSuffix color="warn"><mat-icon matSuffix>delete</mat-icon></button>
+                                                        <mat-hint align="end">{{inputtxtPregunta.value.length || 0}}/400
+                                                        </mat-hint>
+                                                    </mat-form-field>
+                                                    <mat-form-field class="col-lg-12" appearance="outline">
+                                                        <mat-label>Descripcion del Atributo</mat-label>
+                                                        <textarea matInput maxlength="400" rows="3" #inputtxtPregunta
+                                                            [ngModelOptions]="{standalone: true}" [(ngModel)]="item.txtObservacion" placeholder="Descripcion del Atributo" required></textarea>
+                                                        <mat-hint align="end">{{inputtxtPregunta.value.length || 0}}/400
+                                                        </mat-hint>
+                                                    </mat-form-field>
+                                                    <mat-form-field class="col-lg-12" appearance="fill">
+                                                        <mat-label>Tipo de dato</mat-label>
+                                                        <select matNativeControl [ngModelOptions]="{standalone: true}" [(ngModel)]="item.numIdTipoRespuesta" required>
+                                                            <option disabled value=""></option>
+                                                            <option value="1">Texto Corto</option>
+                                                            <option value="2">Texto largo</option>
+                                                            <option value="3">Numerico</option>
+                                                        </select>
+                                                    </mat-form-field>
+                                                    <div class="col-lg-12" *ngIf="item.numIdTipoRespuesta == 4 || item.numIdTipoRespuesta == 5">
+                                                        <button mat-stroked-button align="end" (click)="ngAgregarSegmentoOpcionesRespuesta(item.fichaEvaluacionDetalleSegmentosOpcionesRespuestas)" color="primary"><mat-icon>add</mat-icon> Opciones de Respuesta</button>
+                                                    </div> 
+                                                    <br>
+                                                    <div *ngFor="let itemOpciones of item.fichaEvaluacionDetalleSegmentosOpcionesRespuestas; let i = index;" style="padding-left: 20px;">
+                                                        <mat-form-field class="col-lg-12" appearance="outline">
+                                                            <mat-label>{{ i + 1 }} - Opciones de respuesta</mat-label>
+                                                            <input matInput maxlength="400" #inputtxtOpcionRespuesta
+                                                                [ngModelOptions]="{standalone: true}" [(ngModel)]="itemOpciones.txtOpcionRespuesta" placeholder="Opción Respuesta" required>
+                                                            <button mat-icon-button matSuffix color="warn" (click)="ngEliminarItem(item.fichaEvaluacionDetalleSegmentosOpcionesRespuestas, i)"><mat-icon matSuffix>delete</mat-icon></button>
+                                                            <mat-hint align="end">{{inputtxtOpcionRespuesta.value.length || 0}}/400
+                                                            </mat-hint>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </mat-card-content>
+                                            </mat-card>
+                                            <br>
+                                        </div>
+                                        <hr>
+
+
+                                        <!-- <div class="mt-4">
                                             <button mat-stroked-button align="end" (click)="ngAgregarSegmento()" color="primary"><mat-icon>add</mat-icon> Agregar Segmento</button>
                                         </div>
                                         <br>
@@ -215,7 +270,7 @@
                                             </mat-card>
                                             <br>
                                         </div>
-                                        <hr>
+                                        <hr> -->
                                         <hr>
                                     </form>
                               
