@@ -17,7 +17,7 @@
                                     <ng-select formControlName="idTipoDocumento" placeholder="Seleccione">
                                         <ng-option value="0">Elegir...</ng-option>
                                         <ng-option value="1">Prof.</ng-option>
-                                        <ng-option value="2" selected>Dr.</ng-option>
+                                        <ng-option value="2">Dr.</ng-option>
                                         <ng-option value="3">Sra.</ng-option>
                                         <ng-option value="4">Sr.</ng-option>
                                         <ng-option value="5">Otro</ng-option>
@@ -30,7 +30,7 @@
                                     <ng-select formControlName="idTipoDocumento" placeholder="Seleccione">
                                         <ng-option value="0">Elegir...</ng-option>
                                         <ng-option value="1">Femenino</ng-option>
-                                        <ng-option value="2" selected>Masculino</ng-option>
+                                        <ng-option value="2">Masculino</ng-option>
                                     </ng-select>
                                 </div>
                             </div>
@@ -38,7 +38,7 @@
                                 <div class="form-group">
                                     <label>TIPO DOCUMENTO</label>
                                     <ng-select formControlName="idTipoDocumento" placeholder="Seleccione">
-                                        <ng-option value="1" selected>DNI</ng-option>
+                                        <ng-option value="1">DNI</ng-option>
                                         <ng-option value="2">PASAPORTE</ng-option>
                                         <ng-option value="3">CARNET DE EXTRANJERIA</ng-option>
                                         <ng-option value="4">OTRO DOCUMENTO</ng-option>
@@ -273,21 +273,15 @@
 
 
                         </div>
-
-
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <label [hidden]="HabilitarPerfil" >PERFILES</label>
-                                <ng-container>
-                                    <ng-container>
-                                        <ng-select formControlName="idPerfil" [items]="selectProfile" [hidden]="HabilitarPerfil"
-                                            bindLabel="nombre" bindValue="id" (change)="getSelectProfile($event)"
-                                            placeholder="Seleccione" [multiple]="false">
-                                        </ng-select>
-                                    </ng-container>
-                                </ng-container>
+                                <label>PERFILES</label>                                
+                                <ng-select formControlName="idPerfil" [items]="selectProfile" bindLabel="perfil"
+                                bindValue="id" placeholder="Seleccione">
+                                </ng-select>                                   
                             </div>
                         </div>
+                        
                         <div class="row text-center">
                             <div class="col">
                                 <div class="form-group mb-0">

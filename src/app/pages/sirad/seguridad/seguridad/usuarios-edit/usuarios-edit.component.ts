@@ -13,7 +13,24 @@ export class UsuariosEditComponent implements OnInit {
   public idsPerfilesUsuario: number[] = new Array<number>();
 
   public isId: any;
-  public selectProfile: any;
+  public selectProfile = [
+    {
+      id: 1,
+      perfil: "Administrador del Sistema"
+    },
+    {
+      id: 2,
+      perfil: "Administrador del SIRAD"
+    },
+    {
+      id: 3,
+      perfil: "Registrador de Recursos del SIRAD"
+    },
+    {
+      id: 4,
+      perfil: "Usuario Público"
+    },
+  ];
   public selectRegion: any;
   public selectProvincia: any;
   public selectDistrito: any;
