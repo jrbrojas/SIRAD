@@ -41,6 +41,93 @@ export class RecursosAddComponent implements OnInit {
     },
   ]
 
+  dia = [
+    {
+      id: 1,
+      estado: "Regular"
+    },
+    {
+      id: 2,
+      estado: "Mala"
+    },
+    {
+      id: 3,
+      estado: "Muy mala"
+    },
+  ]
+
+  noche = [
+    {
+      id: 1,
+      estado: "Muy buena"
+    },
+    {
+      id: 2,
+      estado: "Buena"
+    },
+    {
+      id: 3,
+      estado: "Regular"
+    },
+    {
+      id: 4,
+      estado: "Mala"
+    },
+    {
+      id: 5,
+      estado: "Muy mala"
+    },
+  ]
+
+  esencial = [
+    {
+      id: 1,
+      estado: "Normal"
+    },
+    {
+      id: 2,
+      estado: "Específico emergencia"
+    },
+    {
+      id: 3,
+      estado: "Apoyo emergencia"
+    },
+    {
+      id: 4,
+      estado: "Otros"
+    },
+  ]
+
+  fuente = [
+    {
+      id: 1,
+      estado: "Equipo de Aguas Subterráneas"
+    },
+    {
+      id: 2,
+      estado: "Equipo de Catastro de Redes y Fuentes"
+    },
+  ]
+
+  observacion = [
+    {
+      id: 1,
+      estado: "Fuera de uso"
+    },
+    {
+      id: 2,
+      estado: "Pozo anulado"
+    },
+    {
+      id: 3,
+      estado: "Pozo particular"
+    },
+    {
+      id: 4,
+      estado: "Reserva"
+    },
+  ]
+
   estados = [
     {
       id: 1,
