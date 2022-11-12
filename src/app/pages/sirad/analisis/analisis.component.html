@@ -1,4 +1,4 @@
-<app-breadcrumb [title]="'Análisis Vulnerabilidad'" [active_item]="'Análisis'"></app-breadcrumb>
+<app-breadcrumb [title]="'Análisis de Vulnerabilidad Por Riesgo'" [active_item]="'Análisis'"></app-breadcrumb>
 
 <div class="container-fluid">
 
@@ -9,27 +9,11 @@
 
           <form>
             <div class="row px-4">
-              <div class="col-sm-12">
-                <h4>ANÁLISIS DE VULNERABILIDAD POR RIESGO</h4>
-              </div>
-            </div>
-            <div class="row px-4">
               <div class="col-sm-10">
-                <div class="form-group" style="font-size: 13px">
-                  <div class="mb-2">
-                    <mat-form-field appearance="outline">
-                      <mat-label>Buscar</mat-label>
-                      <input matInput type="text" formControlName="textoBusqueda"
-                        onkeyup="this.value=this.value.toUpperCase();">
-                      <button matSuffix mat-icon-button aria-label="Clear">
-                        <mat-icon>close</mat-icon>
-                      </button>
-                    </mat-form-field>
-                  </div>
-                </div>
+                <label>Seleccione recurso</label>
               </div>
 
-              <mat-form-field class="col-lg-6" appearance="outline">
+              <mat-form-field class="col-lg-6 pt-3" appearance="outline">
                 <mat-label>Seleccione Categoria</mat-label>
                 <select matNativeControl required>
                   <option disabled value=""></option>
@@ -38,7 +22,7 @@
                   <option value="mercedes">ABASTECIMIENTO DE ENERGIA</option>
                 </select>
               </mat-form-field>
-              <mat-form-field class="col-lg-6" appearance="outline">
+              <mat-form-field class="col-lg-6 pt-3" appearance="outline">
                 <mat-label>Seleccione SubCategoria</mat-label>
                 <select matNativeControl required>
                   <option disabled value=""></option>
