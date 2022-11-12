@@ -16,56 +16,67 @@ export class RecursosComponent implements OnInit {
     {
       id: 1,
       categoria: "ABASTECIMIENTO DE AGUA",
+      recurso: 'POZ-001',
       nombre: "Pozos"
     },
     {
       id: 2,
       categoria: "ABASTECIMIENTO DE AGUA",
+      recurso: 'APAGP-001',
       nombre: "Red primaria de agua potable"
     },
     {
       id: 3,
       categoria: "ABASTECIMIENTO DE AGUA",
+      recurso: 'PAP-001',
       nombre: "Plantas de Agua Potable"
     },
     {
       id: 4,
       categoria: "ABASTECIMIENTO DE AGUA",
+      recurso: 'RES-001',
       nombre: "Reservorios"
     },
     {
       id: 5,
       categoria: "ABASTECIMIENTO DE ALIMENTOS",
+      recurso: 'RES-002',
       nombre: "Reservorios"
     },
     {
       id: 6,
       categoria: "ABASTECIMIENTO DE ALIMENTOS",
+      recurso: 'SIAA-001',
       nombre: "Sedes de instituciones de ayuda alimentaria"
     },
     {
       id: 7,
       categoria: "ABASTECIMIENTO DE ALIMENTOS",
+      recurso: 'MEMA-001',
       nombre: "Mercados mayoristas"
     },
     {
       id: 8,
       categoria: "ABASTECIMIENTO DE ENERGÍA",
+      recurso: 'TER-001',
       nombre: "Terminales"
     },
     {
       id: 9,
       categoria: "ABASTECIMIENTO DE ENERGÍA",
+      recurso: 'REF-001',
       nombre: "Refinerías"
     },
     {
       id: 10,
       categoria: "ATENCIÓN MÉDICA",
+      recurso: 'CEAT-001',
       nombre: "Centro de decisión"
     },
     {
       id: 11,
       categoria: "ATENCIÓN MÉDICA",
+      recurso: 'ESSA-001',
       nombre: "Establecimientos de salud"
     },
   ]
