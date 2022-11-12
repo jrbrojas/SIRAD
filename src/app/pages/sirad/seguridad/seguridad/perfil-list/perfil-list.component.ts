@@ -19,4 +19,7 @@ export class PerfilListComponent implements OnInit {
     this.router.navigate(['/sirad/seguridad/perfiles-add']);
   }
 
+  editPerfil(){
+    this.router.navigate(['/sirad/seguridad/perfiles-edit']);
+  }
 }

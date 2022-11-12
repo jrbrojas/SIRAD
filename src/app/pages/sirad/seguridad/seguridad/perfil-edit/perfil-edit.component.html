@@ -1,0 +1,75 @@
+<app-breadcrumb [title]="'Editar Perfil'" [items]="['Seguridad','Permisos']" [active_item]="'Editar'">
+</app-breadcrumb>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>NOMBRE</label>
+                                    <input type="text" class="form-control" rows="3" value="Administrador del Sistema" maxlength="20" >
+                                    <div class="">
+                                        MAXIMO 255 CARACTERES
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>DESCRIPCI&Oacute;N</label>
+                                    <input type="text" value="Descripción del Administrador del Sistema" class="form-control" rows="3" maxlength="20" >
+                                    <div class=" ">
+                                        MAXIMO 255 CARACTERES
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>HABILITADO</label>
+                                    <select class="form-control" style="width: 100%;" placeholder="Seleccione">
+                                        <option value="1">SI</option>
+                                        <option value="0">NO</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <ng-container formArrayName="permisos">
+                                        <ng-container>
+                                            <label>Asignar Permisos</label>
+                                            <select class="form-control" style="width: 100%;" placeholder="Seleccione">
+                                                <option value="1">Crear</option>
+                                                <option value="0">Editar</option>
+                                                <option value="0">Eliminar</option>
+                                                <option value="0">Ver</option>
+                                            </select>
+                                        </ng-container>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <div class="col">
+                                <div class="form-group mb-0">
+                                    <div class="form-group mb-0">
+                                        <button (click)="back(0)" type="button" class="btn btn-primary mr-3">
+                                            <span><i class="fa fa-save"></i> Grabar</span>
+                                        </button>
+                                        <button  (click)="back(1)" type="button" class="btn btn-danger"><i
+                                                class="fa fa-ban"></i> Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
