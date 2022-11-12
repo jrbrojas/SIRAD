@@ -105,9 +105,6 @@ export class AddSubcategoriesModalComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-  }
-
-  closeModal(){
     this.atributosItem.fichaEvaluacionDetalleSegmentos.push({
       numId: 1,
       numIdTipoRespuesta: 1,
@@ -130,6 +127,9 @@ export class AddSubcategoriesModalComponent implements OnInit {
       txtObservacion: 'Nombre del Distrito',
       fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
     })
+  }
+
+  closeModal(){
     this.modalService.dismissAll()
     
   }
