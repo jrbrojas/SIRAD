@@ -193,6 +193,13 @@ export class EditSubcategoriesModalComponent implements OnInit {
       fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
     }, {
       numId: 1,
+      numIdTipoRespuesta: 1,
+      txtPregunta: 'Nombre',
+      numRespuesta: 1,
+      txtObservacion: 'Nombre del Recurso',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
       numIdTipoRespuesta: 3,
       txtPregunta: 'ID_CCSS',
       numRespuesta: 1,

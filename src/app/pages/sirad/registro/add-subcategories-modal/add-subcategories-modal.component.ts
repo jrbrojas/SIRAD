@@ -126,6 +126,13 @@ export class AddSubcategoriesModalComponent implements OnInit {
       numRespuesta: 1,
       txtObservacion: 'Nombre del Distrito',
       fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 1,
+      txtPregunta: 'Nombre',
+      numRespuesta: 1,
+      txtObservacion: 'Nombre del Recurso',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
     })
   }
 
