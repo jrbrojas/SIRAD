@@ -20,7 +20,6 @@ import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerMod
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { DropzoneConfigInterface, DropzoneModule, DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
 
-
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -52,6 +51,7 @@ import { PermisosListComponent } from './seguridad/seguridad/permisos-list/permi
 import { PerfilEditComponent } from './seguridad/seguridad/perfil-edit/perfil-edit.component';
 import { PermisosEditComponent } from './seguridad/seguridad/permisos-edit/permisos-edit.component';
 import { UsuariosEditComponent } from './seguridad/seguridad/usuarios-edit/usuarios-edit.component';
+
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
   url: 'https://httpbin.org/post',
@@ -119,7 +119,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     MatTreeModule,
     DropzoneModule,
     MatTabsModule,
-    MatChipsModule
+    MatChipsModule,
+    
 
   ],
   providers: [
