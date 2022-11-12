@@ -1,6 +1,7 @@
 import {SelectionModel} from '@angular/cdk/collections';
 import {FlatTreeControl} from '@angular/cdk/tree';
 import {Component, Injectable, OnInit} from '@angular/core';
+import { ThemePalette } from '@angular/material/core';
 import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {BehaviorSubject} from 'rxjs';
@@ -129,6 +130,14 @@ export class ChecklistDatabase {
 }
 
 
+export interface Task {
+  name: string;
+  completed: boolean;
+  color: ThemePalette;
+  subtasks?: Task[];
+}
+
+
 @Component({
   selector: 'app-map-layers',
   templateUrl: './map-layers.component.html',
@@ -136,6 +145,118 @@ export class ChecklistDatabase {
   providers: [ChecklistDatabase],
 })
 export class MapLayersComponent implements OnInit {
+
+  task: Task[] = [{
+    name: 'Indeterminate',
+    completed: false,
+    color: 'primary',
+    subtasks: [
+      {name: 'Primary', completed: false, color: 'primary'},
+      {name: 'Accent', completed: false, color: 'accent'},
+      {name: 'Warn', completed: false, color: 'warn'},
+    ],
+  }, 
+  {
+    name: 'ABASTECIMIENTO DE AGUA',
+    completed: false,
+    color: 'primary',
+    subtasks: [
+      {name: 'Plantas de Agua Potable', completed: false, color: 'primary'},
+      {name: 'Red primaria de agua potable', completed: false, color: 'primary'},
+      {name: 'Pozos', completed: false, color: 'primary'},
+      {name: 'Reservorios', completed: false, color: 'primary'}
+    ]
+  },
+  {
+    name: 'ABASTECIMIENTO DE ALIMENTOS',
+    completed: false,
+    color: 'primary',
+    subtasks: [
+      {name: 'Sedes de instituciones de ayuda alimentaria', completed: false, color: 'primary'},
+      {name: 'Mercados mayoristas', completed: false, color: 'primary'},
+      {name: 'Mercados de distribución', completed: false, color: 'primary'},
+      {name: 'Supermercados', completed: false, color: 'primary'}
+    ]
+  },
+  {
+    name: 'ABASTECIMIENTO DE ENERGÍA',
+    completed: false,
+    color: 'primary',
+    subtasks: [
+      {name: 'Terminales', completed: false, color: 'primary'},
+      {name: 'Refinerías', completed: false, color: 'primary'},
+      {name: 'Empresas distribuidoras de combustible', completed: false, color: 'primary'},
+      {name: 'Estaciones de servicio de Lima y Callao', completed: false, color: 'primary'}
+    ]
+  },
+  {
+    name: 'ATENCIÓN MÉDICA',
+    completed: false,
+    color: 'primary',
+    subtasks: [
+      {name: 'Centro de decisión', completed: false, color: 'primary'},
+      {name: 'Establecimientos de salud', completed: false, color: 'primary'},
+      {name: 'Áreas de expansión', completed: false, color: 'primary'},
+      {name: 'Almacenes de insumos médicos y medicamentos', completed: false, color: 'primary'}
+    ]
+  },
+  {
+    name: 'TRANSPORTE Y VIALIDAD',
+    completed: false,
+    color: 'primary',
+    subtasks: [
+      {name: 'Red vial general', completed: false, color: 'primary'},
+      {name: 'Red vial principal', completed: false, color: 'primary'},
+      {name: 'Puentes', completed: false, color: 'primary'},
+      {name: 'Pasos a desnive', completed: false, color: 'primary'}
+    ]
+  },
+  {
+    name: 'ACCESIBILIDAD',
+    completed: false,
+    color: 'primary',
+    subtasks: [
+      {name: 'Zonas de accesibilidad', completed: false, color: 'primary'},
+      {name: 'Puntos de congestión', completed: false, color: 'primary'}
+    ]
+  },
+  {
+    name: 'TELECOMUNICACIONES',
+    completed: false,
+    color: 'primary',
+    subtasks: [
+      {name: 'Estudios de radio', completed: false, color: 'primary'},
+      {name: 'Estudios de televisión', completed: false, color: 'primary'},
+      {name: 'Plantas de Emisoras de radio', completed: false, color: 'primary'},
+      {name: 'Plantas de televisión', completed: false, color: 'primary'}
+    ]
+  },];
+
+  allComplete: boolean = false;
+
+  updateAllComplete(subtask: any) {
+    this.allComplete = subtask != null && subtask.every(t => t.completed);
+  }
+
+  someComplete(subtask: any): boolean {
+    return false;
+    // if (subtask == null) {
+    //   return false;
+    // }
+    // return subtask.filter(t => t.completed).length > 0 && !this.allComplete;
+  }
+
+  setAll(completed: boolean, subtask: any) {
+    this.allComplete = completed;
+    if (subtask == null) {
+      return;
+    }
+    subtask.forEach(t => (t.completed = completed));
+  }
+
+
+
+  
   /** Map from flat node to nested node. This helps us finding the nested node to be modified */
   flatNodeMap = new Map<TodoItemFlatNode, TodoItemNode>();
 
@@ -173,7 +294,6 @@ export class MapLayersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
   }
 
   closeModal(){

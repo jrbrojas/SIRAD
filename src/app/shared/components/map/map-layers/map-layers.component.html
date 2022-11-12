@@ -11,6 +11,34 @@
     </mat-list-option>
   </mat-selection-list>
 </mat-expansion-panel> -->
+
+<!-- <ul>
+  <li *ngFor="let item of task">
+    <section class="example-section">
+      <span class="example-list-section">
+        <mat-checkbox class="example-margin"
+                      [checked]="allComplete"
+                      [color]="item.color"
+                      [indeterminate]="someComplete(item.subtasks)"
+                      (change)="setAll($event.checked, item)">
+          {{item.name}}
+        </mat-checkbox>
+      </span>
+      <span class="example-list-section">
+        <ul>
+          <li *ngFor="let subtask of item.subtasks">
+            <mat-checkbox [(ngModel)]="subtask.completed"
+                          [color]="subtask.color"
+                          (ngModelChange)="updateAllComplete(subtask)">
+              {{subtask.name}}
+            </mat-checkbox>
+          </li>
+        </ul>
+      </span>
+    </section>
+  </li>
+</ul> -->
+
 <mat-expansion-panel class="map-layers">
   <mat-expansion-panel-header>
     <mat-panel-title>
