@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import { MatFormField } from '@angular/material/form-field';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-reset-password',
@@ -25,4 +26,13 @@ export class ResetPasswordComponent implements OnInit {
     this.router.navigate(['/auth']);
   }
 
+  enviarCorreo() {
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Correo enviado correctamente',
+      timer: 2500
+    })
+    this.router.navigate(['/auth']);
+  }
 }
