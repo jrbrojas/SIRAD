@@ -112,6 +112,11 @@ export class NavService implements OnDestroy {
       ]
     },
     {
+      title: 'ANÁLISIS', tooltip: 'Análisis', icon: 'shield', type: 'sub', active: false, children: [
+        { path: '/sirad/visualizacion/mapa', title: 'Análisis Vulnerabilidad', type: 'link' },
+      ]
+    },
+    {
       title: 'SEGURIDAD', tooltip: 'Seguridad', icon: 'folder-plus', type: 'sub', active: false, children: [
         { path: '/sirad/seguridad/usuarios', title: 'Usuarios', type: 'link' },
         { path: '/sirad/seguridad/perfiles', title: 'Perfil', type: 'link' },
