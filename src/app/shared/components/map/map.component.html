@@ -1,6 +1,36 @@
 <div class="container-map">
+  <div class="iinput search-container">
+    <form action="/search" method="get">
+      <input class="search" id="searchleft" type="search" name="q" placeholder="Search">
+      <label class="button searchbutton" for="searchleft"><span class="mglass">&#9906;</span></label>
+    </form>
+  </div>
+  <!-- <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Outline form field</mat-label>
+      <input matInput placeholder="Placeholder">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+  </p> -->
+  <table>
+    <tr style="height: 60%;">
+      <td width="20%">
+        <app-map-layers></app-map-layers>
+      </td>
+      <td width="80%">
+        <div [attr.id]="idComponentMapa" class="containMap">
+        </div>
+      </td>
+    </tr>
+    <tr style="height: 60%;">
+      <td colspan="2">
+        <app-map-table></app-map-table>
+      </td>
+    </tr>
+  </table>
+  <!-- <app-map-table></app-map-table>
   <app-map-layers></app-map-layers>
   <div [attr.id]="idComponentMapa" class="containMap">
-  </div>
-  <app-map-table></app-map-table>
+  </div> -->
+  <!-- <app-map-table></app-map-table> -->
 </div>
