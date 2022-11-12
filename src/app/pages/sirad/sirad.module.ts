@@ -51,6 +51,7 @@ import { PermisosListComponent } from './seguridad/seguridad/permisos-list/permi
 import { PerfilEditComponent } from './seguridad/seguridad/perfil-edit/perfil-edit.component';
 import { PermisosEditComponent } from './seguridad/seguridad/permisos-edit/permisos-edit.component';
 import { UsuariosEditComponent } from './seguridad/seguridad/usuarios-edit/usuarios-edit.component';
+import { UbicacionComponent } from './registro/registro/recursos-add/ubicacion/ubicacion.component';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -79,6 +80,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
        PerfilEditComponent,
        PermisosEditComponent,
        UsuariosEditComponent,
+       UbicacionComponent
   ],
   imports: [
     CommonModule,

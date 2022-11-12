@@ -1,0 +1,23 @@
+<div class="modal-header text-center">
+    <button class="close" type="button" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      <div class="row">
+        <img width="100%" height="100%" src="../assets/images/maps.jpg">
+      </div>  
+      <div class="row text-center">
+        <div class="col">
+          <div class="form-group mt-3 mb-0">
+            <button (click)="guardarExperiencia()" class="btn btn-primary mr-3 ">
+              Guardar
+            </button>
+            <button type="button" class="btn btn-danger" (click)="closeModal()">
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </div>
+  </div>
+  

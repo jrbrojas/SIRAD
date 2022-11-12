@@ -3,6 +3,8 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { AlertService } from 'src/app/shared/services/alert.service';
+import { UbicacionComponent } from './ubicacion/ubicacion.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 export interface categoria {
   id: number;
@@ -30,6 +32,104 @@ export class RecursosAddComponent implements OnInit {
   subcatBu : categoria[] = [];
   subcat : categoria[] = [];
   
+  bomba = [
+    {
+      id: 1,
+      estado: "SU"
+    },
+    {
+      id: 2,
+      estado: "TV"
+    },
+  ]
+
+  dia = [
+    {
+      id: 1,
+      estado: "Regular"
+    },
+    {
+      id: 2,
+      estado: "Mala"
+    },
+    {
+      id: 3,
+      estado: "Muy mala"
+    },
+  ]
+
+  noche = [
+    {
+      id: 1,
+      estado: "Muy buena"
+    },
+    {
+      id: 2,
+      estado: "Buena"
+    },
+    {
+      id: 3,
+      estado: "Regular"
+    },
+    {
+      id: 4,
+      estado: "Mala"
+    },
+    {
+      id: 5,
+      estado: "Muy mala"
+    },
+  ]
+
+  esencial = [
+    {
+      id: 1,
+      estado: "Normal"
+    },
+    {
+      id: 2,
+      estado: "Específico emergencia"
+    },
+    {
+      id: 3,
+      estado: "Apoyo emergencia"
+    },
+    {
+      id: 4,
+      estado: "Otros"
+    },
+  ]
+
+  fuente = [
+    {
+      id: 1,
+      estado: "Equipo de Aguas Subterráneas"
+    },
+    {
+      id: 2,
+      estado: "Equipo de Catastro de Redes y Fuentes"
+    },
+  ]
+
+  observacion = [
+    {
+      id: 1,
+      estado: "Fuera de uso"
+    },
+    {
+      id: 2,
+      estado: "Pozo anulado"
+    },
+    {
+      id: 3,
+      estado: "Pozo particular"
+    },
+    {
+      id: 4,
+      estado: "Reserva"
+    },
+  ]
+
   estados = [
     {
       id: 1,
@@ -56,8 +156,9 @@ export class RecursosAddComponent implements OnInit {
       estado: "Reserva equipada - sector fuente única (Pozo solo)"
     },
   ]
+  
 
-  constructor(private _formBuilder: FormBuilder, private _router: Router, private alert: AlertService) { }
+  constructor(private _formBuilder: FormBuilder, private _router: Router, private alert: AlertService, private modalService: NgbModal) { }
 
 
 
@@ -250,6 +351,18 @@ export class RecursosAddComponent implements OnInit {
     
     
   }
+
+  onAddUbicacion() {
+    const modalRef = this.modalService.open(UbicacionComponent, {
+      size: 'xl',
+      ariaLabelledBy: 'modal',
+      centered: true,
+      windowClass: 'modal',
+      backdrop: 'static'
+    })
+
+  }
+  
   changeCatSub(event: any) {
     if(event.triggerValue == "Pozos") this.isLinear = true    
     else this.isLinear = false
