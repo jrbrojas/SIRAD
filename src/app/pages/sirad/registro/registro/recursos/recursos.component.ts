@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertService } from 'src/app/shared/services/alert.service';
+import { TYPE_ALERT } from 'src/app/shared/services/config';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -68,7 +70,8 @@ export class RecursosComponent implements OnInit {
     },
   ]
   constructor(
-    private _router: Router
+    private _router: Router,
+    private alert: AlertService
   ) {
     for (let a = 0; a < 4; a++) {
       this.dataFichasEvaluacion.push(
@@ -116,4 +119,20 @@ export class RecursosComponent implements OnInit {
     }
   }
 
+  editPermission(){
+    this._router.navigate(['/sirad/registro/recursos-edit']);
+  }
+
+  back(type : number){
+    let mensaje = "Guardar"
+    if(type == 1) mensaje = "Eliminar"
+    this.alert.questionAlertConfirm('¿Está seguro de ' + mensaje + '?', '', 'Si, ' + mensaje, TYPE_ALERT.QUESTION).then(
+      (result) => {
+        if (result.value) {
+          console.log("asasdasdasd");
+          this._router.navigate(['/sirad/seguridad/registro/recursos']);
+        }
+      }
+    );
+  }
 }
