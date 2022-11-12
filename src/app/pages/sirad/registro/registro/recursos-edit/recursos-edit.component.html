@@ -11,7 +11,7 @@
                             <div class="col">
                                 <mat-form-field appearance="fill">
                                     <mat-label>Categoria</mat-label>
-                                    <mat-select [(value)]="selected" 
+                                    <mat-select 
                                     (selectionChange)="changeCat(a)" #a>
                                         <mat-option>Ninguna</mat-option>
                                         <mat-option *ngFor="let state of cat" [value]="state.id">{{state.desc}}</mat-option>
@@ -21,7 +21,7 @@
                             <div class="col">
                                 <mat-form-field appearance="fill">
                                     <mat-label>Sub Categoria</mat-label>
-                                    <mat-select [(value)]="selected2" (selectionChange)="changeCatSub(b)" #b>
+                                    <mat-select (selectionChange)="changeCatSub(b)" #b>
                                         <mat-option>Ninguna</mat-option>
                                         <mat-option *ngFor="let state of subcat" [value]="state.id">{{state.desc}}</mat-option>
                                     </mat-select>

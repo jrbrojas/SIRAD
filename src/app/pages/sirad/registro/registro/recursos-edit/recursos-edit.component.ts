@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AlertService } from 'src/app/shared/services/alert.service';
+import { TYPE_ALERT } from 'src/app/shared/services/config';
 import { categoria } from '../recursos-add/recursos-add.component';
 import { UbicacionComponent } from '../recursos-add/ubicacion/ubicacion.component';
 
@@ -24,8 +25,6 @@ export class RecursosEditComponent implements OnInit {
   catBu : categoria[] = [];
   subcatBu : categoria[] = [];
   subcat : categoria[] = [];
-  selected = ['ABASTECIMIENTO DE AGUA'];
-  selected2 = ['Pozos'];
   bomba = [
     {
       id: 1,
@@ -164,7 +163,7 @@ export class RecursosEditComponent implements OnInit {
     let data : categoria 
     data = {id:1,desc:"ABASTECIMIENTO DE AGUA"}; this.cat.push(data)
     let data2 : categoria
-    data2 = {id:1,desc:"Plantas de Agua Potable"}; this.subcat.push(data2)
+    data2 = {id:1,desc:"Plantas de Agua Potable"}; this.subcat.push(data)
     data2 = {id:1,desc:"Red primaria de agua potable"}; this.subcat.push(data2)
     data2 = {id:1,desc:"Pozos"}; this.subcat.push(data2)
     data2 = {id:1,desc:"Reservorios"}; this.subcat.push(data2)
@@ -360,5 +359,18 @@ export class RecursosEditComponent implements OnInit {
   changeCatSub(event: any) {
     if(event.triggerValue == "Pozos") this.isLinear = true    
     else this.isLinear = false
+  }
+
+  back(type : number){
+    let mensaje = "Guardar"
+    if(type == 1) mensaje = "Eliminar"
+    this.alert.questionAlertConfirm('¿Está seguro de ' + mensaje + '?', '', 'Si, ' + mensaje, TYPE_ALERT.QUESTION).then(
+      (result) => {
+        if (result.value) {
+          console.log("asasdasdasd");
+          this._router.navigate(['/sirad/registro/recursos']);
+        }
+      }
+    );
   }
 }
