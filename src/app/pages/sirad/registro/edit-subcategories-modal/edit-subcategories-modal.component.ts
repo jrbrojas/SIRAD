@@ -160,6 +160,8 @@ export class EditSubcategoriesModalComponent implements OnInit {
       systemCoord: 'EPSG: 32718 - WGS 84 UTM zona 18 sur'
     })
 
+    //hola mundo
+
     this.atributosItem.fichaEvaluacionDetalleSegmentos.push({
       numId: 1,
       numIdTipoRespuesta: 1,
