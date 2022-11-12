@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { AlertService } from 'src/app/shared/services/alert.service';
 import { UbicacionComponent } from './ubicacion/ubicacion.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 export interface categoria {
   id: number;
@@ -155,9 +156,9 @@ export class RecursosAddComponent implements OnInit {
       estado: "Reserva equipada - sector fuente única (Pozo solo)"
     },
   ]
-  modalService: any;
+  
 
-  constructor(private _formBuilder: FormBuilder, private _router: Router, private alert: AlertService) { }
+  constructor(private _formBuilder: FormBuilder, private _router: Router, private alert: AlertService, private modalService: NgbModal) { }
 
 
 
