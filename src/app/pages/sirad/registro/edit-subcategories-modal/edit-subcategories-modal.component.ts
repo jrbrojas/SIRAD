@@ -5,6 +5,10 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
 
+export interface Fruit {
+  name: string;
+}
+
 export interface keyWords {
   name: string;
 }
@@ -123,7 +127,7 @@ export class EditSubcategoriesModalComponent implements OnInit {
       codCategory : 'C0001',
       codSubCategory : 'SB0001',
       nameSubCategory : 'Plantas de Agua Potable',
-      keyWords : ['Agua Potable'],
+      keyWords : [],
       keyWordsGeo : 'Lima/Callao',
       summary : `Descripción básica de las plantas de producción de agua potable en términos de producción y de tipo de instalaciones, reservorios etc…`,
       infoExtended : `Proyecto “Elaboración de un Sistema de Información Geográfico y Análisis de Recursos Esenciales para la Respuesta y Recuperación Temprana ante la Ocurrencia de un sismo y/o Tsunami en el Área Metropolitana de Lima y Callao” (Proyecto SIRAD Convocatoria PNUD/SDP-052/2009 / 22 de abril - 15 febrero 2011).
@@ -133,7 +137,9 @@ export class EditSubcategoriesModalComponent implements OnInit {
       updateDateFinal : '2010-07-26',
       dataSource : 'Sedapal',
       generalManager : `Roberto D'Ercole (IRD)`,
-      responsibleInfoLayer : 'Pascale Mertzger(IRD)',
+      responsibleInfoLayer1 : 'Pascale Mertzger(IRD)',
+      responsibleInfoLayer2 : 'Pascale Mertzger(IRD)',
+      responsibleInfoLayer3 : 'Pascale Mertzger(IRD)',
       contactDataSource: ['Pierre Vernier', 'Pauline Gluski', 'Jeremy Guilbaud'],
       typeGeo : 'Punto',
       systemCoord: 'EPSG: 32718 - WGS 84 UTM zona 18 sur'
@@ -154,7 +160,9 @@ export class EditSubcategoriesModalComponent implements OnInit {
       updateDateFinal : '2010-10-08',
       dataSource : 'Sedapal',
       generalManager : `Roberto D'Ercole (IRD)`,
-      responsibleInfoLayer : 'Pascale Mertzger(IRD)',
+      responsibleInfoLayer1 : 'Pascale Mertzger(IRD)',
+      responsibleInfoLayer2 : 'Pascale Mertzger(IRD)',
+      responsibleInfoLayer3 : 'Pascale Mertzger(IRD)',
       contactDataSource: ['Pierre Vernier', 'Pauline Gluski', 'Jeremy Guilbaud'],
       typeGeo : 'Punto',
       systemCoord: 'EPSG: 32718 - WGS 84 UTM zona 18 sur'
@@ -416,7 +424,9 @@ export class EditSubcategoriesModalComponent implements OnInit {
     this.updateFormSubCategories.controls['updateDateFinal'].setValue(this.dataSubCategories[0].updateDateFinal)
     this.updateFormSubCategories.controls['dataSource'].setValue(this.dataSubCategories[0].dataSource)
     this.updateFormSubCategories.controls['generalManager'].setValue(this.dataSubCategories[0].generalManager)
-    this.updateFormSubCategories.controls['responsibleInfoLayer'].setValue(this.dataSubCategories[0].responsibleInfoLayer)
+    this.updateFormSubCategories.controls['responsibleInfoLayer1'].setValue(this.dataSubCategories[0].responsibleInfoLayer1)
+    this.updateFormSubCategories.controls['responsibleInfoLayer2'].setValue(this.dataSubCategories[0].responsibleInfoLayer2)
+    this.updateFormSubCategories.controls['responsibleInfoLayer3'].setValue(this.dataSubCategories[0].responsibleInfoLayer3)
     this.updateFormSubCategories.controls['contactDataSource'].setValue(this.dataSubCategories[0].contactDataSource)
     this.updateFormSubCategories.controls['typeGeo'].setValue(this.dataSubCategories[0].typeGeo)
     this.updateFormSubCategories.controls['systemCoord'].setValue(this.dataSubCategories[0].systemCoord)
@@ -427,27 +437,79 @@ export class EditSubcategoriesModalComponent implements OnInit {
     this.modalService.dismissAll()
   }
 
+
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
-  keyWords: keyWords[] = [];
+  keyWords: keyWords[] = [{ name: 'Agua Potable' }];
+
+  addOnBlur1 = true;
+  readonly separatorKeysCodes1 = [ENTER, COMMA] as const;
+  keyWords1: keyWords[] = [{ name: 'Carlos Cabrera' }];
+
+  addOnBlur2 = true;
+  readonly separatorKeysCodes2 = [ENTER, COMMA] as const;
+  keyWords2: keyWords[] = [{ name: 'Juan Gomez' }];
+  
+  addOnBlur3 = true;
+  readonly separatorKeysCodes3 = [ENTER, COMMA] as const;
+  keyWords3: keyWords[] = [{ name: 'Jose Rojas' }];
 
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
-
-    // Add our fruit
     if (value) {
       this.keyWords.push({name: value});
     }
+    event.chipInput!.clear();
+  }
 
-    // Clear the input value
+  add1(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+    if (value) {
+      this.keyWords1.push({name: value});
+    }
+    event.chipInput!.clear();
+  }
+
+  add2(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+    if (value) {
+      this.keyWords2.push({name: value});
+    }
+    event.chipInput!.clear();
+  }
+
+  add3(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+    if (value) {
+      this.keyWords3.push({name: value});
+    }
     event.chipInput!.clear();
   }
 
   remove(fruit: keyWords): void {
     const index = this.keyWords.indexOf(fruit);
-
     if (index >= 0) {
       this.keyWords.splice(index, 1);
+    }
+  }
+
+  remove1(fruit: keyWords): void {
+    const index = this.keyWords1.indexOf(fruit);
+    if (index >= 0) {
+      this.keyWords1.splice(index, 1);
+    }
+  }
+
+  remove2(fruit: keyWords): void {
+    const index = this.keyWords2.indexOf(fruit);
+    if (index >= 0) {
+      this.keyWords2.splice(index, 1);
+    }
+  }
+  remove3(fruit: keyWords): void {
+    const index = this.keyWords3.indexOf(fruit);
+    if (index >= 0) {
+      this.keyWords3.splice(index, 1);
     }
   }
 

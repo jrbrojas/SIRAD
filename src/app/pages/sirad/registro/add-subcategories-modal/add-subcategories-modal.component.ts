@@ -110,27 +110,79 @@ export class AddSubcategoriesModalComponent implements OnInit {
     this.modalService.dismissAll()
   }
 
+  
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   keyWords: keyWords[] = [];
 
+  addOnBlur1 = true;
+  readonly separatorKeysCodes1 = [ENTER, COMMA] as const;
+  keyWords1: keyWords[] = [];
+
+  addOnBlur2 = true;
+  readonly separatorKeysCodes2 = [ENTER, COMMA] as const;
+  keyWords2: keyWords[] = [];
+  
+  addOnBlur3 = true;
+  readonly separatorKeysCodes3 = [ENTER, COMMA] as const;
+  keyWords3: keyWords[] = [];
+
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
-
-    // Add our fruit
     if (value) {
       this.keyWords.push({name: value});
     }
+    event.chipInput!.clear();
+  }
 
-    // Clear the input value
+  add1(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+    if (value) {
+      this.keyWords1.push({name: value});
+    }
+    event.chipInput!.clear();
+  }
+
+  add2(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+    if (value) {
+      this.keyWords2.push({name: value});
+    }
+    event.chipInput!.clear();
+  }
+
+  add3(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+    if (value) {
+      this.keyWords3.push({name: value});
+    }
     event.chipInput!.clear();
   }
 
   remove(fruit: keyWords): void {
     const index = this.keyWords.indexOf(fruit);
-
     if (index >= 0) {
       this.keyWords.splice(index, 1);
+    }
+  }
+
+  remove1(fruit: keyWords): void {
+    const index = this.keyWords1.indexOf(fruit);
+    if (index >= 0) {
+      this.keyWords1.splice(index, 1);
+    }
+  }
+
+  remove2(fruit: keyWords): void {
+    const index = this.keyWords2.indexOf(fruit);
+    if (index >= 0) {
+      this.keyWords2.splice(index, 1);
+    }
+  }
+  remove3(fruit: keyWords): void {
+    const index = this.keyWords3.indexOf(fruit);
+    if (index >= 0) {
+      this.keyWords3.splice(index, 1);
     }
   }
 

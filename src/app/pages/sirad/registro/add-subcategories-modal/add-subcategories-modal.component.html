@@ -10,14 +10,15 @@
         <mat-tab-group mat-align-tabs="center">
             <div class="row">
                 <mat-tab label="Datos Basicos">
+                    <br>
                     <mat-form-field class="col-lg-12" appearance="outline">
                         <mat-label>Nombre subcategoria</mat-label>
                         <input matInput maxlength="400" rows="3" #inputtxtNombreCategory
                             placeholder="Nombre categoria" required>
                     </mat-form-field>
-                    <mat-form-field class="example-chip-list" appearance="fill">
+                    <mat-form-field class="col-lg-12" appearance="outline">
                         <mat-label>Palabras clave tematicas</mat-label>
-                        <mat-chip-list #chipList aria-label="Fruit selection">
+                        <mat-chip-list #chipList1 aria-label="Fruit selection">
                           <mat-chip *ngFor="let fruit of keyWords" (removed)="remove(fruit)">
                             {{fruit.name}}
                             <button matChipRemove>
@@ -25,10 +26,11 @@
                             </button>
                           </mat-chip>
                           <input placeholder="Nueva palabra clave tematica..."
-                                 [matChipInputFor]="chipList"
+                                 [matChipInputFor]="chipList1"
                                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                                  [matChipInputAddOnBlur]="addOnBlur"
-                                 (matChipInputTokenEnd)="add($event)">
+                                 (matChipInputTokenEnd)="add($event)"
+                                 formControlName="keyWords">
                         </mat-chip-list>
                     </mat-form-field>
                     <mat-form-field class="col-lg-12" appearance="outline">
@@ -52,6 +54,11 @@
                             placeholder="Numero de objetos" required>
                     </mat-form-field>
                     <mat-form-field class="col-lg-12" appearance="outline">
+                        <mat-label>Numero de Atributo</mat-label>
+                        <input matInput maxlength="400" type="number" rows="3" #inputtxtNombreCategory
+                            placeholder="Numero de Atributo" required>
+                    </mat-form-field>
+                    <mat-form-field class="col-lg-12" appearance="outline">
                         <mat-label>Fecha de la informacion</mat-label>
                         <input matInput type="text" rows="3" #inputtxtNombreCategory
                             placeholder="Fecha de la informacion" required>
@@ -71,55 +78,56 @@
                         <input matInput type="text" rows="3" #inputtxtNombreCategory
                             placeholder="Responsable General" required>
                     </mat-form-field>
-                    <mat-form-field class="example-chip-list" appearance="fill">
+                    <mat-form-field class="col-lg-12" appearance="outline">
                         <mat-label>Responsable(s) de la capa de información</mat-label>
-                        <mat-chip-list #chipList aria-label="Fruit selection">
-                          <mat-chip *ngFor="let fruit of keyWords" (removed)="remove(fruit)">
+                        <mat-chip-list #chipList3 aria-label="Fruit selection">
+                        <mat-chip *ngFor="let fruit of keyWords1" (removed)="remove1(fruit)">
                             {{fruit.name}}
                             <button matChipRemove>
-                              <mat-icon>cancel</mat-icon>
+                            <mat-icon>cancel</mat-icon>
                             </button>
-                          </mat-chip>
-                          <input placeholder="Nuevo(s) Responsable(s) de la capa de información..."
-                                 [matChipInputFor]="chipList"
-                                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                                 [matChipInputAddOnBlur]="addOnBlur"
-                                 (matChipInputTokenEnd)="add($event)">
+                        </mat-chip>
+                        <input matInput placeholder="Nuevo(s) Responsable(s) de la capa de información..."
+                                [matChipInputFor]="chipList3"
+                                [matChipInputSeparatorKeyCodes]="separatorKeysCodes1"
+                                [matChipInputAddOnBlur]="addOnBlur1"
+                                (matChipInputTokenEnd)="add1($event)">
                         </mat-chip-list>
                     </mat-form-field>
-                    <mat-form-field class="example-chip-list" appearance="fill">
-                        <mat-label>Responsable(s) de la capa de información</mat-label>
-                        <mat-chip-list #chipList aria-label="Fruit selection">
-                          <mat-chip *ngFor="let fruit of keyWords" (removed)="remove(fruit)">
+                    <mat-form-field class="col-lg-12" appearance="outline">
+                        <mat-label>Responsable(s) de la integración de los datos a la base</mat-label>
+                        <mat-chip-list #chipList4 aria-label="Fruit selection">
+                        <mat-chip *ngFor="let fruit of keyWords2" (removed)="remove2(fruit)">
                             {{fruit.name}}
                             <button matChipRemove>
-                              <mat-icon>cancel</mat-icon>
+                            <mat-icon>cancel</mat-icon>
                             </button>
-                          </mat-chip>
-                          <input placeholder="Nuevo(s) Responsable(s) de la integracion de los datos a la base..."
-                                 [matChipInputFor]="chipList"
-                                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                                 [matChipInputAddOnBlur]="addOnBlur"
-                                 (matChipInputTokenEnd)="add($event)">
+                        </mat-chip>
+                        <input matInput placeholder="Nuevo(s) Responsable(s) de la integración de los datos a la base..."
+                                [matChipInputFor]="chipList4"
+                                [matChipInputSeparatorKeyCodes]="separatorKeysCodes2"
+                                [matChipInputAddOnBlur]="addOnBlur"
+                                (matChipInputTokenEnd)="add2($event)">
                         </mat-chip-list>
                     </mat-form-field>
-                    <mat-form-field class="example-chip-list" appearance="fill">
+                    <mat-form-field class="col-lg-12" appearance="outline">
                         <mat-label>Contacto de la fuente</mat-label>
-                        <mat-chip-list #chipList aria-label="Fruit selection">
-                          <mat-chip *ngFor="let fruit of keyWords" (removed)="remove(fruit)">
-                            {{fruit.name}}
-                            <button matChipRemove>
-                              <mat-icon>cancel</mat-icon>
-                            </button>
-                          </mat-chip>
-                          <input placeholder="Contactos de la fuente..."
-                                 [matChipInputFor]="chipList"
-                                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                                 [matChipInputAddOnBlur]="addOnBlur"
-                                 (matChipInputTokenEnd)="add($event)">
-                        </mat-chip-list>
+                        <mat-chip-list #chipList5 aria-label="Fruit selection">
+                            <mat-chip *ngFor="let fruit of keyWords3" (removed)="remove3(fruit)">
+                                {{fruit.name}}
+                                <button matChipRemove>
+                                <mat-icon>cancel</mat-icon>
+                                </button>
+                            </mat-chip>
+                            <input matInput placeholder="Contactos de la fuente..."
+                                    [matChipInputFor]="chipList5"
+                                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes3"
+                                    [matChipInputAddOnBlur]="addOnBlur"
+                                    (matChipInputTokenEnd)="add3($event)">
+                            </mat-chip-list>
                     </mat-form-field>
-                    <mat-form-field appearance="fill">
+
+                    <mat-form-field class="col-lg-12" appearance="outline">
                         <mat-label>Restricciones de uso</mat-label>
                         
                             <select matNativeControl required>
@@ -128,7 +136,7 @@
                                 <option value="saab">No</option>
                             </select>
                     </mat-form-field>
-                    <mat-form-field appearance="fill">
+                    <mat-form-field class="col-lg-12" appearance="outline">
                         <mat-label>Tipo de geometria</mat-label>
                         <select matNativeControl required>
                             <option disabled value=""></option>
