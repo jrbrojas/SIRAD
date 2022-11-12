@@ -300,7 +300,7 @@ export class EditSubcategoriesModalComponent implements OnInit {
       numIdTipoRespuesta: 3,
       txtPregunta: 'CO_ND_M',
       numRespuesta: 1,
-      txtObservacion: 'ddddddddddddddddddddddd',
+      txtObservacion: 'Cota de nivel estático del pozo',
       fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
     }, {
       numId: 1,
