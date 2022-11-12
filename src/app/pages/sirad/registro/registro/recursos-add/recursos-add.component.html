@@ -31,7 +31,7 @@
                     </div>
                     <form *ngIf="isLinear" class="needs-validation">
                         <mat-stepper [linear]="isLinear" #stepper>
-                            <mat-step label="Llenado de informacion 1">
+                            <mat-step label="Sección 1">
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <mat-form-field appearance="outline">
@@ -103,11 +103,17 @@
                                         </div> -->
                                     </div>
                                     <div class="col-sm-3">
-                                        <div class="form-group">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>EST_PZ</mat-label>
+                                            <input matInput placeholder="EST_PZ" onkeyup="this.value=this.value.toUpperCase();">
+                                            <mat-icon matSuffix><a style="color: #3331319f; cursor: pointer; font-size: 24px"
+                                                ngbTooltip="Estado del pozo"><i class="fa fa-exclamation"></i></a></mat-icon>
+                                        </mat-form-field>
+                                        <!-- <div class="form-group">
                                             <label>Marca del motor eléctrico del pozo</label>
                                             <input type="text" class="form-control" rows="3" maxlength="255"
                                                 onkeyup="this.value=this.value.toUpperCase();">
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
@@ -130,7 +136,7 @@
                                     </button>
                                 </div>
                             </mat-step>
-                            <mat-step label="Llenado de informacion 2">
+                            <mat-step label="Sección 2">
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <div class="form-group">
@@ -197,7 +203,7 @@
                                     </button>
                                 </div>
                             </mat-step>
-                            <mat-step label="Llenado de informacion 3">
+                            <mat-step label="Sección 3">
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <div class="form-group">
@@ -265,7 +271,7 @@
                                     </button>
                                 </div>
                             </mat-step>
-                            <mat-step label="Llenado de informacion 4">
+                            <mat-step label="Sección 4">
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <div class="form-group">
@@ -332,7 +338,7 @@
                                     </button>
                                 </div>
                             </mat-step>
-                            <mat-step label="Llenado de informacion 5">
+                            <mat-step label="Sección 5">
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <div class="form-group">
