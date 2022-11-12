@@ -1,0 +1,203 @@
+<app-breadcrumb [title]="'Análisis Vulnerabilidad'" [active_item]="'Análisis'"></app-breadcrumb>
+
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+
+          <form>
+            <div class="row px-4">
+              <div class="col-sm-10">
+                <div class="form-group" style="font-size: 13px">
+                  <div class="mb-2">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Buscar</mat-label>
+                      <input matInput type="text" formControlName="textoBusqueda"
+                        onkeyup="this.value=this.value.toUpperCase();">
+                      <button matSuffix mat-icon-button aria-label="Clear">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+
+              <!-- <div class="col-sm-2">
+                <div class="form-group" style="font-size: 13px">
+                  <div class="mb-2">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Fecha Inicio</mat-label>
+                      <input readonly matInput [matDatepicker]="picker1" formControlName="fechaInicio">
+                      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                      <mat-datepicker #picker1>
+                        <mat-datepicker-actions>
+                          <button mat-button matDatepickerCancel>Cancel</button>
+                          <button mat-raised-button color="primary" matDatepickerApply>Aceptar</button>
+                        </mat-datepicker-actions>
+                      </mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-2">
+                <div class="form-group" style="font-size: 13px">
+                  <div class="mb-2">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Fecha Fin</mat-label>
+                      <input readonly matInput [matDatepicker]="picker2"
+                        formControlName="fechaFin">
+                      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                      <mat-datepicker #picker2>
+                        <mat-datepicker-actions>
+                          <button mat-button matDatepickerCancel>Cancel</button>
+                          <button mat-raised-button color="primary" matDatepickerApply>Aceptar</button>
+                        </mat-datepicker-actions>
+                      </mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div> -->
+
+              <div class="col-2" style="padding-left: 0px;">
+                <div class="form-group">
+                  <div class="pt-2">
+                    <a class="btn btn-primary m-t-12" (click)="addAnalisis()">
+                      Registrar
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col"></div>
+
+            </div>
+            <div>
+              <!-- <table class="tid-table">
+                <thead>
+                  <tr>
+                    <th class="text-center">Nro.</th>
+                    <th class="text-center">Codigo Categoria</th>
+                    <th class="text-center">Nombre de categoria</th>
+                    <th class="text-center">Fecha actualizacion</th>
+                    <th class="text-center">Opciones</th>
+                  </tr>
+                </thead>
+                <ng-container *ngFor="let i of dataCategories; let index=index; let even=even">
+                  <tr class="tid-data-row" [ngClass]="{'tid-even': even}">
+                    <td class="text-center">
+                      {{index + 1}}
+                    </td>
+                    <td class="text-center">
+                      {{i.codCategory}}
+                    </td>
+                    <td class="text-center">
+                      {{i.nameCategory}}
+                    </td>
+                    <td class="text-center">
+                      {{i.updateDate}}
+                    </td>
+                    <td class="d-flex justify-content-center">
+                      <div class="pr-2">
+                        <button mat-mini-fab ngbTooltip="Ver/Editar" color="primary" (click)="viewCategory()">
+                          <mat-icon>visibility</mat-icon>
+                        </button>
+                      </div>
+                      <div class="pr-2">
+                        <button mat-mini-fab ngbTooltip="Agregar SubCategoria" (click)="addSubCategory()"
+                          color="primary">
+                          <mat-icon>add</mat-icon>
+                        </button>
+                      </div>
+                      <div class="pr-2">
+                        <button mat-mini-fab ngbTooltip="Eliminar Categoria" color="primary" (click)="deleteCategory()">
+                          <mat-icon>delete</mat-icon>
+                        </button>
+                      </div>
+                      <div class="pr-2">
+                        <button mat-mini-fab ngbTooltip="Ver Informacion" (click)="i.showDetail = !i.showDetail"
+                          color="primary">
+                          <mat-icon>keyboard_arrow_down</mat-icon>
+                        </button>
+                      </div>
+
+                    </td>
+                  </tr>
+                  <tr class="tid-detail-row" [ngClass]="{'show': i.showDetail}">
+
+                    <td colspan="5">
+                      <div *ngFor="let j of dataSubCategories; let indice2 = index">
+                        <div *ngIf="i.codCategory === j.codCategory">
+
+                          <span class="font-weight-bold">Sub Categoria: {{j.codSubCategory}} -
+                            {{j.nameSubCategory}}</span>
+                          <div class="d-flex justify-content-between">
+                            <div>
+                              <span class="font-weight-bold">Palabras Clave: </span>{{j.keyWords}}
+                            </div>
+                            <div>
+                              <span class="font-weight-bold">Palabras Clave Geograficas: </span>{{j.keyWordsGeo}}
+                            </div>
+                            <div>
+                              <span class="font-weight-bold">Fecha de la informacion: </span>{{j.infoDate}}
+                            </div>
+                            <div>
+                              <span class="font-weight-bold">Ultima actualizacion: </span>{{j.updateDateFinal}}
+                            </div>
+                          </div>
+                          <div class="d-flex justify-content-between">
+                            <div>
+                              <span class="font-weight-bold">Resumen: </span>{{j.summary}}
+                            </div>
+                          </div>
+                          <div class="d-flex justify-content-between">
+                            <div>
+                              <span class="font-weight-bold">Fuente : </span>{{j.dataSource}}
+                            </div>
+                            <div>
+                              <span class="font-weight-bold">Representante general : </span>{{j.generalManager}}
+                            </div>
+                            <div>
+                              <span class="font-weight-bold">Representante de la capa de informacion :
+                              </span>{{j.responsibleInfoLayer}}
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="d-flex justify-content-center mb-4">
+                          <div class="pr-2">
+                            <button mat-mini-fab ngbTooltip="Ver/Editar" (click)="viewSubCategory()">
+                              <mat-icon>visibility</mat-icon>
+                            </button>
+                          </div>
+                          <div class="pr-2">
+                            <button mat-mini-fab ngbTooltip="Eliminar Categoria" (click)="deleteSubCategory()">
+                              <mat-icon>delete</mat-icon>
+                            </button>
+                          </div>
+                        </div>
+
+                        <mat-divider></mat-divider>
+
+                      </div>
+
+                    </td>
+
+
+
+
+                  </tr>
+                </ng-container>
+              </table> -->
+            </div>
+
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
