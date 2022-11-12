@@ -10,11 +10,67 @@ import Swal from 'sweetalert2';
 export class RecursosComponent implements OnInit {
 
   dataFichasEvaluacion = [];
-
+  subcategoria = [
+    {
+      id: 1,
+      categoria: "ABASTECIMIENTO DE AGUA",
+      nombre: "Plantas de Agua Potable"
+    },
+    {
+      id: 2,
+      categoria: "ABASTECIMIENTO DE AGUA",
+      nombre: "Red primaria de agua potable"
+    },
+    {
+      id: 3,
+      categoria: "ABASTECIMIENTO DE AGUA",
+      nombre: "Pozos"
+    },
+    {
+      id: 4,
+      categoria: "ABASTECIMIENTO DE AGUA",
+      nombre: "Reservorios"
+    },
+    {
+      id: 5,
+      categoria: "ABASTECIMIENTO DE ALIMENTOS",
+      nombre: "Reservorios"
+    },
+    {
+      id: 6,
+      categoria: "ABASTECIMIENTO DE ALIMENTOS",
+      nombre: "Sedes de instituciones de ayuda alimentaria"
+    },
+    {
+      id: 7,
+      categoria: "ABASTECIMIENTO DE ALIMENTOS",
+      nombre: "Mercados mayoristas"
+    },
+    {
+      id: 8,
+      categoria: "ABASTECIMIENTO DE ENERGÍA",
+      nombre: "Terminales"
+    },
+    {
+      id: 9,
+      categoria: "ABASTECIMIENTO DE ENERGÍA",
+      nombre: "Refinerías"
+    },
+    {
+      id: 10,
+      categoria: "ATENCIÓN MÉDICA",
+      nombre: "Centro de decisión"
+    },
+    {
+      id: 11,
+      categoria: "ATENCIÓN MÉDICA",
+      nombre: "Establecimientos de salud"
+    },
+  ]
   constructor(
     private _router: Router
   ) {
-    for (let a = 0; a < 5; a++) {
+    for (let a = 0; a < 4; a++) {
       this.dataFichasEvaluacion.push(
         {
           numId: (a + 1),
