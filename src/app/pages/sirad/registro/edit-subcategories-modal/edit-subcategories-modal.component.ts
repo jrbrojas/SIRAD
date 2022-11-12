@@ -164,7 +164,7 @@ export class EditSubcategoriesModalComponent implements OnInit {
 
     this.atributosItem.fichaEvaluacionDetalleSegmentos.push({
       numId: 1,
-      numIdTipoRespuesta: 1,
+      numIdTipoRespuesta: 3,
       txtPregunta: 'ID_CCSS',
       numRespuesta: 1,
       txtObservacion: 'Código del centro de servicios del que depende el pozo',
@@ -213,31 +213,31 @@ export class EditSubcategoriesModalComponent implements OnInit {
       fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
     }, {
       numId: 1,
-      numIdTipoRespuesta: 1,
+      numIdTipoRespuesta: 3,
       txtPregunta: 'ME_HP',
       numRespuesta: 1,
       txtObservacion: 'Potencia del motor eléctrico del pozo',
       fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
     }, {
       numId: 1,
-      numIdTipoRespuesta: 1,
+      numIdTipoRespuesta: 3,
       txtPregunta: 'ME_AMP',
       numRespuesta: 1,
       txtObservacion: 'Amperaje del motor eléctrico del pozo',
       fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
     }, {
       numId: 1,
-      numIdTipoRespuesta: 1,
+      numIdTipoRespuesta: 3,
       txtPregunta: 'ME_VOL',
       numRespuesta: 1,
       txtObservacion: 'Voltaje del motor eléctrico del pozo',
       fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
     }, {
       numId: 1,
-      numIdTipoRespuesta: 1,
+      numIdTipoRespuesta: 3,
       txtPregunta: 'BO_LGBM',
       numRespuesta: 1,
-      txtObservacion: 'l primer grupo permite calificar la accesibilidad interna y considera la densidad de la red vial, la densidad de la red principal, el porcentaje del territorio de la zona a más de 500m de la red principal, el ancho promedio de las vías y el porcentaje del territorio de la zona ocupando cerros.',
+      txtObservacion: 'Longitud de la bomba en metros',
       fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
     }, {
       numId: 1,
