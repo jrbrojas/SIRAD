@@ -636,6 +636,44 @@
                                                 onkeyup="this.value=this.value.toUpperCase();">
                                         </div> -->
                                     </div>
+                                    <div class="col-sm-3">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>TSUNAMI</mat-label>
+                                            <mat-select>
+                                                <mat-option *ngFor="let i of tsunami" [value]="i.id">
+                                                    {{i.estado}}
+                                                </mat-option>
+                                            </mat-select>
+                                            <mat-icon matSuffix><a style="color: #3331319f; cursor: pointer; font-size: 24px"
+                                                ngbTooltip="Zonas de afectación por tsunami  en la cual se ubica el objeto ">
+                                                <i class="fa fa-exclamation"></i></a>
+                                            </mat-icon>
+                                        </mat-form-field>
+                                        <!-- <div class="form-group">
+                                            <label>Calidad de la accesibilidad durante el día</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div> -->
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>SISMO</mat-label>
+                                            <mat-select>
+                                                <mat-option *ngFor="let i of sismo" [value]="i.id">
+                                                    {{i.estado}}
+                                                </mat-option>
+                                            </mat-select>
+                                            <mat-icon matSuffix><a style="color: #3331319f; cursor: pointer; font-size: 24px"
+                                                ngbTooltip="Zona sísmica en la cual se ubica el objeto, según  la microzonificación sísmica (CISMID, 2005; SIRAD/IGP, 2010) que califica la estabilidad del suelo.">
+                                                <i class="fa fa-exclamation"></i></a>
+                                            </mat-icon>
+                                        </mat-form-field>
+                                        <!-- <div class="form-group">
+                                            <label>Calidad de la accesibilidad durante el día</label>
+                                            <input type="text" class="form-control" rows="3" maxlength="255"
+                                                onkeyup="this.value=this.value.toUpperCase();">
+                                        </div> -->
+                                    </div>
                                 </div>
                                 <div class="text-left">
                                     <button mat-button matStepperPrevious class="btn btn-primary mr-3">
