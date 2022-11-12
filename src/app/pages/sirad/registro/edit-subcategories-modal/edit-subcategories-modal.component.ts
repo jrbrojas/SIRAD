@@ -531,7 +531,8 @@ export class EditSubcategoriesModalComponent implements OnInit {
       confirmButtonText: 'Si, eliminar!'
     }).then((result) => {
       if (result.isConfirmed) {
-        item.splice(index, 1);
+        //item.splice(index, 1);
+        item.fichaEvaluacionDetalleSegmentos.splice(index, 1);
         Swal.fire(
           'Eliminado!',
           'Eliminado correctamente.',
