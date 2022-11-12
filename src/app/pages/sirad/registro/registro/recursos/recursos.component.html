@@ -8,24 +8,16 @@
                 <div class="card-body">
                     <form>
                         <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group" style="font-size: 13px">
-                                    <div class="mb-2">
-                                        <mat-form-field appearance="outline">
-                                            <mat-label>Buscar por nombre</mat-label>
-                                            <input matInput type="text"
-                                                onkeyup="this.value=this.value.toUpperCase();">
-                                            <button matSuffix mat-icon-button aria-label="Clear">
-                                                <mat-icon>close</mat-icon>
-                                            </button>
-                                        </mat-form-field>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-2">
-                            </div>
-                            <div class="col-sm-2">
-                                <a class="btn btn-primary btn-lg" ngbTooltip="Nuevo" (click)="add()">
+                            <mat-form-field class="col-lg-10" appearance="outline">
+                                <mat-label>Buscar por categoría y Subcategoría de recurso</mat-label>
+                                <input matInput type="text"
+                                    onkeyup="this.value=this.value.toUpperCase();">
+                                <button matSuffix mat-icon-button aria-label="Clear">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                            </mat-form-field>
+                            <div class="col-lg-2">
+                                <a class="btn btn-primary btn-lg col-lg-12" ngbTooltip="Nuevo" (click)="add()">
                                     <i class="fa fa-plus-square-o"></i> Nuevo
                                 </a>
                             </div>
@@ -71,17 +63,19 @@
                                             <td *ngIf="item.bolEstado != 'Pendiente'" ><p class="text-center badge badge-success fw-bold">{{ item.bolEstado }}</p></td> -->
                                             <td>
                                                 <div>
-                                                    <a style="color: #08afe0; cursor: pointer; font-size: 20px" (click)="ngAsignarEvento(item)"
+                                                    <!-- <a style="color: #08afe0; cursor: pointer; font-size: 20px" (click)="ngAsignarEvento(item)"
                                                         ngbTooltip="Asignar Evento">
                                                         <i class="fa fa-send"></i>
-                                                    </a>
+                                                    </a> -->
                                                     <a class="ml-2"
                                                     style="color: #08afe0; cursor: pointer; font-size: 20px"
+                                                    (click)="editPermission()"
                                                         ngbTooltip="Ver / Editar">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
                                                     <a class="mr-2 ml-2"
                                                         style="color: #f73164; cursor: pointer; font-size: 20px"
+                                                        (click)="back(1)"
                                                         ngbTooltip="Eliminar">
                                                         <i class="fa fa-trash"></i>
                                                     </a>
