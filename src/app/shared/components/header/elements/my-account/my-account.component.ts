@@ -9,7 +9,9 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 export class MyAccountComponent implements OnInit {
 
   constructor(public authService: AuthService) { }
-  nivelUsuario: string;
+  nivelUsuario: string = "NIVEL: REGIONAL";
+  nivelUsuario2: string = "PERFIL: ADMINISTRADOR DEL SISTEMA";
+  
   nombresApellidos: string;
 
   ngOnInit(): void {
