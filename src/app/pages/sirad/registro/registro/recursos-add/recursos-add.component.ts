@@ -30,6 +30,17 @@ export class RecursosAddComponent implements OnInit {
   subcatBu : categoria[] = [];
   subcat : categoria[] = [];
   
+  bomba = [
+    {
+      id: 1,
+      estado: "SU"
+    },
+    {
+      id: 2,
+      estado: "TV"
+    },
+  ]
+
   estados = [
     {
       id: 1,

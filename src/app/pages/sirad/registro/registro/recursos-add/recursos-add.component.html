@@ -31,7 +31,7 @@
                     </div>
                     <form *ngIf="isLinear" class="needs-validation">
                         <mat-stepper [linear]="isLinear" #stepper>
-                            <mat-step label="Llenado de informacion 1">
+                            <mat-step label="Sección 1">
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <mat-form-field appearance="outline">
@@ -160,65 +160,119 @@
                                     </button>
                                 </div>
                             </mat-step>
-                            <mat-step label="Llenado de informacion 2">
+                            <mat-step label="Sección 2">
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <div class="form-group">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>ME_AMP</mat-label>
+                                            <input matInput placeholder="ME_AMP" onkeyup="this.value=this.value.toUpperCase();">
+                                            <mat-icon matSuffix><a style="color: #3331319f; cursor: pointer; font-size: 24px"
+                                                ngbTooltip="Amperaje del motor eléctrico del pozo"><i class="fa fa-exclamation"></i></a></mat-icon>
+                                        </mat-form-field>
+                                        <!-- <div class="form-group">
                                             <label>Voltaje del motor eléctrico del pozo</label>
                                             <input type="text" class="form-control" rows="3" maxlength="255"
                                                 onkeyup="this.value=this.value.toUpperCase();">
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="col-sm-3">
-                                        <div class="form-group">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>ME_VOL</mat-label>
+                                            <input matInput placeholder="ME_VOL" onkeyup="this.value=this.value.toUpperCase();">
+                                            <mat-icon matSuffix><a style="color: #3331319f; cursor: pointer; font-size: 24px"
+                                                ngbTooltip="Voltaje del motor eléctrico del pozo"><i class="fa fa-exclamation"></i></a></mat-icon>
+                                        </mat-form-field>
+                                        <!-- <div class="form-group">
                                             <label>Longitud de la bomba en metros</label>
                                             <input type="text" class="form-control" rows="3" maxlength="255"
                                                 onkeyup="this.value=this.value.toUpperCase();">
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="col-sm-3">
-                                        <div class="form-group">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>BO_LGBM</mat-label>
+                                            <input matInput placeholder="BO_LGBM" onkeyup="this.value=this.value.toUpperCase();">
+                                            <mat-icon matSuffix><a style="color: #3331319f; cursor: pointer; font-size: 24px"
+                                                ngbTooltip="Longitud de la bomba en metros"><i class="fa fa-exclamation"></i></a></mat-icon>
+                                        </mat-form-field>
+                                        <!-- <div class="form-group">
                                             <label>Tipo de bomba utilizada</label>
                                             <input type="text" class="form-control" rows="3" maxlength="255"
                                                 onkeyup="this.value=this.value.toUpperCase();">
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="col-sm-3">
-                                        <div class="form-group">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>BO_TIPO</mat-label>
+                                            <mat-select>
+                                                <mat-option *ngFor="let i of bomba" [value]="i.id">
+                                                    {{i.estado}}
+                                                </mat-option>
+                                            </mat-select>
+                                            <mat-icon matSuffix><a style="color: #3331319f; cursor: pointer; font-size: 24px"
+                                                ngbTooltip="Tipo de bomba utilizada">
+                                                <i class="fa fa-exclamation"></i></a>
+                                            </mat-icon>
+                                        </mat-form-field>
+                                        <!-- <div class="form-group">
                                             <label>Marca de la bomba utilizada</label>
                                             <input type="text" class="form-control" rows="3" maxlength="255"
                                                 onkeyup="this.value=this.value.toUpperCase();">
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <div class="form-group">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>BO_MARCA</mat-label>
+                                            <input matInput placeholder="BO_MARCA" onkeyup="this.value=this.value.toUpperCase();">
+                                            <mat-icon matSuffix><a style="color: #3331319f; cursor: pointer; font-size: 24px"
+                                                ngbTooltip="Marca de la bomba utilizada"><i class="fa fa-exclamation"></i></a></mat-icon>
+                                        </mat-form-field>
+                                        <!-- <div class="form-group">
                                             <label>Modelo de bomba utilizada</label>
                                             <input type="text" class="form-control" rows="3" maxlength="255"
                                                 onkeyup="this.value=this.value.toUpperCase();">
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="col-sm-3">
-                                        <div class="form-group">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>BO_MODEL</mat-label>
+                                            <input matInput placeholder="BO_MODEL" onkeyup="this.value=this.value.toUpperCase();">
+                                            <mat-icon matSuffix><a style="color: #3331319f; cursor: pointer; font-size: 24px"
+                                                ngbTooltip="Modelo de bomba utilizada"><i class="fa fa-exclamation"></i></a></mat-icon>
+                                        </mat-form-field>
+                                        <!-- <div class="form-group">
                                             <label>Estado del equipamiento del pozo</label>
                                             <input type="text" class="form-control" rows="3" maxlength="255"
                                                 onkeyup="this.value=this.value.toUpperCase();">
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="col-sm-3">
-                                        <div class="form-group">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>PZ_EQUIP</mat-label>
+                                            <input matInput placeholder="PZ_EQUIP" onkeyup="this.value=this.value.toUpperCase();">
+                                            <mat-icon matSuffix><a style="color: #3331319f; cursor: pointer; font-size: 24px"
+                                                ngbTooltip="Estado del equipamiento del pozo"><i class="fa fa-exclamation"></i></a></mat-icon>
+                                        </mat-form-field>
+                                        <!-- <div class="form-group">
                                             <label>Diámetro del la válvula del pozo en pulgadas</label>
                                             <input type="text" class="form-control" rows="3" maxlength="255"
                                                 onkeyup="this.value=this.value.toUpperCase();">
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="col-sm-3">
-                                        <div class="form-group">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>VAL_DIAM</mat-label>
+                                            <input matInput placeholder="VAL_DIAM" onkeyup="this.value=this.value.toUpperCase();">
+                                            <mat-icon matSuffix><a style="color: #3331319f; cursor: pointer; font-size: 24px"
+                                                ngbTooltip="Diámetro del la válvula del pozo en pulgadas"><i class="fa fa-exclamation"></i></a></mat-icon>
+                                        </mat-form-field>
+                                        <!-- <div class="form-group">
                                             <label>Vuelta de trabajo de la válvula en vatios</label>
                                             <input type="text" class="form-control" rows="3" maxlength="255"
                                                 onkeyup="this.value=this.value.toUpperCase();">
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <div class="text-right">
@@ -227,7 +281,7 @@
                                     </button>
                                 </div>
                             </mat-step>
-                            <mat-step label="Llenado de informacion 3">
+                            <mat-step label="Sección 3">
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <div class="form-group">
@@ -295,7 +349,7 @@
                                     </button>
                                 </div>
                             </mat-step>
-                            <mat-step label="Llenado de informacion 4">
+                            <mat-step label="Sección 4">
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <div class="form-group">
@@ -362,7 +416,7 @@
                                     </button>
                                 </div>
                             </mat-step>
-                            <mat-step label="Llenado de informacion 5">
+                            <mat-step label="Sección 5">
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <div class="form-group">
