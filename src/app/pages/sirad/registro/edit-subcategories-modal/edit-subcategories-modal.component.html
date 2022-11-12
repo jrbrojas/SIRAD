@@ -54,6 +54,11 @@
                             placeholder="Numero de objetos" required value="8">
                     </mat-form-field>
                     <mat-form-field class="col-lg-12" appearance="outline">
+                        <mat-label>Numero de Atributo</mat-label>
+                        <input matInput maxlength="400" type="number" rows="3" #inputtxtNombreCategory
+                            placeholder="Numero de Atributo" required value="8">
+                    </mat-form-field>
+                    <mat-form-field class="col-lg-12" appearance="outline">
                         <mat-label>Fecha de la informacion</mat-label>
                         <input matInput type="text" rows="3" #inputtxtNombreCategory
                             placeholder="Fecha de la informacion" required formControlName="infoDate">
@@ -92,7 +97,7 @@
                         </mat-chip-list>
                     </mat-form-field>
                     <mat-form-field class="col-lg-12" appearance="outline">
-                        <mat-label>Responsable(s) de la capa de información</mat-label>
+                        <mat-label>Responsable(s) de la integración de los datos a la base</mat-label>
                         <mat-chip-list #chipList4 aria-label="Fruit selection">
                         <mat-chip *ngFor="let fruit of keyWords2" (removed)="remove2(fruit)">
                             {{fruit.name}}
@@ -100,7 +105,7 @@
                             <mat-icon>cancel</mat-icon>
                             </button>
                         </mat-chip>
-                        <input matInput placeholder="Nuevo(s) Responsable(s) de la integracion de los datos a la base..."
+                        <input matInput placeholder="Nuevo(s) Responsable(s) de la integración de los datos a la base..."
                                 [matChipInputFor]="chipList4"
                                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes2"
                                 [matChipInputAddOnBlur]="addOnBlur"

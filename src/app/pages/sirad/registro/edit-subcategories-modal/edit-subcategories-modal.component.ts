@@ -494,7 +494,7 @@ export class EditSubcategoriesModalComponent implements OnInit {
   }
 
   remove1(fruit: keyWords): void {
-    const index = this.keyWords.indexOf(fruit);
+    const index = this.keyWords1.indexOf(fruit);
     if (index >= 0) {
       this.keyWords1.splice(index, 1);
     }
