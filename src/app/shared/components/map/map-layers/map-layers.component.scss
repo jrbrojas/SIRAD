@@ -1,9 +1,37 @@
 .map-layers {
-  position: absolute;
-  z-index: 2000;
-  top: 2%;
-  right: 0;
-  // height: 600px;
-  margin: 0 2%;
-  width: 240px;
+  width: 320px;
+  height: 100vh;
 }
+
+
+.mat-form-field {
+  margin-right: 4px;
+}
+::ng-deep .mat-expansion-panel-body {
+  padding: 0 10px 5px !important;
+}
+
+button {
+  border: none;
+  background: none !important;
+}
+
+mat-tree-node {
+  width: 100%;
+}
+.mat-expansion-panel-header{
+ padding: 0 10px;
+}
+
+.mat-expansion-panel-body {
+  padding: 0 !important;
+}
+
+::ng-deep .mat-checkbox {
+  font-size: 13px !important;
+}
+
+::ng-deep mat-checkbox span.mat-checkbox-label{
+  white-space: normal !important;
+}
+

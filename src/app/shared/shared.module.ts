@@ -26,7 +26,10 @@ import { MapComponent } from './components/map/map.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import {MatListModule} from '@angular/material/list';
 import {MatExpansionModule} from '@angular/material/expansion';
-import {MatIconModule} from '@angular/material/icon'
+import {MatIconModule} from '@angular/material/icon';
+import {MatTreeModule} from '@angular/material/tree';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 @NgModule({
   declarations: [
     ContentComponent,
@@ -56,7 +59,9 @@ import {MatIconModule} from '@angular/material/icon'
     NgxPaginationModule,
     MatListModule,
     MatExpansionModule,
-    MatIconModule
+    MatIconModule,
+    MatTreeModule,
+    MatCheckboxModule
   ],
   providers: [
     NavService,
