@@ -29,6 +29,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTreeModule} from '@angular/material/tree';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -61,7 +64,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatExpansionModule,
     MatIconModule,
     MatTreeModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatGridListModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule
   ],
   providers: [
     NavService,
