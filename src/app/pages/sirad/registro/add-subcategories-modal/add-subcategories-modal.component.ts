@@ -108,7 +108,30 @@ export class AddSubcategoriesModalComponent implements OnInit {
   }
 
   closeModal(){
+    this.atributosItem.fichaEvaluacionDetalleSegmentos.push({
+      numId: 1,
+      numIdTipoRespuesta: 1,
+      txtPregunta: 'Departamento',
+      numRespuesta: 1,
+      txtObservacion: 'Nombre del Departamento',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 1,
+      txtPregunta: 'Provincia',
+      numRespuesta: 1,
+      txtObservacion: 'Nombre de la Provincia',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 1,
+      txtPregunta: 'Distrito',
+      numRespuesta: 1,
+      txtObservacion: 'Nombre del Distrito',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    })
     this.modalService.dismissAll()
+    
   }
 
   
