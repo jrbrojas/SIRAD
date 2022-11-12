@@ -14,7 +14,7 @@ export class RecursosComponent implements OnInit {
     {
       id: 1,
       categoria: "ABASTECIMIENTO DE AGUA",
-      nombre: "Plantas de Agua Potable"
+      nombre: "Pozos"
     },
     {
       id: 2,
@@ -24,7 +24,7 @@ export class RecursosComponent implements OnInit {
     {
       id: 3,
       categoria: "ABASTECIMIENTO DE AGUA",
-      nombre: "Pozos"
+      nombre: "Plantas de Agua Potable"
     },
     {
       id: 4,
