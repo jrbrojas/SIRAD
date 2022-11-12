@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
 
   public elem: any;
   public dark: boolean = this.layout.config.settings.layout_version == 'dark-only' ? true : false;
-  descripcionNivel: string;
+  descripcionNivel: string = "LIMA/LIMA/SAN JUAN DE LURIGANCHO";
 
   constructor(public layout: LayoutService, public navServices: NavService, @Inject(DOCUMENT) private document: any) { }
 
