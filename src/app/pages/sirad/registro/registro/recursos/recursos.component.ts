@@ -102,6 +102,10 @@ export class RecursosComponent implements OnInit {
   add(){
     this._router.navigate(['/sirad/registro/recursos-add']).then(() => { });
   }
+  
+  irMapa() {
+    this._router.navigate(['/sirad/visualizacion/mapa']);
+  }
 
   async ngAsignarEvento(item: any) {
     const { value: fruit } = await Swal.fire({

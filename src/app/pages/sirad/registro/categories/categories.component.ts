@@ -6,6 +6,7 @@ import { AddCategoriesModalComponent } from '../add-categories-modal/add-categor
 import { AddSubcategoriesModalComponent } from '../add-subcategories-modal/add-subcategories-modal.component';
 import { EditCategoriesModalComponent } from '../edit-categories-modal/edit-categories-modal.component';
 import { EditSubcategoriesModalComponent } from '../edit-subcategories-modal/edit-subcategories-modal.component';
+import { Router } from '@angular/router';
 
 export interface DataCategories {
   codCategory : string;
