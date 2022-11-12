@@ -103,12 +103,19 @@
                                         </div> -->
                                     </div>
                                     <div class="col-sm-3">
-                                        <mat-form-field appearance="outline">
-                                            <mat-label>EST_PZ</mat-label>
-                                            <input matInput placeholder="EST_PZ" onkeyup="this.value=this.value.toUpperCase();">
-                                            <mat-icon matSuffix><a style="color: #3331319f; cursor: pointer; font-size: 24px"
+                                        <!-- <mat-form-field appearance="outline">
+                                            <mat-label>EST_PZ</mat-label> -->
+                                            <select style="outline: #3331319f; width: 100px;" placeholder="EST_PZ" onkeyup="this.value=this.value.toUpperCase();">
+                                                <option>Funcionando</option>
+                                                <option>Paralizado por calidad</option>
+                                                <option>En reparación</option>
+                                                <option>Reserva sin equipo</option>
+                                                <option>Reserva equipada - sector uso conjuntivo (Red+Pozos)</option>
+                                                <option>Reserva equipada - sector fuente única (Pozo solo)</option>
+                                            </select>
+                                            <!-- <mat-icon matSuffix><a style="color: #3331319f; cursor: pointer; font-size: 24px"
                                                 ngbTooltip="Estado del pozo"><i class="fa fa-exclamation"></i></a></mat-icon>
-                                        </mat-form-field>
+                                        </mat-form-field> -->
                                         <!-- <div class="form-group">
                                             <label>Marca del motor eléctrico del pozo</label>
                                             <input type="text" class="form-control" rows="3" maxlength="255"
