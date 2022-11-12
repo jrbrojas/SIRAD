@@ -1,4 +1,4 @@
-<app-breadcrumb [title]="'Crear Nuevo Recurso'" [items]="['Registro','Recursos']" [active_item]="'Crear'">
+<app-breadcrumb [title]="'Editar Recurso'" [items]="['Registro','Recursos']" [active_item]="'Editar'">
 </app-breadcrumb>
 
 <div class="container-fluid">
@@ -8,29 +8,28 @@
                 <div class="card-body">
                     <div class="" >
                         <div class="row">
-                            <div class="col">
+                            <form [formGroup]="categoria" class="col">
                                 <mat-form-field appearance="fill">
                                     <mat-label>Categoria</mat-label>
-                                    <mat-select
-                                    (selectionChange)="changeCat(a)" #a>
+                                    <mat-select placeholder="Categoria" formControlName="categoria">
                                         <mat-option>Ninguna</mat-option>
-                                        <mat-option *ngFor="let state of cat" [value]="state.id">{{state.desc}}</mat-option>
+                                        <mat-option *ngFor="let i of cat" [value]="i">{{i.desc}}</mat-option>
                                     </mat-select>
                                 </mat-form-field>
-                            </div>
-                            <div class="col">
+                            </form>
+                            <form [formGroup]="subcategoria" class="col">
                                 <mat-form-field appearance="fill">
                                     <mat-label>Sub Categoria</mat-label>
-                                    <mat-select (selectionChange)="changeCatSub(b)" #b>
+                                    <mat-select placeholder="Subcategoria" formControlName="subcategoria" (selectionChange)="changeCatSub(b)" #b>
                                         <mat-option>Ninguna</mat-option>
-                                        <mat-option *ngFor="let state of subcat" [value]="state.id">{{state.desc}}</mat-option>
+                                        <mat-option *ngFor="let state of subcat" [value]="state">{{state.desc}}</mat-option>
                                     </mat-select>
                                 </mat-form-field>
-                            </div>
+                            </form>
                         </div>
                     </div>
-                    <form *ngIf="isLinear" class="needs-validation">
-                        <mat-stepper [linear]="isLinear" #stepper>
+                    <form class="needs-validation">
+                        <mat-stepper #stepper>
                             <mat-step label="Sección 1">
                                 <div class="row">
                                     <div class="col-sm-3">
@@ -597,7 +596,7 @@
                                         </button>
                                     </div>
                                     <div class="col-lg-11 text-right" align="end">
-                                        <button mat-button matStepperNext class="btn btn-primary mr-3" style="margin: -30px;">
+                                        <button mat-button matStepperNext class="btn btn-primary">
                                             <mat-icon>arrow_forward_ios</mat-icon>
                                         </button>
                                     </div>

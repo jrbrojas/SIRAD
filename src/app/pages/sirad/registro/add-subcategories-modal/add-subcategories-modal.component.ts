@@ -69,6 +69,7 @@ export class FichaEvaluacionDetalleSegmentosOpcionesRespuestas {
 
 export class AddSubcategoriesModalComponent implements OnInit {
 
+  atributosItem: FichaEvaluacionSegmentos = new FichaEvaluacionSegmentos();
   formFichaEvaluacion: FichaEvaluacion = new FichaEvaluacion();
 
   options: Options[] = [
@@ -104,10 +105,40 @@ export class AddSubcategoriesModalComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.atributosItem.fichaEvaluacionDetalleSegmentos.push({
+      numId: 1,
+      numIdTipoRespuesta: 1,
+      txtPregunta: 'Departamento',
+      numRespuesta: 1,
+      txtObservacion: 'Nombre del Departamento',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 1,
+      txtPregunta: 'Provincia',
+      numRespuesta: 1,
+      txtObservacion: 'Nombre de la Provincia',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 1,
+      txtPregunta: 'Distrito',
+      numRespuesta: 1,
+      txtObservacion: 'Nombre del Distrito',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    }, {
+      numId: 1,
+      numIdTipoRespuesta: 1,
+      txtPregunta: 'Nombre',
+      numRespuesta: 1,
+      txtObservacion: 'Nombre del Recurso',
+      fichaEvaluacionDetalleSegmentosOpcionesRespuestas: [],
+    })
   }
 
   closeModal(){
     this.modalService.dismissAll()
+    
   }
 
   
@@ -204,7 +235,7 @@ export class AddSubcategoriesModalComponent implements OnInit {
       confirmButtonText: 'Si, eliminar!'
     }).then((result) => {
       if (result.isConfirmed) {
-        item.splice(index, 1);
+        item.fichaEvaluacionDetalleSegmentos.splice(index, 1);
         Swal.fire(
           'Eliminado!',
           'Eliminado correctamente.',
@@ -224,6 +255,16 @@ export class AddSubcategoriesModalComponent implements OnInit {
       fichaEvaluacionDetalleSegmentosOpcionesRespuestas: []
     })
   }
+  // ngAgregarDetalleSegmento(item: FichaEvaluacionSegmentos) {
+  //   item.fichaEvaluacionDetalleSegmentos.push({
+  //     numId: 0,
+  //     numIdTipoRespuesta: 0,
+  //     txtPregunta: '',
+  //     numRespuesta: 0,
+  //     txtObservacion: '',
+  //     fichaEvaluacionDetalleSegmentosOpcionesRespuestas: []
+  //   })
+  // }
 
   ngAgregarSegmentoOpcionesRespuesta(item: FichaEvaluacionDetalleSegmentosOpcionesRespuestas[]) {
     item.push( {

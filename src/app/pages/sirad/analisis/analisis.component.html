@@ -1,0 +1,198 @@
+<app-breadcrumb [title]="'Análisis de Vulnerabilidad Por Riesgo'" [active_item]="'Análisis'"></app-breadcrumb>
+
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+
+          <form>
+            <div class="row px-4">
+              <div class="col-sm-10">
+                <label>Seleccione recurso</label>
+              </div>
+
+              <mat-form-field class="col-lg-6 pt-3" appearance="outline">
+                <mat-label>Seleccione Categoria</mat-label>
+                <select matNativeControl required>
+                  <option disabled value=""></option>
+                  <option value="volvo">ABASTECIMIENTO DE AGUA</option>
+                  <option value="saab">ABASTECIMIENTO DE ALIMENTOS </option>
+                  <option value="mercedes">ABASTECIMIENTO DE ENERGIA</option>
+                </select>
+              </mat-form-field>
+              <mat-form-field class="col-lg-6 pt-3" appearance="outline">
+                <mat-label>Seleccione SubCategoria</mat-label>
+                <select matNativeControl required>
+                  <option disabled value=""></option>
+                  <option value="volvo">Plantas de agua potable</option>
+                  <option value="saab">Red primario de agua potable </option>
+                  <option value="mercedes">Pozos</option>
+                </select>
+              </mat-form-field>
+              <div class="col-sm-10">
+                <label>Seleccione el tipo de peligro</label>
+              </div>
+              <mat-form-field class="col-lg-12 pt-2" appearance="outline">
+                <mat-label>Seleccione el peligro al que esta expuesto</mat-label>
+                <select matNativeControl required>
+                  <option disabled value=""></option>
+                  <option value="volvo">Tsunami</option>
+                  <option value="saab">Sismo</option>
+                  <option value="mercedes">Deslizamiento</option>
+                </select>
+              </mat-form-field>
+              <div class="col-sm-10">
+                <label>Seleccione la ubicación del recurso</label>
+              </div>
+              <mat-form-field class="col-lg-4 pt-2" appearance="outline">
+                <mat-label>Seleccione Departamento</mat-label>
+                <select matNativeControl required>
+                  <option disabled value=""></option>
+                  <option value="volvo">Lima</option>
+                  <option value="saab">Junin </option>
+                  <option value="mercedes">Cusco</option>
+                </select>
+              </mat-form-field>
+              <mat-form-field class="col-lg-4 pt-2" appearance="outline">
+                <mat-label>Seleccione Provincia</mat-label>
+                <select matNativeControl required>
+                  <option disabled value=""></option>
+                  <option value="volvo">Lima</option>
+                  <option value="saab">Surco </option>
+                  <option value="mercedes">San Isidro</option>
+                </select>
+              </mat-form-field>
+              <mat-form-field class="col-lg-4 pt-2" appearance="outline">
+                <mat-label>Seleccione Distrito</mat-label>
+                <select matNativeControl required>
+                  <option disabled value=""></option>
+                  <option value="volvo">Pachacamac</option>
+                  <option value="saab">Manchay </option>
+                  <option value="mercedes">Cienguilla</option>
+                </select>
+              </mat-form-field>
+              <div class="col-sm-12 text-right">
+                <button class="btn btn-primary">Buscar</button>
+              </div>
+
+              <div class="col-lg-12">
+                <div class="table-responsive">
+                  <div name="data-source-1_length" class="dataTables_wrapper">
+                    <div class="dataTables_length">
+                      <label>Mostrar
+                        <select name="data-source-1_length">
+                          <option value="10">10</option>
+                          <option value="25">25</option>
+                          <option value="50">50</option>
+                          <option value="100">100</option>
+                        </select> entradas</label>
+                    </div>
+
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th class="text-center">ID</th>
+                          <th class="text-center">Subcategoría</th>
+                          <th class="text-center">Nombre del Recurso</th>
+                          <th class="text-center">Departamento</th>
+                          <th class="text-center">Provincia</th>
+                          <th class="text-center">Distrito</th>
+                          <th class="text-center">Peligro</th>
+                          <th class="text-center">Descripcion Modalidad</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="text-center">
+                          <td class="text-center">1</td>
+                          <td class="text-center">Plantas de agua potable</td>
+                          <td class="text-center">PAP-001</td>
+                          <td class="text-center">Lima</td>
+                          <td class="text-center">Lima</td>
+                          <td class="text-center">Pachacamac</td>
+                          <td class="text-center">Sismo</td>
+                          <td class="text-center">Peligro bajo</td>
+                        </tr>
+                        <tr class="text-center">
+                          <td class="text-center">2</td>
+                          <td class="text-center">Plantas de agua potable</td>
+                          <td class="text-center">PAP-002</td>
+                          <td class="text-center">Lima</td>
+                          <td class="text-center">Lima</td>
+                          <td class="text-center">Pachacamac</td>
+                          <td class="text-center">Sismo</td>
+                          <td class="text-center">Peligro relativamente bajo</td>
+                        </tr>
+                        <tr class="text-center">
+                          <td class="text-center">3</td>
+                          <td class="text-center">Plantas de agua potable</td>
+                          <td class="text-center">PAP-003</td>
+                          <td class="text-center">Lima</td>
+                          <td class="text-center">Lima</td>
+                          <td class="text-center">Pachacamac</td>
+                          <td class="text-center">Sismo</td>
+                          <td class="text-center">Peligro alto</td>
+                        </tr>
+                        <tr class="text-center">
+                          <td class="text-center">4</td>
+                          <td class="text-center">Plantas de agua potable</td>
+                          <td class="text-center">PAP-004</td>
+                          <td class="text-center">Lima</td>
+                          <td class="text-center">Lima</td>
+                          <td class="text-center">Pachacamac</td>
+                          <td class="text-center">Sismo</td>
+                          <td class="text-center">Peligro muy alto</td>
+                        </tr>
+                        <tr class="text-center">
+                          <td class="text-center">5</td>
+                          <td class="text-center">Plantas de agua potable</td>
+                          <td class="text-center">PAP-005</td>
+                          <td class="text-center">Lima</td>
+                          <td class="text-center">Lima</td>
+                          <td class="text-center">Pachacamac</td>
+                          <td class="text-center">Sismo</td>
+                          <td class="text-center">Sin información</td>
+                        </tr>
+                        <tr class="text-center">
+                          <td class="text-center">6</td>
+                          <td class="text-center">Red primario de agua potable</td>
+                          <td class="text-center">RPAP-001</td>
+                          <td class="text-center">Lima</td>
+                          <td class="text-center">San Isidro</td>
+                          <td class="text-center">La Molina</td>
+                          <td class="text-center">Tsunami</td>
+                          <td class="text-center">Sismo más probable</td>
+                        </tr>
+                        <tr class="text-center">
+                          <td class="text-center">7</td>
+                          <td class="text-center">Pozos</td>
+                          <td class="text-center">POZ-001</td>
+                          <td class="text-center">Lima</td>
+                          <td class="text-center">San Isidro</td>
+                          <td class="text-center">La Molina</td>
+                          <td class="text-center">Tsunami</td>
+                          <td class="text-center">Sismo de tipo 1746</td>
+                        </tr>
+                        <tr class="text-center">
+                          <td class="text-center">8</td>
+                          <td class="text-center">Pozos</td>
+                          <td class="text-center">POZ-002</td>
+                          <td class="text-center">Lima</td>
+                          <td class="text-center">San Isidro</td>
+                          <td class="text-center">La Molina</td>
+                          <td class="text-center">Tsunami</td>
+                          <td class="text-center">No expuesto</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

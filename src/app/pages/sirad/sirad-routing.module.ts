@@ -18,6 +18,8 @@ import { PermisosAddComponent } from './seguridad/seguridad/permisos-add/permiso
 import { PerfilEditComponent } from './seguridad/seguridad/perfil-edit/perfil-edit.component';
 import { PermisosEditComponent } from './seguridad/seguridad/permisos-edit/permisos-edit.component';
 import { UsuariosEditComponent } from './seguridad/seguridad/usuarios-edit/usuarios-edit.component';
+import { RecursosEditComponent } from './registro/registro/recursos-edit/recursos-edit.component';
+import { AnalisisComponent } from './analisis/analisis.component';
 
 const routes: Routes = [
   {
@@ -74,6 +76,10 @@ const routes: Routes = [
         component: RecursosComponent,
       },
       {
+        path: 'registro/recursos-edit',
+        component: RecursosEditComponent,
+      },
+      {
         path: 'registro/carga-masiva',
         component: CargaMasivaComponent,
       },
@@ -84,6 +90,10 @@ const routes: Routes = [
       {
         path:'visualizacion/mapa',
         component: VisualizacionComponent
+      },
+      {
+        path:'analisis/vulnerabilidad',
+        component: AnalisisComponent
       }
     ]
   }
