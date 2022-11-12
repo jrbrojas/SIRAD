@@ -31,7 +31,7 @@
                     </div>
                     <form *ngIf="isLinear" class="needs-validation">
                         <mat-stepper [linear]="isLinear" #stepper>
-                            <mat-step label="Sección 1">
+                            <mat-step label="Llenado de informacion 1">
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <mat-form-field appearance="outline">
@@ -103,17 +103,22 @@
                                         </div> -->
                                     </div>
                                     <div class="col-sm-3">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>EST_PZ</mat-label>
+                                            <mat-select>
+                                                <mat-option *ngFor="let i of estados" [value]="i.id">
+                                                    {{i.estado}}
+                                                </mat-option>
+                                                <mat-icon matSuffix><a style="color: #3331319f; cursor: pointer; font-size: 24px"
+                                                    ngbTooltip="Estado del pozo">
+                                                    <i class="fa fa-exclamation"></i></a>
+                                                </mat-icon>
+                                            </mat-select>
+                                          </mat-form-field>
                                         <!-- <mat-form-field appearance="outline">
-                                            <mat-label>EST_PZ</mat-label> -->
-                                            <select style="outline: #3331319f; width: 100px;" placeholder="EST_PZ" onkeyup="this.value=this.value.toUpperCase();">
-                                                <option>Funcionando</option>
-                                                <option>Paralizado por calidad</option>
-                                                <option>En reparación</option>
-                                                <option>Reserva sin equipo</option>
-                                                <option>Reserva equipada - sector uso conjuntivo (Red+Pozos)</option>
-                                                <option>Reserva equipada - sector fuente única (Pozo solo)</option>
-                                            </select>
-                                            <!-- <mat-icon matSuffix><a style="color: #3331319f; cursor: pointer; font-size: 24px"
+                                            <mat-label>EST_PZ</mat-label>
+                                            <input matInput placeholder="EST_PZ" onkeyup="this.value=this.value.toUpperCase();">
+                                            <mat-icon matSuffix><a style="color: #3331319f; cursor: pointer; font-size: 24px"
                                                 ngbTooltip="Estado del pozo"><i class="fa fa-exclamation"></i></a></mat-icon>
                                         </mat-form-field> -->
                                         <!-- <div class="form-group">
@@ -123,11 +128,17 @@
                                         </div> -->
                                     </div>
                                     <div class="col-sm-3">
-                                        <div class="form-group">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>ME_MARCA</mat-label>
+                                            <input matInput placeholder="ME_MARCA" onkeyup="this.value=this.value.toUpperCase();">
+                                            <mat-icon matSuffix><a style="color: #3331319f; cursor: pointer; font-size: 24px"
+                                                ngbTooltip="Marca del motor eléctrico del pozo"><i class="fa fa-exclamation"></i></a></mat-icon>
+                                        </mat-form-field>
+                                        <!-- <div class="form-group">
                                             <label>Potencia del motor eléctrico del pozo</label>
                                             <input type="text" class="form-control" rows="3" maxlength="255"
                                                 onkeyup="this.value=this.value.toUpperCase();">
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
@@ -143,7 +154,7 @@
                                     </button>
                                 </div>
                             </mat-step>
-                            <mat-step label="Sección 2">
+                            <mat-step label="Llenado de informacion 2">
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <div class="form-group">
@@ -210,7 +221,7 @@
                                     </button>
                                 </div>
                             </mat-step>
-                            <mat-step label="Sección 3">
+                            <mat-step label="Llenado de informacion 3">
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <div class="form-group">
@@ -278,7 +289,7 @@
                                     </button>
                                 </div>
                             </mat-step>
-                            <mat-step label="Sección 4">
+                            <mat-step label="Llenado de informacion 4">
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <div class="form-group">
@@ -345,7 +356,7 @@
                                     </button>
                                 </div>
                             </mat-step>
-                            <mat-step label="Sección 5">
+                            <mat-step label="Llenado de informacion 5">
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <div class="form-group">

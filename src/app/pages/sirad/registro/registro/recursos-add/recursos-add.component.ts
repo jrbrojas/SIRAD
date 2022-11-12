@@ -9,6 +9,7 @@ export interface categoria {
   desc: string;
 }
 
+
 @Component({
   selector: 'app-recursos-add',
   templateUrl: './recursos-add.component.html',
@@ -28,6 +29,33 @@ export class RecursosAddComponent implements OnInit {
   catBu : categoria[] = [];
   subcatBu : categoria[] = [];
   subcat : categoria[] = [];
+  
+  estados = [
+    {
+      id: 1,
+      estado: "Funcionando"
+    },
+    {
+      id: 2,
+      estado: "Paralizado por calidad"
+    },
+    {
+      id: 3,
+      estado: "En reparación"
+    },
+    {
+      id: 4,
+      estado: "Reserva sin equipo"
+    },
+    {
+      id: 5,
+      estado: "Reserva equipada - sector uso conjuntivo (Red+Pozos)"
+    },
+    {
+      id: 6,
+      estado: "Reserva equipada - sector fuente única (Pozo solo)"
+    },
+  ]
 
   constructor(private _formBuilder: FormBuilder, private _router: Router, private alert: AlertService) { }
 
